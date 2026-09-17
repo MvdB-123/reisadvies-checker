@@ -13,11 +13,19 @@ PAGINA = "https://www.gov.uk/foreign-travel-advice/{slug}"
 
 # De zin waarmee het FCDO een advies uitspreekt. Kopjes lopen in de platte tekst
 # door in de zin eronder, dus we knippen het citaat op 'FCDO advises'.
-ADVIESZIN = re.compile(r"FCDO\s+advises\s+against\s+(all\s+but\s+essential\s+travel|all\s+travel)",
-                       re.IGNORECASE)
+ADVIESZIN = re.compile(
+    r"FCDO\s+advises\s+against:?\s+(?:all\s+but\s+essential\s+travel|all\s+travel)",
+    re.IGNORECASE)
+
+# Eén losse uitspraak: een niveau plus het gebied waar het voor geldt. Ze staan
+# niet altijd in een eigen zin — Saoedi-Arabië zet er twee achter elkaar:
+# "FCDO advises against: all travel to within 10km of the border with Yemen
+#  all but essential travel to a..." — en soms staat er een dubbele punt met
+# een opsomming achter ("travel to: Garissa Town Tana River County ...").
+UITSPRAAK = re.compile(
+    r"\b(all\s+but\s+essential\s+travel|all\s+travel)\s+to:?\s+", re.IGNORECASE)
 HEEL_LAND = re.compile(r"\bthe\s+whole\s+(?:of|country)\b", re.IGNORECASE)
-ZWAAR = re.compile(r"against\s+all\s+travel\b", re.IGNORECASE)
-DOELWIT = re.compile(r"\btravel\s+to\s+(.*)", re.IGNORECASE)
+
 
 
 def haal_alles(register, alleen=None):
@@ -59,70 +67,78 @@ def _haal_land(slug):
             waarschuwingen = zinnen(plat(onderdeel.get("body", "")))
             break
 
-    # Alleen de zinnen waarin het FCDO daadwerkelijk een advies uitspreekt,
-    # geknipt op 'FCDO advises' zodat het kopje erboven niet meelift. Staat de
-    # formulering er twee keer in, dan is de eerste het kopje dat doorloopt.
-    adviezen = []
-    for zin in waarschuwingen:
-        treffers = list(ADVIESZIN.finditer(zin))
-        if treffers:
-            adviezen.append(zin[treffers[-1].start():])
-
-    # Het niveau leiden we af uit de zin zelf en niet uit alert_status: het VK
-    # schrijft lang niet altijd 'the whole of', en soms wijkt de tekst af van
-    # het gestructureerde veld. alert_status blijft het vangnet.
+    # Het niveau leiden we af uit de tekst zelf en niet uit alert_status: het VK
+    # schrijft lang niet altijd 'the whole of', en soms wijkt de tekst af van het
+    # gestructureerde veld. alert_status blijft het vangnet.
+    #
+    # Eén zin kan meerdere uitspraken bevatten: bij Kenia staan 'all travel to'
+    # en 'all but essential travel to' achter elkaar zonder punt ertussen. Elk
+    # citaat begint daarom bij zijn eigen 'FCDO advises against' en loopt tot de
+    # volgende uitspraak, zodat het letterlijk en op zichzelf leesbaar blijft.
     landsnaam = normaliseer(slug.replace("-", " "))
     geduid = []
-    for zin in sorted(adviezen, key=len):
-        doel = DOELWIT.search(zin)
-        doeltekst = doel.group(1).strip(" .") if doel else ""
-        zwaar = bool(ZWAAR.search(zin))
-        heel = _is_heel_land(doeltekst, landsnaam)
-        label = ("avoid_all_travel" if zwaar else "avoid_all_but_essential_travel") \
-            + ("_to_whole_country" if heel else "_to_parts")
-        geduid.append((label, zin, doeltekst, heel))
+    for zin in waarschuwingen:
+        inleidingen = list(ADVIESZIN.finditer(zin))
+        if not inleidingen:
+            continue
+        uitspraken = list(UITSPRAAK.finditer(zin))
+        for nummer, treffer in enumerate(uitspraken):
+            grens = (uitspraken[nummer + 1].start() if nummer + 1 < len(uitspraken)
+                     else len(zin))
+            doeltekst = zin[treffer.end():grens].strip(" .,;:")
+            if not doeltekst:
+                continue
+            eerder = [i.start() for i in inleidingen if i.start() <= treffer.start()]
+            citaattekst = zin[(eerder[-1] if eerder else treffer.start()):grens]
+            zwaar = treffer.group(1).lower().strip() == "all travel"
+            heel = _is_heel_land(doeltekst, landsnaam)
+            label = ("avoid_all_travel" if zwaar
+                     else "avoid_all_but_essential_travel") \
+                + ("_to_whole_country" if heel else "_to_parts")
+            geduid.append((label, citaattekst.strip(), doeltekst, heel))
 
-    for label, zin, _doel, heel in geduid:
+    for label, tekst, _doel, heel in geduid:
         if heel and not uit["landniveau"]:
-            uit["landniveau"] = {"label": label, "citaat": citaat(zin)}
+            uit["landniveau"] = {"label": label, "citaat": citaat(tekst)}
 
     # Loopt een kopje door in de zin ("…all but essential travel to Cuba Protests
     # in Cuba The ongoing situation…"), dan herkennen we het land niet exact.
     # Zegt alert_status dat het om het hele land gaat, dan geeft dat de doorslag.
     if not uit["landniveau"] and any(n.endswith("_to_whole_country") for n in niveaus):
-        for label, zin, doeltekst, _heel in geduid:
+        for label, tekst, doeltekst, _heel in geduid:
             if normaliseer(doeltekst).startswith(landsnaam):
                 heel_label = next(n for n in niveaus if n.endswith("_to_whole_country"))
-                uit["landniveau"] = {"label": heel_label, "citaat": citaat(zin)}
+                uit["landniveau"] = {"label": heel_label, "citaat": citaat(tekst)}
                 break
 
-    for label, zin, doeltekst, heel in geduid:
-        # Zinnen die het land zelf noemen zijn een herhaling van het landniveau,
-        # geen apart gebied. Zonder doelgebied ("advises against all travel, to
-        # leave these areas") wijst de zin niets aan en hoort hij er ook niet bij.
-        if heel or not doeltekst or normaliseer(doeltekst).startswith(landsnaam):
+    for label, tekst, doeltekst, heel in geduid:
+        # Zinnen die het land zelf noemen herhalen het landniveau; dat is geen
+        # apart gebied.
+        if heel or normaliseer(doeltekst).startswith(landsnaam):
             continue
-        if uit["landniveau"] and citaat(zin) == uit["landniveau"]["citaat"]:
+        if uit["landniveau"] and citaat(tekst) == uit["landniveau"]["citaat"]:
             continue
         uit["gebieden"].append({
             "label": label,
-            "gebied": citaat(doeltekst or zin, 200),
-            "citaat": citaat(zin),
+            "gebied": citaat(doeltekst, 200),
+            "citaat": citaat(tekst),
         })
 
-    # Staat er in alert_status een niveau waar geen zin bij gevonden is, dan
-    # melden we dat wel, zonder citaat. Beter een vermelding zonder bewijs dan
-    # een advies dat we stilzwijgend weglaten.
-    gevonden = {label for label, *_ in geduid}
-    for niveau in niveaus:
-        if niveau in gevonden:
-            continue
-        if niveau.endswith("_to_whole_country") and not uit["landniveau"]:
-            uit["landniveau"] = {"label": niveau, "citaat": ""}
-        elif niveau.endswith("_to_parts") and not uit["gebieden"]:
-            uit["gebieden"].append({
-                "label": niveau, "gebied": "Zie de bronpagina", "citaat": "",
-            })
+    # Staat er in alert_status een niveau waar geen tekst bij te vinden is, dan
+    # melden we dat met zoveel woorden. Geen kleurcode zonder bron, maar ook
+    # niet stilzwijgend weglaten wat het VK wél zegt.
+    gebruikt = {label for label, *_ in geduid}
+    if uit["landniveau"]:
+        gebruikt.add(uit["landniveau"]["label"])
+    gebruikt.update(g["label"] for g in uit["gebieden"])
+    ontbreekt = [n for n in niveaus if n not in gebruikt]
+    if ontbreekt:
+        uit["opmerking"] = (
+            "Het VK vermeldt in zijn gegevens ook: "
+            + ", ".join(sorted(ontbreekt))
+            + ". De bijbehorende tekst staat niet in het onderdeel dat wij lezen; "
+            "zie de bronpagina."
+        )
     return uit
 
 

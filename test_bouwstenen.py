@@ -10,7 +10,7 @@ import json
 import unittest
 from pathlib import Path
 
-from bronnen import de, fr, nl, vs
+from bronnen import de, fr, nl, vk, vs
 from bronnen.gedeeld import citaat, normaliseer, zinnen
 
 HIER = Path(__file__).parent
@@ -141,6 +141,31 @@ class AmerikaanseTeksten(unittest.TestCase):
         gebieden = vs._gebieden(["Do Not Travel to: Arauca department due to crime."])
         self.assertEqual(len(gebieden), 1)
         self.assertEqual(gebieden[0]["label"], "4")
+
+
+class BritseUitspraken(unittest.TestCase):
+    def test_twee_niveaus_in_een_zin(self):
+        """Kenia zet beide niveaus achter elkaar zonder punt ertussen."""
+        zin = ("FCDO advises against all travel to: Mandera County Lamu County "
+               "FCDO advises against all but essential travel to: Garissa Town")
+        treffers = list(vk.UITSPRAAK.finditer(zin))
+        self.assertEqual(len(treffers), 2)
+        self.assertEqual(treffers[0].group(1).lower(), "all travel")
+        self.assertEqual(treffers[1].group(1).lower(), "all but essential travel")
+
+    def test_dubbele_punt_na_to(self):
+        self.assertTrue(vk.UITSPRAAK.search("all but essential travel to: Garissa"))
+
+    def test_dubbele_punt_na_against(self):
+        self.assertTrue(vk.ADVIESZIN.search("FCDO advises against: all travel to x"))
+
+    def test_kopje_zonder_niveau_telt_niet_als_advies(self):
+        self.assertFalse(vk.ADVIESZIN.search("Areas where FCDO advises against travel"))
+
+    def test_land_als_geheel_versus_gebied(self):
+        self.assertTrue(vk._is_heel_land("Afghanistan", "afghanistan"))
+        self.assertTrue(vk._is_heel_land("the whole of the Mali due to unrest", "mali"))
+        self.assertFalse(vk._is_heel_land("the north of Afghanistan", "afghanistan"))
 
 
 class FranseZones(unittest.TestCase):
