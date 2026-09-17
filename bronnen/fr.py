@@ -7,7 +7,7 @@ gebieden. De datum staat in het bijschrift van de kaart.
 
 import re
 
-from .gedeeld import OphaalFout, citaat, haal_tekst, plat
+from .gedeeld import OphaalFout, citaat, haal_tekst, plat, zinnen
 
 PAGINA = ("https://www.diplomatie.gouv.fr/fr/information-par-pays/{slug}"
           "/conseils-aux-voyageurs-securite")
@@ -27,12 +27,18 @@ NIVEAUKOP = re.compile(r"<h4[^>]*>(.*?)</h4>(.*?)(?=<h4|\Z)",
 # Meestal noemt Frankrijk alleen zones, maar soms staat er letterlijk dat het
 # hele land in één zone valt. Dat is dan wél een uitspraak over het hele land.
 HEEL_LAND = re.compile(
-    r"\b(?:l['’]ensemble\s+du\s+(?:territoire|pays)|la\s+totalit[ée]\s+du\s+pays"
-    r"|tout\s+le\s+pays|l['’]int[ée]gralit[ée]\s+du\s+(?:territoire|pays))\b",
+    r"\b(?:l['’]ensemble|la\s+totalit[ée]|l['’]int[ée]gralit[ée])\s+du\s+"
+    r"(?:territoire|pays)\b|\btout\s+le\s+pays\b",
     re.IGNORECASE)
 
 DATUM = re.compile(r"Derni[eè]re actualisation le\s*(\d{2})/(\d{2})/(\d{4})",
                    re.IGNORECASE)
+
+# Het volledige bijschrift onder de kaart; dat hoort niet in een citaat.
+BIJSCHRIFT = re.compile(
+    r"Derni[eè]re actualisation le\s*\d{2}/\d{2}/\d{4}"
+    r"(?:\s*,\s*information\s+toujours\s+valable\s+[^.]*?\bjour\b)?",
+    re.IGNORECASE)
 
 # Van kopje naar het label in mapping.json. Volgorde telt: 'déconseillées sauf
 # raison impérative' bevat ook het woord 'déconseillées'.
@@ -81,6 +87,20 @@ def _haal_land(slug):
     if datum:
         dag, maand, jaar = datum.groups()
         uit["gewijzigd_op"] = f"{jaar}-{maand}-{dag}"
+
+    # Sommige landen hebben geen zonekopjes maar één zin direct in het blok:
+    # Afghanistan zegt "La totalité du territoire est formellement déconseillée."
+    # Zonder dit stuk viel dat advies volledig weg.
+    inleiding = re.split(r"<h4", blok.group(1), maxsplit=1)[0]
+    for zin in zinnen(BIJSCHRIFT.sub("", plat(inleiding)).strip(" .,")):
+        label = next((naam for naam, patroon in NIVEAUS if patroon.search(zin)), None)
+        if not label:
+            continue
+        if HEEL_LAND.search(zin) and not uit["landniveau"]:
+            uit["landniveau"] = {"label": label, "citaat": citaat(zin)}
+        else:
+            uit["gebieden"].append({"label": label, "gebied": citaat(zin, 200),
+                                    "citaat": citaat(zin)})
 
     kopjes = NIVEAUKOP.findall(blok.group(1))
     onbekende_kopjes = []

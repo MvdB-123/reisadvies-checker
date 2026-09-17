@@ -232,6 +232,22 @@ class FranseZones(unittest.TestCase):
         self.assertTrue(fr.HEEL_LAND.search(
             "L’ensemble du territoire est classé en zone rouge."))
 
+    def test_heel_grondgebied_in_alle_schrijfwijzen(self):
+        """Afghanistan zegt 'La totalité du territoire'; die variant ontbrak."""
+        for zin in ("La totalité du territoire est formellement déconseillée.",
+                    "L’ensemble du territoire est classé en zone rouge.",
+                    "L’intégralité du pays est déconseillée.",
+                    "Tout le pays est concerné."):
+            with self.subTest(zin=zin):
+                self.assertTrue(fr.HEEL_LAND.search(zin))
+
+    def test_bijschrift_van_de_kaart_hoort_niet_in_het_citaat(self):
+        tekst = ("Dernière actualisation le 17/03/2026, information toujours valable "
+                 "à la date du jour La totalité du territoire est formellement "
+                 "déconseillée.")
+        self.assertEqual(fr.BIJSCHRIFT.sub("", tekst).strip(" .,"),
+                         "La totalité du territoire est formellement déconseillée")
+
     def test_gewone_zone_is_geen_landniveau(self):
         self.assertFalse(fr.HEEL_LAND.search(
             "À l’extrême-sud, les voyages sont formellement déconseillés."))
