@@ -236,8 +236,13 @@ class Mappingtabel(unittest.TestCase):
         for bron, regels in self.mapping["bronnen"].items():
             for label, info in regels["labels"].items():
                 with self.subTest(bron=bron, label=label):
-                    self.assertIn(info["kleur"], kleuren)
-                    self.assertIn(info["type"], ("letterlijk", "afgeleid"))
+                    # Een label mag bewust géén kleur hebben: 'geen waarschuwing'
+                    # is een uitspraak van de bron, geen niveau op onze schaal.
+                    if info["kleur"] is None:
+                        self.assertEqual(info["type"], "bestaat niet")
+                    else:
+                        self.assertIn(info["kleur"], kleuren)
+                        self.assertIn(info["type"], ("letterlijk", "afgeleid"))
                     self.assertTrue(info["onderbouwing"].strip())
 
     def test_bronlabel_blijft_bewaard(self):

@@ -101,6 +101,13 @@
           "bronlabel": "von nicht notwendigen Reisen wird abgeraten",
           "type": "afgeleid",
           "onderbouwing": "Duitsland raadt alleen de niet-noodzakelijke reizen af. Dat komt inhoudelijk overeen met onze oranje, maar Duitsland noemt het zelf geen niveau."
+        },
+        "geen_waarschuwing": {
+          "kleur": null,
+          "weergave": "Geen waarschuwing",
+          "bronlabel": "geen Reisewarnung",
+          "type": "bestaat niet",
+          "onderbouwing": "Duitsland heeft hier geen waarschuwing afgegeven. Dat is geen 'veilig'-verklaring: Duitsland geeft alleen waarschuwingen en kent geen positief niveau. Wilt u dit tonen als groen of geel, dan is dat een keuze van de redactie: zet 'kleur' in mapping.json op \"groen\" of \"geel\" en 'type' op \"afgeleid\". Het overzicht meldt dan zelf dat het een afleiding is."
         }
       },
       "kent_niet": {
@@ -141,6 +148,13 @@
           "bronlabel": "Advise against all but essential travel to parts",
           "type": "letterlijk",
           "onderbouwing": "Geldt alleen voor de genoemde gebieden; voor de rest geeft het VK geen niveau."
+        },
+        "geen_waarschuwing": {
+          "kleur": null,
+          "weergave": "Geen waarschuwing",
+          "bronlabel": "FCDO advises against travel — niet genoemd",
+          "type": "bestaat niet",
+          "onderbouwing": "Het VK raadt reizen hierheen niet af. Dat is geen 'veilig'-verklaring: het VK geeft alleen negatieve adviezen en kent geen positief niveau. Wilt u dit tonen als groen of geel, dan is dat een keuze van de redactie: zet 'kleur' in mapping.json op \"groen\" of \"geel\" en 'type' op \"afgeleid\". Het overzicht meldt dan zelf dat het een afleiding is."
         }
       },
       "kent_niet": {
@@ -217,6 +231,13 @@
           "bronlabel": "Vigilance normale",
           "type": "letterlijk",
           "onderbouwing": "Het laagste Franse zoneniveau."
+        },
+        "geen_zone": {
+          "kleur": null,
+          "weergave": "Geen zone aangewezen",
+          "bronlabel": "niet genoemd onder 'Zones de vigilance'",
+          "type": "bestaat niet",
+          "onderbouwing": "Frankrijk wijst hier geen zone aan. Op hun kaart is dit gebied groen (vigilance normale), maar die kaart is een afbeelding en die kleur staat niet in de tekst. Wilt u dit tonen als groen of geel, dan is dat een keuze van de redactie: zet 'kleur' in mapping.json op \"groen\" of \"geel\" en 'type' op \"afgeleid\". Het overzicht meldt dan zelf dat het een afleiding is."
         }
       },
       "kent_niet": {

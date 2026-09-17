@@ -36,6 +36,7 @@
   .chip{flex:1 1 150px;border:1px solid var(--lijn);border-radius:4px;padding:10px 12px;
         background:#fbfbfb}
   .chip .land{font-size:12.5px;color:var(--grijs);margin-bottom:6px}
+  .chip .afwijkend{font-size:12px;color:var(--grijs);margin-top:5px}
 
   /* De kleurcode als badge: het woord staat in de kleur, niet ernaast. Dat
      leest sneller dan een bolletje dat tegen de tekst aan plakt, en blijft
@@ -291,7 +292,9 @@ function kleurBadge(stuk){
 }
 
 function gebiedenCel(groep, bron, landsnaam){
-  if(groep.land) return '<span class="heleland">Hele land</span>';
+  if(groep.land)
+    return '<span class="heleland">'
+         + (groep.rest ? "Rest van het land" : "Hele land") + '</span>';
   let h = '<ul class="gebieden">';
   for(const item of groep.items){
     // Sommige bronnen benoemen het gebied apart ("the Thai-Cambodian border");
@@ -332,11 +335,13 @@ function groepeer(advies){
   // ernaast; dat maakt vergelijken juist moeilijker.
   const groepen = [];
   const index = {};
+  const heeftGebieden = advies.gebieden && advies.gebieden.length > 0;
   function voegToe(stuk, gebied, land){
     const sleutel = land ? "LAND"
       : (stuk ? (stuk.label || stuk.weergave) + "|" + (stuk.kleur || "geen") : "geen");
     if(!index[sleutel]){
-      index[sleutel] = {stuk: stuk, land: land, items: []};
+      index[sleutel] = {stuk: stuk, land: land, items: [],
+                        rest: land && heeftGebieden};
       groepen.push(index[sleutel]);
     }
     if(!land) index[sleutel].items.push({gebied: gebied, citaat: stuk ? stuk.citaat : ""});
@@ -413,10 +418,15 @@ function toonLand(land){
     const n = a && a.landniveau;
     const etiket = n && n.kleur
       ? n.kleur.charAt(0).toUpperCase() + n.kleur.slice(1)
-      : (a && a.gebieden && a.gebieden.length ? "alleen gebieden" : "geen niveau");
+      : (n ? n.weergave
+           : (a && a.gebieden && a.gebieden.length ? "alleen gebieden" : "geen niveau"));
     uit.push('<div class="chip"><div class="land">' + tekstUit(bron.naam) + '</div>'
       + '<span class="kleurbadge ' + (n && n.kleur ? n.kleur : "geen") + '">'
-      + etiket + '</span></div>');
+      + etiket + '</span>'
+      + (a && a.gebieden && a.gebieden.length
+         ? '<div class="afwijkend">+ ' + a.gebieden.length + ' afwijkend gebied'
+           + (a.gebieden.length === 1 ? "" : "en") + '</div>' : "")
+      + '</div>');
   }
   uit.push('</div>');
   uit.push('<div class="knoppen"><button onclick="kopieer()">Kopieer overzicht</button>'

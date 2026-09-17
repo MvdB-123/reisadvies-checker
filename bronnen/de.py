@@ -144,9 +144,9 @@ def haal_alles(register, alleen=None):
         }
 
         if not item.get("warning") and not item.get("partialWarning"):
-            uit["opmerking"] = (
-                "Duitsland heeft voor dit land geen reiswaarschuwing afgegeven."
-            )
+            # Duitsland geeft alleen waarschuwingen. Geen waarschuwing is zelf
+            # informatie, en hoort dus in het overzicht te staan.
+            uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
             resultaat[iso2] = uit
             continue
 
@@ -165,6 +165,9 @@ def haal_alles(register, alleen=None):
                     "gebied": citaat(doelwit or zin, 200),
                     "citaat": citaat(zin),
                 })
+
+        if uit["gebieden"] and not uit["landniveau"]:
+            uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
 
         if not uit["landniveau"] and not uit["gebieden"]:
             uit["opmerking"] = (

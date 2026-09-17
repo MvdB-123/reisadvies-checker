@@ -94,18 +94,12 @@ def _haal_land(slug):
             else:
                 uit["gebieden"].append({"label": label, **gebied})
 
-    if uit["landniveau"]:
-        uit["opmerking"] = None
-    elif uit["gebieden"]:
-        # Frankrijk deelt landen niet als geheel in; zie mapping.json, 'kent_niet'.
-        uit["opmerking"] = (
-            "Frankrijk geeft geen niveau voor het hele land, alleen voor zones."
-        )
+    # Frankrijk wijst alleen zones aan. Waar het niets aanwijst, staat dat er nu
+    # met zoveel woorden; een leeg vakje leest als 'niet opgehaald'.
+    if not uit["landniveau"]:
+        uit["landniveau"] = {"label": "geen_zone", "citaat": ""}
     else:
-        uit["opmerking"] = (
-            "Frankrijk markeert voor dit land geen afwijkende zones en geeft "
-            "geen niveau voor het hele land."
-        )
+        uit["opmerking"] = None
     return uit
 
 

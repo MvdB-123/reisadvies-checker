@@ -55,10 +55,10 @@ def _haal_land(slug):
     niveaus = details.get("alert_status") or []
 
     if not niveaus:
-        uit["opmerking"] = (
-            "Het VK raadt geen reizen naar dit land af. Het VK geeft geen "
-            "'veilig'-niveau af, dus dit is geen kleurcode."
-        )
+        # Het VK publiceert alleen negatieve adviezen. Zwijgen betekent hier:
+        # geen advies tegen reizen. Dat expliciet tonen is eerlijker dan een leeg
+        # vakje, dat leest als 'niet opgehaald'.
+        uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
         return uit
 
     waarschuwingen = []
@@ -131,6 +131,11 @@ def _haal_land(slug):
     if uit["landniveau"]:
         gebruikt.add(uit["landniveau"]["label"])
     gebruikt.update(g["label"] for g in uit["gebieden"])
+    # Gelden alle adviezen alleen voor delen van het land, dan zegt het VK over
+    # de rest niets — en dat is zelf informatie.
+    if not uit["landniveau"] and uit["gebieden"]:
+        uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
+
     ontbreekt = [n for n in niveaus if n not in gebruikt]
     if ontbreekt:
         uit["opmerking"] = (

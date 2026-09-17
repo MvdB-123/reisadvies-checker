@@ -69,6 +69,22 @@ Komt een overheid met een label dat niet in de tabel staat, dan **raadt de tool
 niet**: het overzicht toont "niet in de mappingtabel", en de controle laat de
 ophaalronde mislukken totdat de redactie het label heeft geduid.
 
+### 'Geen waarschuwing' is geen kleurcode
+
+Duitsland, het VK en Frankrijk publiceren alleen waar ze tégen adviseren. Ze
+kennen geen 'veilig'-niveau. Waar zij zwijgen, toont het overzicht daarom een
+regel **Geen waarschuwing** zonder kleur — niet een leeg vakje, want dat leest
+als een storing, en niet groen, want dat zou een uitspraak zijn die de bron niet
+doet. Een overheid kan zwijgen omdat het er veilig is, óf omdat ze er geen
+informatie over heeft; dat onderscheid verdwijnt zodra je er groen van maakt.
+
+Vindt de redactie dat 'geen waarschuwing' wél als groen of geel getoond moet
+worden, dan is dat een legitieme keuze — mits hij zichtbaar is. Zet in
+`mapping.json` bij het label `geen_waarschuwing` (of `geen_zone` bij Frankrijk)
+de `kleur` op `"groen"` of `"geel"` en `type` op `"afgeleid"`, en draai
+`python3 bouw.py --hermap`. Het overzicht zet er dan zelf het stempel *afgeleid*
+bij, zodat iedereen ziet dat het onze gelijkstelling is en niet die van hen.
+
 ### Een wijziging meteen zien
 
 Na het aanpassen van `mapping.json` hoeft u niet te wachten op een ophaalronde.
