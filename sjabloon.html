@@ -207,8 +207,10 @@ function bronRijen(sleutel, land){
                 + "stand van " + tekstUit(datumNL(advies.overgenomen_van)) + ".");
   const mist = Object.entries(advies.kent_niet || {}).filter(function(p){ return p[0][0] !== "_"; });
   if(mist.length)
-    notities.push("Kent deze schaal niet — "
-      + mist.map(function(p){ return p[0] + ": " + p[1]; }).join(" "));
+    notities.push("<b>Kent deze schaal niet.</b> "
+      + mist.map(function(p){
+          return "<b>" + tekstUit(p[0]) + ":</b> " + tekstUit(p[1]);
+        }).join(" &nbsp; "));
   if(advies.bevestigd_op)
     notities.push("Door deze overheid nog geldig bevonden op "
                 + tekstUit(datumNL(advies.bevestigd_op)) + ".");

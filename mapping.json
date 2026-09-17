@@ -77,28 +77,28 @@
         "partialWarning": {
           "kleur": "rood",
           "weergave": "Gedeeltelijke reiswaarschuwing",
-          "bronlabel": "Teilreisewarnung — „wird gewarnt“",
+          "bronlabel": "Teilreisewarnung (wird gewarnt)",
           "type": "letterlijk",
           "onderbouwing": "Duitsland wáárschuwt hier ('wird gewarnt'), het zwaarste niveau, maar alleen voor het genoemde gebied."
         },
         "dringend_abgeraten": {
           "kleur": "oranje",
           "weergave": "Reizen dringend afgeraden",
-          "bronlabel": "„wird dringend abgeraten“",
+          "bronlabel": "wird dringend abgeraten",
           "type": "afgeleid",
           "onderbouwing": "Duitsland waarschuwt hier niet, maar raadt reizen dringend af. Dat is een lichter niveau dan een Reisewarnung. Wij stellen het gelijk aan oranje; dat is een keuze van de redactie."
         },
         "abgeraten": {
           "kleur": "oranje",
           "weergave": "Reizen afgeraden",
-          "bronlabel": "„wird abgeraten“",
+          "bronlabel": "wird abgeraten",
           "type": "afgeleid",
           "onderbouwing": "Duitsland waarschuwt hier niet, maar raadt reizen af. Dat is een lichter niveau dan een Reisewarnung. Wij stellen het gelijk aan oranje; dat is een keuze van de redactie."
         },
         "nicht_notwendige_reisen_abgeraten": {
           "kleur": "oranje",
           "weergave": "Alleen noodzakelijke reizen",
-          "bronlabel": "„von nicht notwendigen Reisen wird abgeraten“",
+          "bronlabel": "von nicht notwendigen Reisen wird abgeraten",
           "type": "afgeleid",
           "onderbouwing": "Duitsland raadt alleen de niet-noodzakelijke reizen af. Dat komt inhoudelijk overeen met onze oranje, maar Duitsland noemt het zelf geen niveau."
         }
