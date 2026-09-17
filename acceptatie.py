@@ -67,15 +67,38 @@ def main():
         meldingen.append(f"Frankrijk geeft bij {fr_land} van {len(landen)} landen een "
                          "landniveau (alleen waar het letterlijk 'l'ensemble du "
                          "territoire' schrijft)")
-        for bron, kleur in (("de", "geel"), ("de", "oranje"), ("vk", "geel")):
+
+        # Niveaus die een overheid aantoonbaar niet kent, mogen nooit voorkomen.
+        for bron, kleur in (("de", "geel"), ("vk", "geel"), ("vk", "groen")):
             gevonden = [l["naam"] for l in landen.values()
                         for s in [(l["adviezen"].get(bron) or {}).get("landniveau")]
                         + list((l["adviezen"].get(bron) or {}).get("gebieden", []))
                         if s and s.get("kleur") == kleur]
             meldingen.append(f"{bron.upper()} met kleur {kleur}: {len(gevonden)} "
-                             f"(moet 0 zijn){' — ' + ', '.join(gevonden[:3]) if gevonden else ''}")
+                             f"(moet 0 zijn)")
             if gevonden:
+                meldingen.append(f"   o.a. {', '.join(gevonden[:3])}")
                 return False, "\n".join(meldingen)
+
+        # Waar wij twee schalen gelijkstellen, moet dat als keuze zichtbaar zijn.
+        # Duitsland kent geen oranje; onze oranje daar is altijd een afleiding.
+        ten_onrechte = [
+            f"{l['naam']} ({s['bronlabel']})" for l in landen.values()
+            for s in [(l["adviezen"].get("de") or {}).get("landniveau")]
+            + list((l["adviezen"].get("de") or {}).get("gebieden", []))
+            if s and s.get("kleur") == "oranje" and s.get("type") != "afgeleid"
+        ]
+        oranje = sum(1 for l in landen.values()
+                     for s in [(l["adviezen"].get("de") or {}).get("landniveau")]
+                     + list((l["adviezen"].get("de") or {}).get("gebieden", []))
+                     if s and s.get("kleur") == "oranje")
+        meldingen.append(f"DE met kleur oranje: {oranje}, waarvan "
+                         f"{oranje - len(ten_onrechte)} gemarkeerd als afgeleid")
+        if ten_onrechte:
+            meldingen.append("   ten onrechte als letterlijk: "
+                             + ", ".join(ten_onrechte[:3]))
+            return False, "\n".join(meldingen)
+
         zonder_bron = [
             f"{l['naam']}/{bron}" for l in landen.values()
             for bron, a in l["adviezen"].items()
@@ -132,8 +155,9 @@ def main():
     uitslagen.append(criterium(1, "Thailand: per overheid kleurcode, bronlabel, "
                                   "wijzigingsdatum en werkende bronlink", een))
     uitslagen.append(criterium(2, "'Opgehaald op' komt uit de ophaalronde zelf", twee))
-    uitslagen.append(criterium(3, "Nooit een kleur zonder bron; 'bestaat niet' waar "
-                                  "een overheid het niveau niet kent", drie))
+    uitslagen.append(criterium(3, "Nooit een kleur zonder bron, nooit een niveau dat "
+                                  "een overheid niet kent, en elke gelijkstelling "
+                                  "zichtbaar als afgeleid", drie))
     uitslagen.append(criterium(4, "Gebieden staan los van het landniveau", vier))
     uitslagen.append(criterium(5, "Onderbouwing: letterlijk citaat, Nederlandse "
                                   "weergave, vertaalknop", vijf))
