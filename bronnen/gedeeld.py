@@ -112,3 +112,26 @@ def citaat(tekst, max_tekens=300):
         if vorige > 0:
             afgekapt = afgekapt[: vorige + 1]
     return afgekapt.rstrip(" ,;:") + " […]"
+
+
+# Woorden die in de ene taal wel en in de andere niet in een landsnaam staan.
+LIDWOORDEN = {
+    "de", "het", "den", "der", "die", "das", "la", "le", "les", "el", "los",
+    "the", "of", "and", "en", "und", "et", "du", "des", "di", "da", "van",
+    "republiek", "republic", "republique", "republik",
+}
+
+
+def normaliseer(tekst):
+    """Maakt landsnamen vergelijkbaar: zonder accenten, leestekens en lidwoorden.
+
+    'São Tomé and Príncipe' en 'Sao Tome and Principe' zijn hetzelfde land; de
+    Amerikaanse feed gebruikt beide schrijfwijzen door elkaar.
+    """
+    if not tekst:
+        return ""
+    tekst = unicodedata.normalize("NFKD", str(tekst))
+    tekst = "".join(t for t in tekst if not unicodedata.combining(t))
+    tekst = tekst.lower().replace("&", " en ")
+    woorden = [w for w in re.split(r"[^a-z0-9]+", tekst) if w and w not in LIDWOORDEN]
+    return "".join(woorden)

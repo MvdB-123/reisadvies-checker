@@ -10,11 +10,11 @@ import html
 import json
 import re
 import sys
-import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
-from bronnen.gedeeld import haal_json, haal_tekst
+from bronnen.gedeeld import (LIDWOORDEN, OphaalFout, haal_json, haal_tekst,
+                             normaliseer)
 
 HIER = Path(__file__).parent
 UITVOER = HIER / "data" / "landen.json"
@@ -28,13 +28,6 @@ VK_INDEX = "https://www.gov.uk/api/content/foreign-travel-advice"
 FR_INDEX = "https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs"
 DE_OPENDATA = "https://www.auswaertiges-amt.de/opendata/travelwarning"
 VS_RSS = "https://travel.state.gov/_res/rss/TAsTWs.xml"
-
-# Woorden die in de ene taal wel en de andere niet in de landsnaam staan.
-LIDWOORDEN = {
-    "de", "het", "den", "der", "die", "das", "la", "le", "les", "el", "los",
-    "the", "of", "and", "en", "und", "et", "du", "des", "di", "da", "van",
-    "republiek", "republic", "republique", "republik",
-}
 
 # Landen waar geen enkele naamvariant overeenkomt. Met de hand vastgesteld en
 # nagelopen tegen de bronpagina; de reden staat erbij zodat een opvolger het kan
@@ -84,17 +77,6 @@ OVERSLAAN = {
     # Bonaire; de twee andere zouden hetzelfde vakje overschrijven.
     "saba", "sinteustatius",
 }
-
-
-def normaliseer(tekst):
-    """Maakt namen vergelijkbaar: zonder accenten, leestekens en lidwoorden."""
-    if not tekst:
-        return ""
-    tekst = unicodedata.normalize("NFKD", str(tekst))
-    tekst = "".join(t for t in tekst if not unicodedata.combining(t))
-    tekst = tekst.lower().replace("&", " en ")
-    woorden = [w for w in re.split(r"[^a-z0-9]+", tekst) if w and w not in LIDWOORDEN]
-    return "".join(woorden)
 
 
 def bouw_naamindex(landen):

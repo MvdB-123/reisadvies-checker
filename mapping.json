@@ -1,0 +1,92 @@
+{
+  "_toelichting": [
+    "Dit bestand bevat het OORDEEL van de redactie: welk label van welke overheid",
+    "hoort bij welke Nederlandse kleurcode. De ophalers doen dit niet zelf; zij",
+    "leveren alleen het letterlijke bronlabel aan. Wijzig je hier iets, dan verandert",
+    "het overzicht bij de eerstvolgende ophaalronde mee.",
+    "",
+    "type = letterlijk : de overheid noemt zelf een niveau dat ons niveau dekt.",
+    "type = afgeleid   : wij stellen twee schalen gelijk; dat is een keuze.",
+    "type = bestaat niet: die overheid kent dit onderscheid niet. Nooit een kleur raden."
+  ],
+  "kleuren": {
+    "groen":  { "volgorde": 1, "omschrijving": "Geen bijzondere veiligheidsrisico's" },
+    "geel":   { "volgorde": 2, "omschrijving": "Let op, veiligheidsrisico's" },
+    "oranje": { "volgorde": 3, "omschrijving": "Alleen noodzakelijke reizen" },
+    "rood":   { "volgorde": 4, "omschrijving": "Niet reizen" }
+  },
+  "bronnen": {
+    "nl": {
+      "naam": "Nederland",
+      "overheid": "Ministerie van Buitenlandse Zaken",
+      "taal": "nl",
+      "schaal": "Vier kleurcodes: groen, geel, oranje, rood — per land en per gebied.",
+      "labels": {
+        "kleurcode groen":  { "kleur": "groen",  "weergave": "Kleurcode groen",  "type": "letterlijk", "onderbouwing": "Onze eigen schaal; de kleurcode is rechtstreeks overgenomen." },
+        "kleurcode geel":   { "kleur": "geel",   "weergave": "Kleurcode geel",   "type": "letterlijk", "onderbouwing": "Onze eigen schaal; de kleurcode is rechtstreeks overgenomen." },
+        "kleurcode oranje": { "kleur": "oranje", "weergave": "Kleurcode oranje", "type": "letterlijk", "onderbouwing": "Onze eigen schaal; de kleurcode is rechtstreeks overgenomen." },
+        "kleurcode rood":   { "kleur": "rood",   "weergave": "Kleurcode rood",   "type": "letterlijk", "onderbouwing": "Onze eigen schaal; de kleurcode is rechtstreeks overgenomen." }
+      },
+      "kent_niet": {}
+    },
+    "de": {
+      "naam": "Duitsland",
+      "overheid": "Auswärtiges Amt",
+      "taal": "de",
+      "schaal": "Twee waarschuwingsniveaus boven op de basisinformatie: Teilreisewarnung (deel van het land) en Reisewarnung (heel land).",
+      "labels": {
+        "warning":        { "kleur": "rood", "weergave": "Reiswaarschuwing",               "bronlabel": "Reisewarnung",     "type": "letterlijk", "onderbouwing": "Een Reisewarnung is het zwaarste Duitse niveau en betekent: niet reizen." },
+        "partialWarning": { "kleur": "rood", "weergave": "Gedeeltelijke reiswaarschuwing", "bronlabel": "Teilreisewarnung", "type": "letterlijk", "onderbouwing": "Een Teilreisewarnung geldt voor bepaalde gebieden; daarbuiten geeft Duitsland geen niveau." }
+      },
+      "kent_niet": {
+        "groen":  "Duitsland geeft geen 'veilig'-niveau af. Geen waarschuwing betekent alleen dat er geen waarschuwing is.",
+        "geel":   "Duitsland kent geen tussenniveau tussen 'geen waarschuwing' en een Reisewarnung.",
+        "oranje": "Duitsland kent geen tussenniveau tussen 'geen waarschuwing' en een Reisewarnung."
+      }
+    },
+    "vk": {
+      "naam": "Verenigd Koninkrijk",
+      "overheid": "Foreign, Commonwealth & Development Office",
+      "taal": "en",
+      "schaal": "Twee niveaus, elk voor het hele land of voor delen ervan: 'advise against all but essential travel' en 'advise against all travel'.",
+      "labels": {
+        "avoid_all_travel_to_whole_country":              { "kleur": "rood",   "weergave": "Alle reizen afgeraden (heel land)",          "bronlabel": "Advise against all travel",                         "type": "letterlijk", "onderbouwing": "Het VK raadt alle reizen naar het hele land af; dat komt overeen met rood." },
+        "avoid_all_but_essential_travel_to_whole_country": { "kleur": "oranje", "weergave": "Alleen noodzakelijke reizen (heel land)",     "bronlabel": "Advise against all but essential travel",           "type": "letterlijk", "onderbouwing": "Het VK laat alleen noodzakelijke reizen toe; dat komt overeen met oranje." },
+        "avoid_all_travel_to_parts":                      { "kleur": "rood",   "weergave": "Alle reizen afgeraden (delen van het land)",  "bronlabel": "Advise against all travel to parts",                "type": "letterlijk", "onderbouwing": "Geldt alleen voor de genoemde gebieden; voor de rest geeft het VK geen niveau." },
+        "avoid_all_but_essential_travel_to_parts":        { "kleur": "oranje", "weergave": "Alleen noodzakelijke reizen (delen van het land)", "bronlabel": "Advise against all but essential travel to parts", "type": "letterlijk", "onderbouwing": "Geldt alleen voor de genoemde gebieden; voor de rest geeft het VK geen niveau." }
+      },
+      "kent_niet": {
+        "groen": "Het VK geeft geen 'veilig'-niveau af. Geen waarschuwing betekent alleen dat er geen waarschuwing is.",
+        "geel":  "Het VK kent geen niveau tussen 'geen waarschuwing' en 'alleen noodzakelijke reizen'."
+      }
+    },
+    "vs": {
+      "naam": "Verenigde Staten",
+      "overheid": "Department of State",
+      "taal": "en",
+      "schaal": "Vier niveaus, Level 1 tot en met Level 4, voor het hele land.",
+      "labels": {
+        "1": { "kleur": "groen",  "weergave": "Niveau 1: normale voorzorgsmaatregelen", "bronlabel": "Level 1: Exercise Normal Precautions", "type": "afgeleid", "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving." },
+        "2": { "kleur": "geel",   "weergave": "Niveau 2: extra voorzichtigheid",        "bronlabel": "Level 2: Exercise Increased Caution",  "type": "afgeleid", "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel." },
+        "3": { "kleur": "oranje", "weergave": "Niveau 3: heroverweeg uw reis",          "bronlabel": "Level 3: Reconsider Travel",           "type": "afgeleid", "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje." },
+        "4": { "kleur": "rood",   "weergave": "Niveau 4: reis niet",                    "bronlabel": "Level 4: Do Not Travel",               "type": "afgeleid", "onderbouwing": "'Do Not Travel' komt overeen met rood." }
+      },
+      "kent_niet": {}
+    },
+    "fr": {
+      "naam": "Frankrijk",
+      "overheid": "Ministère de l'Europe et des Affaires étrangères",
+      "taal": "fr",
+      "schaal": "Vier zoneniveaus op een kaart: normale waakzaamheid, verhoogde waakzaamheid, afgeraden tenzij dwingende reden, ten stelligste afgeraden. Frankrijk publiceert geen niveau voor een heel land.",
+      "labels": {
+        "formellement_deconseillee":     { "kleur": "rood",   "weergave": "Ten stelligste afgeraden",              "bronlabel": "Zones formellement déconseillées",             "type": "letterlijk", "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden." },
+        "deconseillee_sauf_imperative":  { "kleur": "oranje", "weergave": "Afgeraden, tenzij dwingende reden",     "bronlabel": "Zones déconseillées sauf raison impérative",   "type": "letterlijk", "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje." },
+        "vigilance_renforcee":           { "kleur": "geel",   "weergave": "Verhoogde waakzaamheid",                "bronlabel": "Zones en vigilance renforcée",                 "type": "letterlijk", "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel." },
+        "vigilance_normale":             { "kleur": "groen",  "weergave": "Normale waakzaamheid",                  "bronlabel": "Vigilance normale",                            "type": "letterlijk", "onderbouwing": "Het laagste Franse zoneniveau." }
+      },
+      "kent_niet": {
+        "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet."
+      }
+    }
+  }
+}
