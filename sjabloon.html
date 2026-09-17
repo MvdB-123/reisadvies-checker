@@ -28,6 +28,8 @@
   .suggesties div{padding:9px 12px;cursor:pointer}
   .suggesties div:hover,.suggesties div[aria-selected=true]{background:var(--vlak)}
   .leeg{color:var(--grijs);padding:24px 0}
+  .waarschuwing{background:#fff8e1;border:1px solid #e17000;border-left-width:4px;
+                padding:12px 14px;margin:16px 0;font-size:15px}
 
   .samenvatting{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
   .chip{flex:1 1 150px;border:1px solid var(--lijn);border-radius:3px;padding:10px 12px;
@@ -84,7 +86,14 @@
            role="combobox" aria-expanded="false" aria-controls="suggesties">
     <div class="suggesties" id="suggesties" role="listbox" hidden></div>
   </div>
-  <div id="uitvoer"><p class="leeg">Kies een land om de reisadviezen van vijf overheden naast elkaar te zien.</p></div>
+  <div id="werkt-niet" class="waarschuwing">
+    <strong>De tool is nog niet geladen.</strong>
+    Ziet u deze melding terwijl u al een land heeft ingetypt, dan draait het script niet.
+    Dat gebeurt als u het bestand bekijkt in een voorbeeldvenster van een app of mailprogramma.
+    Sla het bestand op en open het met een dubbelklik in Chrome, Edge of Firefox.
+    <noscript><br><strong>JavaScript staat uit in deze browser.</strong></noscript>
+  </div>
+  <div id="uitvoer"><p class="leeg">Typ een land om de reisadviezen van vijf overheden naast elkaar te zien.</p></div>
 </main>
 
 <footer class="breed">
@@ -236,6 +245,15 @@ function zoek(term){
 function toonSuggesties(){
   const lijst = zoek($("land").value), doos = $("suggesties");
   gemarkeerd = -1;
+  // Het beste resultaat verschijnt al tijdens het typen. Wachten op Enter of een
+  // klik voelt als "er gebeurt niks", zeker als de suggestielijst wegvalt.
+  if(lijst.length) toonLand(lijst[0]);
+  else if(!$("land").value.trim())
+    $("uitvoer").innerHTML = '<p class="leeg">Typ een land om de reisadviezen van '
+      + 'vijf overheden naast elkaar te zien.</p>';
+  else
+    $("uitvoer").innerHTML = '<p class="leeg">Geen land gevonden dat begint met &bdquo;'
+      + tekstUit($("land").value) + '&ldquo;.</p>';
   if(!lijst.length){ doos.hidden = true; $("land").setAttribute("aria-expanded","false"); return; }
   doos.innerHTML = lijst.map((l,i) => '<div role="option" data-i="' + i + '">'
     + tekstUit(l.naam) + '</div>').join("");
@@ -265,6 +283,7 @@ $("land").addEventListener("keydown", e => {
 });
 
 // --- start ---
+$("werkt-niet").remove();
 $("opgehaald").textContent = "Opgehaald op " + datumNL(GEGEVENS.opgehaald_op)
   + " om " + new Date(GEGEVENS.opgehaald_op).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"})
   + " · " + GEGEVENS.landen.length + " landen · " + Object.keys(GEGEVENS.bronnen).length + " overheden";
