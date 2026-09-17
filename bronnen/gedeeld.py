@@ -85,6 +85,16 @@ def plat(rauwe_html):
     return re.sub(r"\s+", " ", tekst).strip()
 
 
+# Afkortingen die met een punt eindigen en gevolgd kunnen worden door een
+# hoofdletter. Zonder deze lijst hakt 'Vor Reisen in folgende Regionen bzw.
+# Gebiete wird gewarnt' middendoor, en raakt de waarschuwing los van het gebied.
+AFKORTINGEN = re.compile(
+    r"\b(?:bzw|ca|ggf|inkl|evtl|bspw|etc|vgl|bzgl|resp|approx|sog|u\.\s?a"
+    r"|z\.\s?B|d\.\s?h|o\.\s?ä|e\.\s?g|i\.\s?e|m\.\s?n|d\.\s?w\.\s?z)\.",
+    re.IGNORECASE)
+_PUNTMERK = "\x00"
+
+
 def zinnen(tekst):
     """Splitst tekst in zinnen.
 
@@ -93,10 +103,12 @@ def zinnen(tekst):
     Louis' een zin doormidden, en juist dan raakt de kern van de waarschuwing
     los van het gebied waar hij over gaat.
     """
+    beschermd = AFKORTINGEN.sub(
+        lambda m: m.group(0)[:-1] + _PUNTMERK, tekst or "")
     ruw = re.split(
         r"(?<![A-Z]\.)(?<![A-Z][a-z]\.)(?<=[.!?])\s+(?=[A-ZÄÖÜÉÈÀÇ0-9\u201e\u201c\"'])",
-        tekst or "")
-    return [z.strip() for z in ruw if z.strip()]
+        beschermd)
+    return [z.replace(_PUNTMERK, ".").strip() for z in ruw if z.strip()]
 
 
 def citaat(tekst, max_tekens=300):

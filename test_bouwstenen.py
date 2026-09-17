@@ -37,6 +37,11 @@ class Citaten(unittest.TestCase):
 
 
 class Zinsgrenzen(unittest.TestCase):
+    def test_duitse_afkorting_met_hoofdletter_erna(self):
+        """'bzw. Gebiete' brak de Tsjadische waarschuwing van zijn gebied los."""
+        zin = "Vor Reisen in folgende Regionen bzw. Gebiete wird gewarnt: Lac."
+        self.assertEqual(len(zinnen(zin + " Volgende zin.")), 2)
+
     def test_afkorting_breekt_de_zin_niet(self):
         """'bzw.' knipte de waarschuwing los van het gebied waar hij over ging."""
         tekst = ("Vor Reisen in die folgenden Provinzen bzw. der Nutzung der "
@@ -80,6 +85,34 @@ class DuitseZinnen(unittest.TestCase):
         tekst = ("Von nicht notwendigen Reisen in alle anderen Regionen Tschads "
                  "wird abgeraten.")
         self.assertEqual(len(de._zinnen_met_waarschuwing(tekst)), 1)
+
+    def test_gewarnt_en_abgeraten_zijn_niet_hetzelfde_niveau(self):
+        """'wird gewarnt' is de Reisewarnung; 'wird abgeraten' is lichter."""
+        self.assertEqual(de._formulering("Vor Reisen nach Mali wird gewarnt."),
+                         "gewarnt")
+        self.assertEqual(
+            de._formulering("Von Reisen in die Provinzen wird dringend abgeraten."),
+            "dringend_abgeraten")
+        self.assertEqual(
+            de._formulering("Von nicht notwendigen Reisen nach X wird abgeraten."),
+            "nicht_notwendige_reisen_abgeraten")
+
+    def test_vervoermiddel_is_geen_gebied(self):
+        """'von Fahrten in Überlandbussen wird abgeraten' gaat niet over een streek."""
+        uit = de._uitspraken(
+            "Vermeiden Sie Fahrten im Land, insbesondere von Fahrten in "
+            "Überlandbussen wird dringend abgeraten.", "Mali", "Mali")
+        self.assertEqual(uit, [])
+
+    def test_vooruitwijzend_doelwit_pakt_de_opsomming(self):
+        zin = ("Vor Reisen in folgende Regionen bzw. Gebiete wird gewarnt: in die "
+               "Region des Tschadsees, einschließlich der Provinz Lac.")
+        self.assertIn("Tschadsees", de._doelwit(zin))
+
+    def test_waarschuwing_voor_het_hele_land_is_geen_gebied(self):
+        uit = de._uitspraken("Vor Reisen nach Mali wird gewarnt.", "Mali", "Mali")
+        self.assertEqual(uit[0][0], "warning")
+        self.assertTrue(uit[0][3])
 
     def test_kopje_lift_niet_mee_in_het_citaat(self):
         tekst = "Siehe Aktuelles Vor Reisen in die Provinz Cabo Delgado wird gewarnt."
