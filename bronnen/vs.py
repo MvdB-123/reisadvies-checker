@@ -40,10 +40,15 @@ KOPJE = re.compile(r"^(?:Advisory\s+summary|Summary|Country\s+Summary)\s+(?=[A-Z
 # bronpagina erbij, dus tonen we ze niet als losse gebiedsregel.
 VAAG = re.compile(r"^(?:these|those|the following|the above)\b", re.IGNORECASE)
 
+# De dubbele punt is het verschil: "Do Not Travel to: Borno, Jigawa, ..." somt
+# gebieden op, terwijl "Do not travel to Iraq due to terrorism" over het hele
+# land gaat en "Do not travel to areas that are off the beaten path" algemeen
+# advies is. Zonder dat onderscheid verschijnt het landniveau een tweede keer
+# als zogenaamd gebied.
 GEBIEDSNIVEAUS = [
-    ("4", re.compile(r"Do\s+Not\s+Travel\s+to:?\s*", re.IGNORECASE)),
-    ("3", re.compile(r"Reconsider\s+Travel\s+to:?\s*", re.IGNORECASE)),
-    ("2", re.compile(r"Exercise\s+Increased\s+Caution\s+(?:in|near|when)\s*", re.IGNORECASE)),
+    ("4", re.compile(r"Do\s+Not\s+Travel\s+to:\s*", re.IGNORECASE)),
+    ("3", re.compile(r"Reconsider\s+Travel\s+to:\s*", re.IGNORECASE)),
+    ("2", re.compile(r"Exercise\s+Increased\s+Caution\s+(?:in|near|when)\s+", re.IGNORECASE)),
 ]
 
 
@@ -123,13 +128,14 @@ def _lees_ronde(url, gevraagd, resultaat):
             "bron_url": _veld(blok, "link").strip(),
             "gewijzigd_op": gewijzigd,
             "landniveau": {"label": niveau, "citaat": citaat(landzin or titel)},
-            "gebieden": _gebieden(regels, overslaan=landzin),
+            "gebieden": _gebieden(regels, landzin, treffer.group("land")),
             "opmerking": None,
         }
 
 
-def _gebieden(regels, overslaan=""):
+def _gebieden(regels, overslaan="", landsnaam=""):
     """De gebieden die de VS apart noemt, zonder de zin over het hele land."""
+    kort = normaliseer(landsnaam)
     uit = []
     for zin in regels:
         if zin == overslaan:
@@ -139,7 +145,9 @@ def _gebieden(regels, overslaan=""):
             if not treffer:
                 continue
             omschrijving = zin[treffer.end():].strip()
-            if omschrijving and len(omschrijving) > 3 and not VAAG.match(omschrijving):
+            noemt_het_land = kort and normaliseer(omschrijving).startswith(kort)
+            if (omschrijving and len(omschrijving) > 3
+                    and not VAAG.match(omschrijving) and not noemt_het_land):
                 uit.append({
                     "label": niveau,
                     "gebied": citaat(omschrijving, 200),

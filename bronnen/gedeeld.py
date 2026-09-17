@@ -88,11 +88,14 @@ def plat(rauwe_html):
 def zinnen(tekst):
     """Splitst tekst in zinnen.
 
-    Knipt alleen als er na de punt een hoofdletter of aanhalingsteken volgt.
-    Anders zou 'z. B.' of 'ca. 50 km' een zin doormidden hakken, en juist dan
-    raakt de kern van de waarschuwing los van het gebied waar hij over gaat.
+    Knipt alleen als er na de punt een hoofdletter of aanhalingsteken volgt, en
+    niet vlak na een afkorting. Anders hakken 'z. B.', 'bzw.', 'U.S.' of 'St.
+    Louis' een zin doormidden, en juist dan raakt de kern van de waarschuwing
+    los van het gebied waar hij over gaat.
     """
-    ruw = re.split(r"(?<=[.!?])\s+(?=[A-ZÄÖÜÉÈÀÇ0-9\u201e\u201c\"'])", tekst or "")
+    ruw = re.split(
+        r"(?<![A-Z]\.)(?<![A-Z][a-z]\.)(?<=[.!?])\s+(?=[A-ZÄÖÜÉÈÀÇ0-9\u201e\u201c\"'])",
+        tekst or "")
     return [z.strip() for z in ruw if z.strip()]
 
 

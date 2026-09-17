@@ -44,6 +44,11 @@ class Zinsgrenzen(unittest.TestCase):
         self.assertEqual(len(zinnen(tekst)), 2)
         self.assertIn("bzw. der Nutzung", zinnen(tekst)[0])
 
+    def test_afkorting_met_hoofdletter_breekt_de_zin_niet(self):
+        """'St. Louis' en 'U.S. citizens' kapten een gebiedsnaam af."""
+        self.assertEqual(len(zinnen("Reconsider travel to: St. Louis Park. Klaar.")), 2)
+        self.assertEqual(len(zinnen("Travel to Japan, U.S. citizens beware. Klaar.")), 2)
+
     def test_gewone_zinnen_worden_wel_gesplitst(self):
         self.assertEqual(len(zinnen("Eerste zin. Tweede zin. Derde zin.")), 3)
 
@@ -134,11 +139,21 @@ class AmerikaanseTeksten(unittest.TestCase):
         self.assertEqual(zinnen[0], "Do not travel to Ukraine for any reason.")
 
     def test_vage_gebiedsaanduiding_wordt_overgeslagen(self):
-        gebieden = vs._gebieden(["Do Not Travel to: these regions."])
+        gebieden = vs._gebieden(["Do Not Travel to: these regions."], "", "Ukraine")
         self.assertEqual(gebieden, [])
 
+    def test_landniveau_keert_niet_terug_als_gebied(self):
+        """'Do not travel to Mali for any reason' is het land, geen gebied."""
+        self.assertEqual(
+            vs._gebieden(["Do not travel to Mali for any reason."], "", "Mali"), [])
+
+    def test_zonder_dubbele_punt_is_het_geen_gebiedsopsomming(self):
+        self.assertEqual(
+            vs._gebieden(["Do not travel to Iraq due to terrorism."], "", "Iraq"), [])
+
     def test_gebied_met_reden_blijft_staan(self):
-        gebieden = vs._gebieden(["Do Not Travel to: Arauca department due to crime."])
+        gebieden = vs._gebieden(["Do Not Travel to: Arauca department due to crime."],
+                                "", "Colombia")
         self.assertEqual(len(gebieden), 1)
         self.assertEqual(gebieden[0]["label"], "4")
 
