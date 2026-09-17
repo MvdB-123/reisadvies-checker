@@ -9,7 +9,7 @@ last_updated: 2026-09-17
 
 Als er ergens een onveilige of onstabiele situatie ontstaat, wil de crisisorganisatie en
 het reisadviesteam snel weten welk reisadvies gelijkgestemde landen hanteren — maar de
-redactie moet dat handmatig van dertien overheidswebsites plukken, vertalen, en
+redactie moet dat handmatig van tien overheidswebsites plukken, vertalen, en
 vervolgens omzetten naar onze vier kleurcodes, terwijl lang niet elke overheid met
 kleurcodes werkt en de omschrijvingen net iets afwijken. Juist als er haast is, duurt dat
 uitzoekwerk het langst.
