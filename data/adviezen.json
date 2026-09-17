@@ -1,5 +1,5 @@
 {
- "opgehaald_op": "2026-09-17T11:05:06+00:00",
+ "opgehaald_op": "2026-09-17T11:37:59+00:00",
  "bronnen": {
   "nl": {
    "naam": "Nederland",
@@ -170,17 +170,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do not travel to Afghanistan due to civil unrest, crime, terrorism, risk of wrongful detention, kidnapping, natural disasters, and limited health facilities."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Afghanistan for any reason We urge American citizens in Afghanistan to leave immediately.",
-       "gebied": "Afghanistan for any reason We urge American citizens in Afghanistan to leave immediately."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -402,30 +392,20 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/algeria-travel-advisory.html",
-     "gewijzigd_op": "2026-08-25",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dza.html",
+     "gewijzigd_op": "2026-09-17",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
      "landniveau": {
-      "kleur": "geel",
+      "kleur": "groen",
       "type": "afgeleid",
-      "weergave": "Niveau 2: extra voorzichtigheid",
-      "bronlabel": "Level 2: Exercise Increased Caution",
-      "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Algeria due to terrorism and kidnapping."
+      "weergave": "Niveau 1: normale voorzorgsmaatregelen",
+      "bronlabel": "Level 1: Exercise Normal Precautions",
+      "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
+      "citaat": "Algeria - Level 1: Exercise Normal Precautions"
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to: Areas near the eastern, and southern borders, Bordj Badji Mokhtar, Illiz, In Guezzsam, In Salah, Tamanrasset, the mountainous areas of the Wilaya of Tebessa, and Tindouf due to terrorism and kidnapping.",
-       "gebied": "Areas near the eastern, and southern borders, Bordj Badji Mokhtar, Illiz, In Guezzsam, In Salah, Tamanrasset, the mountainous areas of the Wilaya of Tebessa, and Tindouf due to terrorism and […]"
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -945,8 +925,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ago.html",
-     "gewijzigd_op": "2026-03-05",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/angola-travel-advisory.html",
+     "gewijzigd_op": "2024-09-23",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -956,19 +936,9 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Angola due to crime, health, unrest, and landmines."
+      "citaat": "Exercise Increased Caution in Angola due to risk of crime, health, unrest, and landmines."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider Travel to the Luanda greater metropolitan area due to risk of crime.",
-       "gebied": "the Luanda greater metropolitan area due to risk of crime."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -1244,7 +1214,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/antigua-and-barbuda-travel-advisory.html",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.atg.html",
      "gewijzigd_op": "2026-05-20",
      "bevestigd_op": null,
      "opmerking": null,
@@ -1255,7 +1225,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Exercise normal precautions in Antigua and Barbuda."
+      "citaat": "Antigua and Barbuda - Level 1: Exercise Normal Precautions"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -1967,8 +1937,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bhr.html",
-     "gewijzigd_op": "2026-08-27",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bahrain-travel-advisory.html",
+     "gewijzigd_op": "2026-03-02",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -1978,7 +1948,7 @@
       "weergave": "Niveau 3: heroverweeg uw reis",
       "bronlabel": "Level 3: Reconsider Travel",
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-      "citaat": "Reconsider travel to Bahrain due to terrorism and armed conflict."
+      "citaat": "Reconsider Travel to Bahrain due to terrorism and armed conflict."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -2076,30 +2046,20 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bgd.html",
-     "gewijzigd_op": "2026-07-30",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bangladesh-travel-advisory.html",
+     "gewijzigd_op": "2026-01-20",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
      "landniveau": {
-      "kleur": "geel",
+      "kleur": "oranje",
       "type": "afgeleid",
-      "weergave": "Niveau 2: extra voorzichtigheid",
-      "bronlabel": "Level 2: Exercise Increased Caution",
-      "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Bangladesh due to unrest, crime, terrorism, and kidnapping."
+      "weergave": "Niveau 3: heroverweeg uw reis",
+      "bronlabel": "Level 3: Reconsider Travel",
+      "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
+      "citaat": "Reconsider travel to Bangladesh due to kidnapping, unrest, crime, and terrorism."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to: Chittagong Hill Tracts Region for any reason due to unrest, crime, terrorism, and kidnapping.",
-       "gebied": "Chittagong Hill Tracts Region for any reason due to unrest, crime, terrorism, and kidnapping."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -2567,26 +2527,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise Increased Caution in Benin due to unrest, crime, terrorism, and kidnapping."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to areas of Benin bordering Burkina Faso; Niger; and the Nigerian states of Kebbi, Niger, and Kwara due to crime, terrorism, and kidnapping.",
-       "gebied": "areas of Benin bordering Burkina Faso; Niger; and the Nigerian states of Kebbi, Niger, and Kwara due to crime, terrorism, and kidnapping."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the border region in northern or northeastern Benin for any reason.",
-       "gebied": "the border region in northern or northeastern Benin for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -2856,8 +2797,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bol.html",
-     "gewijzigd_op": "2026-08-18",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bolivia-travel-advisory.html",
+     "gewijzigd_op": "2026-04-28",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -2867,19 +2808,9 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Bolivia due to crime, unrest, and health."
+      "citaat": "Exercise increased caution in Bolivia due to crime and civil unrest."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to Chapare Province due to crime.",
-       "gebied": "Chapare Province due to crime."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -3193,17 +3124,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Brazil due to crime and kidnapping."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to informal housing developments, even on guided tours.",
-       "gebied": "informal housing developments, even on guided tours."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -3343,7 +3264,7 @@
     "vs": {
      "gelukt": true,
      "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vgb.html",
-     "gewijzigd_op": "2026-09-17",
+     "gewijzigd_op": "2026-05-22",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -3669,17 +3590,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do Not Travel to Burkina Faso for any reason due to crime, kidnapping, terrorism, and health."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Burkina Faso for any reason.",
-       "gebied": "Burkina Faso for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -4086,8 +3997,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.can.html",
-     "gewijzigd_op": "2026-06-05",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/canada-travel-advisory.html",
+     "gewijzigd_op": "2025-06-11",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -4097,7 +4008,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Canada - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Canada."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -4381,8 +4292,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.caf.html",
-     "gewijzigd_op": "2026-01-15",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/central-african-republic-travel-advisory.html",
+     "gewijzigd_op": "2025-11-10",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -4392,7 +4303,7 @@
       "weergave": "Niveau 4: reis niet",
       "bronlabel": "Level 4: Do Not Travel",
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-      "citaat": "Do not travel to Central African Republic due to risk of unrest, crime, kidnapping, landmines, health, and terrorism."
+      "citaat": "Do not travel to the Central African Republic due to risk of unrest, crime, kidnapping, landmines, health, and terrorism."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -4744,8 +4655,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.col.html",
-     "gewijzigd_op": "2026-03-31",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/colombia-travel-advisory.html",
+     "gewijzigd_op": "2025-04-17",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -4755,7 +4666,7 @@
       "weergave": "Niveau 3: heroverweeg uw reis",
       "bronlabel": "Level 3: Reconsider Travel",
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-      "citaat": "Reconsider travel to Colombia due to crime, terrorism, civil unrest, kidnapping, and natural disasters."
+      "citaat": "Reconsider travel to Colombia due to crime, terrorism, civil unrest, and kidnapping."
      },
      "gebieden": [
       {
@@ -4764,8 +4675,8 @@
        "weergave": "Niveau 4: reis niet",
        "bronlabel": "Level 4: Do Not Travel",
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to: Arauca, Cauca (excluding Popayán), Valle del Cauca (excluding Cali) and Norte de Santander departments due to crime and terrorism.",
-       "gebied": "Arauca, Cauca (excluding Popayán), Valle del Cauca (excluding Cali) and Norte de Santander departments due to crime and terrorism."
+       "citaat": "Do Not Travel to: Arauca, Cauca (excluding Popayán), and Norte de Santander departments due to crime and terrorism.",
+       "gebied": "Arauca, Cauca (excluding Popayán), and Norte de Santander departments due to crime and terrorism."
       }
      ],
      "kent_niet": {},
@@ -5568,8 +5479,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cuw.html",
-     "gewijzigd_op": "2026-09-09",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/curacao-travel-advisory.html",
+     "gewijzigd_op": "2026-08-20",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -5579,7 +5490,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Curaçao - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Curaçao."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -5675,7 +5586,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/cyprus-travel-advisory.html",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cyp.html",
      "gewijzigd_op": "2026-06-01",
      "bevestigd_op": null,
      "opmerking": null,
@@ -5686,7 +5597,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Exercise Normal Precautions in Cyprus."
+      "citaat": "Cyprus - Level 1: Exercise Normal Precautions"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -6285,8 +6196,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ecu.html",
-     "gewijzigd_op": "2026-08-18",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/ecuador-travel-advisory.html",
+     "gewijzigd_op": "2025-10-14",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -7257,114 +7168,6 @@
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
        "citaat": "Do Not Travel To: Tigray region and border with Eritrea due to armed conflict, unrest, and crime.",
        "gebied": "Tigray region and border with Eritrea due to armed conflict, unrest, and crime."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Tigray Region for any reason.",
-       "gebied": "the Tigray Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Amhara Region for any reason.",
-       "gebied": "the Amhara Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Gambella Region for any reason.",
-       "gebied": "the Gambella Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Benishangul Gumuz Region for any reason.",
-       "gebied": "the Benishangul Gumuz Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Gurage zone in Central Ethiopia Region for any reason.",
-       "gebied": "the Gurage zone in Central Ethiopia Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the specific areas in South Ethiopia Region for any reason.",
-       "gebied": "the specific areas in South Ethiopia Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Maji zone of the Southwest Ethiopia Region for any reason.",
-       "gebied": "the Maji zone of the Southwest Ethiopia Region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the zones of Liban, Afder, Shabele, and Korahe zones of the Somali region for any reason.",
-       "gebied": "the zones of Liban, Afder, Shabele, and Korahe zones of the Somali region for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the border area with Somalia for any reason.",
-       "gebied": "the border area with Somalia for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the border areas with Kenya for any reason.",
-       "gebied": "the border areas with Kenya for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Tigray Region, including the border with Eritrea, due to armed conflict, unrest, and crime.",
-       "gebied": "the Tigray Region, including the border with Eritrea, due to armed conflict, unrest, and crime."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the border area with Eritrea for any reason.",
-       "gebied": "the border area with Eritrea for any reason."
       }
      ],
      "kent_niet": {},
@@ -8621,6 +8424,15 @@
        "onderbouwing": "Een Teilreisewarnung geldt voor bepaalde gebieden; daarbuiten geeft Duitsland geen niveau.",
        "citaat": "Von Reisen in die nördlichen Grenzgebiete zu C ô te d’Ivoire in den Regionen Savannah und Bono wird abgeraten.",
        "gebied": "Von Reisen in die nördlichen Grenzgebiete zu C ô te d’Ivoire in den Regionen Savannah und Bono wird abgeraten."
+      },
+      {
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Gedeeltelijke reiswaarschuwing",
+       "bronlabel": "Teilreisewarnung",
+       "onderbouwing": "Een Teilreisewarnung geldt voor bepaalde gebieden; daarbuiten geeft Duitsland geen niveau.",
+       "citaat": "Beachten Sie die allgemeinen Hinweise für LGBTIQ. Sicherheit Vor Reisen in die Grenzgebiete zu Burkina Faso und Togo in den Regionen Upper West, Upper East und North East und in die Städte Bawku, Garu, Zebilla, Tempane, Nalerigu, Walewale und deren Umgebung, wird gewarnt.",
+       "gebied": "Beachten Sie die allgemeinen Hinweise für LGBTIQ. Sicherheit Vor Reisen in die Grenzgebiete zu Burkina Faso und Togo in den Regionen Upper West, Upper East und North East und in die Städte Bawku […]"
       }
      ],
      "kent_niet": {
@@ -8670,17 +8482,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution when traveling to Ghana due to crime, poor health infrastructure, violence against women, and violence against lesbian and gay travelers."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider travel to the northern border in the Upper East Region, the Northeast Region, the Upper West Region, and areas west of the N12 highway in the Savannah Region due to crime.",
-       "gebied": "the northern border in the Upper East Region, the Northeast Region, the Upper West Region, and areas west of the N12 highway in the Savannah Region due to crime."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -9358,33 +9160,6 @@
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
        "citaat": "Do not travel to: San Marcos Department due to crime and terrorism by cartels, gangs, and criminal organizations.",
        "gebied": "San Marcos Department due to crime and terrorism by cartels, gangs, and criminal organizations."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to San Marcos Department for any reason.",
-       "gebied": "San Marcos Department for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Huehuetenango Department for any reason.",
-       "gebied": "Huehuetenango Department for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Zone 18 in Guatemala City and the city of Villa Nueva for any reason.",
-       "gebied": "Zone 18 in Guatemala City and the city of Villa Nueva for any reason."
       }
      ],
      "kent_niet": {},
@@ -10540,26 +10315,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Indonesia due to risk of natural disasters, unrest, and terrorism."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the provinces of Central Papua, or “Papua Tengah,” and Highland Papua, or “Papua Pegunungan,” due to civil unrest.",
-       "gebied": "the provinces of Central Papua, or “Papua Tengah,” and Highland Papua, or “Papua Pegunungan,” due to civil unrest."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Central Papua and Highland Papua for any reason.",
-       "gebied": "Central Papua and Highland Papua for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -10705,17 +10461,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do not travel to Iraq due to terrorism, kidnapping, armed conflict, crime, health risks, and the U.S. government’s limited ability to provide emergency services to U.S. citizens in Iraq."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Iraq for any reason.",
-       "gebied": "Iraq for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -10818,17 +10564,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do Not Travel to Iran due to the risk of terrorism, civil unrest, kidnapping, arbitrary arrest of U.S. citizens, and wrongful detention."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Iran for any reason.",
-       "gebied": "Iran for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -10973,26 +10709,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider Travel to Israel due to terrorism and unrest."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to areas north of Route 85 to Route 90 (south) to Route 87 due to armed conflict.",
-       "gebied": "areas north of Route 85 to Route 90 (south) to Route 87 due to armed conflict."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to this area for any reason.",
-       "gebied": "this area for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -11068,8 +10785,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ita.html",
-     "gewijzigd_op": "2026-09-10",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/italy-travel-advisory.html",
+     "gewijzigd_op": "2025-05-23",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -11227,26 +10944,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Côte d’Ivoire due to crime, terrorism, unrest, health, and piracy in nearby waters."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to the northern border region due to risks of crime and terrorism.",
-       "gebied": "the northern border region due to risks of crime and terrorism."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the northern border region of Côte d’Ivoire for any reason.",
-       "gebied": "the northern border region of Côte d’Ivoire for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -11363,7 +11061,17 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise Increased Caution due to crime and health risks."
      },
-     "gebieden": [],
+     "gebieden": [
+      {
+       "kleur": "oranje",
+       "type": "afgeleid",
+       "weergave": "Niveau 3: heroverweeg uw reis",
+       "bronlabel": "Level 3: Reconsider Travel",
+       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
+       "citaat": "Reconsider travel to: St. Ann’s Parish - Steer Town due to risk of crime.",
+       "gebied": "St. Ann’s Parish - Steer Town due to risk of crime."
+      }
+     ],
      "kent_niet": {},
      "taal": "en"
     },
@@ -11925,8 +11633,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cpv.html",
-     "gewijzigd_op": "2025-12-18",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/cabo-verde-travel-advisory.html",
+     "gewijzigd_op": "2025-12-15",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -11936,7 +11644,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Cabo Verde - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Cabo Verde."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -12165,26 +11873,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise Increased Caution in Cameroon due to risk of crime, terrorism, unrest, health, kidnapping, and improvised explosive devices (IEDs)."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to the Southwest, Northwest, and Far North Regions for any reason due to risk of terrorism, unrest, crime, kidnapping, and improvised explosive devices (IEDs).",
-       "gebied": "the Southwest, Northwest, and Far North Regions for any reason due to risk of terrorism, unrest, crime, kidnapping, and improvised explosive devices (IEDs)."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to within 20 kilometers of the borders with Central African Republic, Chad, and Nigeria for any reason due to risk of terrorism, unrest, crime, kidnapping, and improvised explosive devices (IEDs).",
-       "gebied": "within 20 kilometers of the borders with Central African Republic, Chad, and Nigeria for any reason due to risk of terrorism, unrest, crime, kidnapping, and improvised explosive devices (IEDs)."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -12977,17 +12666,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider Travel to Kuwait due to the threat of armed conflict, landmines, and crime."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to areas that are “off the beaten path.” Do not touch or move objects in those areas as they could explode.",
-       "gebied": "areas that are “off the beaten path.” Do not touch or move objects in those areas as they could explode."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -13076,17 +12755,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Kosovo due to risk of unrest and terrorism."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider travel to North Kosovo area due to risk of unrest.",
-       "gebied": "North Kosovo area due to risk of unrest."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -14099,8 +13768,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lie.html",
-     "gewijzigd_op": "2026-08-18",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/Liechtenstein-Travel-Advisory.html",
+     "gewijzigd_op": "2025-05-22",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -14110,7 +13779,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Liechtenstein - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Liechtenstein."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -14456,8 +14125,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mdg.html",
-     "gewijzigd_op": "2025-12-05",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/madagascar-travel-advisory.html",
+     "gewijzigd_op": "2025-12-04",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -14467,7 +14136,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution to Madagascar due to crime, unrest, and health."
+      "citaat": "Exercise increased caution when traveling to Madagascar due to crime, unrest, and health."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -14850,7 +14519,7 @@
      "gewijzigd_op": "2026-06-08",
      "bevestigd_op": null,
      "opmerking": null,
-     "overgenomen_van": "2026-09-17",
+     "overgenomen_van": null,
      "landniveau": {
       "kleur": "rood",
       "type": "afgeleid",
@@ -14859,17 +14528,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do Not Travel to Mali for any reason due to crime, terrorism, kidnapping, unrest and health."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Mali for any reason.",
-       "gebied": "Mali for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -15450,17 +15109,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider travel to Mauritania due to terrorism, crime, and limited health infrastructure."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to areas marked off-limits by the Mauritanian military.",
-       "gebied": "areas marked off-limits by the Mauritanian military."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -15857,8 +15506,8 @@
        "weergave": "Alleen noodzakelijke reizen (delen van het land)",
        "bronlabel": "Advise against all but essential travel to parts",
        "onderbouwing": "Geldt alleen voor de genoemde gebieden; voor de rest geeft het VK geen niveau.",
-       "citaat": "FCDO advises against all but essential travel to the areas south-west of road 45D.",
-       "gebied": "the areas south-west of road 45D"
+       "citaat": "FCDO advises against all but essential travel to the areas south-west of road 45D. State of Michoacán FCDO advises against",
+       "gebied": "the areas south-west of road 45D. State of Michoacán FCDO advises against"
       },
       {
        "kleur": "oranje",
@@ -15923,8 +15572,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mex.html",
-     "gewijzigd_op": "2026-05-29",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/mexico-travel-advisory.html",
+     "gewijzigd_op": "2025-08-12",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -16549,17 +16198,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise Increased Caution in Moldova due to risk of unexploded ordnance (UXO)."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider Travel to Transnistria due to risk of armed conflict.",
-       "gebied": "Transnistria due to risk of armed conflict."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -17579,8 +17218,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.npl.html",
-     "gewijzigd_op": "2026-09-04",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/nepal-travel-advisory.html",
+     "gewijzigd_op": "2026-03-31",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -17590,19 +17229,9 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Nepal due to natural disasters."
+      "citaat": "Exercise Increased Caution in Nepal due to civil unrest."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to: The Rasuwagadhi-Timure-Syafrubesi area of Rasuwa district, including the Nepal-China border crossing, for any reason due to flood damage, disrupted transportation and communications, search-and-rescue and recovery operations, and the risk of additional flooding and landslides.",
-       "gebied": "The Rasuwagadhi-Timure-Syafrubesi area of Rasuwa district, including the Nepal-China border crossing, for any reason due to flood damage, disrupted transportation and communications […]"
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -17793,15 +17422,6 @@
       "citaat": "Exercise Increased Caution in New Caledonia due to risk of crime."
      },
      "gebieden": [
-      {
-       "kleur": "geel",
-       "type": "afgeleid",
-       "weergave": "Niveau 2: extra voorzichtigheid",
-       "bronlabel": "Level 2: Exercise Increased Caution",
-       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-       "citaat": "Exercise increased caution in New Caledonia.",
-       "gebied": "New Caledonia."
-      },
       {
        "kleur": "geel",
        "type": "afgeleid",
@@ -18008,8 +17628,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ner.html",
-     "gewijzigd_op": "2026-07-09",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/niger-travel-advisory.html",
+     "gewijzigd_op": "2025-10-31",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -18493,17 +18113,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do not travel to North Korea due to the continuing serious risk of arrest, long-term detention, and the threat of wrongful detention of U.S. nationals."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Democratic People’s Republic of Korea for any reason.",
-       "gebied": "the Democratic People’s Republic of Korea for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -18757,8 +18367,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.uga.html",
-     "gewijzigd_op": "2026-06-04",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/uganda-travel-advisory.html",
+     "gewijzigd_op": "2025-12-08",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -18768,7 +18378,7 @@
       "weergave": "Niveau 4: reis niet",
       "bronlabel": "Level 4: Do Not Travel",
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-      "citaat": "Do not travel to Uganda due to crime, health, terrorism, and unrest."
+      "citaat": "Uganda - Level 4: Do Not Travel"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -19024,8 +18634,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.uzb.html",
-     "gewijzigd_op": "2026-01-26",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/uzbekistan-travel-advisory.html",
+     "gewijzigd_op": "2026-01-22",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -19153,26 +18763,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider travel to Oman due to the risk of terrorism and armed conflict."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to the Yemen border area due to terrorism and armed conflict.",
-       "gebied": "the Yemen border area due to terrorism and armed conflict."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to this area for any reason.",
-       "gebied": "this area for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -19546,8 +19137,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pak.html",
-     "gewijzigd_op": "2026-06-16",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/pakistan-travel-advisory.html",
+     "gewijzigd_op": "2026-03-03",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -19566,8 +19157,8 @@
        "weergave": "Niveau 4: reis niet",
        "bronlabel": "Level 4: Do Not Travel",
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to: Balochistan Province and Khyber Pakhtunkhwa (KP) Province, including the former Federally Administered Tribal Areas (FATA), due to terrorism and kidnapping.",
-       "gebied": "Balochistan Province and Khyber Pakhtunkhwa (KP) Province, including the former Federally Administered Tribal Areas (FATA), due to terrorism and kidnapping."
+       "citaat": "Do not travel to: Balochistan Province due to terrorism and kidnapping.",
+       "gebied": "Balochistan Province due to terrorism and kidnapping."
       }
      ],
      "kent_niet": {},
@@ -19645,8 +19236,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.plw.html",
-     "gewijzigd_op": "2026-01-07",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/palau-travel-advisory.html",
+     "gewijzigd_op": "2024-08-06",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -19898,7 +19489,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/panama-travel-advisory.html",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pan.html",
      "gewijzigd_op": "2026-08-19",
      "bevestigd_op": null,
      "opmerking": null,
@@ -19918,17 +19509,8 @@
        "weergave": "Niveau 4: reis niet",
        "bronlabel": "Level 4: Do Not Travel",
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the Mosquito Gulf due to crime.",
-       "gebied": "the Mosquito Gulf due to crime."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to parts of the Darién Region due to crime.",
-       "gebied": "parts of the Darién Region due to crime."
+       "citaat": "Do not travel to: The Mosquito Gulf due to crime.",
+       "gebied": "The Mosquito Gulf due to crime."
       }
      ],
      "kent_niet": {},
@@ -20076,24 +19658,6 @@
        "onderbouwing": "'Do Not Travel' komt overeen met rood.",
        "citaat": "Do not travel to: Central Bougainville, particularly areas near the Panguna mine, due to civil unrest.",
        "gebied": "Central Bougainville, particularly areas near the Panguna mine, due to civil unrest."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to this area for any reason.",
-       "gebied": "this area for any reason."
-      },
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to this area for any reason.",
-       "gebied": "this area for any reason."
       }
      ],
      "kent_niet": {},
@@ -20654,8 +20218,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.prt.html",
-     "gewijzigd_op": "2025-12-23",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/portugal-travel-advisory.html",
+     "gewijzigd_op": "2025-03-03",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -20665,7 +20229,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Portugal - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Portugal."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -21054,17 +20618,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do not travel to Russia due to: Danger associated with the continuing war between Russia and Ukraine."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Russia for any reason The U.S.",
-       "gebied": "Russia for any reason The U.S."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -21117,8 +20671,8 @@
        "weergave": "Kleurcode oranje",
        "bronlabel": "kleurcode oranje",
        "onderbouwing": "Onze eigen schaal; de kleurcode is rechtstreeks overgenomen.",
-       "citaat": "De kleurcode van het reisadvies is oranje voor het grensgebied met de DRC.",
-       "gebied": "het grensgebied met de DRC"
+       "citaat": "De kleurcode van het reisadvies is oranje voor het grensgebied met de DRC. Reis alleen hierheen als het noodzakelijk is.",
+       "gebied": "het grensgebied met de DRC. Reis alleen hierheen als het noodzakelijk is"
       }
      ],
      "kent_niet": {},
@@ -21438,7 +20992,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Exercise normal precautions in St."
+      "citaat": "Exercise normal precautions in St. Kitts and Nevis."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -21516,7 +21070,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/saint-lucia-travel-advisory.html",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lca.html",
      "gewijzigd_op": "2026-07-10",
      "bevestigd_op": null,
      "opmerking": null,
@@ -21527,7 +21081,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise Increased Caution in Saint Lucia due to risk of crime."
+      "citaat": "Exercise increased caution in Saint Lucia due to risk of crime."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -22113,8 +21667,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.stp.html",
-     "gewijzigd_op": "2026-09-04",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/sao-tome-and-principe-travel-advisory.html",
+     "gewijzigd_op": "2025-10-08",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -22124,7 +21678,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Sao Tome and Principe due to health risks."
+      "citaat": "Exercise Increased Caution in São Tomé and Príncipe due to health risks."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -22281,17 +21835,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider travel to Saudi Arabia due to risk of Iranian drone and missile targeting of American interests, armed conflict, terrorism, exit bans, and local laws regarding social media activity."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to the Yemen border due to threat of Terrorism.",
-       "gebied": "the Yemen border due to threat of Terrorism."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -23244,8 +22788,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.svk.html",
-     "gewijzigd_op": "2026-02-12",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/slovakia-travel-advisory.html",
+     "gewijzigd_op": "2026-02-10",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -23353,17 +22897,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do not travel to Sudan due to risk of unrest, crime, kidnapping, terrorism, landmines, and health risks."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Sudan for any reason.",
-       "gebied": "Sudan for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -23486,17 +23020,7 @@
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
       "citaat": "Do Not Travel to Somalia due to risk of crime, kidnapping, terrorism, unrest, health, landmines, systematic mistreatment of women, and systematic mistreatment of gay and lesbian individuals, piracy, abuse of residents in rehabilitation centers, and confiscation of passports by family members."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Somalia for any reason.",
-       "gebied": "Somalia for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -23591,8 +23115,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.esp.html",
-     "gewijzigd_op": "2026-08-01",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/spain-travel-advisory.html",
+     "gewijzigd_op": "2025-05-12",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -23602,19 +23126,9 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Spain due to terrorism and unrest."
+      "citaat": "Exercise increased caution in Spain due to terrorism and civil unrest."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider travel to Ceuta due to unrest.",
-       "gebied": "Ceuta due to unrest."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -23690,8 +23204,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lka.html",
-     "gewijzigd_op": "2025-10-14",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/sri-lanka-travel-advisory.html",
+     "gewijzigd_op": "2025-10-09",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -23701,7 +23215,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Sri Lanka due to civil unrest, terrorism, and landmines."
+      "citaat": "Sri Lanka - Level 2: Exercise Increased Caution"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -24057,8 +23571,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.syr.html",
-     "gewijzigd_op": "2026-08-07",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/syria-travel-advisory.html",
+     "gewijzigd_op": "2025-12-11",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -24068,19 +23582,9 @@
       "weergave": "Niveau 4: reis niet",
       "bronlabel": "Level 4: Do Not Travel",
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-      "citaat": "Do not travel to Syria for any reason due to the risk of terrorism, unrest, kidnapping, hostage taking, crime, and armed conflict."
+      "citaat": "Do not travel to Syria for any reason due to the risk of terrorism, civil unrest, kidnapping, hostage taking, crime, and armed conflict."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to Syria for any reason.",
-       "gebied": "Syria for any reason."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -24169,17 +23673,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Tajikistan due to the risk of terrorism, unexploded landmines, occasional violence near the border with the Kyrgyz Republic, and limited ability to assist U.S.-Tajik dual nationals."
      },
-     "gebieden": [
-      {
-       "kleur": "oranje",
-       "type": "afgeleid",
-       "weergave": "Niveau 3: heroverweeg uw reis",
-       "bronlabel": "Level 3: Reconsider Travel",
-       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-       "citaat": "Reconsider travel to: Tajikistan’s border with Afghanistan due to terrorism.",
-       "gebied": "Tajikistan’s border with Afghanistan due to terrorism."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -25478,8 +24972,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cze.html",
-     "gewijzigd_op": "2026-01-08",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/czechia-travel-advisory.html",
+     "gewijzigd_op": "2025-04-28",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -25489,7 +24983,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Czechia - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in the Czechia."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -25792,17 +25286,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Türkiye due to terrorism, armed conflict, and arbitrary detentions."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to the border region with Syria and Iraq due to risk of terrorism and armed conflict.",
-       "gebied": "the border region with Syria and Iraq due to risk of terrorism and armed conflict."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -26202,7 +25686,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/uruguay-travel-advisory.html",
+     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ury.html",
      "gewijzigd_op": "2026-07-28",
      "bevestigd_op": null,
      "opmerking": null,
@@ -26563,17 +26047,7 @@
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
       "citaat": "Reconsider travel to Venezuela due to risk of crime, kidnapping, terrorism, and poor health infrastructure."
      },
-     "gebieden": [
-      {
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do Not Travel to: Venezuela-Colombia border region (20 miles from the border) due to the risk of crime, kidnapping, and terrorism Amazonas state due to the risk of terrorism Apure state due to risk of terrorism Aragua state outside of Maracay due to the risk of crime and kidnapping Bolivar state […]",
-       "gebied": "Venezuela-Colombia border region (20 miles from the border) due to the risk of crime, kidnapping, and terrorism Amazonas state due to the risk of terrorism Apure state due to risk of terrorism Aragua […]"
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -26683,8 +26157,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.gbr.html",
-     "gewijzigd_op": "2026-09-09",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/united-kingdom-travel-advisory.html",
+     "gewijzigd_op": "2025-05-08",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -26811,7 +26285,7 @@
       "weergave": "Niveau 3: heroverweeg uw reis",
       "bronlabel": "Level 3: Reconsider Travel",
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-      "citaat": "Reconsider Travel to the United Arab Emirates due to terrorism and armed conflict."
+      "citaat": "United Arab Emirates - Level 3: Reconsider Travel"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -27262,8 +26736,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.blr.html",
-     "gewijzigd_op": "2025-12-29",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/belarus-travel-advisory.html",
+     "gewijzigd_op": "2025-12-22",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -27273,7 +26747,7 @@
       "weergave": "Niveau 4: reis niet",
       "bronlabel": "Level 4: Do Not Travel",
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-      "citaat": "Do not travel to Belarus for any reason due to unrest and other risks."
+      "citaat": "Do not travel to Belarus due to: The risk of harassment by Belarusian security officials."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -27856,8 +27330,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ssd.html",
-     "gewijzigd_op": "2026-05-17",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/south-sudan-travel-advisory.html",
+     "gewijzigd_op": "2025-11-13",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -27867,7 +27341,7 @@
       "weergave": "Niveau 4: reis niet",
       "bronlabel": "Level 4: Do Not Travel",
       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-      "citaat": "Do not travel to South Sudan due to risk of unrest, crime, kidnapping, landmines, and health risks."
+      "citaat": "Do not travel to South Sudan due to risk of unrest, crime, kidnapping, landmines, and health threats."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -28051,8 +27525,8 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.che.html",
-     "gewijzigd_op": "2026-08-14",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/switzerland-travel-advisory.html",
+     "gewijzigd_op": "2025-05-20",
      "bevestigd_op": null,
      "opmerking": null,
      "overgenomen_van": null,
@@ -28062,7 +27536,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Switzerland - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Switzerland."
      },
      "gebieden": [],
      "kent_niet": {},
