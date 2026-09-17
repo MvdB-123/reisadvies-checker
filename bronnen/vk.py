@@ -112,9 +112,21 @@ def _haal_land(slug):
                 uit["landniveau"] = {"label": heel_label, "citaat": citaat(tekst)}
                 break
 
+    # Zinnen die het land zelf noemen herhalen meestal het landniveau. Maar als
+    # er nog géén landniveau staat, is zo'n zin juist de uitspraak over het hele
+    # land — Soedan: "FCDO advises against all travel to Sudan because of the
+    # ongoing military conflict". Die mag nooit stilzwijgend wegvallen.
+    if not uit["landniveau"]:
+        for label, tekst, doeltekst, heel in geduid:
+            if heel or not normaliseer(doeltekst).startswith(landsnaam):
+                continue
+            uit["landniveau"] = {
+                "label": label.replace("_to_parts", "_to_whole_country"),
+                "citaat": citaat(tekst),
+            }
+            break
+
     for label, tekst, doeltekst, heel in geduid:
-        # Zinnen die het land zelf noemen herhalen het landniveau; dat is geen
-        # apart gebied.
         if heel or normaliseer(doeltekst).startswith(landsnaam):
             continue
         if uit["landniveau"] and citaat(tekst) == uit["landniveau"]["citaat"]:

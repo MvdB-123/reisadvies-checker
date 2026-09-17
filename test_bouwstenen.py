@@ -210,6 +210,17 @@ class BritseUitspraken(unittest.TestCase):
     def test_kopje_zonder_niveau_telt_niet_als_advies(self):
         self.assertFalse(vk.ADVIESZIN.search("Areas where FCDO advises against travel"))
 
+    def test_uitspraak_over_het_land_valt_nooit_weg(self):
+        """Soedan: 'against all travel to Sudan because of...' verdween eerst.
+
+        De zin noemde het land zelf, werd daarom als herhaling van het
+        landniveau beschouwd en weggegooid — terwijl er geen landniveau stond.
+        Het zwaarste advies over Soedan was daardoor onzichtbaar.
+        """
+        self.assertTrue(vk._is_heel_land("Sudan", "sudan"))
+        self.assertFalse(vk._is_heel_land(
+            "Sudan because of the ongoing military conflict in Khartoum", "sudan"))
+
     def test_land_als_geheel_versus_gebied(self):
         self.assertTrue(vk._is_heel_land("Afghanistan", "afghanistan"))
         self.assertTrue(vk._is_heel_land("the whole of the Mali due to unrest", "mali"))
