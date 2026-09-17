@@ -69,12 +69,12 @@ def _haal_land(slug, landsnaam):
     uit["gewijzigd_op"] = _datum(DATUM, tekst)
     uit["bevestigd_op"] = _datum(GELDIG, tekst)
 
-    zinnen = _kort_blok(rauw)
-    if not zinnen:
+    regels = _kort_blok(rauw)
+    if not regels:
         uit["opmerking"] = "Geen blok 'In het kort' gevonden op de pagina."
         return uit
 
-    for zin in zinnen:
+    for zin in regels:
         if "kleurcode" not in zin.lower() or UITLEG.search(zin):
             continue
         kleur = next((tr.group(1).lower() for tr in

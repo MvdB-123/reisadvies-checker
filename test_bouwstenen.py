@@ -130,7 +130,7 @@ class NederlandseKleurcodes(unittest.TestCase):
 
 class AmerikaanseTeksten(unittest.TestCase):
     def test_kopje_voor_de_samenvatting_valt_weg(self):
-        zinnen = vs._zinnen("Advisory summary Do not travel to Ukraine for any reason.")
+        zinnen = vs._schone_zinnen("Advisory summary Do not travel to Ukraine for any reason.")
         self.assertEqual(zinnen[0], "Do not travel to Ukraine for any reason.")
 
     def test_vage_gebiedsaanduiding_wordt_overgeslagen(self):

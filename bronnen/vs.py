@@ -47,7 +47,7 @@ GEBIEDSNIVEAUS = [
 ]
 
 
-def _zinnen(tekst):
+def _schone_zinnen(tekst):
     uit = []
     for zin in zinnen(tekst):
         zin = KOPJE.sub("", zin.strip()).strip()
@@ -110,8 +110,8 @@ def _lees_ronde(url, gevraagd, resultaat):
         tekst = re.sub(r"\s+([.!?,;:])", r"\1", tekst)
         niveau = treffer.group("niveau")
 
-        zinnen = _zinnen(tekst)
-        landzin = next((z for z in zinnen if LANDZIN.match(z)), "")
+        regels = _schone_zinnen(tekst)
+        landzin = next((z for z in regels if LANDZIN.match(z)), "")
 
         gewijzigd = _datum(_veld(blok, "pubDate"))
         bestaand = resultaat.get(iso2)
@@ -123,15 +123,15 @@ def _lees_ronde(url, gevraagd, resultaat):
             "bron_url": _veld(blok, "link").strip(),
             "gewijzigd_op": gewijzigd,
             "landniveau": {"label": niveau, "citaat": citaat(landzin or titel)},
-            "gebieden": _gebieden(zinnen, overslaan=landzin),
+            "gebieden": _gebieden(regels, overslaan=landzin),
             "opmerking": None,
         }
 
 
-def _gebieden(zinnen, overslaan=""):
+def _gebieden(regels, overslaan=""):
     """De gebieden die de VS apart noemt, zonder de zin over het hele land."""
     uit = []
-    for zin in zinnen:
+    for zin in regels:
         if zin == overslaan:
             continue
         for niveau, patroon in GEBIEDSNIVEAUS:

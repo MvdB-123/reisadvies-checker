@@ -98,17 +98,17 @@ def haal_alles(register, alleen=None):
 
         try:
             tekst = plat(_detail(sleutel).get("content", ""))
-            zinnen = _zinnen_met_waarschuwing(tekst)
+            waarschuwingen = _zinnen_met_waarschuwing(tekst)
         except OphaalFout:
-            zinnen = []
+            waarschuwingen = []
 
         if heeft_warning:
             uit["landniveau"] = {
                 "label": "warning",
-                "citaat": citaat(zinnen[0]) if zinnen else "",
+                "citaat": citaat(waarschuwingen[0]) if waarschuwingen else "",
             }
         if heeft_partial:
-            for zin in zinnen or [""]:
+            for zin in waarschuwingen or [""]:
                 uit["gebieden"].append({
                     "label": "partialWarning",
                     "gebied": citaat(zin, 200) if zin else "Zie de bronpagina",

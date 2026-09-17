@@ -53,17 +53,17 @@ def _haal_land(slug):
         )
         return uit
 
-    zinnen = []
+    waarschuwingen = []
     for onderdeel in details.get("parts", []):
         if onderdeel.get("slug") == "warnings-and-insurance":
-            zinnen = zinnen(plat(onderdeel.get("body", "")))
+            waarschuwingen = zinnen(plat(onderdeel.get("body", "")))
             break
 
     # Alleen de zinnen waarin het FCDO daadwerkelijk een advies uitspreekt,
     # geknipt op 'FCDO advises' zodat het kopje erboven niet meelift. Staat de
     # formulering er twee keer in, dan is de eerste het kopje dat doorloopt.
     adviezen = []
-    for zin in zinnen:
+    for zin in waarschuwingen:
         treffers = list(ADVIESZIN.finditer(zin))
         if treffers:
             adviezen.append(zin[treffers[-1].start():])
