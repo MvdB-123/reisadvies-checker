@@ -1,0 +1,64 @@
+name: Reisadviezen verversen
+
+# Drie vaste momenten per dag, plus een knop om nu te verversen. Bewust niet elk
+# uur: een volledige ronde kost ~15 minuten aan gratis Actions-minuten, en drie
+# rondes per dag blijft ruim binnen de 2.000 minuten die GitHub per maand geeft.
+on:
+  schedule:
+    - cron: "0 5 * * *"
+    - cron: "0 11 * * *"
+    - cron: "0 16 * * *"
+  workflow_dispatch:
+    inputs:
+      landen:
+        description: "Alleen deze landen verversen (ISO2, bv. TH,ML). Leeg = alle landen."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: verversen
+  cancel-in-progress: false
+
+jobs:
+  verversen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Reisadviezen ophalen en overzicht bouwen
+        run: |
+          if [ -n "${{ inputs.landen }}" ]; then
+            python3 bouw.py --landen "${{ inputs.landen }}"
+          else
+            python3 bouw.py
+          fi
+
+      - name: Controleren of het resultaat bruikbaar is
+        run: python3 controle.py
+
+      - name: Wijzigingen vastleggen
+        run: |
+          git config user.name  "Reisadvies-checker"
+          git config user.email "noreply@github.com"
+          git add data/adviezen.json dist/reisadvies-checker.html
+          if git diff --staged --quiet; then
+            echo "Geen enkel reisadvies gewijzigd sinds de vorige ronde."
+          else
+            git commit -m "Reisadviezen bijgewerkt $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git push
+          fi
+
+      - name: Overzicht ook als download bewaren
+        uses: actions/upload-artifact@v4
+        with:
+          name: reisadvies-checker
+          path: dist/reisadvies-checker.html
+          retention-days: 30

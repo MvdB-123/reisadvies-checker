@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reisadvies-checker</title>
+<style>
+  :root{
+    --groen:#39870c; --geel:#f9e11e; --oranje:#e17000; --rood:#d52b1e;
+    --inkt:#154273; --tekst:#000; --grijs:#696969; --lijn:#d6d6d6;
+    --vlak:#f3f3f3; --wit:#fff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.5 "Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+       color:var(--tekst);background:var(--wit)}
+  header{background:var(--inkt);color:#fff;padding:20px 16px}
+  .breed{max-width:900px;margin:0 auto}
+  h1{margin:0 0 4px;font-size:22px}
+  .opgehaald{font-size:14px;opacity:.9}
+  main{padding:16px}
+  .zoek{margin:18px 0 8px;position:relative}
+  .zoek label{display:block;font-weight:600;margin-bottom:6px}
+  .zoek input{width:100%;padding:11px 12px;font-size:17px;border:2px solid var(--inkt);
+              border-radius:2px}
+  .suggesties{position:absolute;z-index:5;left:0;right:0;background:#fff;
+      border:1px solid var(--lijn);border-top:0;max-height:260px;overflow:auto;
+      box-shadow:0 4px 12px rgba(0,0,0,.12)}
+  .suggesties div{padding:9px 12px;cursor:pointer}
+  .suggesties div:hover,.suggesties div[aria-selected=true]{background:var(--vlak)}
+  .leeg{color:var(--grijs);padding:24px 0}
+
+  .samenvatting{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+  .chip{flex:1 1 150px;border:1px solid var(--lijn);border-radius:3px;padding:10px 12px;
+        background:var(--vlak)}
+  .chip .land{font-size:13px;color:var(--grijs)}
+  .chip .kleur{font-weight:700;display:flex;align-items:center;gap:7px;margin-top:3px}
+  .bol{width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.35);
+       flex:none;display:inline-block}
+  .bol.groen{background:var(--groen)} .bol.geel{background:var(--geel)}
+  .bol.oranje{background:var(--oranje)} .bol.rood{background:var(--rood)}
+  .bol.geen{background:repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 6px)}
+
+  .bron{border:1px solid var(--lijn);border-radius:3px;margin-bottom:14px}
+  .bron>h2{margin:0;padding:11px 14px;background:var(--vlak);font-size:17px;
+           border-bottom:1px solid var(--lijn);display:flex;flex-wrap:wrap;
+           justify-content:space-between;gap:8px;align-items:baseline}
+  .bron h2 .datum{font-size:13px;font-weight:400;color:var(--grijs)}
+  .regel{padding:12px 14px;border-bottom:1px solid #ececec}
+  .regel:last-child{border-bottom:0}
+  .regel .kop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .regel .kop b{font-size:16px}
+  .gebiedsnaam{font-weight:600;margin-bottom:5px}
+  .badge{font-size:12px;border:1px solid var(--lijn);border-radius:10px;
+         padding:1px 9px;color:var(--grijs);background:#fff}
+  .badge.afgeleid{border-color:#b8860b;color:#7a5901;background:#fffaf0}
+  .badge.bestaatniet,.badge.onbekend{border-color:#a00;color:#a00;background:#fff5f5}
+  .brontekst{font-size:14px;color:var(--grijs);margin:4px 0 0}
+  .brontekst .orig{font-style:italic}
+  blockquote{margin:9px 0 5px;padding:8px 12px;background:var(--vlak);
+             border-left:3px solid var(--inkt);font-size:14.5px}
+  .acties{font-size:13px;display:flex;gap:14px;flex-wrap:wrap}
+  .acties a{color:var(--inkt)}
+  .let-op{background:#fff8e1;border-left:3px solid #e17000;padding:8px 12px;
+          font-size:14px;margin:8px 0 0}
+  .knoppen{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 20px}
+  button{font:inherit;padding:9px 16px;border:2px solid var(--inkt);background:var(--inkt);
+         color:#fff;border-radius:2px;cursor:pointer}
+  button.tweede{background:#fff;color:var(--inkt)}
+  footer{border-top:1px solid var(--lijn);margin-top:26px;padding:16px;font-size:13px;
+         color:var(--grijs)}
+  @media print{header{background:#fff;color:#000} .zoek,.knoppen{display:none}}
+</style>
+</head>
+<body>
+<header><div class="breed">
+  <h1>Reisadvies-checker</h1>
+  <div class="opgehaald" id="opgehaald"></div>
+</div></header>
+
+<main class="breed">
+  <div class="zoek">
+    <label for="land">Land</label>
+    <input id="land" type="text" autocomplete="off" placeholder="Typ een land, bijvoorbeeld Thailand"
+           role="combobox" aria-expanded="false" aria-controls="suggesties">
+    <div class="suggesties" id="suggesties" role="listbox" hidden></div>
+  </div>
+  <div id="uitvoer"><p class="leeg">Kies een land om de reisadviezen van vijf overheden naast elkaar te zien.</p></div>
+</main>
+
+<footer class="breed">
+  <p><strong>Dit is een hulpmiddel, geen bron.</strong> De tool zet de adviezen van andere
+  overheden om naar onze vier kleurcodes via een vaste mappingtabel. Controleer altijd de
+  bronpagina voordat u het overzicht doorstuurt. De datum bij elke bron is de datum waarop
+  die overheid het advies voor het laatst wijzigde.</p>
+  <p id="stand"></p>
+</footer>
+
+<script>
+const GEGEVENS = /*GEGEVENS*/null;
+const VOLGORDE = ["nl","de","vk","vs","fr"];
+const $ = id => document.getElementById(id);
+
+function datumNL(iso){
+  if(!iso) return null;
+  const d = new Date(iso);
+  if(isNaN(d)) return iso;
+  return d.toLocaleDateString("nl-NL",{day:"numeric",month:"long",year:"numeric"});
+}
+function tekstUit(el){ return el.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function vertaalLink(tekst, taal){
+  const bron = {de:"de",fr:"fr",en:"en",nl:"nl"}[taal] || "auto";
+  return "https://www.deepl.com/translator#" + bron + "/nl/" + encodeURIComponent(tekst.slice(0,900));
+}
+
+function kort(tekst, max){
+  if(!tekst || tekst.length <= max) return tekst;
+  const knip = tekst.slice(0, max);
+  const spatie = knip.lastIndexOf(" ");
+  return (spatie > max * 0.5 ? knip.slice(0, spatie) : knip) + " \u2026";
+}
+
+function niveauHTML(stuk, bron, gebiedsnaam){
+  const kleur = stuk.kleur || "geen";
+  // Bij sommige bronnen is de gebiedsaanduiding dezelfde zin als het citaat.
+  // Die dan twee keer tonen leest als een fout; één keer is genoeg.
+  const zelfde = gebiedsnaam && stuk.citaat &&
+    stuk.citaat.slice(0,60).replace(/\s+/g," ") === gebiedsnaam.slice(0,60).replace(/\s+/g," ");
+  const badge = stuk.type === "afgeleid" ? "afgeleid"
+              : stuk.type === "niet in de mappingtabel" ? "onbekend" : "";
+  let h = '<div class="regel">';
+  if(gebiedsnaam && !zelfde)
+    h += '<div class="gebiedsnaam">' + tekstUit(kort(gebiedsnaam, 140)) + '</div>';
+  h += '<div class="kop"><span class="bol ' + kleur + '"></span><b>'
+     + (stuk.kleur ? stuk.kleur.charAt(0).toUpperCase()+stuk.kleur.slice(1) : "Geen kleurcode")
+     + '</b><span class="badge ' + badge + '">' + tekstUit(stuk.type) + '</span></div>';
+  h += '<p class="brontekst">' + tekstUit(stuk.weergave)
+     + ' &middot; <span class="orig">&bdquo;' + tekstUit(stuk.bronlabel) + '&ldquo;</span></p>';
+  h += '<p class="brontekst">' + tekstUit(stuk.onderbouwing) + '</p>';
+  if(stuk.citaat){
+    h += '<blockquote>&bdquo;' + tekstUit(stuk.citaat) + '&ldquo;</blockquote>';
+    h += '<div class="acties">';
+    if(bron.taal !== "nl")
+      h += '<a href="' + vertaalLink(stuk.citaat, bron.taal) + '" target="_blank" rel="noopener">Vertaal dit citaat</a>';
+    h += '</div>';
+  }
+  return h + '</div>';
+}
+
+function toonLand(land){
+  const uit = [];
+  uit.push('<div class="samenvatting">');
+  for(const s of VOLGORDE){
+    const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
+    const n = a && a.landniveau;
+    uit.push('<div class="chip"><div class="land">' + tekstUit(bron.naam) + '</div>'
+      + '<div class="kleur"><span class="bol ' + (n && n.kleur ? n.kleur : "geen") + '"></span>'
+      + (n && n.kleur ? n.kleur.charAt(0).toUpperCase()+n.kleur.slice(1)
+         : (a && a.gebieden.length ? "alleen gebieden" : "geen niveau")) + '</div></div>');
+  }
+  uit.push('</div>');
+  uit.push('<div class="knoppen"><button onclick="kopieer()">Kopieer overzicht</button>'
+         + '<button class="tweede" onclick="window.print()">Afdrukken</button></div>');
+
+  for(const s of VOLGORDE){
+    const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
+    uit.push('<section class="bron"><h2><span>' + tekstUit(bron.naam)
+      + ' <span class="datum">' + tekstUit(bron.overheid) + '</span></span>');
+    if(a && a.gewijzigd_op)
+      uit.push('<span class="datum">Daar gewijzigd op ' + datumNL(a.gewijzigd_op) + '</span>');
+    uit.push('</h2>');
+
+    if(!a || !a.gelukt){
+      uit.push('<div class="regel"><p class="let-op">' + (a && a.niet_van_toepassing ? "" : "Niet opgehaald. ") + ''
+        + tekstUit((a && a.opmerking) || "Deze bron gaf geen antwoord.") + '</p></div></section>');
+      continue;
+    }
+    if(a.overgenomen_van)
+      uit.push('<div class="regel"><p class="let-op">Deze bron gaf deze ronde niets terug. '
+        + 'Hieronder staat de stand van de ophaalronde van ' + datumNL(a.overgenomen_van)
+        + '.</p></div>');
+
+    if(a.landniveau) uit.push(niveauHTML(a.landniveau, bron, null));
+    else uit.push('<div class="regel"><div class="kop"><span class="bol geen"></span>'
+      + '<b>Geen niveau voor het hele land</b><span class="badge bestaatniet">bestaat niet</span></div>'
+      + '<p class="brontekst">' + tekstUit(a.opmerking || bron.schaal) + '</p></div>');
+
+    for(const g of a.gebieden) uit.push(niveauHTML(g, bron, g.gebied));
+
+    const mist = Object.entries(a.kent_niet || {}).filter(([k]) => k[0] !== "_");
+    if(mist.length)
+      uit.push('<div class="regel"><p class="brontekst"><strong>Kent deze schaal niet:</strong> '
+        + mist.map(([k,v]) => '<br>' + k + ' &mdash; ' + tekstUit(v)).join('') + '</p></div>');
+    if(a.bevestigd_op)
+      uit.push('<div class="regel"><p class="brontekst">Door deze overheid nog geldig bevonden op '
+        + datumNL(a.bevestigd_op) + '.</p></div>');
+    uit.push('<div class="regel"><div class="acties"><a href="' + a.bron_url
+      + '" target="_blank" rel="noopener">Bekijk de bronpagina</a></div></div></section>');
+  }
+  $("uitvoer").innerHTML = uit.join("");
+  window.HUIDIG = land;
+}
+
+function kopieer(){
+  const land = window.HUIDIG; if(!land) return;
+  const r = ["Reisadvies-checker — " + land.naam,
+             "Opgehaald op " + datumNL(GEGEVENS.opgehaald_op), ""];
+  for(const s of VOLGORDE){
+    const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
+    r.push(bron.naam.toUpperCase() + (a && a.gewijzigd_op ? "  (daar gewijzigd op " + datumNL(a.gewijzigd_op) + ")" : ""));
+    if(!a || !a.gelukt){ r.push("  Niet opgehaald: " + ((a&&a.opmerking)||"geen antwoord")); r.push(""); continue; }
+    r.push("  Hele land: " + (a.landniveau
+      ? a.landniveau.kleur + " (" + a.landniveau.type + ") — " + a.landniveau.weergave
+      : "geen niveau — " + (a.opmerking || "deze overheid geeft dit niet")));
+    for(const g of a.gebieden)
+      r.push("  Gebied: " + g.gebied + " → " + (g.kleur || "geen kleurcode") + " (" + g.type + ")");
+    if(a.bron_url) r.push("  Bron: " + a.bron_url);
+    r.push("");
+  }
+  r.push("Let op: hulpmiddel, geen bron. Controleer de bronpagina voor u dit doorstuurt.");
+  navigator.clipboard.writeText(r.join("\n")).then(
+    () => alert("Overzicht gekopieerd. U kunt het nu plakken in een mail of Teams."),
+    () => alert("Kopiëren lukte niet. Selecteer de tekst handmatig."));
+}
+
+// --- zoeken ---
+let gemarkeerd = -1;
+function zoek(term){
+  term = term.trim().toLowerCase();
+  if(!term) return [];
+  const treffers = GEGEVENS.landen.filter(l => l.naam.toLowerCase().includes(term)
+                                            || l.iso2.toLowerCase() === term);
+  treffers.sort((a,b) => a.naam.toLowerCase().indexOf(term) - b.naam.toLowerCase().indexOf(term));
+  return treffers.slice(0,10);
+}
+function toonSuggesties(){
+  const lijst = zoek($("land").value), doos = $("suggesties");
+  gemarkeerd = -1;
+  if(!lijst.length){ doos.hidden = true; $("land").setAttribute("aria-expanded","false"); return; }
+  doos.innerHTML = lijst.map((l,i) => '<div role="option" data-i="' + i + '">'
+    + tekstUit(l.naam) + '</div>').join("");
+  doos.hidden = false;
+  $("land").setAttribute("aria-expanded","true");
+  [...doos.children].forEach((el,i) => el.onclick = () => kies(lijst[i]));
+  window.SUGGESTIES = lijst;
+}
+function kies(land){
+  $("land").value = land.naam;
+  $("suggesties").hidden = true;
+  $("land").setAttribute("aria-expanded","false");
+  toonLand(land);
+}
+$("land").addEventListener("input", toonSuggesties);
+$("land").addEventListener("keydown", e => {
+  const lijst = window.SUGGESTIES || [], doos = $("suggesties");
+  if(e.key === "ArrowDown" || e.key === "ArrowUp"){
+    e.preventDefault();
+    gemarkeerd += e.key === "ArrowDown" ? 1 : -1;
+    gemarkeerd = Math.max(0, Math.min(lijst.length - 1, gemarkeerd));
+    [...doos.children].forEach((el,i) => el.setAttribute("aria-selected", i === gemarkeerd));
+  } else if(e.key === "Enter"){
+    e.preventDefault();
+    if(lijst.length) kies(lijst[gemarkeerd >= 0 ? gemarkeerd : 0]);
+  } else if(e.key === "Escape"){ doos.hidden = true; }
+});
+
+// --- start ---
+$("opgehaald").textContent = "Opgehaald op " + datumNL(GEGEVENS.opgehaald_op)
+  + " om " + new Date(GEGEVENS.opgehaald_op).toLocaleTimeString("nl-NL",{hour:"2-digit",minute:"2-digit"})
+  + " · " + GEGEVENS.landen.length + " landen · " + Object.keys(GEGEVENS.bronnen).length + " overheden";
+const mislukt = Object.entries(GEGEVENS.ophaalstand || {}).filter(([,v]) => !v.gelukt);
+$("stand").textContent = mislukt.length
+  ? "Let op: bij deze ophaalronde mislukte " + mislukt.map(([k]) => GEGEVENS.bronnen[k].naam).join(", ") + "."
+  : "Bij deze ophaalronde gaven alle vijf de overheden antwoord.";
+</script>
+</body>
+</html>
