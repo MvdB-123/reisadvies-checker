@@ -25,7 +25,7 @@ gebruiker ziet of hij naar een feit of naar een aanname kijkt.
 | Zweden | Ingen särskilda avrådanden | Geen bijzondere reiswaarschuwingen | letterlijk |
 | Denemarken | Vær opmærksom | Wees alert | letterlijk |
 | Ierland | Normal precautions | Normale voorzorgsmaatregelen | letterlijk |
-| Oostenrijk | Normale Sicherheitslage | Normale veiligheidssituatie | letterlijk |
+| Oostenrijk | Guter Sicherheitsstandard | Goede veiligheidsstandaard | letterlijk |
 | Verenigde Staten | Exercise normal precautions | Neem normale voorzorgsmaatregelen | letterlijk |
 | Australië | Exercise normal safety precautions | Neem normale veiligheidsmaatregelen | letterlijk |
 | Canada | Exercise normal security precautions | Neem normale veiligheidsmaatregelen | letterlijk |
@@ -40,7 +40,7 @@ gebruiker ziet of hij naar een feit of naar een aanname kijkt.
 | Zweden | Var extra uppmärksam | Wees extra alert | letterlijk |
 | Denemarken | Vær ekstra opmærksom | Wees extra alert | letterlijk |
 | Ierland | High degree of caution | Hoge mate van voorzichtigheid | letterlijk |
-| Oostenrijk | Erhöhte Vorsicht | Verhoogde voorzichtigheid | letterlijk |
+| Oostenrijk | Sicherheitsrisiko | Veiligheidsrisico | letterlijk |
 | Verenigde Staten | Exercise increased caution | Wees extra voorzichtig | letterlijk |
 | Australië | Exercise a high degree of caution | Wees zeer voorzichtig | letterlijk |
 | Canada | Exercise a high degree of caution | Wees zeer voorzichtig | letterlijk |
@@ -58,7 +58,7 @@ Vorsicht` wel in adviesteksten, maar niet als officieel niveau — vandaar `afge
 | Zweden | Avrådan från icke nödvändiga resor | Niet-noodzakelijke reizen afgeraden | letterlijk |
 | Denemarken | Undgå ikke-nødvendige rejser | Vermijd niet-noodzakelijke reizen | letterlijk |
 | Ierland | Avoid non-essential travel | Vermijd niet-noodzakelijke reizen | letterlijk |
-| Oostenrijk | Von nicht notwendigen Reisen wird abgeraten | Niet-noodzakelijke reizen worden afgeraden | letterlijk |
+| Oostenrijk | Hohes Sicherheitsrisiko | Hoog veiligheidsrisico | letterlijk |
 | Verenigde Staten | Reconsider travel | Heroverweeg reizen | letterlijk |
 | Australië | Reconsider your need to travel | Heroverweeg de noodzaak van uw reis | letterlijk |
 | Canada | Avoid non-essential travel | Vermijd niet-noodzakelijke reizen | letterlijk |
@@ -96,12 +96,12 @@ Vorsicht` wel in adviesteksten, maar niet als officieel niveau — vandaar `afge
 
 ## Nog te controleren
 
-- **Oostenrijk** hanteert volgens BMEIA een schaal met meer dan vier veiligheidsniveaus.
-  De mapping hierboven neemt vier niveaus aan. Nalopen of enkele cellen `afgeleid` moeten
-  worden in plaats van `letterlijk`.
 - De statuslabels buiten het Verenigd Koninkrijk en Duitsland zijn overgenomen als
   `letterlijk` omdat de oorspronkelijke tabel daar geen voorbehoud bij maakte. Bij twijfel
   per land verifiëren aan de bron.
+- Overheden wijzigen hun schaal. Oostenrijk ging op 1 oktober 2025 van zes naar vier
+  niveaus; de oorspronkelijke tabel gebruikte nog de oude bewoordingen. Deze mapping
+  periodiek tegen de bronnen aanhouden, niet alleen de landenadviezen zelf.
 
 ## Nog niet in gebruik
 
