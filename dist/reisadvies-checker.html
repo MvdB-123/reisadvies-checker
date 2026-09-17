@@ -14,7 +14,8 @@
   body{margin:0;font:16px/1.5 "Segoe UI",system-ui,-apple-system,Arial,sans-serif;
        color:var(--tekst);background:var(--wit)}
   header{background:var(--inkt);color:#fff;padding:20px 16px}
-  .breed{max-width:900px;margin:0 auto}
+  .breed{max-width:1180px;margin:0 auto}
+  .zoek{max-width:560px}
   h1{margin:0 0 4px;font-size:22px}
   .opgehaald{font-size:14px;opacity:.9}
   main{padding:16px}
@@ -42,35 +43,50 @@
   .bol.oranje{background:var(--oranje)} .bol.rood{background:var(--rood)}
   .bol.geen{background:repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 6px)}
 
-  .bron{border:1px solid var(--lijn);border-radius:3px;margin-bottom:14px}
-  .bron>h2{margin:0;padding:11px 14px;background:var(--vlak);font-size:17px;
-           border-bottom:1px solid var(--lijn);display:flex;flex-wrap:wrap;
-           justify-content:space-between;gap:8px;align-items:baseline}
-  .bron h2 .datum{font-size:13px;font-weight:400;color:var(--grijs)}
-  .regel{padding:12px 14px;border-bottom:1px solid #ececec}
-  .regel:last-child{border-bottom:0}
-  .regel .kop{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .regel .kop b{font-size:16px}
-  .gebiedsnaam{font-weight:600;margin-bottom:5px}
-  .badge{font-size:12px;border:1px solid var(--lijn);border-radius:10px;
-         padding:1px 9px;color:var(--grijs);background:#fff}
+  .landkop{font-size:20px;margin:18px 0 4px}
+
+  .tabelomhulsel{overflow-x:auto;border:1px solid var(--lijn);border-radius:3px}
+  table.overzicht{border-collapse:collapse;width:100%;min-width:940px;font-size:14px}
+  table.overzicht th,table.overzicht td{
+    border-bottom:1px solid var(--lijn);padding:8px 9px;text-align:left;
+    vertical-align:top}
+  table.overzicht thead th{background:var(--inkt);color:#fff;font-size:13px;
+    position:sticky;top:0;z-index:2;border-bottom:0}
+  table.overzicht tbody tr:hover td{background:#fafafa}
+
+  th.overheid{background:var(--vlak);font-size:15px;white-space:nowrap;
+    border-right:1px solid var(--lijn);min-width:125px}
+  th.overheid span{display:block;font-weight:400;font-size:12px;color:var(--grijs);
+    white-space:normal;margin-top:2px}
+  td.kleur{white-space:nowrap;min-width:112px}
+  td.kleur b{margin-right:5px}
+  td.geldt{min-width:145px;max-width:250px}
+  td.noemt{min-width:135px;max-width:200px}
+  td.noemt .orig{display:block;font-style:italic;color:var(--grijs);font-size:13px;
+    margin-top:2px}
+  td.waarom{min-width:250px}
+  td.waarom .reden{color:var(--grijs);font-size:13px}
+  td.datum{white-space:nowrap;color:var(--grijs)}
+  td.bronlink{white-space:nowrap}
+  td.bronlink a,a.vertaal{color:var(--inkt)}
+  a.vertaal{font-size:13px}
+  tr.notitie td{background:#fff8e1;color:#5c4400;font-size:13px}
+
+  .badge{font-size:11px;border:1px solid var(--lijn);border-radius:10px;
+         padding:1px 8px;color:var(--grijs);background:#fff;white-space:nowrap}
   .badge.afgeleid{border-color:#b8860b;color:#7a5901;background:#fffaf0}
   .badge.bestaatniet,.badge.onbekend{border-color:#a00;color:#a00;background:#fff5f5}
-  .brontekst{font-size:14px;color:var(--grijs);margin:4px 0 0}
-  .brontekst .orig{font-style:italic}
-  blockquote{margin:9px 0 5px;padding:8px 12px;background:var(--vlak);
-             border-left:3px solid var(--inkt);font-size:14.5px}
-  .acties{font-size:13px;display:flex;gap:14px;flex-wrap:wrap}
-  .acties a{color:var(--inkt)}
-  .let-op{background:#fff8e1;border-left:3px solid #e17000;padding:8px 12px;
-          font-size:14px;margin:8px 0 0}
+  blockquote{margin:6px 0 4px;padding:6px 10px;background:var(--vlak);
+             border-left:3px solid var(--inkt);font-size:13.5px}
   .knoppen{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 20px}
   button{font:inherit;padding:9px 16px;border:2px solid var(--inkt);background:var(--inkt);
          color:#fff;border-radius:2px;cursor:pointer}
   button.tweede{background:#fff;color:var(--inkt)}
   footer{border-top:1px solid var(--lijn);margin-top:26px;padding:16px;font-size:13px;
          color:var(--grijs)}
-  @media print{header{background:#fff;color:#000} .zoek,.knoppen{display:none}}
+  @media print{header{background:#fff;color:#000} .zoek,.knoppen{display:none}
+    .tabelomhulsel{overflow:visible} table.overzicht{min-width:0;font-size:11px}
+    table.overzicht thead th{position:static;background:#eee;color:#000}}
 </style>
 </head>
 <body>
@@ -126,110 +142,159 @@ function kort(tekst, max){
   if(!tekst || tekst.length <= max) return tekst;
   const knip = tekst.slice(0, max);
   const spatie = knip.lastIndexOf(" ");
-  return (spatie > max * 0.5 ? knip.slice(0, spatie) : knip) + " \u2026";
+  return (spatie > max * 0.5 ? knip.slice(0, spatie) : knip) + " …";
 }
 
-function niveauHTML(stuk, bron, gebiedsnaam){
-  const kleur = stuk.kleur || "geen";
-  // Bij sommige bronnen is de gebiedsaanduiding dezelfde zin als het citaat.
-  // Die dan twee keer tonen leest als een fout; één keer is genoeg.
-  const zelfde = gebiedsnaam && stuk.citaat &&
-    stuk.citaat.slice(0,60).replace(/\s+/g," ") === gebiedsnaam.slice(0,60).replace(/\s+/g," ");
-  const badge = stuk.type === "afgeleid" ? "afgeleid"
-              : stuk.type === "niet in de mappingtabel" ? "onbekend" : "";
-  let h = '<div class="regel">';
-  if(gebiedsnaam && !zelfde)
-    h += '<div class="gebiedsnaam">' + tekstUit(kort(gebiedsnaam, 140)) + '</div>';
-  h += '<div class="kop"><span class="bol ' + kleur + '"></span><b>'
-     + (stuk.kleur ? stuk.kleur.charAt(0).toUpperCase()+stuk.kleur.slice(1) : "Geen kleurcode")
-     + '</b><span class="badge ' + badge + '">' + tekstUit(stuk.type) + '</span></div>';
-  h += '<p class="brontekst">' + tekstUit(stuk.weergave)
-     + ' &middot; <span class="orig">&bdquo;' + tekstUit(stuk.bronlabel) + '&ldquo;</span></p>';
-  h += '<p class="brontekst">' + tekstUit(stuk.onderbouwing) + '</p>';
-  if(stuk.citaat){
-    h += '<blockquote>&bdquo;' + tekstUit(stuk.citaat) + '&ldquo;</blockquote>';
-    h += '<div class="acties">';
-    if(bron.taal !== "nl")
-      h += '<a href="' + vertaalLink(stuk.citaat, bron.taal) + '" target="_blank" rel="noopener">Vertaal dit citaat</a>';
-    h += '</div>';
+function kleurCel(stuk){
+  const kleur = stuk && stuk.kleur ? stuk.kleur : "geen";
+  const naam = stuk && stuk.kleur
+    ? stuk.kleur.charAt(0).toUpperCase() + stuk.kleur.slice(1)
+    : "Geen kleurcode";
+  const soort = !stuk ? "" : stuk.type === "afgeleid" ? "afgeleid"
+              : stuk.type === "niet in de mappingtabel" ? "onbekend"
+              : stuk.type === "bestaat niet" ? "bestaatniet" : "";
+  return '<span class="bol ' + kleur + '"></span><b>' + naam + '</b>'
+       + (stuk ? '<span class="badge ' + soort + '">' + tekstUit(stuk.type) + '</span>' : '');
+}
+
+function zelfdeTekst(a, b){
+  if(!a || !b) return false;
+  const schoon = s => s.slice(0, 60).replace(/\s+/g, " ").toLowerCase();
+  return schoon(a) === schoon(b);
+}
+
+function rij(bron, advies, stuk, geldtVoor, eerste, aantal){
+  let h = "<tr>";
+  if(eerste)
+    h += '<th scope="rowgroup" rowspan="' + aantal + '" class="overheid">'
+       + tekstUit(bron.naam) + '<span>' + tekstUit(bron.overheid) + '</span></th>';
+  h += '<td class="kleur">' + kleurCel(stuk) + '</td>';
+  h += '<td class="geldt">' + tekstUit(geldtVoor) + '</td>';
+  if(stuk){
+    h += '<td class="noemt">' + tekstUit(stuk.weergave)
+       + '<span class="orig">&bdquo;' + tekstUit(stuk.bronlabel) + '&ldquo;</span></td>';
+    h += '<td class="waarom"><span class="reden">' + tekstUit(stuk.onderbouwing) + '</span>';
+    // Staat de zin al in 'Geldt voor', dan is hem herhalen als citaat alleen ruis.
+    // De vertaalknop blijft wel staan: juist bij Duits en Frans is die nodig.
+    const dubbel = zelfdeTekst(stuk.citaat, geldtVoor);
+    if(stuk.citaat && !dubbel)
+      h += '<blockquote>&bdquo;' + tekstUit(stuk.citaat) + '&ldquo;</blockquote>';
+    if(stuk.citaat && bron.taal !== "nl")
+      h += '<a class="vertaal" href="' + vertaalLink(stuk.citaat, bron.taal)
+         + '" target="_blank" rel="noopener">Vertaal'
+         + (dubbel ? ' de tekst hiernaast' : '') + '</a>';
+    h += '</td>';
+  } else {
+    h += '<td class="noemt">&mdash;</td><td class="waarom"><span class="reden">'
+       + tekstUit(advies.opmerking || "Deze bron gaf geen antwoord.") + '</span></td>';
   }
-  return h + '</div>';
+  h += '<td class="datum">' + (advies.gewijzigd_op ? datumNL(advies.gewijzigd_op) : "&mdash;") + '</td>';
+  h += '<td class="bronlink">' + (advies.bron_url
+      ? '<a href="' + advies.bron_url + '" target="_blank" rel="noopener">Openen</a>'
+      : "&mdash;") + '</td>';
+  return h + "</tr>";
+}
+
+function bronRijen(sleutel, land){
+  const bron = GEGEVENS.bronnen[sleutel], advies = land.adviezen[sleutel];
+  const notities = [];
+  if(!advies)
+    return rij(bron, {opmerking: "Niet opgehaald."}, null, "—", true, 1);
+
+  if(advies.overgenomen_van)
+    notities.push("Deze bron gaf deze ronde niets terug. Hieronder staat de stand van "
+                + datumNL(advies.overgenomen_van) + ".");
+  const mist = Object.entries(advies.kent_niet || {}).filter(function(p){ return p[0][0] !== "_"; });
+  if(mist.length)
+    notities.push("Kent deze schaal niet — "
+      + mist.map(function(p){ return p[0] + ": " + p[1]; }).join(" "));
+  if(advies.bevestigd_op)
+    notities.push("Door deze overheid nog geldig bevonden op " + datumNL(advies.bevestigd_op) + ".");
+
+  const stukken = [];
+  if(advies.landniveau) stukken.push([advies.landniveau, "Hele land"]);
+  for(const g of advies.gebieden) stukken.push([g, g.gebied || "Gebied"]);
+  if(!stukken.length && advies.gelukt) stukken.push([null, "Hele land"]);
+
+  let h = "";
+  const totaal = (stukken.length || 1) + notities.length;
+  if(!advies.gelukt)
+    h += rij(bron, advies, null, "—", true, totaal);
+  else
+    stukken.forEach(function(paar, i){
+      h += rij(bron, advies, paar[0], paar[1], i === 0, totaal);
+    });
+  for(const notitie of notities)
+    h += '<tr class="notitie"><td colspan="6">' + tekstUit(notitie) + '</td></tr>';
+  return h;
 }
 
 function toonLand(land){
   const uit = [];
+  uit.push('<h2 class="landkop">' + tekstUit(land.naam) + '</h2>');
   uit.push('<div class="samenvatting">');
   for(const s of VOLGORDE){
     const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
     const n = a && a.landniveau;
     uit.push('<div class="chip"><div class="land">' + tekstUit(bron.naam) + '</div>'
       + '<div class="kleur"><span class="bol ' + (n && n.kleur ? n.kleur : "geen") + '"></span>'
-      + (n && n.kleur ? n.kleur.charAt(0).toUpperCase()+n.kleur.slice(1)
-         : (a && a.gebieden.length ? "alleen gebieden" : "geen niveau")) + '</div></div>');
+      + (n && n.kleur ? n.kleur.charAt(0).toUpperCase() + n.kleur.slice(1)
+         : (a && a.gebieden && a.gebieden.length ? "alleen gebieden" : "geen niveau"))
+      + '</div></div>');
   }
   uit.push('</div>');
   uit.push('<div class="knoppen"><button onclick="kopieer()">Kopieer overzicht</button>'
          + '<button class="tweede" onclick="window.print()">Afdrukken</button></div>');
 
-  for(const s of VOLGORDE){
-    const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
-    uit.push('<section class="bron"><h2><span>' + tekstUit(bron.naam)
-      + ' <span class="datum">' + tekstUit(bron.overheid) + '</span></span>');
-    if(a && a.gewijzigd_op)
-      uit.push('<span class="datum">Daar gewijzigd op ' + datumNL(a.gewijzigd_op) + '</span>');
-    uit.push('</h2>');
+  uit.push('<div class="tabelomhulsel"><table class="overzicht"><thead><tr>'
+    + '<th>Overheid</th><th>Kleurcode</th><th>Geldt voor</th>'
+    + '<th>Hoe die overheid het noemt</th><th>Onderbouwing</th>'
+    + '<th>Gewijzigd</th><th>Bron</th></tr></thead><tbody>');
+  for(const s of VOLGORDE) uit.push(bronRijen(s, land));
+  uit.push('</tbody></table></div>');
 
-    if(!a || !a.gelukt){
-      uit.push('<div class="regel"><p class="let-op">' + (a && a.niet_van_toepassing ? "" : "Niet opgehaald. ") + ''
-        + tekstUit((a && a.opmerking) || "Deze bron gaf geen antwoord.") + '</p></div></section>');
-      continue;
-    }
-    if(a.overgenomen_van)
-      uit.push('<div class="regel"><p class="let-op">Deze bron gaf deze ronde niets terug. '
-        + 'Hieronder staat de stand van de ophaalronde van ' + datumNL(a.overgenomen_van)
-        + '.</p></div>');
-
-    if(a.landniveau) uit.push(niveauHTML(a.landniveau, bron, null));
-    else uit.push('<div class="regel"><div class="kop"><span class="bol geen"></span>'
-      + '<b>Geen niveau voor het hele land</b><span class="badge bestaatniet">bestaat niet</span></div>'
-      + '<p class="brontekst">' + tekstUit(a.opmerking || bron.schaal) + '</p></div>');
-
-    for(const g of a.gebieden) uit.push(niveauHTML(g, bron, g.gebied));
-
-    const mist = Object.entries(a.kent_niet || {}).filter(([k]) => k[0] !== "_");
-    if(mist.length)
-      uit.push('<div class="regel"><p class="brontekst"><strong>Kent deze schaal niet:</strong> '
-        + mist.map(([k,v]) => '<br>' + k + ' &mdash; ' + tekstUit(v)).join('') + '</p></div>');
-    if(a.bevestigd_op)
-      uit.push('<div class="regel"><p class="brontekst">Door deze overheid nog geldig bevonden op '
-        + datumNL(a.bevestigd_op) + '.</p></div>');
-    uit.push('<div class="regel"><div class="acties"><a href="' + a.bron_url
-      + '" target="_blank" rel="noopener">Bekijk de bronpagina</a></div></div></section>');
-  }
   $("uitvoer").innerHTML = uit.join("");
   window.HUIDIG = land;
 }
 
 function kopieer(){
   const land = window.HUIDIG; if(!land) return;
-  const r = ["Reisadvies-checker — " + land.naam,
-             "Opgehaald op " + datumNL(GEGEVENS.opgehaald_op), ""];
+  const regels = [["Overheid","Kleurcode","Geldt voor","Hoe die overheid het noemt",
+                   "Soort","Onderbouwing","Citaat","Gewijzigd","Bron"]];
   for(const s of VOLGORDE){
     const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
-    r.push(bron.naam.toUpperCase() + (a && a.gewijzigd_op ? "  (daar gewijzigd op " + datumNL(a.gewijzigd_op) + ")" : ""));
-    if(!a || !a.gelukt){ r.push("  Niet opgehaald: " + ((a&&a.opmerking)||"geen antwoord")); r.push(""); continue; }
-    r.push("  Hele land: " + (a.landniveau
-      ? a.landniveau.kleur + " (" + a.landniveau.type + ") — " + a.landniveau.weergave
-      : "geen niveau — " + (a.opmerking || "deze overheid geeft dit niet")));
-    for(const g of a.gebieden)
-      r.push("  Gebied: " + g.gebied + " → " + (g.kleur || "geen kleurcode") + " (" + g.type + ")");
-    if(a.bron_url) r.push("  Bron: " + a.bron_url);
-    r.push("");
+    if(!a || !a.gelukt){
+      regels.push([bron.naam, "—", "—", "—", "—",
+                   (a && a.opmerking) || "Niet opgehaald", "", "", ""]);
+      continue;
+    }
+    const stukken = [];
+    if(a.landniveau) stukken.push([a.landniveau, "Hele land"]);
+    for(const g of a.gebieden) stukken.push([g, g.gebied || "Gebied"]);
+    if(!stukken.length) stukken.push([null, "Hele land"]);
+    for(const paar of stukken){
+      const stuk = paar[0];
+      regels.push([bron.naam,
+                   stuk && stuk.kleur ? stuk.kleur : "geen kleurcode",
+                   paar[1],
+                   stuk ? stuk.weergave + " (" + stuk.bronlabel + ")" : (a.opmerking || ""),
+                   stuk ? stuk.type : "",
+                   stuk ? stuk.onderbouwing : "",
+                   stuk ? stuk.citaat : "",
+                   a.gewijzigd_op ? datumNL(a.gewijzigd_op) : "",
+                   a.bron_url || ""]);
+    }
   }
-  r.push("Let op: hulpmiddel, geen bron. Controleer de bronpagina voor u dit doorstuurt.");
-  navigator.clipboard.writeText(r.join("\n")).then(
-    () => alert("Overzicht gekopieerd. U kunt het nu plakken in een mail of Teams."),
-    () => alert("Kopiëren lukte niet. Selecteer de tekst handmatig."));
+  const kop = "Reisadvies-checker — " + land.naam
+            + "\nOpgehaald op " + datumNL(GEGEVENS.opgehaald_op) + "\n\n";
+  const tabel = regels.map(function(r){
+    return r.map(function(c){ return String(c).replace(/\t|\n/g, " "); }).join("\t");
+  }).join("\n");
+  const staart = "\n\nLet op: hulpmiddel, geen bron. Controleer de bronpagina voor u dit doorstuurt.";
+  navigator.clipboard.writeText(kop + tabel + staart).then(
+    function(){ alert("Overzicht gekopieerd als tabel. Plakken in Word, Outlook of Excel "
+                    + "zet het netjes in kolommen."); },
+    function(){ alert("Kopiëren lukte niet. Selecteer de tekst handmatig."); });
 }
 
 // --- zoeken ---
@@ -255,6 +320,11 @@ function toonSuggesties(){
     $("uitvoer").innerHTML = '<p class="leeg">Geen land gevonden dat begint met &bdquo;'
       + tekstUit($("land").value) + '&ldquo;.</p>';
   if(!lijst.length){ doos.hidden = true; $("land").setAttribute("aria-expanded","false"); return; }
+  if(lijst.length === 1
+     && lijst[0].naam.toLowerCase() === $("land").value.trim().toLowerCase()){
+    doos.hidden = true; $("land").setAttribute("aria-expanded","false");
+    window.SUGGESTIES = lijst; return;
+  }
   doos.innerHTML = lijst.map((l,i) => '<div role="option" data-i="' + i + '">'
     + tekstUit(l.naam) + '</div>').join("");
   doos.hidden = false;
