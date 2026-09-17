@@ -71,6 +71,13 @@
   ul.gebieden li{padding:5px 0;border-top:1px dotted #e0e0e0}
   ul.gebieden li:first-child{padding-top:0;border-top:0}
   .gebiednaam{display:block;font-weight:600;margin-bottom:2px}
+  /* Waar de zin zelf het gebied is, leest hij als lijstitem en niet als
+     voetnoot: donkerder dan een citaat, lichter dan een kop. */
+  .gebiedzin{display:block;color:var(--tekst);font-weight:500}
+  ul.gebieden li{position:relative;padding-left:14px}
+  ul.gebieden li::before{content:"";position:absolute;left:2px;top:12px;
+    width:5px;height:5px;border-radius:50%;background:#9aa4ae}
+  ul.gebieden li:first-child::before{top:7px}
   .bronzin{display:block;color:var(--grijs);font-size:13px;
     border-left:2px solid #dcdcdc;padding-left:8px}
   td.noemt{min-width:120px;max-width:165px}
@@ -179,15 +186,29 @@ function gebiedenCel(groep, bron){
   if(groep.land) return '<span class="heleland">Hele land</span>';
   let h = '<ul class="gebieden">';
   for(const item of groep.items){
+    // Sommige bronnen benoemen het gebied apart ("the Thai-Cambodian border");
+    // die krijgen een kop met het citaat eronder. Frankrijk schrijft het gebied
+    // midden in een doorlopende zin, zonder los aanwijsbaar deel. Daar is de zin
+    // zélf het gebied, en tonen we hem als volwaardig lijstitem in plaats van
+    // als grijs citaat — anders valt er niets te scannen. Een kop eruit halen
+    // zou samenvatten zijn, en dat doet de tool nergens.
     const dubbel = zelfdeTekst(item.citaat, item.gebied);
     h += '<li>';
-    if(!dubbel) h += '<span class="gebiednaam">' + tekstUit(item.gebied) + '</span>';
-    if(item.citaat){
-      h += '<span class="bronzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
+    if(dubbel){
+      h += '<span class="gebiedzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
       if(bron.taal !== "nl")
         h += ' <a class="vertaal" href="' + vertaalLink(item.citaat, bron.taal)
            + '" target="_blank" rel="noopener">Vertaal</a>';
       h += '</span>';
+    } else {
+      h += '<span class="gebiednaam">' + tekstUit(item.gebied) + '</span>';
+      if(item.citaat){
+        h += '<span class="bronzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
+        if(bron.taal !== "nl")
+          h += ' <a class="vertaal" href="' + vertaalLink(item.citaat, bron.taal)
+             + '" target="_blank" rel="noopener">Vertaal</a>';
+        h += '</span>';
+      }
     }
     h += '</li>';
   }
