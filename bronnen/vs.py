@@ -9,7 +9,7 @@ import html
 import re
 from datetime import datetime
 
-from .gedeeld import citaat, haal_tekst, normaliseer, plat
+from .gedeeld import citaat, haal_tekst, normaliseer, plat, zinnen
 
 RSS = "https://travel.state.gov/_res/rss/TAsTWs.xml"
 
@@ -49,7 +49,7 @@ GEBIEDSNIVEAUS = [
 
 def _zinnen(tekst):
     uit = []
-    for zin in re.split(r"(?<=[.!?])\s+", tekst):
+    for zin in zinnen(tekst):
         zin = KOPJE.sub("", zin.strip()).strip()
         if zin:
             uit.append(zin)

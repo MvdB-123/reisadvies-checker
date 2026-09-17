@@ -7,7 +7,7 @@ uitleg over wat een kleurcode betekent. We lezen daarom alleen 'In het kort'.
 
 import re
 
-from .gedeeld import OphaalFout, citaat, haal_tekst, plat
+from .gedeeld import OphaalFout, citaat, haal_tekst, normaliseer, plat, zinnen
 
 PAGINA = "https://www.nederlandwereldwijd.nl/reisadvies/{slug}"
 
@@ -28,7 +28,7 @@ KORT_BLOK = re.compile(
 # geldt, kan een aanslag plaatsvinden") is geen toekenning en telt niet mee.
 TOEKENNING = [
     re.compile(r"\bkleurcode\s+(groen|geel|oranje|rood)\s+geldt\s+voor\b", re.I),
-    re.compile(r"\bgeldt\s+kleurcode\s+(groen|geel|oranje|rood)\b", re.I),
+    re.compile(r"\bgeldt\s+(?:\w+\s+)?kleurcode\s+(groen|geel|oranje|rood)\b", re.I),
     re.compile(r"\bde\s+kleurcode[^.]{0,80}?\bis\s+(?:ook\s+)?(groen|geel|oranje|rood)\b", re.I),
 ]
 
@@ -81,7 +81,7 @@ def _haal_land(slug, landsnaam):
                       (patroon.search(zin) for patroon in TOEKENNING) if tr), None)
         if not kleur:
             continue
-        if _gaat_over_heel_land(zin, landsnaam):
+        if _gaat_over_heel_land(zin, landsnaam, slug.replace("-", " ")):
             uit["landniveau"] = {"label": f"kleurcode {kleur}", "citaat": citaat(zin)}
         else:
             uit["gebieden"].append({
@@ -95,23 +95,67 @@ def _haal_land(slug, landsnaam):
     return uit
 
 
-def _gaat_over_heel_land(zin, landsnaam):
-    """'Voor de rest van X geldt…' en 'voor heel X' beschrijven het landniveau."""
-    naam = re.escape(landsnaam)
-    return bool(
-        re.search(rf"(?:rest van|heel)\s+(?:{naam}\b|het land\b)", zin, re.I)
-        or re.search(rf"reisadvies voor {naam} is", zin, re.I)
-        or re.search(rf"kleurcode \w+ voor heel", zin, re.I)
-    )
+# Waar de kleurcode aan wordt toegekend: het stuk zin na 'voor'.
+DOELWIT = [
+    re.compile(r"reisadvies\s+voor\s+(.+?)\s+is\s+(?:ook\s+)?"
+               r"(?:groen|geel|oranje|rood)", re.I),
+    re.compile(r"\bkleurcode\s+(?:groen|geel|oranje|rood)\s+geldt\s+voor\s+(.+)", re.I),
+    re.compile(r"\bvoor\s+(.+?)\s+geldt\s+(?:\w+\s+)?kleurcode"
+               r"\s+(?:groen|geel|oranje|rood)", re.I),
+    re.compile(r"\bkleurcode\s+is\s+(?:ook\s+)?(?:groen|geel|oranje|rood)\s+voor\s+(.+)", re.I),
+    re.compile(r"\bis\s+(?:ook\s+)?(?:groen|geel|oranje|rood)\s+voor\s+(.+)", re.I),
+]
+
+# Aanduidingen die het hele land betekenen in plaats van een gebied erbinnen.
+HEEL_LAND = re.compile(r"^(?:de\s+)?(?:rest|hele|gehele|heel)\b|^het\s+(?:hele\s+)?land\b",
+                       re.I)
+
+
+def _doelwit(zin):
+    """Waar geldt deze kleurcode voor? Geeft de aanduiding zoals die er staat."""
+    for patroon in DOELWIT:
+        treffer = patroon.search(zin)
+        if treffer:
+            return treffer.group(1).strip(" .,:;")
+    return ""
+
+
+def _gaat_over_heel_land(zin, *namen):
+    """Geldt deze kleurcode voor het land als geheel, of voor een gebied erbinnen?
+
+    De pagina schrijft de landsnaam niet altijd zoals ons register hem kent:
+    'voor de Bahama\u2019s', 'voor heel Mali', 'voor de rest van Thailand'. We
+    vergelijken daarom genormaliseerd, zonder lidwoorden en leestekens.
+    """
+    doelwit = _doelwit(zin)
+    if not doelwit:
+        return False
+    if HEEL_LAND.match(doelwit):
+        return True
+    doel = normaliseer(doelwit)
+    for naam in namen:
+        kort = normaliseer(naam)
+        if not kort:
+            continue
+        if doel == kort:
+            return True
+        # De pagina gebruikt soms de officiële lange naam: 'Brunei Darussalam',
+        # 'Hongkong SAR'. Een korte toevoeging telt nog als hetzelfde land; een
+        # lange niet, want 'het grensgebied tussen X en Y' is wél een gebied.
+        if doel.startswith(kort) and len(doel) - len(kort) <= 12:
+            return True
+    return False
 
 
 def _gebied_uit(zin):
     """Het gebied waar de kleurcode voor geldt, zonder de kleur zelf erachter."""
-    treffer = re.search(r"\bvoor\s+(.*)", zin, re.IGNORECASE)
-    gebied = (treffer.group(1) if treffer else zin).strip(" .")
+    gebied = _doelwit(zin)
+    if not gebied:
+        treffer = re.search(r"\bvoor\s+(.*)", zin, re.IGNORECASE)
+        gebied = (treffer.group(1) if treffer else zin)
     gebied = re.sub(r"\s+is\s+(?:ook\s+)?(?:groen|geel|oranje|rood)\s*$", "",
                     gebied, flags=re.IGNORECASE)
-    return gebied.strip(" .")
+    return gebied.strip(" .,:;")
 
 
 def _datum(patroon, tekst):
@@ -130,4 +174,4 @@ def _kort_blok(rauw):
     if not blok:
         return []
     tekst = plat(blok.group(1))
-    return [z.strip() for z in re.split(r"(?<=[.!?])\s+", tekst) if z.strip()]
+    return zinnen(tekst)

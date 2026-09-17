@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 from bronnen import de, fr, nl, vs
-from bronnen.gedeeld import citaat, normaliseer
+from bronnen.gedeeld import citaat, normaliseer, zinnen
 
 HIER = Path(__file__).parent
 
@@ -36,6 +36,18 @@ class Citaten(unittest.TestCase):
         self.assertNotRegex(uit.lower(), r"\bniet\s*\[")
 
 
+class Zinsgrenzen(unittest.TestCase):
+    def test_afkorting_breekt_de_zin_niet(self):
+        """'bzw.' knipte de waarschuwing los van het gebied waar hij over ging."""
+        tekst = ("Vor Reisen in die folgenden Provinzen bzw. der Nutzung der "
+                 "genannten Straßen wird gewarnt. Weitere Hinweise folgen.")
+        self.assertEqual(len(zinnen(tekst)), 2)
+        self.assertIn("bzw. der Nutzung", zinnen(tekst)[0])
+
+    def test_gewone_zinnen_worden_wel_gesplitst(self):
+        self.assertEqual(len(zinnen("Eerste zin. Tweede zin. Derde zin.")), 3)
+
+
 class Landsnamen(unittest.TestCase):
     def test_schrijfwijzen_vallen_samen(self):
         """De Amerikaanse feed gebruikt beide schrijfwijzen door elkaar."""
@@ -58,6 +70,12 @@ class DuitseZinnen(unittest.TestCase):
                  "dringend abgeraten.")
         self.assertEqual(de._zinnen_met_waarschuwing(tekst), [])
 
+    def test_bijwoorden_tussen_von_en_reisen(self):
+        """'Von nicht notwendigen Reisen … wird abgeraten' is een reisadvies."""
+        tekst = ("Von nicht notwendigen Reisen in alle anderen Regionen Tschads "
+                 "wird abgeraten.")
+        self.assertEqual(len(de._zinnen_met_waarschuwing(tekst)), 1)
+
     def test_kopje_lift_niet_mee_in_het_citaat(self):
         tekst = "Siehe Aktuelles Vor Reisen in die Provinz Cabo Delgado wird gewarnt."
         self.assertEqual(de._zinnen_met_waarschuwing(tekst)[0],
@@ -79,6 +97,29 @@ class NederlandseKleurcodes(unittest.TestCase):
         for zin in ("Wat uw situatie ook is: reis niet naar gebieden met kleurcode rood.",
                     "U kunt reizen naar gebieden met kleurcode groen."):
             self.assertRegex(zin, nl.UITLEG.pattern)
+
+    def test_officiele_lange_naam_telt_als_het_land(self):
+        """De pagina schrijft 'Brunei Darussalam' waar ons register 'Brunei' zegt."""
+        self.assertTrue(nl._gaat_over_heel_land(
+            "De kleurcode van het reisadvies voor Brunei Darussalam is geel.",
+            "Brunei", "brunei darussalam"))
+        self.assertTrue(nl._gaat_over_heel_land(
+            "De kleurcode van het reisadvies voor Hongkong SAR is geel.", "Hongkong"))
+
+    def test_grensgebied_tussen_twee_landen_is_geen_landniveau(self):
+        self.assertFalse(nl._gaat_over_heel_land(
+            "De kleurcode is ook oranje voor het grensgebied tussen Thailand "
+            "en Myanmar.", "Thailand"))
+
+    def test_lidwoord_voor_de_landsnaam(self):
+        self.assertTrue(nl._gaat_over_heel_land(
+            "De kleurcode van het reisadvies voor de Bahama\u2019s is geel.", "Bahama\u2019s"))
+
+    def test_bijwoord_tussen_geldt_en_kleurcode(self):
+        self.assertEqual(
+            nl._doelwit("Voor de Koerdistan Regio Irak en de zuidelijke provincies "
+                        "geldt grotendeels kleurcode oranje."),
+            "de Koerdistan Regio Irak en de zuidelijke provincies")
 
     def test_gebiedsnaam_zonder_kleur_erachter(self):
         self.assertEqual(

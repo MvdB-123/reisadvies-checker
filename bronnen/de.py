@@ -8,7 +8,7 @@ want alleen daar valt iets te citeren.
 import re
 from datetime import datetime, timezone
 
-from .gedeeld import OphaalFout, citaat, haal_json, plat
+from .gedeeld import OphaalFout, citaat, haal_json, plat, zinnen
 
 LIJST = "https://www.auswaertiges-amt.de/opendata/travelwarning"
 DETAIL = "https://www.auswaertiges-amt.de/opendata/travelwarning/{id}"
@@ -26,7 +26,8 @@ WAARSCHUWING = re.compile(
 # niets met reizen te maken hebben ("Vor Erwerb, Besitz, Konsum von Rauschgiften
 # wird dringend abgeraten"). De zin moet dus over reizen of verblijf gaan.
 OVER_REIZEN = re.compile(
-    r"\b(?:Vor|Von)\s+(?:Reisen|Aufenthalt(?:en)?|Fahrten|Besuchen|Überfahrten)\b",
+    r"\b(?:Vor|Von)\s+(?:\w+\s+){0,3}?"
+    r"(?:Reisen|Aufenthalt(?:en)?|Fahrten|Besuchen|Überfahrten)\b",
     re.IGNORECASE,
 )
 
@@ -36,10 +37,6 @@ KOPJE = re.compile(
     r"|Reise- und Sicherheitshinweise)"
     r"(?:\s*[-–]\s*(?:Teilreisewarnung|Reisewarnung|Aktuelles))?\s+(?=[A-ZÄÖÜ])"
 )
-
-
-def _zinnen(tekst):
-    return [z.strip() for z in re.split(r"(?<=[.!?])\s+", tekst) if z.strip()]
 
 
 def _zonder_kopje(zin):
@@ -53,7 +50,7 @@ def _zonder_kopje(zin):
 def _zinnen_met_waarschuwing(tekst, maximaal=3):
     """De letterlijke zinnen waarin Duitsland zegt waarvoor het waarschuwt."""
     gevonden = []
-    for zin in _zinnen(tekst):
+    for zin in zinnen(tekst):
         if not WAARSCHUWING.search(zin) or not OVER_REIZEN.search(zin):
             continue
         zin = re.sub(r"\s+([.!?,;:])", r"\1", _zonder_kopje(zin))
