@@ -82,11 +82,14 @@ def _haal_land(slug):
         dag, maand, jaar = datum.groups()
         uit["gewijzigd_op"] = f"{jaar}-{maand}-{dag}"
 
-    for kop, inhoud in NIVEAUKOP.findall(blok.group(1)):
+    kopjes = NIVEAUKOP.findall(blok.group(1))
+    onbekende_kopjes = []
+    for kop, inhoud in kopjes:
         koptekst = plat(kop)
         label = next((naam for naam, patroon in NIVEAUS if patroon.search(koptekst)),
                      None)
         if not label:
+            onbekende_kopjes.append(koptekst)
             continue
         for gebied in _gebieden_uit(inhoud, koptekst):
             if HEEL_LAND.search(gebied["citaat"]) and not uit["landniveau"]:
@@ -94,12 +97,34 @@ def _haal_land(slug):
             else:
                 uit["gebieden"].append({"label": label, **gebied})
 
-    # Frankrijk wijst alleen zones aan. Waar het niets aanwijst, staat dat er nu
-    # met zoveel woorden; een leeg vakje leest als 'niet opgehaald'.
-    if not uit["landniveau"]:
-        uit["landniveau"] = {"label": "geen_zone", "citaat": ""}
-    else:
+    # Bewust GEEN regel voor 'de rest van het land'. Frankrijks kaart dekt het
+    # hele land met vier zonekleuren, en welke kleur de rest heeft staat niet in
+    # de tekst. Vaak dekt de gele zone de rest al ('Bangkok et autres régions');
+    # een regel 'geen zone aangewezen' zou die tegenspreken. Bovendien gebruiken
+    # sommige landpagina's eigen kopjes in plaats van de vaste zonekopjes, zodat
+    # 'niets gevonden' net zo goed een gat in onze herkenning kan zijn.
+    if uit["landniveau"]:
         uit["opmerking"] = None
+    elif uit["gebieden"]:
+        uit["opmerking"] = (
+            "Frankrijk geeft geen niveau voor het hele land, alleen voor zones."
+        )
+    elif onbekende_kopjes:
+        # Sommige landpagina's gebruiken eigen kopjes ('Jammu-Cachemire et zones
+        # frontalières avec le Pakistan') in plaats van de vaste zonekopjes. De
+        # gebieden staan er dan wel, maar het niveau is niet vast te stellen.
+        uit["opmerking"] = (
+            "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats "
+            "van de vaste zonekopjes: "
+            + "; ".join(k[:60] for k in onbekende_kopjes[:3])
+            + ". Het niveau is daaruit niet vast te stellen; zie de bronpagina."
+        )
+    else:
+        uit["opmerking"] = (
+            "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de "
+            "vigilance'. Op hun kaart heeft het land wel een kleur, maar die "
+            "staat niet in de tekst."
+        )
     return uit
 
 

@@ -58,7 +58,8 @@ def _haal_land(slug):
         # Het VK publiceert alleen negatieve adviezen. Zwijgen betekent hier:
         # geen advies tegen reizen. Dat expliciet tonen is eerlijker dan een leeg
         # vakje, dat leest als 'niet opgehaald'.
-        uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
+        # Geen enkel advies: het VK maakt dan ook geen kaart voor dit land.
+        uit["landniveau"] = {"label": "geen_advies_land", "citaat": ""}
         return uit
 
     waarschuwingen = []
@@ -131,10 +132,12 @@ def _haal_land(slug):
     if uit["landniveau"]:
         gebruikt.add(uit["landniveau"]["label"])
     gebruikt.update(g["label"] for g in uit["gebieden"])
-    # Gelden alle adviezen alleen voor delen van het land, dan zegt het VK over
-    # de rest niets — en dat is zelf informatie.
+    # Gelden alle adviezen alleen voor delen van het land, dan is de rest op hun
+    # kaart groen: het VK kleurt precies de gebieden die het afraadt, en maakt
+    # helemaal geen kaart voor een land zonder advies. De rest is dus per
+    # definitie het gebied waartegen niets is geadviseerd.
     if not uit["landniveau"] and uit["gebieden"]:
-        uit["landniveau"] = {"label": "geen_waarschuwing", "citaat": ""}
+        uit["landniveau"] = {"label": "geen_advies_rest", "citaat": ""}
 
     ontbreekt = [n for n in niveaus if n not in gebruikt]
     if ontbreekt:
