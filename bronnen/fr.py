@@ -15,9 +15,13 @@ PAGINA = ("https://www.diplomatie.gouv.fr/fr/information-par-pays/{slug}"
 # Het blok met de zones, tot het volgende hoofdstuk ('Risques encourus').
 # Sommige landen, zoals Oekraïne, hebben het kopje twee keer: eerst boven de
 # kaart en daarna boven de zones zelf. Een herhaling telt daarom niet als einde.
+# Het kopje staat niet altijd als h3 (Burkina Faso), en op sommige landpagina's
+# staat er 'vigilence' in plaats van 'vigilance' — een typefout van de bron zelf
+# (Honduras). Beide varianten tellen mee, anders valt het hele land weg.
+ZONEKOP = r"Zones?\s+de\s+vigil[ae]nce"
 ZONEBLOK = re.compile(
-    r"<h3[^>]*>\s*Zones de vigilance\s*</h3>"
-    r"(.*?)(?=<h3[^>]*>\s*(?!Zones de vigilance)|\Z)",
+    r"<h([234])[^>]*>\s*" + ZONEKOP + r"\s*</h\1>"
+    r"(.*?)(?=<h[23][^>]*>\s*(?!" + ZONEKOP + r")|\Z)",
     re.IGNORECASE | re.DOTALL)
 
 # Elk niveau is een kopje met daaronder de gebieden.
@@ -44,7 +48,14 @@ BIJSCHRIFT = re.compile(
 # raison impérative' bevat ook het woord 'déconseillées'.
 NIVEAUS = [
     ("deconseillee_sauf_imperative",
-     re.compile(r"d[ée]conseill[ée]{1,2}s?\s+sauf\s+raison\s+imp[ée]rative", re.I)),
+     # 'déconseillé sauf raison impérative', maar ook met woorden ertussen:
+     # 'Il est déconseillé aux ressortissants français, sauf pour des raisons
+     # impératives, de se rendre à Bahreïn.'
+     re.compile(r"d[ée]conseill[ée]{1,2}s?[^.]{0,70}?sauf\s+(?:pour\s+)?(?:des?\s+)?"
+                r"raisons?\s+imp[ée]rative", re.I)),
+    ("deconseillee_sauf_imperative",
+     # 'les voyages non essentiels vers l'île sont déconseillés' (Cuba).
+     re.compile(r"voyages?\s+non\s+essentiels?[^.]{0,70}?d[ée]conseill", re.I)),
     ("formellement_deconseillee",
      re.compile(r"formellement\s+d[ée]conseill[ée]{1,2}s?", re.I)),
     ("vigilance_renforcee", re.compile(r"vigilance\s+renforc[ée]{1,2}e?", re.I)),
@@ -83,7 +94,7 @@ def _haal_land(slug):
         )
         return uit
 
-    datum = DATUM.search(plat(blok.group(1)))
+    datum = DATUM.search(plat(blok.group(2)))
     if datum:
         dag, maand, jaar = datum.groups()
         uit["gewijzigd_op"] = f"{jaar}-{maand}-{dag}"
@@ -91,18 +102,22 @@ def _haal_land(slug):
     # Sommige landen hebben geen zonekopjes maar één zin direct in het blok:
     # Afghanistan zegt "La totalité du territoire est formellement déconseillée."
     # Zonder dit stuk viel dat advies volledig weg.
-    inleiding = re.split(r"<h4", blok.group(1), maxsplit=1)[0]
+    inleiding = re.split(r"<h4", blok.group(2), maxsplit=1)[0]
+    # Staan er helemaal geen zonekopjes, dan is een uitspraak in de inleiding aan
+    # geen enkele zone gebonden en gaat hij dus over het land. Dat is een
+    # structureel gegeven, geen uitleg van de zin zelf.
+    zonder_zones = not NIVEAUKOP.search(blok.group(2))
     for zin in zinnen(BIJSCHRIFT.sub("", plat(inleiding)).strip(" .,")):
         label = next((naam for naam, patroon in NIVEAUS if patroon.search(zin)), None)
         if not label:
             continue
-        if HEEL_LAND.search(zin) and not uit["landniveau"]:
+        if (HEEL_LAND.search(zin) or zonder_zones) and not uit["landniveau"]:
             uit["landniveau"] = {"label": label, "citaat": citaat(zin)}
         else:
             uit["gebieden"].append({"label": label, "gebied": citaat(zin, 200),
                                     "citaat": citaat(zin)})
 
-    kopjes = NIVEAUKOP.findall(blok.group(1))
+    kopjes = NIVEAUKOP.findall(blok.group(2))
     onbekende_kopjes = []
     for kop, inhoud in kopjes:
         koptekst = plat(kop)

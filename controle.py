@@ -18,6 +18,17 @@ UITVOER = HIER / "dist" / "reisadvies-checker.html"
 MINIMAAL_LANDEN = 150
 MINIMAAL_PER_BRON = {"nl": 150, "de": 150, "vk": 150, "vs": 120, "fr": 120}
 
+# Hoeveel landen elke bron minstens een kleurcode moet geven. Twee keer is een
+# ophaler stilletjes gestopt met lezen zonder dat er iets misging: Frankrijk gaf
+# lang maar 18 landen een landniveau in plaats van 74, omdat uitspraken zonder
+# zonekopje werden overgeslagen. Deze ondergrens vangt dat voortaan.
+MINIMAAL_MET_KLEUR = {"nl": 150, "de": 30, "vk": 30, "vs": 150, "fr": 50}
+
+# Een bron die volledig zwijgt terwijl anderen oranje of rood geven, kan kloppen
+# (Duitsland kent lang niet elk land een waarschuwing toe), maar een sprong wijst
+# op een leesfout. Gemeten op 17-09-2026: DE 22, VK 12, FR 8.
+MAXIMAAL_STIL = {"nl": 15, "de": 40, "vk": 30, "vs": 20, "fr": 25}
+
 
 def controleer():
     fouten, waarschuwingen = [], []
@@ -43,6 +54,38 @@ def controleer():
             fouten.append(f"Bron {bron.upper()}: {met_oordeel} landen opgehaald, "
                           f"verwacht minstens {ondergrens}. Waarschijnlijk is de "
                           "opzet van die website veranderd.")
+
+    # Per bron: hoeveel landen krijgen daadwerkelijk een kleurcode?
+    for bron, ondergrens in MINIMAAL_MET_KLEUR.items():
+        met_kleur = sum(
+            1 for land in landen
+            if any(s and s.get("kleur")
+                   for s in [(land["adviezen"].get(bron) or {}).get("landniveau")]
+                   + list((land["adviezen"].get(bron) or {}).get("gebieden", [])))
+        )
+        if met_kleur < ondergrens:
+            fouten.append(f"Bron {bron.upper()}: maar {met_kleur} landen met een "
+                          f"kleurcode, verwacht minstens {ondergrens}. Waarschijnlijk "
+                          "leest de ophaler een deel van de tekst niet meer.")
+
+    # Kruiscontrole: waar een bron volledig zwijgt terwijl anderen alarm slaan.
+    stil = {bron: [] for bron in MAXIMAAL_STIL}
+    for land in landen:
+        zwaar = [b for b, a in land["adviezen"].items()
+                 if (a.get("landniveau") or {}).get("kleur") in ("oranje", "rood")]
+        if not zwaar:
+            continue
+        for bron in stil:
+            advies = land["adviezen"].get(bron) or {}
+            if (advies.get("gelukt") and not (advies.get("landniveau") or {}).get("kleur")
+                    and not advies.get("gebieden")):
+                stil[bron].append(land["naam"])
+    for bron, lijst in stil.items():
+        if len(lijst) > MAXIMAAL_STIL[bron]:
+            fouten.append(
+                f"Bron {bron.upper()} zwijgt bij {len(lijst)} landen waar een andere "
+                f"overheid oranje of rood geeft (grens {MAXIMAAL_STIL[bron]}); "
+                f"o.a. {', '.join(lijst[:4])}. Dat wijst op een leesfout.")
 
     # Labels die de mappingtabel niet kent: nooit stilzwijgend doorlaten.
     onbekend = {}

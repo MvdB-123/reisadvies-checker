@@ -248,6 +248,23 @@ class FranseZones(unittest.TestCase):
         self.assertEqual(fr.BIJSCHRIFT.sub("", tekst).strip(" .,"),
                          "La totalité du territoire est formellement déconseillée")
 
+    def test_franse_formuleringen_voor_alleen_noodzakelijke_reizen(self):
+        """Twee schrijfwijzen die Frankrijk gebruikt en die eerst wegvielen."""
+        for zin in ("Il est déconseillé aux ressortissants français, sauf pour des "
+                    "raisons impératives, de se rendre à Bahreïn.",
+                    "Les voyages non essentiels vers l’île sont déconseillés."):
+            with self.subTest(zin=zin[:40]):
+                gevonden = [naam for naam, patroon in fr.NIVEAUS if patroon.search(zin)]
+                self.assertIn("deconseillee_sauf_imperative", gevonden)
+
+    def test_zonekopje_met_typefout_en_andere_tag(self):
+        """Burkina Faso zet het kopje niet als h3; Honduras schrijft 'vigilence'."""
+        for opmaak in ('<h2>Zones de vigilance</h2>Tekst hier.',
+                       '<h3>Zones de vigilence</h3>Tekst hier.',
+                       '<h4>Zone de vigilance</h4>Tekst hier.'):
+            with self.subTest(opmaak=opmaak[:22]):
+                self.assertTrue(fr.ZONEBLOK.search(opmaak))
+
     def test_gewone_zone_is_geen_landniveau(self):
         self.assertFalse(fr.HEEL_LAND.search(
             "À l’extrême-sud, les voyages sont formellement déconseillés."))
