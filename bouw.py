@@ -8,6 +8,7 @@ Gebruik:
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -155,6 +156,7 @@ def main(argv=None):
         gegevens["bronnen"] = {s: {k: v for k, v in b.items() if k != "labels"}
                                for s, b in mapping["bronnen"].items()}
         gegevens["kleuren"] = mapping["kleuren"]
+        gegevens["plaatsnamen"] = _plaatsnamen(register)
         ADVIEZEN.write_text(json.dumps(gegevens, ensure_ascii=False, indent=1),
                             encoding="utf-8")
         print(f"Mappingtabel opnieuw toegepast op {aantal} niveaus.")
@@ -182,6 +184,7 @@ def main(argv=None):
             "bronnen": {s: {k: v for k, v in b.items() if k != "labels"}
                         for s, b in mapping["bronnen"].items()},
             "kleuren": mapping["kleuren"],
+            "plaatsnamen": _plaatsnamen(register),
             "ophaalstand": stand,
             "landen": [
                 {
@@ -203,6 +206,45 @@ def main(argv=None):
 
     bouw_html(gegevens)
     return 0
+
+
+# Woorddelen uit samengestelde landsnamen die op zichzelf geen plaats zijn.
+# Zonder deze lijst wordt 'South' uit 'South Africa' overal gemarkeerd.
+GENERIEK = {
+    "south", "north", "east", "west", "northern", "southern", "eastern",
+    "western", "new", "united", "states", "state", "republic", "democratic",
+    "central", "islands", "island", "saint", "sint", "american", "british",
+    "french", "dutch", "virgin", "territory", "territories", "zuid", "noord",
+    "oost", "west", "nieuw", "verenigde", "staten", "koninkrijk", "republiek",
+    "democratische", "eilanden", "amerikaanse", "britse", "franse",
+    "nederlandse", "nord", "sud", "est", "ouest", "nouvelle", "nouveau",
+    "republique", "république", "démocratique", "democratique", "états",
+    "etats", "unis", "royaume", "îles", "iles", "centrafricaine", "süd",
+    "nordlich", "inseln", "insel", "demokratische", "republik", "vereinigte",
+    "staaten", "vereinigtes", "königreich", "koenigreich",
+    # De Amerikaanse feed noemt Mexico 'Mexico Travel Advisory'; zonder deze
+    # woorden belandt 'Travel' in de lijst met plaatsnamen.
+    "travel", "advisory", "advisories", "summaries", "mainland",
+}
+
+
+def _plaatsnamen(register):
+    """Landsnamen in alle vijf de talen, om ze in brontekst te herkennen.
+
+    De Duitse tekst schrijft 'Kambodscha', de Franse 'Cambodge' en de Britse
+    'Cambodia'; zonder deze lijst herkent het overzicht alleen de Nederlandse
+    naam en blijft de rest onopgemerkt.
+    """
+    namen = set()
+    for land in register:
+        for veld in ("naam", "nl_slug", "vk_slug", "fr_slug", "de_naam", "vs_naam"):
+            waarde = land.get(veld)
+            if not waarde:
+                continue
+            for deel in re.split(r"[\s-]+", str(waarde)):
+                if len(deel) > 3 and deel.lower() not in GENERIEK:
+                    namen.add(deel)
+    return sorted(namen)
 
 
 def hermap(gegevens, mapping):

@@ -218,7 +218,7 @@ def bouw_register():
             "iso2": iso2,
             "naam": nederlands.get(iso2) or iso2,
             "nl_slug": None, "vk_slug": None, "fr_slug": None,
-            "de_iso2": None, "vs_naam": None,
+            "de_iso2": None, "de_naam": None, "vs_naam": None,
         })
 
     for slug in nl_slugs:
@@ -244,7 +244,11 @@ def bouw_register():
 
     for iso2, gegevens in de_landen.items():
         if zoek_iso2(iso2, index):
-            regel(iso2)["de_iso2"] = iso2
+            rij = regel(iso2)
+            rij["de_iso2"] = iso2
+            # De Duitse naam gebruiken we om plaatsnamen in Duitse brontekst te
+            # herkennen; 'Kambodscha' staat nergens anders in het register.
+            rij["de_naam"] = gegevens.get("naam") or None
         else:
             niet_gekoppeld["de"].append(f"{iso2} ({gegevens['naam']})")
 

@@ -67,13 +67,14 @@
   td.kleur{white-space:nowrap;min-width:105px}
   td.geldt{min-width:210px}
   td.geldt .heleland{font-weight:600}
+  td.geldt strong{font-weight:600}
   ul.gebieden{margin:0;padding:0;list-style:none}
   ul.gebieden li{padding:5px 0;border-top:1px dotted #e0e0e0}
   ul.gebieden li:first-child{padding-top:0;border-top:0}
-  .gebiednaam{display:block;font-weight:600;margin-bottom:2px}
+  .gebiednaam{display:block;font-weight:400;color:var(--tekst);margin-bottom:2px}
   /* Waar de zin zelf het gebied is, leest hij als lijstitem en niet als
      voetnoot: donkerder dan een citaat, lichter dan een kop. */
-  .gebiedzin{display:block;color:var(--tekst);font-weight:500}
+  .gebiedzin{display:block;color:var(--tekst);font-weight:400}
   ul.gebieden li{position:relative;padding-left:14px}
   ul.gebieden li::before{content:"";position:absolute;left:2px;top:12px;
     width:5px;height:5px;border-radius:50%;background:#9aa4ae}
@@ -164,6 +165,113 @@ function kort(tekst, max){
   return (spatie > max * 0.5 ? knip.slice(0, spatie) : knip) + " …";
 }
 
+// --- geografische namen markeren -------------------------------------------
+// Alleen nadruk, geen bewering: de tekst blijft woord voor woord intact. We
+// markeren waar de bron zélf een plaats aanwijst — na een aanduiding als
+// 'provinces de', 'Province' of 'Provinzen' — en de landsnamen uit ons eigen
+// register. Woord voor woord in plaats van met één grote regex, want anders
+// glippen er woorden mee die geen plaats zijn ('Grenzverlauf', 'Teile').
+const PLAATSWOORDEN = {
+  fr: /^(?:provinces?|r[ée]gions?|villes?|d[ée]partements?|[îi]les?|fronti[èe]res?|frontali[èe]res?|districts?|zones?)$/i,
+  en: /^(?:provinces?|count(?:y|ies)|states?|regions?|districts?|cit(?:y|ies)|areas?|governorates?|border)$/i,
+  de: /^(?:Provinzen?|Regionen?|Departements?|Distrikten?|Bundesstaaten?|St[äa]dte|Stadt|Inseln?|Bezirken?|Grenzgebiete?n?|Grenzregionen?|Grenze)$/,
+  nl: /^(?:provincies?|regio'?s?|steden|stad|eilanden?|gebieden?|grens|grensgebied)$/i,
+};
+// Woorden die na zo'n aanduiding volgen maar zelf geen plaats zijn.
+const GEENPLAATS = {
+  fr: /^(?:Les|Le|La|Des|Du|De|Dans|Cette|Il|Elle|Nord|Sud|Est|Ouest)$/,
+  en: /^(?:The|And|Or|All|Some|Other|Parts|Areas|North|South|East|West|Province|County|State|Region|District|Travel|Advisory|Exercise|Reconsider|Caution|Level|Increased|Normal|Precautions|Embassy|Consulate|Read|Do|Not)$/,
+  de: /^(?:Teile?|Teilen|Gebiete?n?|Grenzgebiete?|Grenzverlauf|Landesteile|Provinzen?|Regionen?|Bezirken?|Distrikten?|Hauptstadt|Stra[sß]en?|Reisen|Norden|S[üu]den|Osten|Westen|Die|Der|Das|Den|Alle|Andere)$/,
+  nl: /^(?:De|Het|Een|Alle|Andere|Noorden|Zuiden|Oosten|Westen|Delen|Gebied)$/,
+};
+// Verbindingswoorden binnen een opsomming van plaatsen.
+const VERBINDING = {
+  fr: /^(?:de|du|des|d|et|ou|la|le|les|l|avec|[àa]|au|aux)$/i,
+  en: /^(?:of|and|or|with|the)$/i,
+  de: /^(?:und|oder|sowie|zu|zur|zum|mit|der|die|das|den|dem)$/i,
+  nl: /^(?:en|of|met|de|het)$/i,
+};
+
+let LANDNAMEN = null;
+function landnamen(){
+  if(LANDNAMEN) return LANDNAMEN;
+  LANDNAMEN = new Set();
+  for(const naam of (GEGEVENS.plaatsnamen || [])) LANDNAMEN.add(kaal(naam));
+  for(const land of GEGEVENS.landen)
+    for(const deel of String(land.naam).split(/[\s-]+/))
+      if(deel.length > 3) LANDNAMEN.add(kaal(deel));
+  return LANDNAMEN;
+}
+
+function kaal(woord){
+  return String(woord).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+
+function markeerPlaatsen(veiligeTekst, taal, eigenLand){
+  const plaatswoord = PLAATSWOORDEN[taal], geenplaats = GEENPLAATS[taal] || /^$/;
+  const verbinding = VERBINDING[taal] || /^$/;
+  const namen = landnamen();
+  // Het land dat je opzoekt staat in bijna elke zin; dat markeren geeft alleen
+  // ruis. Ook de anderstalige schrijfwijze ('Colombie', 'Thailands') valt af,
+  // via de eerste letters van de naam.
+  const eigen = new Set(String(eigenLand || "").split(/[\s-]+/).map(kaal));
+  const eigenStam = kaal(String(eigenLand || "").split(/[\s-]+/)[0]).slice(0, 5);
+
+  const woorden = [];
+  const patroon = /[\wÀ-ÿ'’-]+/g;
+  let m;
+  while((m = patroon.exec(veiligeTekst)) !== null)
+    woorden.push({woord: m[0], begin: m.index, eind: m.index + m[0].length});
+
+  const markeer = new Array(woorden.length).fill(false);
+  const hoofdletter = w => /^[A-ZÀ-ÝÄÖÜ]/.test(w);
+
+  for(let i = 0; i < woorden.length; i++){
+    const w = woorden[i].woord;
+    // 1. Landsnamen, behalve het land dat je opzoekt: dat staat in elke zin.
+    const stam = kaal(w);
+    if(eigenStam.length >= 4 && stam.startsWith(eigenStam)) continue;
+    if(namen.has(stam) && !eigen.has(stam) && hoofdletter(w)){
+      markeer[i] = true;
+      continue;
+    }
+    // 2. Na een plaatsaanduiding: de reeks eigennamen die erop volgt.
+    if(!plaatswoord || !plaatswoord.test(w)) continue;
+    let j = i + 1, gevonden = 0, verbindingen = 0;
+    while(j < woorden.length && gevonden < 8){
+      const k = woorden[j].woord;
+      const kStam = kaal(k);
+      if(eigenStam.length >= 4 && kStam.startsWith(eigenStam)) break;
+      if(hoofdletter(k) && !geenplaats.test(k) && !/^[A-Z]{2,}$/.test(k)){
+        markeer[j] = true; gevonden++; verbindingen = 0; j++;
+      } else if(verbinding.test(k) && verbindingen < 2){
+        // 'de', 'et de', 'und', 'and' tussen de namen door. Meer dan twee
+        // achter elkaar betekent dat de opsomming voorbij is.
+        verbindingen++; j++;
+      } else break;
+    }
+  }
+
+  // Aaneengesloten gemarkeerde woorden samenvoegen tot één stuk.
+  const stukken = [];
+  for(let i = 0; i < woorden.length; i++){
+    if(!markeer[i]) continue;
+    let begin = woorden[i].begin, eind = woorden[i].eind;
+    while(i + 1 < woorden.length && markeer[i + 1]
+          && /^[\s,]*$/.test(veiligeTekst.slice(eind, woorden[i + 1].begin))){
+      i++; eind = woorden[i].eind;
+    }
+    stukken.push([begin, eind]);
+  }
+  let uit = "", vorige = 0;
+  for(const [begin, eind] of stukken){
+    uit += veiligeTekst.slice(vorige, begin) + "<strong>"
+         + veiligeTekst.slice(begin, eind) + "</strong>";
+    vorige = eind;
+  }
+  return uit + veiligeTekst.slice(vorige);
+}
+
 function zelfdeTekst(a, b){
   if(!a || !b) return false;
   const schoon = s => s.slice(0, 60).replace(/\s+/g, " ").toLowerCase();
@@ -182,7 +290,7 @@ function kleurBadge(stuk){
                         + tekstUit(stuk.type) + '</span>' : '');
 }
 
-function gebiedenCel(groep, bron){
+function gebiedenCel(groep, bron, landsnaam){
   if(groep.land) return '<span class="heleland">Hele land</span>';
   let h = '<ul class="gebieden">';
   for(const item of groep.items){
@@ -195,15 +303,18 @@ function gebiedenCel(groep, bron){
     const dubbel = zelfdeTekst(item.citaat, item.gebied);
     h += '<li>';
     if(dubbel){
-      h += '<span class="gebiedzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
+      h += '<span class="gebiedzin">&bdquo;'
+         + markeerPlaatsen(tekstUit(item.citaat), bron.taal, landsnaam) + '&ldquo;';
       if(bron.taal !== "nl")
         h += ' <a class="vertaal" href="' + vertaalLink(item.citaat, bron.taal)
            + '" target="_blank" rel="noopener">Vertaal</a>';
       h += '</span>';
     } else {
-      h += '<span class="gebiednaam">' + tekstUit(item.gebied) + '</span>';
+      h += '<span class="gebiednaam">'
+         + markeerPlaatsen(tekstUit(item.gebied), bron.taal, landsnaam) + '</span>';
       if(item.citaat){
-        h += '<span class="bronzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
+        h += '<span class="bronzin">&bdquo;'
+           + markeerPlaatsen(tekstUit(item.citaat), bron.taal, landsnaam) + '&ldquo;';
         if(bron.taal !== "nl")
           h += ' <a class="vertaal" href="' + vertaalLink(item.citaat, bron.taal)
              + '" target="_blank" rel="noopener">Vertaal</a>';
@@ -236,14 +347,15 @@ function groepeer(advies){
   return groepen;
 }
 
-function rij(bron, advies, groep, eerste, aantal){
+function rij(bron, advies, groep, eerste, aantal, landsnaam){
   const stuk = groep ? groep.stuk : null;
   let h = "<tr>";
   if(eerste)
     h += '<th scope="rowgroup" rowspan="' + aantal + '" class="overheid">'
        + tekstUit(bron.naam) + '<span>' + tekstUit(bron.overheid) + '</span></th>';
   h += '<td class="kleur">' + kleurBadge(stuk) + '</td>';
-  h += '<td class="geldt">' + (groep ? gebiedenCel(groep, bron) : "&mdash;") + '</td>';
+  h += '<td class="geldt">'
+     + (groep ? gebiedenCel(groep, bron, landsnaam) : "&mdash;") + '</td>';
   if(stuk){
     h += '<td class="noemt">' + tekstUit(stuk.weergave)
        + '<span class="orig">&bdquo;' + tekstUit(stuk.bronlabel) + '&ldquo;</span></td>';
@@ -262,7 +374,7 @@ function rij(bron, advies, groep, eerste, aantal){
 function bronRijen(sleutel, land){
   const bron = GEGEVENS.bronnen[sleutel], advies = land.adviezen[sleutel];
   if(!advies)
-    return rij(bron, {opmerking: "Niet opgehaald."}, null, true, 1);
+    return rij(bron, {opmerking: "Niet opgehaald."}, null, true, 1, land.naam);
 
   const notities = [];
   if(advies.overgenomen_van)
@@ -282,10 +394,10 @@ function bronRijen(sleutel, land){
   const totaal = (groepen.length || 1) + notities.length;
   let h = "";
   if(!advies.gelukt)
-    h += rij(bron, advies, null, true, totaal);
+    h += rij(bron, advies, null, true, totaal, land.naam);
   else
     groepen.forEach(function(groep, i){
-      h += rij(bron, advies, groep, i === 0, totaal);
+      h += rij(bron, advies, groep, i === 0, totaal, land.naam);
     });
   for(const notitie of notities)
     h += '<tr class="notitie"><td colspan="6">' + notitie + '</td></tr>';

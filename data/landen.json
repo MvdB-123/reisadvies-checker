@@ -1,5 +1,5 @@
 {
- "gegenereerd_op": "2026-09-17T09:56:20+00:00",
+ "gegenereerd_op": "2026-09-17T15:05:27+00:00",
  "landen": [
   {
    "iso2": "AF",
@@ -8,6 +8,7 @@
    "vk_slug": "afghanistan",
    "fr_slug": "afghanistan",
    "de_iso2": "AF",
+   "de_naam": "Afghanistan",
    "vs_naam": "Afghanistan"
   },
   {
@@ -17,6 +18,7 @@
    "vk_slug": "albania",
    "fr_slug": "albanie",
    "de_iso2": "AL",
+   "de_naam": "Albanien",
    "vs_naam": "Albania"
   },
   {
@@ -26,6 +28,7 @@
    "vk_slug": "algeria",
    "fr_slug": "algerie",
    "de_iso2": "DZ",
+   "de_naam": "Algerien",
    "vs_naam": "Algeria"
   },
   {
@@ -35,6 +38,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -44,6 +48,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -53,6 +58,7 @@
    "vk_slug": "andorra",
    "fr_slug": "andorre",
    "de_iso2": "AD",
+   "de_naam": "Andorra",
    "vs_naam": "Andorra"
   },
   {
@@ -62,6 +68,7 @@
    "vk_slug": "angola",
    "fr_slug": "angola",
    "de_iso2": "AO",
+   "de_naam": "Angola",
    "vs_naam": "Angola"
   },
   {
@@ -71,6 +78,7 @@
    "vk_slug": "anguilla",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Anguilla"
   },
   {
@@ -80,6 +88,7 @@
    "vk_slug": "antarctica-british-antarctic-territory",
    "fr_slug": "antarctique",
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Antarctica"
   },
   {
@@ -89,6 +98,7 @@
    "vk_slug": "antigua-and-barbuda",
    "fr_slug": "antigua-et-barbuda",
    "de_iso2": "AG",
+   "de_naam": "Antigua und Barbuda",
    "vs_naam": "Antigua and Barbuda"
   },
   {
@@ -98,6 +108,7 @@
    "vk_slug": "argentina",
    "fr_slug": "argentine",
    "de_iso2": "AR",
+   "de_naam": "Argentinien",
    "vs_naam": "Argentina"
   },
   {
@@ -107,6 +118,7 @@
    "vk_slug": "armenia",
    "fr_slug": "armenie",
    "de_iso2": "AM",
+   "de_naam": "Armenien",
    "vs_naam": "Armenia"
   },
   {
@@ -116,6 +128,7 @@
    "vk_slug": "aruba",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Aruba"
   },
   {
@@ -125,6 +138,7 @@
    "vk_slug": "australia",
    "fr_slug": "australie",
    "de_iso2": "AU",
+   "de_naam": "Australien",
    "vs_naam": "Australia"
   },
   {
@@ -134,6 +148,7 @@
    "vk_slug": "azerbaijan",
    "fr_slug": "azerbaidjan",
    "de_iso2": "AZ",
+   "de_naam": "Aserbaidschan",
    "vs_naam": "Azerbaijan"
   },
   {
@@ -143,6 +158,7 @@
    "vk_slug": "bahamas",
    "fr_slug": "bahamas",
    "de_iso2": "BS",
+   "de_naam": "Bahamas",
    "vs_naam": "The Bahamas"
   },
   {
@@ -152,6 +168,7 @@
    "vk_slug": "bahrain",
    "fr_slug": "bahrein",
    "de_iso2": "BH",
+   "de_naam": "Bahrain",
    "vs_naam": "Bahrain"
   },
   {
@@ -161,6 +178,7 @@
    "vk_slug": "bangladesh",
    "fr_slug": "bangladesh",
    "de_iso2": "BD",
+   "de_naam": "Bangladesch",
    "vs_naam": "Bangladesh"
   },
   {
@@ -170,6 +188,7 @@
    "vk_slug": "barbados",
    "fr_slug": "barbade",
    "de_iso2": "BB",
+   "de_naam": "Barbados",
    "vs_naam": "Barbados"
   },
   {
@@ -179,6 +198,7 @@
    "vk_slug": "belgium",
    "fr_slug": "belgique",
    "de_iso2": "BE",
+   "de_naam": "Belgien",
    "vs_naam": "Belgium"
   },
   {
@@ -188,6 +208,7 @@
    "vk_slug": "belize",
    "fr_slug": "belize",
    "de_iso2": "BZ",
+   "de_naam": "Belize",
    "vs_naam": "Belize"
   },
   {
@@ -197,6 +218,7 @@
    "vk_slug": "benin",
    "fr_slug": "benin",
    "de_iso2": "BJ",
+   "de_naam": "Benin",
    "vs_naam": "Benin"
   },
   {
@@ -206,6 +228,7 @@
    "vk_slug": "bermuda",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Bermuda"
   },
   {
@@ -215,6 +238,7 @@
    "vk_slug": "bhutan",
    "fr_slug": "bhoutan",
    "de_iso2": "BT",
+   "de_naam": "Bhutan",
    "vs_naam": "Bhutan"
   },
   {
@@ -224,6 +248,7 @@
    "vk_slug": "bolivia",
    "fr_slug": "bolivie",
    "de_iso2": "BO",
+   "de_naam": "Bolivien",
    "vs_naam": "Bolivia"
   },
   {
@@ -233,6 +258,7 @@
    "vk_slug": "bosnia-and-herzegovina",
    "fr_slug": "bosnie-herzegovine",
    "de_iso2": "BA",
+   "de_naam": "Bosnien und Herzegowina",
    "vs_naam": "Bosnia and Herzegovina"
   },
   {
@@ -242,6 +268,7 @@
    "vk_slug": "botswana",
    "fr_slug": "botswana",
    "de_iso2": "BW",
+   "de_naam": "Botsuana",
    "vs_naam": "Botswana"
   },
   {
@@ -251,6 +278,7 @@
    "vk_slug": "brazil",
    "fr_slug": "bresil",
    "de_iso2": "BR",
+   "de_naam": "Brasilien",
    "vs_naam": "Brazil"
   },
   {
@@ -260,6 +288,7 @@
    "vk_slug": "british-indian-ocean-territory",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -269,6 +298,7 @@
    "vk_slug": "british-virgin-islands",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "British Virgin Islands"
   },
   {
@@ -278,6 +308,7 @@
    "vk_slug": "brunei",
    "fr_slug": "brunei",
    "de_iso2": "BN",
+   "de_naam": "Brunei Darussalam",
    "vs_naam": "Brunei"
   },
   {
@@ -287,6 +318,7 @@
    "vk_slug": "bulgaria",
    "fr_slug": "bulgarie",
    "de_iso2": "BG",
+   "de_naam": "Bulgarien",
    "vs_naam": "Bulgaria"
   },
   {
@@ -296,6 +328,7 @@
    "vk_slug": "burkina-faso",
    "fr_slug": "burkina-faso",
    "de_iso2": "BF",
+   "de_naam": "Burkina Faso",
    "vs_naam": "Burkina Faso"
   },
   {
@@ -305,6 +338,7 @@
    "vk_slug": "burundi",
    "fr_slug": "burundi",
    "de_iso2": "BI",
+   "de_naam": "Burundi",
    "vs_naam": "Burundi"
   },
   {
@@ -314,6 +348,7 @@
    "vk_slug": "cambodia",
    "fr_slug": "cambodge",
    "de_iso2": "KH",
+   "de_naam": "Kambodscha",
    "vs_naam": "Cambodia"
   },
   {
@@ -323,6 +358,7 @@
    "vk_slug": "canada",
    "fr_slug": "canada",
    "de_iso2": "CA",
+   "de_naam": "Kanada",
    "vs_naam": "Canada"
   },
   {
@@ -332,6 +368,7 @@
    "vk_slug": "bonaire-st-eustatius-saba",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Bonaire"
   },
   {
@@ -341,6 +378,7 @@
    "vk_slug": "cayman-islands",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Cayman Islands"
   },
   {
@@ -350,6 +388,7 @@
    "vk_slug": "central-african-republic",
    "fr_slug": "republique-centrafricaine",
    "de_iso2": "CF",
+   "de_naam": "Zentralafrikanische Republik",
    "vs_naam": "Central African Republic"
   },
   {
@@ -359,6 +398,7 @@
    "vk_slug": "chile",
    "fr_slug": "chili",
    "de_iso2": "CL",
+   "de_naam": "Chile",
    "vs_naam": "Chile"
   },
   {
@@ -368,6 +408,7 @@
    "vk_slug": "china",
    "fr_slug": "chine",
    "de_iso2": "CN",
+   "de_naam": "China",
    "vs_naam": null
   },
   {
@@ -377,6 +418,7 @@
    "vk_slug": "colombia",
    "fr_slug": "colombie",
    "de_iso2": "CO",
+   "de_naam": "Kolumbien",
    "vs_naam": "Colombia"
   },
   {
@@ -386,6 +428,7 @@
    "vk_slug": "comoros",
    "fr_slug": "comores",
    "de_iso2": "KM",
+   "de_naam": "Komoren",
    "vs_naam": "Comoros"
   },
   {
@@ -395,6 +438,7 @@
    "vk_slug": "congo",
    "fr_slug": "congo",
    "de_iso2": "CG",
+   "de_naam": "Republik Kongo",
    "vs_naam": "Republic of the Congo"
   },
   {
@@ -404,6 +448,7 @@
    "vk_slug": "democratic-republic-of-the-congo",
    "fr_slug": "republique-democratique-du-congo",
    "de_iso2": "CD",
+   "de_naam": "Demokratische Republik Kongo",
    "vs_naam": "Democratic Republic of the Congo"
   },
   {
@@ -413,6 +458,7 @@
    "vk_slug": "cook-islands-tokelau-and-niue",
    "fr_slug": "iles-cook",
    "de_iso2": "CK",
+   "de_naam": "Cookinseln",
    "vs_naam": null
   },
   {
@@ -422,6 +468,7 @@
    "vk_slug": "costa-rica",
    "fr_slug": "costa-rica",
    "de_iso2": "CR",
+   "de_naam": "Costa Rica",
    "vs_naam": "Costa Rica"
   },
   {
@@ -431,6 +478,7 @@
    "vk_slug": "cuba",
    "fr_slug": "cuba",
    "de_iso2": "CU",
+   "de_naam": "Kuba",
    "vs_naam": "Cuba"
   },
   {
@@ -440,6 +488,7 @@
    "vk_slug": "curacao",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Curaçao"
   },
   {
@@ -449,6 +498,7 @@
    "vk_slug": "cyprus",
    "fr_slug": "chypre",
    "de_iso2": "CY",
+   "de_naam": "Zypern",
    "vs_naam": "Cyprus"
   },
   {
@@ -458,6 +508,7 @@
    "vk_slug": "denmark",
    "fr_slug": "danemark",
    "de_iso2": "DK",
+   "de_naam": "Dänemark",
    "vs_naam": "Kingdom of Denmark"
   },
   {
@@ -467,6 +518,7 @@
    "vk_slug": "djibouti",
    "fr_slug": "djibouti",
    "de_iso2": "DJ",
+   "de_naam": "Dschibuti",
    "vs_naam": "Djibouti"
   },
   {
@@ -476,6 +528,7 @@
    "vk_slug": "dominica",
    "fr_slug": "dominique",
    "de_iso2": "DM",
+   "de_naam": "Dominica",
    "vs_naam": "Dominica"
   },
   {
@@ -485,6 +538,7 @@
    "vk_slug": "dominican-republic",
    "fr_slug": "republique-dominicaine",
    "de_iso2": "DO",
+   "de_naam": "Dominikanische Republik",
    "vs_naam": "Dominican Republic"
   },
   {
@@ -494,6 +548,7 @@
    "vk_slug": "germany",
    "fr_slug": "allemagne",
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Germany"
   },
   {
@@ -503,6 +558,7 @@
    "vk_slug": "ecuador",
    "fr_slug": "equateur",
    "de_iso2": "EC",
+   "de_naam": "Ecuador",
    "vs_naam": "Ecuador"
   },
   {
@@ -512,6 +568,7 @@
    "vk_slug": "egypt",
    "fr_slug": "egypte",
    "de_iso2": "EG",
+   "de_naam": "Ägypten",
    "vs_naam": "Egypt"
   },
   {
@@ -521,6 +578,7 @@
    "vk_slug": "el-salvador",
    "fr_slug": "salvador",
    "de_iso2": "SV",
+   "de_naam": "El Salvador",
    "vs_naam": "El Salvador"
   },
   {
@@ -530,6 +588,7 @@
    "vk_slug": "equatorial-guinea",
    "fr_slug": "guinee-equatoriale",
    "de_iso2": "GQ",
+   "de_naam": "Äquatorialguinea",
    "vs_naam": "Equatorial Guinea"
   },
   {
@@ -539,6 +598,7 @@
    "vk_slug": "eritrea",
    "fr_slug": "erythree",
    "de_iso2": "ER",
+   "de_naam": "Eritrea",
    "vs_naam": "Eritrea"
   },
   {
@@ -548,6 +608,7 @@
    "vk_slug": "estonia",
    "fr_slug": "estonie",
    "de_iso2": "EE",
+   "de_naam": "Estland",
    "vs_naam": "Estonia"
   },
   {
@@ -557,6 +618,7 @@
    "vk_slug": "ethiopia",
    "fr_slug": "ethiopie",
    "de_iso2": "ET",
+   "de_naam": "Äthiopien",
    "vs_naam": "Ethiopia"
   },
   {
@@ -566,6 +628,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -575,6 +638,7 @@
    "vk_slug": "falkland-islands",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -584,6 +648,7 @@
    "vk_slug": "fiji",
    "fr_slug": "iles-fidji",
    "de_iso2": "FJ",
+   "de_naam": "Fidschi",
    "vs_naam": "Fiji"
   },
   {
@@ -593,6 +658,7 @@
    "vk_slug": "philippines",
    "fr_slug": "philippines",
    "de_iso2": "PH",
+   "de_naam": "Philippinen",
    "vs_naam": "Philippines"
   },
   {
@@ -602,6 +668,7 @@
    "vk_slug": "finland",
    "fr_slug": "finlande",
    "de_iso2": "FI",
+   "de_naam": "Finnland",
    "vs_naam": "Finland"
   },
   {
@@ -611,6 +678,7 @@
    "vk_slug": "france",
    "fr_slug": null,
    "de_iso2": "FR",
+   "de_naam": "Frankreich",
    "vs_naam": "France"
   },
   {
@@ -620,6 +688,7 @@
    "vk_slug": "french-guiana",
    "fr_slug": "guyana",
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Guyana"
   },
   {
@@ -629,6 +698,7 @@
    "vk_slug": "french-polynesia",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "French Polynesia"
   },
   {
@@ -638,6 +708,7 @@
    "vk_slug": "gabon",
    "fr_slug": "gabon",
    "de_iso2": "GA",
+   "de_naam": "Gabun",
    "vs_naam": "Gabon"
   },
   {
@@ -647,6 +718,7 @@
    "vk_slug": "the-gambia",
    "fr_slug": "gambie",
    "de_iso2": "GM",
+   "de_naam": "Gambia",
    "vs_naam": "The Gambia"
   },
   {
@@ -656,6 +728,7 @@
    "vk_slug": "georgia",
    "fr_slug": "georgie",
    "de_iso2": "GE",
+   "de_naam": "Georgien",
    "vs_naam": "Georgia"
   },
   {
@@ -665,6 +738,7 @@
    "vk_slug": "ghana",
    "fr_slug": "ghana",
    "de_iso2": "GH",
+   "de_naam": "Ghana",
    "vs_naam": "Ghana"
   },
   {
@@ -674,6 +748,7 @@
    "vk_slug": "gibraltar",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -683,6 +758,7 @@
    "vk_slug": "grenada",
    "fr_slug": "grenade",
    "de_iso2": "GD",
+   "de_naam": "Grenada",
    "vs_naam": "Grenada"
   },
   {
@@ -692,6 +768,7 @@
    "vk_slug": "greece",
    "fr_slug": "grece",
    "de_iso2": "GR",
+   "de_naam": "Griechenland",
    "vs_naam": "Greece"
   },
   {
@@ -701,6 +778,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Greenland"
   },
   {
@@ -710,7 +788,8 @@
    "vk_slug": "guadeloupe",
    "fr_slug": null,
    "de_iso2": null,
-   "vs_naam": null
+   "de_naam": null,
+   "vs_naam": "Guadeloupe"
   },
   {
    "iso2": "GT",
@@ -719,6 +798,7 @@
    "vk_slug": "guatemala",
    "fr_slug": "guatemala",
    "de_iso2": "GT",
+   "de_naam": "Guatemala",
    "vs_naam": "Guatemala"
   },
   {
@@ -728,6 +808,7 @@
    "vk_slug": "guinea",
    "fr_slug": "guinee",
    "de_iso2": "GN",
+   "de_naam": "Guinea",
    "vs_naam": "Guinea"
   },
   {
@@ -737,6 +818,7 @@
    "vk_slug": "guinea-bissau",
    "fr_slug": "guinee-bissao",
    "de_iso2": "GW",
+   "de_naam": "Guinea-Bissau",
    "vs_naam": "Guinea-Bissau"
   },
   {
@@ -746,6 +828,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": "GY",
+   "de_naam": "Guyana",
    "vs_naam": null
   },
   {
@@ -755,6 +838,7 @@
    "vk_slug": "haiti",
    "fr_slug": "haiti",
    "de_iso2": "HT",
+   "de_naam": "Haiti",
    "vs_naam": "Haiti"
   },
   {
@@ -764,6 +848,7 @@
    "vk_slug": "honduras",
    "fr_slug": "honduras",
    "de_iso2": "HN",
+   "de_naam": "Honduras",
    "vs_naam": "Honduras"
   },
   {
@@ -773,6 +858,7 @@
    "vk_slug": "hungary",
    "fr_slug": "hongrie",
    "de_iso2": "HU",
+   "de_naam": "Ungarn",
    "vs_naam": "Hungary"
   },
   {
@@ -782,6 +868,7 @@
    "vk_slug": "hong-kong",
    "fr_slug": null,
    "de_iso2": "HK",
+   "de_naam": "Hongkong*",
    "vs_naam": "Hong Kong"
   },
   {
@@ -791,6 +878,7 @@
    "vk_slug": "iceland",
    "fr_slug": "islande",
    "de_iso2": "IS",
+   "de_naam": "Island",
    "vs_naam": "Iceland"
   },
   {
@@ -800,6 +888,7 @@
    "vk_slug": "ireland",
    "fr_slug": "irlande",
    "de_iso2": "IE",
+   "de_naam": "Irland",
    "vs_naam": "Ireland"
   },
   {
@@ -809,6 +898,7 @@
    "vk_slug": "india",
    "fr_slug": "inde",
    "de_iso2": "IN",
+   "de_naam": "Indien",
    "vs_naam": "India"
   },
   {
@@ -818,6 +908,7 @@
    "vk_slug": "indonesia",
    "fr_slug": "indonesie",
    "de_iso2": "ID",
+   "de_naam": "Indonesien",
    "vs_naam": "Indonesia"
   },
   {
@@ -827,6 +918,7 @@
    "vk_slug": "iraq",
    "fr_slug": "iraq",
    "de_iso2": "IQ",
+   "de_naam": "Irak",
    "vs_naam": "Iraq"
   },
   {
@@ -836,6 +928,7 @@
    "vk_slug": "iran",
    "fr_slug": "iran",
    "de_iso2": "IR",
+   "de_naam": "Iran",
    "vs_naam": "Iran"
   },
   {
@@ -845,6 +938,7 @@
    "vk_slug": "israel",
    "fr_slug": "israelpalestine",
    "de_iso2": "IL",
+   "de_naam": "Israel",
    "vs_naam": "Israel"
   },
   {
@@ -854,6 +948,7 @@
    "vk_slug": "italy",
    "fr_slug": "italie",
    "de_iso2": "IT",
+   "de_naam": "Italien",
    "vs_naam": "Italy"
   },
   {
@@ -863,6 +958,7 @@
    "vk_slug": "cote-d-ivoire",
    "fr_slug": "cote-d-ivoire",
    "de_iso2": "CI",
+   "de_naam": "Côte d'Ivoire",
    "vs_naam": "Cote d Ivoire"
   },
   {
@@ -872,6 +968,7 @@
    "vk_slug": "jamaica",
    "fr_slug": "jamaique",
    "de_iso2": "JM",
+   "de_naam": "Jamaika",
    "vs_naam": "Jamaica"
   },
   {
@@ -881,6 +978,7 @@
    "vk_slug": "japan",
    "fr_slug": "japon",
    "de_iso2": "JP",
+   "de_naam": "Japan",
    "vs_naam": "Japan"
   },
   {
@@ -890,6 +988,7 @@
    "vk_slug": "yemen",
    "fr_slug": "yemen",
    "de_iso2": "YE",
+   "de_naam": "Jemen",
    "vs_naam": "Yemen"
   },
   {
@@ -899,6 +998,7 @@
    "vk_slug": "jordan",
    "fr_slug": "jordanie",
    "de_iso2": "JO",
+   "de_naam": "Jordanien",
    "vs_naam": "Jordan"
   },
   {
@@ -908,6 +1008,7 @@
    "vk_slug": "cape-verde",
    "fr_slug": "cap-vert",
    "de_iso2": "CV",
+   "de_naam": "Cabo Verde",
    "vs_naam": "Cabo Verde"
   },
   {
@@ -917,6 +1018,7 @@
    "vk_slug": "cameroon",
    "fr_slug": "cameroun",
    "de_iso2": "CM",
+   "de_naam": "Kamerun",
    "vs_naam": "Cameroon"
   },
   {
@@ -926,6 +1028,7 @@
    "vk_slug": "kazakhstan",
    "fr_slug": "kazakhstan",
    "de_iso2": "KZ",
+   "de_naam": "Kasachstan",
    "vs_naam": "Kazakhstan"
   },
   {
@@ -935,6 +1038,7 @@
    "vk_slug": "kenya",
    "fr_slug": "kenya",
    "de_iso2": "KE",
+   "de_naam": "Kenia",
    "vs_naam": "Kenya"
   },
   {
@@ -944,6 +1048,7 @@
    "vk_slug": "kyrgyzstan",
    "fr_slug": "kirghizstan",
    "de_iso2": "KG",
+   "de_naam": "Kirgisistan",
    "vs_naam": "The Kyrgyz Republic"
   },
   {
@@ -953,6 +1058,7 @@
    "vk_slug": "kiribati",
    "fr_slug": "kiribati",
    "de_iso2": "KI",
+   "de_naam": "Kiribati",
    "vs_naam": "Kiribati"
   },
   {
@@ -962,6 +1068,7 @@
    "vk_slug": "kuwait",
    "fr_slug": "koweit",
    "de_iso2": "KW",
+   "de_naam": "Kuwait",
    "vs_naam": "Kuwait"
   },
   {
@@ -971,6 +1078,7 @@
    "vk_slug": "kosovo",
    "fr_slug": "kosovo",
    "de_iso2": "XK",
+   "de_naam": "Kosovo",
    "vs_naam": "Kosovo"
   },
   {
@@ -980,6 +1088,7 @@
    "vk_slug": "croatia",
    "fr_slug": "croatie",
    "de_iso2": "HR",
+   "de_naam": "Kroatien",
    "vs_naam": "Croatia"
   },
   {
@@ -989,6 +1098,7 @@
    "vk_slug": "laos",
    "fr_slug": "laos",
    "de_iso2": "LA",
+   "de_naam": "Laos",
    "vs_naam": "Laos"
   },
   {
@@ -998,6 +1108,7 @@
    "vk_slug": "lesotho",
    "fr_slug": "lesotho",
    "de_iso2": "LS",
+   "de_naam": "Lesotho",
    "vs_naam": "Lesotho"
   },
   {
@@ -1007,6 +1118,7 @@
    "vk_slug": "latvia",
    "fr_slug": "lettonie",
    "de_iso2": "LV",
+   "de_naam": "Lettland",
    "vs_naam": "Latvia"
   },
   {
@@ -1016,6 +1128,7 @@
    "vk_slug": "lebanon",
    "fr_slug": "liban",
    "de_iso2": "LB",
+   "de_naam": "Libanon",
    "vs_naam": "Lebanon"
   },
   {
@@ -1025,6 +1138,7 @@
    "vk_slug": "liberia",
    "fr_slug": "liberia",
    "de_iso2": "LR",
+   "de_naam": "Liberia",
    "vs_naam": "Liberia"
   },
   {
@@ -1034,6 +1148,7 @@
    "vk_slug": "libya",
    "fr_slug": "libye",
    "de_iso2": "LY",
+   "de_naam": "Libyen",
    "vs_naam": "Libya"
   },
   {
@@ -1043,6 +1158,7 @@
    "vk_slug": "liechtenstein",
    "fr_slug": "liechtenstein",
    "de_iso2": "LI",
+   "de_naam": "Liechtenstein",
    "vs_naam": "Liechtenstein"
   },
   {
@@ -1052,6 +1168,7 @@
    "vk_slug": "lithuania",
    "fr_slug": "lituanie",
    "de_iso2": "LT",
+   "de_naam": "Litauen",
    "vs_naam": "Lithuania"
   },
   {
@@ -1061,6 +1178,7 @@
    "vk_slug": "luxembourg",
    "fr_slug": "luxembourg",
    "de_iso2": "LU",
+   "de_naam": "Luxemburg",
    "vs_naam": "Luxembourg"
   },
   {
@@ -1070,6 +1188,7 @@
    "vk_slug": "macao",
    "fr_slug": null,
    "de_iso2": "MO",
+   "de_naam": "Macau*",
    "vs_naam": "Macau"
   },
   {
@@ -1079,6 +1198,7 @@
    "vk_slug": "madagascar",
    "fr_slug": "madagascar",
    "de_iso2": "MG",
+   "de_naam": "Madagaskar",
    "vs_naam": "Madagascar"
   },
   {
@@ -1088,6 +1208,7 @@
    "vk_slug": "malawi",
    "fr_slug": "malawi",
    "de_iso2": "MW",
+   "de_naam": "Malawi",
    "vs_naam": "Malawi"
   },
   {
@@ -1097,6 +1218,7 @@
    "vk_slug": "maldives",
    "fr_slug": "maldives",
    "de_iso2": "MV",
+   "de_naam": "Malediven",
    "vs_naam": "Maldives"
   },
   {
@@ -1106,6 +1228,7 @@
    "vk_slug": "malaysia",
    "fr_slug": "malaisie",
    "de_iso2": "MY",
+   "de_naam": "Malaysia",
    "vs_naam": "Malaysia"
   },
   {
@@ -1115,7 +1238,8 @@
    "vk_slug": "mali",
    "fr_slug": "mali",
    "de_iso2": "ML",
-   "vs_naam": "Mali"
+   "de_naam": "Mali",
+   "vs_naam": null
   },
   {
    "iso2": "MT",
@@ -1124,6 +1248,7 @@
    "vk_slug": "malta",
    "fr_slug": "malte",
    "de_iso2": "MT",
+   "de_naam": "Malta",
    "vs_naam": "Malta"
   },
   {
@@ -1133,6 +1258,7 @@
    "vk_slug": "morocco",
    "fr_slug": "maroc",
    "de_iso2": "MA",
+   "de_naam": "Marokko",
    "vs_naam": "Morocco"
   },
   {
@@ -1142,6 +1268,7 @@
    "vk_slug": "marshall-islands",
    "fr_slug": "iles-marshall",
    "de_iso2": "MH",
+   "de_naam": "Marshallinseln",
    "vs_naam": "Marshall Islands"
   },
   {
@@ -1151,6 +1278,7 @@
    "vk_slug": "martinique",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1160,6 +1288,7 @@
    "vk_slug": "mauritania",
    "fr_slug": "mauritanie",
    "de_iso2": "MR",
+   "de_naam": "Mauretanien",
    "vs_naam": "Mauritania"
   },
   {
@@ -1169,6 +1298,7 @@
    "vk_slug": "mauritius",
    "fr_slug": "maurice",
    "de_iso2": "MU",
+   "de_naam": "Mauritius",
    "vs_naam": "Mauritius"
   },
   {
@@ -1178,6 +1308,7 @@
    "vk_slug": "mayotte",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1187,6 +1318,7 @@
    "vk_slug": "mexico",
    "fr_slug": "mexique",
    "de_iso2": "MX",
+   "de_naam": "Mexiko",
    "vs_naam": "Mexico Travel Advisory"
   },
   {
@@ -1196,6 +1328,7 @@
    "vk_slug": "federated-states-of-micronesia",
    "fr_slug": "etats-federes-de-micronesie",
    "de_iso2": "FM",
+   "de_naam": "Mikronesien",
    "vs_naam": "Federated States of Micronesia"
   },
   {
@@ -1205,6 +1338,7 @@
    "vk_slug": "moldova",
    "fr_slug": "moldavie",
    "de_iso2": "MD",
+   "de_naam": "Republik Moldau",
    "vs_naam": "Moldova"
   },
   {
@@ -1214,6 +1348,7 @@
    "vk_slug": "monaco",
    "fr_slug": "monaco",
    "de_iso2": "MC",
+   "de_naam": "Monaco",
    "vs_naam": null
   },
   {
@@ -1223,6 +1358,7 @@
    "vk_slug": "mongolia",
    "fr_slug": "mongolie",
    "de_iso2": "MN",
+   "de_naam": "Mongolei",
    "vs_naam": "Mongolia"
   },
   {
@@ -1232,6 +1368,7 @@
    "vk_slug": "montenegro",
    "fr_slug": "montenegro",
    "de_iso2": "ME",
+   "de_naam": "Montenegro",
    "vs_naam": "Montenegro"
   },
   {
@@ -1241,6 +1378,7 @@
    "vk_slug": "montserrat",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Montserrat"
   },
   {
@@ -1250,6 +1388,7 @@
    "vk_slug": "mozambique",
    "fr_slug": "mozambique",
    "de_iso2": "MZ",
+   "de_naam": "Mosambik",
    "vs_naam": "Mozambique"
   },
   {
@@ -1259,6 +1398,7 @@
    "vk_slug": "myanmar",
    "fr_slug": "birmanie",
    "de_iso2": "MM",
+   "de_naam": "Myanmar",
    "vs_naam": "Burma"
   },
   {
@@ -1268,6 +1408,7 @@
    "vk_slug": "namibia",
    "fr_slug": "namibie",
    "de_iso2": "NA",
+   "de_naam": "Namibia",
    "vs_naam": "Namibia"
   },
   {
@@ -1277,6 +1418,7 @@
    "vk_slug": "nauru",
    "fr_slug": "nauru",
    "de_iso2": "NR",
+   "de_naam": "Naoero",
    "vs_naam": "Nauru"
   },
   {
@@ -1286,6 +1428,7 @@
    "vk_slug": "netherlands",
    "fr_slug": "pays-bas",
    "de_iso2": "NL",
+   "de_naam": "Niederlande",
    "vs_naam": "Netherlands"
   },
   {
@@ -1295,6 +1438,7 @@
    "vk_slug": "nepal",
    "fr_slug": "nepal",
    "de_iso2": "NP",
+   "de_naam": "Nepal",
    "vs_naam": "Nepal"
   },
   {
@@ -1304,6 +1448,7 @@
    "vk_slug": "nicaragua",
    "fr_slug": "nicaragua",
    "de_iso2": "NI",
+   "de_naam": "Nicaragua",
    "vs_naam": "Nicaragua"
   },
   {
@@ -1313,6 +1458,7 @@
    "vk_slug": "new-caledonia",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "New Caledonia"
   },
   {
@@ -1322,6 +1468,7 @@
    "vk_slug": "new-zealand",
    "fr_slug": "nouvelle-zelande",
    "de_iso2": "NZ",
+   "de_naam": "Neuseeland",
    "vs_naam": "New Zealand"
   },
   {
@@ -1331,6 +1478,7 @@
    "vk_slug": "niger",
    "fr_slug": "niger",
    "de_iso2": "NE",
+   "de_naam": "Niger",
    "vs_naam": "Niger"
   },
   {
@@ -1340,6 +1488,7 @@
    "vk_slug": "nigeria",
    "fr_slug": "nigeria",
    "de_iso2": "NG",
+   "de_naam": "Nigeria",
    "vs_naam": "Nigeria"
   },
   {
@@ -1349,6 +1498,7 @@
    "vk_slug": "cook-islands-tokelau-and-niue",
    "fr_slug": "niue",
    "de_iso2": "NU",
+   "de_naam": "Niue",
    "vs_naam": null
   },
   {
@@ -1358,6 +1508,7 @@
    "vk_slug": "north-korea",
    "fr_slug": "coree-du-nord",
    "de_iso2": "KP",
+   "de_naam": "Demokratische Volksrepublik Korea (Nordkorea)",
    "vs_naam": "North Korea"
   },
   {
@@ -1367,6 +1518,7 @@
    "vk_slug": "north-macedonia",
    "fr_slug": "republique-de-macedoine-du-nord",
    "de_iso2": "MK",
+   "de_naam": "Nordmazedonien",
    "vs_naam": "North Macedonia"
   },
   {
@@ -1376,6 +1528,7 @@
    "vk_slug": "norway",
    "fr_slug": "norvege",
    "de_iso2": "NO",
+   "de_naam": "Norwegen",
    "vs_naam": "Norway"
   },
   {
@@ -1385,6 +1538,7 @@
    "vk_slug": "uganda",
    "fr_slug": "ouganda",
    "de_iso2": "UG",
+   "de_naam": "Uganda",
    "vs_naam": "Uganda"
   },
   {
@@ -1394,6 +1548,7 @@
    "vk_slug": "ukraine",
    "fr_slug": "ukraine",
    "de_iso2": "UA",
+   "de_naam": "Ukraine",
    "vs_naam": "Ukraine"
   },
   {
@@ -1403,6 +1558,7 @@
    "vk_slug": "uzbekistan",
    "fr_slug": "ouzbekistan",
    "de_iso2": "UZ",
+   "de_naam": "Usbekistan",
    "vs_naam": "Uzbekistan"
   },
   {
@@ -1412,6 +1568,7 @@
    "vk_slug": "oman",
    "fr_slug": "oman",
    "de_iso2": "OM",
+   "de_naam": "Oman",
    "vs_naam": "Oman"
   },
   {
@@ -1421,6 +1578,7 @@
    "vk_slug": "timor-leste",
    "fr_slug": "timor-oriental",
    "de_iso2": "TL",
+   "de_naam": "Timor-Leste",
    "vs_naam": "Timor-Leste"
   },
   {
@@ -1430,6 +1588,7 @@
    "vk_slug": "austria",
    "fr_slug": "autriche",
    "de_iso2": "AT",
+   "de_naam": "Österreich",
    "vs_naam": "Austria"
   },
   {
@@ -1439,6 +1598,7 @@
    "vk_slug": "pakistan",
    "fr_slug": "pakistan",
    "de_iso2": "PK",
+   "de_naam": "Pakistan",
    "vs_naam": "Pakistan"
   },
   {
@@ -1448,6 +1608,7 @@
    "vk_slug": "palau",
    "fr_slug": "republique-des-palaos",
    "de_iso2": "PW",
+   "de_naam": "Palau",
    "vs_naam": "Palau"
   },
   {
@@ -1457,6 +1618,7 @@
    "vk_slug": "palestine",
    "fr_slug": "israelpalestine",
    "de_iso2": "PS",
+   "de_naam": "Palästinensische Gebiete*",
    "vs_naam": "West Bank"
   },
   {
@@ -1466,6 +1628,7 @@
    "vk_slug": "panama",
    "fr_slug": "panama",
    "de_iso2": "PA",
+   "de_naam": "Panama",
    "vs_naam": "Panama"
   },
   {
@@ -1475,6 +1638,7 @@
    "vk_slug": "papua-new-guinea",
    "fr_slug": "papouasie-nouvelle-guinee",
    "de_iso2": "PG",
+   "de_naam": "Papua-Neuguinea",
    "vs_naam": "Papua New Guinea"
   },
   {
@@ -1484,6 +1648,7 @@
    "vk_slug": "paraguay",
    "fr_slug": "paraguay",
    "de_iso2": "PY",
+   "de_naam": "Paraguay",
    "vs_naam": "Paraguay"
   },
   {
@@ -1493,6 +1658,7 @@
    "vk_slug": "peru",
    "fr_slug": "perou",
    "de_iso2": "PE",
+   "de_naam": "Peru",
    "vs_naam": "Peru"
   },
   {
@@ -1502,6 +1668,7 @@
    "vk_slug": "pitcairn-island",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1511,6 +1678,7 @@
    "vk_slug": "poland",
    "fr_slug": "pologne",
    "de_iso2": "PL",
+   "de_naam": "Polen",
    "vs_naam": "Poland"
   },
   {
@@ -1520,6 +1688,7 @@
    "vk_slug": "portugal",
    "fr_slug": "portugal",
    "de_iso2": "PT",
+   "de_naam": "Portugal",
    "vs_naam": "Portugal"
   },
   {
@@ -1529,6 +1698,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1538,6 +1708,7 @@
    "vk_slug": "qatar",
    "fr_slug": "qatar",
    "de_iso2": "QA",
+   "de_naam": "Katar",
    "vs_naam": "Qatar"
   },
   {
@@ -1547,6 +1718,7 @@
    "vk_slug": "romania",
    "fr_slug": "roumanie",
    "de_iso2": "RO",
+   "de_naam": "Rumänien",
    "vs_naam": "Romania"
   },
   {
@@ -1556,6 +1728,7 @@
    "vk_slug": "russia",
    "fr_slug": "russie",
    "de_iso2": "RU",
+   "de_naam": "Russische Föderation",
    "vs_naam": "Russia"
   },
   {
@@ -1565,6 +1738,7 @@
    "vk_slug": "rwanda",
    "fr_slug": "rwanda",
    "de_iso2": "RW",
+   "de_naam": "Ruanda",
    "vs_naam": "Rwanda"
   },
   {
@@ -1574,6 +1748,7 @@
    "vk_slug": "reunion",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1583,6 +1758,7 @@
    "vk_slug": "st-martin-and-st-barthelemy",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1592,6 +1768,7 @@
    "vk_slug": "st-kitts-and-nevis",
    "fr_slug": "saint-christophe-et-nieves",
    "de_iso2": "KN",
+   "de_naam": "St. Kitts und Nevis",
    "vs_naam": "Saint Kitts and Nevis"
   },
   {
@@ -1601,6 +1778,7 @@
    "vk_slug": "st-lucia",
    "fr_slug": "sainte-lucie",
    "de_iso2": "LC",
+   "de_naam": "St. Lucia",
    "vs_naam": "Saint Lucia"
   },
   {
@@ -1610,6 +1788,7 @@
    "vk_slug": "st-pierre-and-miquelon",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1619,6 +1798,7 @@
    "vk_slug": "st-vincent-and-the-grenadines",
    "fr_slug": "saint-vincent-et-les-grenadines",
    "de_iso2": "VC",
+   "de_naam": "St. Vincent und die Grenadinen",
    "vs_naam": "Saint Vincent and the Grenadines"
   },
   {
@@ -1628,6 +1808,7 @@
    "vk_slug": "st-martin-and-st-barthelemy",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1637,6 +1818,7 @@
    "vk_slug": "solomon-islands",
    "fr_slug": "iles-salomon",
    "de_iso2": "SB",
+   "de_naam": "Salomonen",
    "vs_naam": "Solomon Islands"
   },
   {
@@ -1646,6 +1828,7 @@
    "vk_slug": "samoa",
    "fr_slug": "samoa",
    "de_iso2": "WS",
+   "de_naam": "Samoa",
    "vs_naam": "Samoa"
   },
   {
@@ -1655,6 +1838,7 @@
    "vk_slug": "san-marino",
    "fr_slug": "saint-marin",
    "de_iso2": "SM",
+   "de_naam": "San Marino",
    "vs_naam": null
   },
   {
@@ -1664,6 +1848,7 @@
    "vk_slug": "sao-tome-and-principe",
    "fr_slug": "sao-tome-et-principe",
    "de_iso2": "ST",
+   "de_naam": "São Tomé und Príncipe",
    "vs_naam": "Sao Tome and Principe"
   },
   {
@@ -1673,6 +1858,7 @@
    "vk_slug": "saudi-arabia",
    "fr_slug": "arabie-saoudite",
    "de_iso2": "SA",
+   "de_naam": "Saudi-Arabien",
    "vs_naam": "Saudi Arabia"
   },
   {
@@ -1682,6 +1868,7 @@
    "vk_slug": "senegal",
    "fr_slug": "senegal",
    "de_iso2": "SN",
+   "de_naam": "Senegal",
    "vs_naam": "Senegal"
   },
   {
@@ -1691,6 +1878,7 @@
    "vk_slug": "serbia",
    "fr_slug": "serbie",
    "de_iso2": "RS",
+   "de_naam": "Serbien",
    "vs_naam": "Serbia"
   },
   {
@@ -1700,6 +1888,7 @@
    "vk_slug": "seychelles",
    "fr_slug": "seychelles",
    "de_iso2": "SC",
+   "de_naam": "Seychellen",
    "vs_naam": "Seychelles"
   },
   {
@@ -1709,6 +1898,7 @@
    "vk_slug": "sierra-leone",
    "fr_slug": "sierra-leone",
    "de_iso2": "SL",
+   "de_naam": "Sierra Leone",
    "vs_naam": "Sierra Leone"
   },
   {
@@ -1718,6 +1908,7 @@
    "vk_slug": "singapore",
    "fr_slug": "singapour",
    "de_iso2": "SG",
+   "de_naam": "Singapur",
    "vs_naam": "Singapore"
   },
   {
@@ -1727,6 +1918,7 @@
    "vk_slug": "st-maarten",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Sint Maarten"
   },
   {
@@ -1736,6 +1928,7 @@
    "vk_slug": "st-helena-ascension-and-tristan-da-cunha",
    "fr_slug": "sainte-helene",
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1745,6 +1938,7 @@
    "vk_slug": "slovenia",
    "fr_slug": "slovenie",
    "de_iso2": "SI",
+   "de_naam": "Slowenien",
    "vs_naam": "Slovenia"
   },
   {
@@ -1754,6 +1948,7 @@
    "vk_slug": "slovakia",
    "fr_slug": "slovaquie",
    "de_iso2": "SK",
+   "de_naam": "Slowakei",
    "vs_naam": "Slovakia"
   },
   {
@@ -1763,6 +1958,7 @@
    "vk_slug": "sudan",
    "fr_slug": "soudan",
    "de_iso2": "SD",
+   "de_naam": "Sudan",
    "vs_naam": "Sudan"
   },
   {
@@ -1772,6 +1968,7 @@
    "vk_slug": "somalia",
    "fr_slug": "somalie",
    "de_iso2": "SO",
+   "de_naam": "Somalia",
    "vs_naam": "Somalia"
   },
   {
@@ -1781,6 +1978,7 @@
    "vk_slug": "spain",
    "fr_slug": "espagne",
    "de_iso2": "ES",
+   "de_naam": "Spanien",
    "vs_naam": "Spain"
   },
   {
@@ -1790,6 +1988,7 @@
    "vk_slug": "sri-lanka",
    "fr_slug": "sri-lanka",
    "de_iso2": "LK",
+   "de_naam": "Sri Lanka",
    "vs_naam": "Sri Lanka"
   },
   {
@@ -1799,6 +1998,7 @@
    "vk_slug": "suriname",
    "fr_slug": "suriname",
    "de_iso2": "SR",
+   "de_naam": "Suriname",
    "vs_naam": "Suriname"
   },
   {
@@ -1808,6 +2008,7 @@
    "vk_slug": null,
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1817,6 +2018,7 @@
    "vk_slug": "eswatini",
    "fr_slug": "eswatini",
    "de_iso2": "SZ",
+   "de_naam": "Eswatini",
    "vs_naam": "Eswatini"
   },
   {
@@ -1826,6 +2028,7 @@
    "vk_slug": "syria",
    "fr_slug": "syrie",
    "de_iso2": "SY",
+   "de_naam": "Syrien",
    "vs_naam": "Syria"
   },
   {
@@ -1835,6 +2038,7 @@
    "vk_slug": "tajikistan",
    "fr_slug": "tadjikistan",
    "de_iso2": "TJ",
+   "de_naam": "Tadschikistan",
    "vs_naam": "Tajikistan"
   },
   {
@@ -1844,6 +2048,7 @@
    "vk_slug": "taiwan",
    "fr_slug": "taiwan",
    "de_iso2": "TW",
+   "de_naam": "Taiwan*",
    "vs_naam": "Taiwan"
   },
   {
@@ -1853,6 +2058,7 @@
    "vk_slug": "tanzania",
    "fr_slug": "tanzanie",
    "de_iso2": "TZ",
+   "de_naam": "Tansania",
    "vs_naam": "Tanzania"
   },
   {
@@ -1862,6 +2068,7 @@
    "vk_slug": "thailand",
    "fr_slug": "thailande",
    "de_iso2": "TH",
+   "de_naam": "Thailand",
    "vs_naam": "Thailand"
   },
   {
@@ -1871,6 +2078,7 @@
    "vk_slug": "togo",
    "fr_slug": "togo",
    "de_iso2": "TG",
+   "de_naam": "Togo",
    "vs_naam": "Togo"
   },
   {
@@ -1880,6 +2088,7 @@
    "vk_slug": "cook-islands-tokelau-and-niue",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -1889,6 +2098,7 @@
    "vk_slug": "tonga",
    "fr_slug": "tonga",
    "de_iso2": "TO",
+   "de_naam": "Tonga",
    "vs_naam": "Tonga"
   },
   {
@@ -1898,6 +2108,7 @@
    "vk_slug": "trinidad-and-tobago",
    "fr_slug": "trinite-et-tobago",
    "de_iso2": "TT",
+   "de_naam": "Trinidad und Tobago",
    "vs_naam": "Trinidad and Tobago"
   },
   {
@@ -1907,6 +2118,7 @@
    "vk_slug": "chad",
    "fr_slug": "tchad",
    "de_iso2": "TD",
+   "de_naam": "Tschad",
    "vs_naam": "Chad"
   },
   {
@@ -1916,6 +2128,7 @@
    "vk_slug": "czechia",
    "fr_slug": "republique-tcheque",
    "de_iso2": "CZ",
+   "de_naam": "Tschechische Republik",
    "vs_naam": "Czechia"
   },
   {
@@ -1925,6 +2138,7 @@
    "vk_slug": "tunisia",
    "fr_slug": "tunisie",
    "de_iso2": "TN",
+   "de_naam": "Tunesien",
    "vs_naam": "Tunisia"
   },
   {
@@ -1934,6 +2148,7 @@
    "vk_slug": "turkey",
    "fr_slug": "turquie",
    "de_iso2": "TR",
+   "de_naam": "Türkei",
    "vs_naam": "Turkey"
   },
   {
@@ -1943,6 +2158,7 @@
    "vk_slug": "turkmenistan",
    "fr_slug": "turkmenistan",
    "de_iso2": "TM",
+   "de_naam": "Turkmenistan",
    "vs_naam": "Turkmenistan"
   },
   {
@@ -1952,6 +2168,7 @@
    "vk_slug": "turks-and-caicos-islands",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": "Turks and Caicos Islands"
   },
   {
@@ -1961,6 +2178,7 @@
    "vk_slug": "tuvalu",
    "fr_slug": "tuvalu",
    "de_iso2": "TV",
+   "de_naam": "Tuvalu",
    "vs_naam": "Tuvalu"
   },
   {
@@ -1970,6 +2188,7 @@
    "vk_slug": "uruguay",
    "fr_slug": "uruguay",
    "de_iso2": "UY",
+   "de_naam": "Uruguay",
    "vs_naam": "Uruguay"
   },
   {
@@ -1979,6 +2198,7 @@
    "vk_slug": "vanuatu",
    "fr_slug": "vanuatu",
    "de_iso2": "VU",
+   "de_naam": "Vanuatu",
    "vs_naam": "Vanuatu"
   },
   {
@@ -1988,6 +2208,7 @@
    "vk_slug": null,
    "fr_slug": "vatican-saint-siege",
    "de_iso2": "VA",
+   "de_naam": "Heiliger Stuhl / Vatikan",
    "vs_naam": null
   },
   {
@@ -1997,6 +2218,7 @@
    "vk_slug": "venezuela",
    "fr_slug": "venezuela",
    "de_iso2": "VE",
+   "de_naam": "Venezuela",
    "vs_naam": "Venezuela"
   },
   {
@@ -2006,6 +2228,7 @@
    "vk_slug": null,
    "fr_slug": "royaume-uni",
    "de_iso2": "GB",
+   "de_naam": "Vereinigtes Königreich",
    "vs_naam": "United Kingdom"
   },
   {
@@ -2015,6 +2238,7 @@
    "vk_slug": "united-arab-emirates",
    "fr_slug": "emirats-arabes-unis",
    "de_iso2": "AE",
+   "de_naam": "Vereinigte Arabische Emirate",
    "vs_naam": "United Arab Emirates"
   },
   {
@@ -2024,6 +2248,7 @@
    "vk_slug": "usa",
    "fr_slug": "etats-unis",
    "de_iso2": "US",
+   "de_naam": "USA",
    "vs_naam": null
   },
   {
@@ -2033,6 +2258,7 @@
    "vk_slug": "vietnam",
    "fr_slug": "vietnam",
    "de_iso2": "VN",
+   "de_naam": "Vietnam",
    "vs_naam": "Vietnam"
   },
   {
@@ -2042,6 +2268,7 @@
    "vk_slug": "wallis-and-futuna",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -2051,6 +2278,7 @@
    "vk_slug": "western-sahara",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -2060,6 +2288,7 @@
    "vk_slug": "belarus",
    "fr_slug": "bielorussie",
    "de_iso2": "BY",
+   "de_naam": "Belarus",
    "vs_naam": "Belarus"
   },
   {
@@ -2069,6 +2298,7 @@
    "vk_slug": "zambia",
    "fr_slug": "zambie",
    "de_iso2": "ZM",
+   "de_naam": "Sambia",
    "vs_naam": "Zambia"
   },
   {
@@ -2078,6 +2308,7 @@
    "vk_slug": "zimbabwe",
    "fr_slug": "zimbabwe",
    "de_iso2": "ZW",
+   "de_naam": "Simbabwe",
    "vs_naam": "Zimbabwe"
   },
   {
@@ -2087,6 +2318,7 @@
    "vk_slug": "south-africa",
    "fr_slug": "afrique-du-sud",
    "de_iso2": "ZA",
+   "de_naam": "Südafrika",
    "vs_naam": "South Africa"
   },
   {
@@ -2096,6 +2328,7 @@
    "vk_slug": "south-georgia-and-south-sandwich-islands",
    "fr_slug": null,
    "de_iso2": null,
+   "de_naam": null,
    "vs_naam": null
   },
   {
@@ -2105,6 +2338,7 @@
    "vk_slug": "south-korea",
    "fr_slug": "coree-du-sud",
    "de_iso2": "KR",
+   "de_naam": "Republik Korea (Südkorea)",
    "vs_naam": "South Korea"
   },
   {
@@ -2114,6 +2348,7 @@
    "vk_slug": "south-sudan",
    "fr_slug": "soudan-du-sud",
    "de_iso2": "SS",
+   "de_naam": "Südsudan",
    "vs_naam": "South Sudan"
   },
   {
@@ -2123,6 +2358,7 @@
    "vk_slug": "sweden",
    "fr_slug": "suede",
    "de_iso2": "SE",
+   "de_naam": "Schweden",
    "vs_naam": "Sweden"
   },
   {
@@ -2132,6 +2368,7 @@
    "vk_slug": "switzerland",
    "fr_slug": "suisse",
    "de_iso2": "CH",
+   "de_naam": "Schweiz",
    "vs_naam": "Switzerland"
   }
  ]
