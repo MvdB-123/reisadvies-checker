@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 
 from bronnen import de, fr, nl, vs
-from bronnen.gedeeld import citaat, normaliseer, plat
+from bronnen.gedeeld import citaat, normaliseer
 
 HIER = Path(__file__).parent
 

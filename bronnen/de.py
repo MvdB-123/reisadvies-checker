@@ -6,6 +6,7 @@ want alleen daar valt iets te citeren.
 """
 
 import re
+from datetime import datetime, timezone
 
 from .gedeeld import OphaalFout, citaat, haal_json, plat
 
@@ -137,5 +138,4 @@ def _datum(stempel):
     """Duitsland geeft een tijdstempel in seconden; wij willen alleen de datum."""
     if not stempel:
         return None
-    from datetime import datetime, timezone
     return datetime.fromtimestamp(int(stempel), timezone.utc).date().isoformat()

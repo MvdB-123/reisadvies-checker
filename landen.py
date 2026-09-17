@@ -13,8 +13,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from bronnen.gedeeld import (LIDWOORDEN, OphaalFout, haal_json, haal_tekst,
-                             normaliseer)
+from bronnen.gedeeld import OphaalFout, haal_json, haal_tekst, normaliseer
 
 HIER = Path(__file__).parent
 UITVOER = HIER / "data" / "landen.json"

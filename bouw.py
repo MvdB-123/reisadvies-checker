@@ -100,7 +100,7 @@ def haal_op(register, mapping, alleen=None):
     return verzameld, stand
 
 
-def vul_aan_uit_vorige(nieuw, vorige_pad, nu):
+def vul_aan_uit_vorige(nieuw, vorige_pad):
     """Houdt de vorige stand aan waar een bron een land liet vallen.
 
     De Amerikaanse feed laat willekeurig landen weg. Een leeg vakje tonen terwijl
@@ -153,7 +153,7 @@ def main(argv=None):
             print(f"Alleen: {', '.join(sorted(alleen))}")
         print("Ophalen bij vijf overheden…")
         verzameld, stand = haal_op(register, mapping, alleen=alleen)
-        overgenomen = vul_aan_uit_vorige(verzameld, ADVIEZEN, nu)
+        overgenomen = vul_aan_uit_vorige(verzameld, ADVIEZEN)
         if overgenomen:
             print(f"  {overgenomen} vakjes aangevuld uit de vorige ophaalronde.")
 
@@ -176,7 +176,7 @@ def main(argv=None):
             ],
         }
         if alleen and ADVIEZEN.exists():
-            gegevens = _voeg_samen_met_bestaand(gegevens, alleen)
+            gegevens = _voeg_samen_met_bestaand(gegevens)
 
         ADVIEZEN.parent.mkdir(exist_ok=True)
         ADVIEZEN.write_text(json.dumps(gegevens, ensure_ascii=False, indent=1),
@@ -187,7 +187,7 @@ def main(argv=None):
     return 0
 
 
-def _voeg_samen_met_bestaand(nieuw, alleen):
+def _voeg_samen_met_bestaand(nieuw):
     """Bij een deelronde blijven de overige landen staan zoals ze waren."""
     bestaand = json.loads(ADVIEZEN.read_text(encoding="utf-8"))
     op_code = {land["iso2"]: land for land in bestaand.get("landen", [])}
