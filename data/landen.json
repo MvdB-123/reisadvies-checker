@@ -1,0 +1,2138 @@
+{
+ "gegenereerd_op": "2026-09-17T09:56:20+00:00",
+ "landen": [
+  {
+   "iso2": "AF",
+   "naam": "Afghanistan",
+   "nl_slug": "afghanistan",
+   "vk_slug": "afghanistan",
+   "fr_slug": "afghanistan",
+   "de_iso2": "AF",
+   "vs_naam": "Afghanistan"
+  },
+  {
+   "iso2": "AL",
+   "naam": "Albanië",
+   "nl_slug": "albanie",
+   "vk_slug": "albania",
+   "fr_slug": "albanie",
+   "de_iso2": "AL",
+   "vs_naam": "Albania"
+  },
+  {
+   "iso2": "DZ",
+   "naam": "Algerije",
+   "nl_slug": "algerije",
+   "vk_slug": "algeria",
+   "fr_slug": "algerie",
+   "de_iso2": "DZ",
+   "vs_naam": "Algeria"
+  },
+  {
+   "iso2": "AS",
+   "naam": "Amerikaans Samoa",
+   "nl_slug": "amerikaans-samoa",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "VI",
+   "naam": "Amerikaanse Maagdeneilanden",
+   "nl_slug": "amerikaanse-maagdeneilanden",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "AD",
+   "naam": "Andorra",
+   "nl_slug": "andorra",
+   "vk_slug": "andorra",
+   "fr_slug": "andorre",
+   "de_iso2": "AD",
+   "vs_naam": "Andorra"
+  },
+  {
+   "iso2": "AO",
+   "naam": "Angola",
+   "nl_slug": "angola",
+   "vk_slug": "angola",
+   "fr_slug": "angola",
+   "de_iso2": "AO",
+   "vs_naam": "Angola"
+  },
+  {
+   "iso2": "AI",
+   "naam": "Anguilla",
+   "nl_slug": "anguilla",
+   "vk_slug": "anguilla",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Anguilla"
+  },
+  {
+   "iso2": "AQ",
+   "naam": "Antarctica",
+   "nl_slug": "antarctica",
+   "vk_slug": "antarctica-british-antarctic-territory",
+   "fr_slug": "antarctique",
+   "de_iso2": null,
+   "vs_naam": "Antarctica"
+  },
+  {
+   "iso2": "AG",
+   "naam": "Antigua en Barbuda",
+   "nl_slug": "antigua-en-barbuda",
+   "vk_slug": "antigua-and-barbuda",
+   "fr_slug": "antigua-et-barbuda",
+   "de_iso2": "AG",
+   "vs_naam": "Antigua and Barbuda"
+  },
+  {
+   "iso2": "AR",
+   "naam": "Argentinië",
+   "nl_slug": "argentinie",
+   "vk_slug": "argentina",
+   "fr_slug": "argentine",
+   "de_iso2": "AR",
+   "vs_naam": "Argentina"
+  },
+  {
+   "iso2": "AM",
+   "naam": "Armenië",
+   "nl_slug": "armenie",
+   "vk_slug": "armenia",
+   "fr_slug": "armenie",
+   "de_iso2": "AM",
+   "vs_naam": "Armenia"
+  },
+  {
+   "iso2": "AW",
+   "naam": "Aruba",
+   "nl_slug": "aruba",
+   "vk_slug": "aruba",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Aruba"
+  },
+  {
+   "iso2": "AU",
+   "naam": "Australië",
+   "nl_slug": "australie",
+   "vk_slug": "australia",
+   "fr_slug": "australie",
+   "de_iso2": "AU",
+   "vs_naam": "Australia"
+  },
+  {
+   "iso2": "AZ",
+   "naam": "Azerbeidzjan",
+   "nl_slug": "azerbeidzjan",
+   "vk_slug": "azerbaijan",
+   "fr_slug": "azerbaidjan",
+   "de_iso2": "AZ",
+   "vs_naam": "Azerbaijan"
+  },
+  {
+   "iso2": "BS",
+   "naam": "Bahama’s",
+   "nl_slug": "bahamas",
+   "vk_slug": "bahamas",
+   "fr_slug": "bahamas",
+   "de_iso2": "BS",
+   "vs_naam": "The Bahamas"
+  },
+  {
+   "iso2": "BH",
+   "naam": "Bahrein",
+   "nl_slug": "bahrein",
+   "vk_slug": "bahrain",
+   "fr_slug": "bahrein",
+   "de_iso2": "BH",
+   "vs_naam": "Bahrain"
+  },
+  {
+   "iso2": "BD",
+   "naam": "Bangladesh",
+   "nl_slug": "bangladesh",
+   "vk_slug": "bangladesh",
+   "fr_slug": "bangladesh",
+   "de_iso2": "BD",
+   "vs_naam": "Bangladesh"
+  },
+  {
+   "iso2": "BB",
+   "naam": "Barbados",
+   "nl_slug": "barbados",
+   "vk_slug": "barbados",
+   "fr_slug": "barbade",
+   "de_iso2": "BB",
+   "vs_naam": "Barbados"
+  },
+  {
+   "iso2": "BE",
+   "naam": "België",
+   "nl_slug": "belgie",
+   "vk_slug": "belgium",
+   "fr_slug": "belgique",
+   "de_iso2": "BE",
+   "vs_naam": "Belgium"
+  },
+  {
+   "iso2": "BZ",
+   "naam": "Belize",
+   "nl_slug": "belize",
+   "vk_slug": "belize",
+   "fr_slug": "belize",
+   "de_iso2": "BZ",
+   "vs_naam": "Belize"
+  },
+  {
+   "iso2": "BJ",
+   "naam": "Benin",
+   "nl_slug": "benin",
+   "vk_slug": "benin",
+   "fr_slug": "benin",
+   "de_iso2": "BJ",
+   "vs_naam": "Benin"
+  },
+  {
+   "iso2": "BM",
+   "naam": "Bermuda",
+   "nl_slug": null,
+   "vk_slug": "bermuda",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Bermuda"
+  },
+  {
+   "iso2": "BT",
+   "naam": "Bhutan",
+   "nl_slug": "bhutan",
+   "vk_slug": "bhutan",
+   "fr_slug": "bhoutan",
+   "de_iso2": "BT",
+   "vs_naam": "Bhutan"
+  },
+  {
+   "iso2": "BO",
+   "naam": "Bolivia",
+   "nl_slug": "bolivia",
+   "vk_slug": "bolivia",
+   "fr_slug": "bolivie",
+   "de_iso2": "BO",
+   "vs_naam": "Bolivia"
+  },
+  {
+   "iso2": "BA",
+   "naam": "Bosnië en Herzegovina",
+   "nl_slug": "bosnie-en-herzegovina",
+   "vk_slug": "bosnia-and-herzegovina",
+   "fr_slug": "bosnie-herzegovine",
+   "de_iso2": "BA",
+   "vs_naam": "Bosnia and Herzegovina"
+  },
+  {
+   "iso2": "BW",
+   "naam": "Botswana",
+   "nl_slug": "botswana",
+   "vk_slug": "botswana",
+   "fr_slug": "botswana",
+   "de_iso2": "BW",
+   "vs_naam": "Botswana"
+  },
+  {
+   "iso2": "BR",
+   "naam": "Brazilië",
+   "nl_slug": "brazilie",
+   "vk_slug": "brazil",
+   "fr_slug": "bresil",
+   "de_iso2": "BR",
+   "vs_naam": "Brazil"
+  },
+  {
+   "iso2": "IO",
+   "naam": "Britse Gebieden in de Indische Oceaan",
+   "nl_slug": null,
+   "vk_slug": "british-indian-ocean-territory",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "VG",
+   "naam": "Britse Maagdeneilanden",
+   "nl_slug": "britse-maagdeneilanden",
+   "vk_slug": "british-virgin-islands",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "British Virgin Islands"
+  },
+  {
+   "iso2": "BN",
+   "naam": "Brunei",
+   "nl_slug": "brunei-darussalam",
+   "vk_slug": "brunei",
+   "fr_slug": "brunei",
+   "de_iso2": "BN",
+   "vs_naam": "Brunei"
+  },
+  {
+   "iso2": "BG",
+   "naam": "Bulgarije",
+   "nl_slug": "bulgarije",
+   "vk_slug": "bulgaria",
+   "fr_slug": "bulgarie",
+   "de_iso2": "BG",
+   "vs_naam": "Bulgaria"
+  },
+  {
+   "iso2": "BF",
+   "naam": "Burkina Faso",
+   "nl_slug": "burkina-faso",
+   "vk_slug": "burkina-faso",
+   "fr_slug": "burkina-faso",
+   "de_iso2": "BF",
+   "vs_naam": "Burkina Faso"
+  },
+  {
+   "iso2": "BI",
+   "naam": "Burundi",
+   "nl_slug": "burundi",
+   "vk_slug": "burundi",
+   "fr_slug": "burundi",
+   "de_iso2": "BI",
+   "vs_naam": "Burundi"
+  },
+  {
+   "iso2": "KH",
+   "naam": "Cambodja",
+   "nl_slug": "cambodja",
+   "vk_slug": "cambodia",
+   "fr_slug": "cambodge",
+   "de_iso2": "KH",
+   "vs_naam": "Cambodia"
+  },
+  {
+   "iso2": "CA",
+   "naam": "Canada",
+   "nl_slug": "canada",
+   "vk_slug": "canada",
+   "fr_slug": "canada",
+   "de_iso2": "CA",
+   "vs_naam": "Canada"
+  },
+  {
+   "iso2": "BQ",
+   "naam": "Caribisch Nederland",
+   "nl_slug": "bonaire",
+   "vk_slug": "bonaire-st-eustatius-saba",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Bonaire"
+  },
+  {
+   "iso2": "KY",
+   "naam": "Caymaneilanden",
+   "nl_slug": "kaaimaneilanden",
+   "vk_slug": "cayman-islands",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Cayman Islands"
+  },
+  {
+   "iso2": "CF",
+   "naam": "Centraal-Afrikaanse Republiek",
+   "nl_slug": "centraal-afrikaanse-republiek",
+   "vk_slug": "central-african-republic",
+   "fr_slug": "republique-centrafricaine",
+   "de_iso2": "CF",
+   "vs_naam": "Central African Republic"
+  },
+  {
+   "iso2": "CL",
+   "naam": "Chili",
+   "nl_slug": "chili",
+   "vk_slug": "chile",
+   "fr_slug": "chili",
+   "de_iso2": "CL",
+   "vs_naam": "Chile"
+  },
+  {
+   "iso2": "CN",
+   "naam": "China",
+   "nl_slug": "china",
+   "vk_slug": "china",
+   "fr_slug": "chine",
+   "de_iso2": "CN",
+   "vs_naam": null
+  },
+  {
+   "iso2": "CO",
+   "naam": "Colombia",
+   "nl_slug": "colombia",
+   "vk_slug": "colombia",
+   "fr_slug": "colombie",
+   "de_iso2": "CO",
+   "vs_naam": "Colombia"
+  },
+  {
+   "iso2": "KM",
+   "naam": "Comoren",
+   "nl_slug": "comoren",
+   "vk_slug": "comoros",
+   "fr_slug": "comores",
+   "de_iso2": "KM",
+   "vs_naam": "Comoros"
+  },
+  {
+   "iso2": "CG",
+   "naam": "Congo",
+   "nl_slug": "congo-de-republiek",
+   "vk_slug": "congo",
+   "fr_slug": "congo",
+   "de_iso2": "CG",
+   "vs_naam": "Republic of the Congo"
+  },
+  {
+   "iso2": "CD",
+   "naam": "Congo (DRC)",
+   "nl_slug": "congo-democratische-republiek",
+   "vk_slug": "democratic-republic-of-the-congo",
+   "fr_slug": "republique-democratique-du-congo",
+   "de_iso2": "CD",
+   "vs_naam": "Democratic Republic of the Congo"
+  },
+  {
+   "iso2": "CK",
+   "naam": "Cookeilanden",
+   "nl_slug": "cookeilanden",
+   "vk_slug": "cook-islands-tokelau-and-niue",
+   "fr_slug": "iles-cook",
+   "de_iso2": "CK",
+   "vs_naam": null
+  },
+  {
+   "iso2": "CR",
+   "naam": "Costa Rica",
+   "nl_slug": "costa-rica",
+   "vk_slug": "costa-rica",
+   "fr_slug": "costa-rica",
+   "de_iso2": "CR",
+   "vs_naam": "Costa Rica"
+  },
+  {
+   "iso2": "CU",
+   "naam": "Cuba",
+   "nl_slug": "cuba",
+   "vk_slug": "cuba",
+   "fr_slug": "cuba",
+   "de_iso2": "CU",
+   "vs_naam": "Cuba"
+  },
+  {
+   "iso2": "CW",
+   "naam": "Curaçao",
+   "nl_slug": "curacao",
+   "vk_slug": "curacao",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Curaçao"
+  },
+  {
+   "iso2": "CY",
+   "naam": "Cyprus",
+   "nl_slug": "cyprus",
+   "vk_slug": "cyprus",
+   "fr_slug": "chypre",
+   "de_iso2": "CY",
+   "vs_naam": "Cyprus"
+  },
+  {
+   "iso2": "DK",
+   "naam": "Denemarken",
+   "nl_slug": "denemarken",
+   "vk_slug": "denmark",
+   "fr_slug": "danemark",
+   "de_iso2": "DK",
+   "vs_naam": "Kingdom of Denmark"
+  },
+  {
+   "iso2": "DJ",
+   "naam": "Djibouti",
+   "nl_slug": "djibouti",
+   "vk_slug": "djibouti",
+   "fr_slug": "djibouti",
+   "de_iso2": "DJ",
+   "vs_naam": "Djibouti"
+  },
+  {
+   "iso2": "DM",
+   "naam": "Dominica",
+   "nl_slug": "dominica",
+   "vk_slug": "dominica",
+   "fr_slug": "dominique",
+   "de_iso2": "DM",
+   "vs_naam": "Dominica"
+  },
+  {
+   "iso2": "DO",
+   "naam": "Dominicaanse Republiek",
+   "nl_slug": "dominicaanse-republiek",
+   "vk_slug": "dominican-republic",
+   "fr_slug": "republique-dominicaine",
+   "de_iso2": "DO",
+   "vs_naam": "Dominican Republic"
+  },
+  {
+   "iso2": "DE",
+   "naam": "Duitsland",
+   "nl_slug": "duitsland",
+   "vk_slug": "germany",
+   "fr_slug": "allemagne",
+   "de_iso2": null,
+   "vs_naam": "Germany"
+  },
+  {
+   "iso2": "EC",
+   "naam": "Ecuador",
+   "nl_slug": "ecuador",
+   "vk_slug": "ecuador",
+   "fr_slug": "equateur",
+   "de_iso2": "EC",
+   "vs_naam": "Ecuador"
+  },
+  {
+   "iso2": "EG",
+   "naam": "Egypte",
+   "nl_slug": "egypte",
+   "vk_slug": "egypt",
+   "fr_slug": "egypte",
+   "de_iso2": "EG",
+   "vs_naam": "Egypt"
+  },
+  {
+   "iso2": "SV",
+   "naam": "El Salvador",
+   "nl_slug": "el-salvador",
+   "vk_slug": "el-salvador",
+   "fr_slug": "salvador",
+   "de_iso2": "SV",
+   "vs_naam": "El Salvador"
+  },
+  {
+   "iso2": "GQ",
+   "naam": "Equatoriaal-Guinea",
+   "nl_slug": "equatoriaal-guinea",
+   "vk_slug": "equatorial-guinea",
+   "fr_slug": "guinee-equatoriale",
+   "de_iso2": "GQ",
+   "vs_naam": "Equatorial Guinea"
+  },
+  {
+   "iso2": "ER",
+   "naam": "Eritrea",
+   "nl_slug": "eritrea",
+   "vk_slug": "eritrea",
+   "fr_slug": "erythree",
+   "de_iso2": "ER",
+   "vs_naam": "Eritrea"
+  },
+  {
+   "iso2": "EE",
+   "naam": "Estland",
+   "nl_slug": "estland",
+   "vk_slug": "estonia",
+   "fr_slug": "estonie",
+   "de_iso2": "EE",
+   "vs_naam": "Estonia"
+  },
+  {
+   "iso2": "ET",
+   "naam": "Ethiopië",
+   "nl_slug": "ethiopie",
+   "vk_slug": "ethiopia",
+   "fr_slug": "ethiopie",
+   "de_iso2": "ET",
+   "vs_naam": "Ethiopia"
+  },
+  {
+   "iso2": "FO",
+   "naam": "Faeröer",
+   "nl_slug": "faeroer",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "FK",
+   "naam": "Falklandeilanden",
+   "nl_slug": null,
+   "vk_slug": "falkland-islands",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "FJ",
+   "naam": "Fiji",
+   "nl_slug": "fiji",
+   "vk_slug": "fiji",
+   "fr_slug": "iles-fidji",
+   "de_iso2": "FJ",
+   "vs_naam": "Fiji"
+  },
+  {
+   "iso2": "PH",
+   "naam": "Filipijnen",
+   "nl_slug": "filipijnen",
+   "vk_slug": "philippines",
+   "fr_slug": "philippines",
+   "de_iso2": "PH",
+   "vs_naam": "Philippines"
+  },
+  {
+   "iso2": "FI",
+   "naam": "Finland",
+   "nl_slug": "finland",
+   "vk_slug": "finland",
+   "fr_slug": "finlande",
+   "de_iso2": "FI",
+   "vs_naam": "Finland"
+  },
+  {
+   "iso2": "FR",
+   "naam": "Frankrijk",
+   "nl_slug": "frankrijk",
+   "vk_slug": "france",
+   "fr_slug": null,
+   "de_iso2": "FR",
+   "vs_naam": "France"
+  },
+  {
+   "iso2": "GF",
+   "naam": "Frans-Guyana",
+   "nl_slug": "guyana",
+   "vk_slug": "french-guiana",
+   "fr_slug": "guyana",
+   "de_iso2": null,
+   "vs_naam": "Guyana"
+  },
+  {
+   "iso2": "PF",
+   "naam": "Frans-Polynesië",
+   "nl_slug": "frans-polynesie",
+   "vk_slug": "french-polynesia",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "French Polynesia"
+  },
+  {
+   "iso2": "GA",
+   "naam": "Gabon",
+   "nl_slug": "gabon",
+   "vk_slug": "gabon",
+   "fr_slug": "gabon",
+   "de_iso2": "GA",
+   "vs_naam": "Gabon"
+  },
+  {
+   "iso2": "GM",
+   "naam": "Gambia",
+   "nl_slug": "gambia",
+   "vk_slug": "the-gambia",
+   "fr_slug": "gambie",
+   "de_iso2": "GM",
+   "vs_naam": "The Gambia"
+  },
+  {
+   "iso2": "GE",
+   "naam": "Georgië",
+   "nl_slug": "georgie",
+   "vk_slug": "georgia",
+   "fr_slug": "georgie",
+   "de_iso2": "GE",
+   "vs_naam": "Georgia"
+  },
+  {
+   "iso2": "GH",
+   "naam": "Ghana",
+   "nl_slug": "ghana",
+   "vk_slug": "ghana",
+   "fr_slug": "ghana",
+   "de_iso2": "GH",
+   "vs_naam": "Ghana"
+  },
+  {
+   "iso2": "GI",
+   "naam": "Gibraltar",
+   "nl_slug": null,
+   "vk_slug": "gibraltar",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "GD",
+   "naam": "Grenada",
+   "nl_slug": "grenada",
+   "vk_slug": "grenada",
+   "fr_slug": "grenade",
+   "de_iso2": "GD",
+   "vs_naam": "Grenada"
+  },
+  {
+   "iso2": "GR",
+   "naam": "Griekenland",
+   "nl_slug": "griekenland",
+   "vk_slug": "greece",
+   "fr_slug": "grece",
+   "de_iso2": "GR",
+   "vs_naam": "Greece"
+  },
+  {
+   "iso2": "GL",
+   "naam": "Groenland",
+   "nl_slug": "groenland",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Greenland"
+  },
+  {
+   "iso2": "GP",
+   "naam": "Guadeloupe",
+   "nl_slug": "guadeloupe",
+   "vk_slug": "guadeloupe",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "GT",
+   "naam": "Guatemala",
+   "nl_slug": "guatemala",
+   "vk_slug": "guatemala",
+   "fr_slug": "guatemala",
+   "de_iso2": "GT",
+   "vs_naam": "Guatemala"
+  },
+  {
+   "iso2": "GN",
+   "naam": "Guinee",
+   "nl_slug": "guinee",
+   "vk_slug": "guinea",
+   "fr_slug": "guinee",
+   "de_iso2": "GN",
+   "vs_naam": "Guinea"
+  },
+  {
+   "iso2": "GW",
+   "naam": "Guinee-Bissau",
+   "nl_slug": "guinee-bissau",
+   "vk_slug": "guinea-bissau",
+   "fr_slug": "guinee-bissao",
+   "de_iso2": "GW",
+   "vs_naam": "Guinea-Bissau"
+  },
+  {
+   "iso2": "GY",
+   "naam": "Guyana",
+   "nl_slug": null,
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": "GY",
+   "vs_naam": null
+  },
+  {
+   "iso2": "HT",
+   "naam": "Haïti",
+   "nl_slug": "haiti",
+   "vk_slug": "haiti",
+   "fr_slug": "haiti",
+   "de_iso2": "HT",
+   "vs_naam": "Haiti"
+  },
+  {
+   "iso2": "HN",
+   "naam": "Honduras",
+   "nl_slug": "honduras",
+   "vk_slug": "honduras",
+   "fr_slug": "honduras",
+   "de_iso2": "HN",
+   "vs_naam": "Honduras"
+  },
+  {
+   "iso2": "HU",
+   "naam": "Hongarije",
+   "nl_slug": "hongarije",
+   "vk_slug": "hungary",
+   "fr_slug": "hongrie",
+   "de_iso2": "HU",
+   "vs_naam": "Hungary"
+  },
+  {
+   "iso2": "HK",
+   "naam": "Hongkong",
+   "nl_slug": "hongkong",
+   "vk_slug": "hong-kong",
+   "fr_slug": null,
+   "de_iso2": "HK",
+   "vs_naam": "Hong Kong"
+  },
+  {
+   "iso2": "IS",
+   "naam": "IJsland",
+   "nl_slug": "ijsland",
+   "vk_slug": "iceland",
+   "fr_slug": "islande",
+   "de_iso2": "IS",
+   "vs_naam": "Iceland"
+  },
+  {
+   "iso2": "IE",
+   "naam": "Ierland",
+   "nl_slug": "ierland",
+   "vk_slug": "ireland",
+   "fr_slug": "irlande",
+   "de_iso2": "IE",
+   "vs_naam": "Ireland"
+  },
+  {
+   "iso2": "IN",
+   "naam": "India",
+   "nl_slug": "india",
+   "vk_slug": "india",
+   "fr_slug": "inde",
+   "de_iso2": "IN",
+   "vs_naam": "India"
+  },
+  {
+   "iso2": "ID",
+   "naam": "Indonesië",
+   "nl_slug": "indonesie",
+   "vk_slug": "indonesia",
+   "fr_slug": "indonesie",
+   "de_iso2": "ID",
+   "vs_naam": "Indonesia"
+  },
+  {
+   "iso2": "IQ",
+   "naam": "Irak",
+   "nl_slug": "irak",
+   "vk_slug": "iraq",
+   "fr_slug": "iraq",
+   "de_iso2": "IQ",
+   "vs_naam": "Iraq"
+  },
+  {
+   "iso2": "IR",
+   "naam": "Iran",
+   "nl_slug": "iran",
+   "vk_slug": "iran",
+   "fr_slug": "iran",
+   "de_iso2": "IR",
+   "vs_naam": "Iran"
+  },
+  {
+   "iso2": "IL",
+   "naam": "Israël",
+   "nl_slug": "israel",
+   "vk_slug": "israel",
+   "fr_slug": "israelpalestine",
+   "de_iso2": "IL",
+   "vs_naam": "Israel"
+  },
+  {
+   "iso2": "IT",
+   "naam": "Italië",
+   "nl_slug": "italie",
+   "vk_slug": "italy",
+   "fr_slug": "italie",
+   "de_iso2": "IT",
+   "vs_naam": "Italy"
+  },
+  {
+   "iso2": "CI",
+   "naam": "Ivoorkust",
+   "nl_slug": "ivoorkust",
+   "vk_slug": "cote-d-ivoire",
+   "fr_slug": "cote-d-ivoire",
+   "de_iso2": "CI",
+   "vs_naam": "Cote d Ivoire"
+  },
+  {
+   "iso2": "JM",
+   "naam": "Jamaica",
+   "nl_slug": "jamaica",
+   "vk_slug": "jamaica",
+   "fr_slug": "jamaique",
+   "de_iso2": "JM",
+   "vs_naam": "Jamaica"
+  },
+  {
+   "iso2": "JP",
+   "naam": "Japan",
+   "nl_slug": "japan",
+   "vk_slug": "japan",
+   "fr_slug": "japon",
+   "de_iso2": "JP",
+   "vs_naam": "Japan"
+  },
+  {
+   "iso2": "YE",
+   "naam": "Jemen",
+   "nl_slug": "jemen",
+   "vk_slug": "yemen",
+   "fr_slug": "yemen",
+   "de_iso2": "YE",
+   "vs_naam": "Yemen"
+  },
+  {
+   "iso2": "JO",
+   "naam": "Jordanië",
+   "nl_slug": "jordanie",
+   "vk_slug": "jordan",
+   "fr_slug": "jordanie",
+   "de_iso2": "JO",
+   "vs_naam": "Jordan"
+  },
+  {
+   "iso2": "CV",
+   "naam": "Kaapverdië",
+   "nl_slug": "kaapverdie",
+   "vk_slug": "cape-verde",
+   "fr_slug": "cap-vert",
+   "de_iso2": "CV",
+   "vs_naam": "Cabo Verde"
+  },
+  {
+   "iso2": "CM",
+   "naam": "Kameroen",
+   "nl_slug": "kameroen",
+   "vk_slug": "cameroon",
+   "fr_slug": "cameroun",
+   "de_iso2": "CM",
+   "vs_naam": "Cameroon"
+  },
+  {
+   "iso2": "KZ",
+   "naam": "Kazachstan",
+   "nl_slug": "kazachstan",
+   "vk_slug": "kazakhstan",
+   "fr_slug": "kazakhstan",
+   "de_iso2": "KZ",
+   "vs_naam": "Kazakhstan"
+  },
+  {
+   "iso2": "KE",
+   "naam": "Kenia",
+   "nl_slug": "kenia",
+   "vk_slug": "kenya",
+   "fr_slug": "kenya",
+   "de_iso2": "KE",
+   "vs_naam": "Kenya"
+  },
+  {
+   "iso2": "KG",
+   "naam": "Kirgizië",
+   "nl_slug": "kirgizie",
+   "vk_slug": "kyrgyzstan",
+   "fr_slug": "kirghizstan",
+   "de_iso2": "KG",
+   "vs_naam": "The Kyrgyz Republic"
+  },
+  {
+   "iso2": "KI",
+   "naam": "Kiribati",
+   "nl_slug": "kiribati",
+   "vk_slug": "kiribati",
+   "fr_slug": "kiribati",
+   "de_iso2": "KI",
+   "vs_naam": "Kiribati"
+  },
+  {
+   "iso2": "KW",
+   "naam": "Koeweit",
+   "nl_slug": "koeweit",
+   "vk_slug": "kuwait",
+   "fr_slug": "koweit",
+   "de_iso2": "KW",
+   "vs_naam": "Kuwait"
+  },
+  {
+   "iso2": "XK",
+   "naam": "Kosovo",
+   "nl_slug": "kosovo",
+   "vk_slug": "kosovo",
+   "fr_slug": "kosovo",
+   "de_iso2": "XK",
+   "vs_naam": "Kosovo"
+  },
+  {
+   "iso2": "HR",
+   "naam": "Kroatië",
+   "nl_slug": "kroatie",
+   "vk_slug": "croatia",
+   "fr_slug": "croatie",
+   "de_iso2": "HR",
+   "vs_naam": "Croatia"
+  },
+  {
+   "iso2": "LA",
+   "naam": "Laos",
+   "nl_slug": "laos",
+   "vk_slug": "laos",
+   "fr_slug": "laos",
+   "de_iso2": "LA",
+   "vs_naam": "Laos"
+  },
+  {
+   "iso2": "LS",
+   "naam": "Lesotho",
+   "nl_slug": "lesotho",
+   "vk_slug": "lesotho",
+   "fr_slug": "lesotho",
+   "de_iso2": "LS",
+   "vs_naam": "Lesotho"
+  },
+  {
+   "iso2": "LV",
+   "naam": "Letland",
+   "nl_slug": "letland",
+   "vk_slug": "latvia",
+   "fr_slug": "lettonie",
+   "de_iso2": "LV",
+   "vs_naam": "Latvia"
+  },
+  {
+   "iso2": "LB",
+   "naam": "Libanon",
+   "nl_slug": "libanon",
+   "vk_slug": "lebanon",
+   "fr_slug": "liban",
+   "de_iso2": "LB",
+   "vs_naam": "Lebanon"
+  },
+  {
+   "iso2": "LR",
+   "naam": "Liberia",
+   "nl_slug": "liberia",
+   "vk_slug": "liberia",
+   "fr_slug": "liberia",
+   "de_iso2": "LR",
+   "vs_naam": "Liberia"
+  },
+  {
+   "iso2": "LY",
+   "naam": "Libië",
+   "nl_slug": "libie",
+   "vk_slug": "libya",
+   "fr_slug": "libye",
+   "de_iso2": "LY",
+   "vs_naam": "Libya"
+  },
+  {
+   "iso2": "LI",
+   "naam": "Liechtenstein",
+   "nl_slug": "liechtenstein",
+   "vk_slug": "liechtenstein",
+   "fr_slug": "liechtenstein",
+   "de_iso2": "LI",
+   "vs_naam": "Liechtenstein"
+  },
+  {
+   "iso2": "LT",
+   "naam": "Litouwen",
+   "nl_slug": "litouwen",
+   "vk_slug": "lithuania",
+   "fr_slug": "lituanie",
+   "de_iso2": "LT",
+   "vs_naam": "Lithuania"
+  },
+  {
+   "iso2": "LU",
+   "naam": "Luxemburg",
+   "nl_slug": "luxemburg",
+   "vk_slug": "luxembourg",
+   "fr_slug": "luxembourg",
+   "de_iso2": "LU",
+   "vs_naam": "Luxembourg"
+  },
+  {
+   "iso2": "MO",
+   "naam": "Macao",
+   "nl_slug": "macau-sar",
+   "vk_slug": "macao",
+   "fr_slug": null,
+   "de_iso2": "MO",
+   "vs_naam": "Macau"
+  },
+  {
+   "iso2": "MG",
+   "naam": "Madagaskar",
+   "nl_slug": "madagaskar",
+   "vk_slug": "madagascar",
+   "fr_slug": "madagascar",
+   "de_iso2": "MG",
+   "vs_naam": "Madagascar"
+  },
+  {
+   "iso2": "MW",
+   "naam": "Malawi",
+   "nl_slug": "malawi",
+   "vk_slug": "malawi",
+   "fr_slug": "malawi",
+   "de_iso2": "MW",
+   "vs_naam": "Malawi"
+  },
+  {
+   "iso2": "MV",
+   "naam": "Maldiven",
+   "nl_slug": "maldiven",
+   "vk_slug": "maldives",
+   "fr_slug": "maldives",
+   "de_iso2": "MV",
+   "vs_naam": "Maldives"
+  },
+  {
+   "iso2": "MY",
+   "naam": "Maleisië",
+   "nl_slug": "maleisie",
+   "vk_slug": "malaysia",
+   "fr_slug": "malaisie",
+   "de_iso2": "MY",
+   "vs_naam": "Malaysia"
+  },
+  {
+   "iso2": "ML",
+   "naam": "Mali",
+   "nl_slug": "mali",
+   "vk_slug": "mali",
+   "fr_slug": "mali",
+   "de_iso2": "ML",
+   "vs_naam": "Mali"
+  },
+  {
+   "iso2": "MT",
+   "naam": "Malta",
+   "nl_slug": "malta",
+   "vk_slug": "malta",
+   "fr_slug": "malte",
+   "de_iso2": "MT",
+   "vs_naam": "Malta"
+  },
+  {
+   "iso2": "MA",
+   "naam": "Marokko",
+   "nl_slug": "marokko",
+   "vk_slug": "morocco",
+   "fr_slug": "maroc",
+   "de_iso2": "MA",
+   "vs_naam": "Morocco"
+  },
+  {
+   "iso2": "MH",
+   "naam": "Marshalleilanden",
+   "nl_slug": "marshalleilanden",
+   "vk_slug": "marshall-islands",
+   "fr_slug": "iles-marshall",
+   "de_iso2": "MH",
+   "vs_naam": "Marshall Islands"
+  },
+  {
+   "iso2": "MQ",
+   "naam": "Martinique",
+   "nl_slug": "martinique",
+   "vk_slug": "martinique",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "MR",
+   "naam": "Mauritanië",
+   "nl_slug": "mauritanie",
+   "vk_slug": "mauritania",
+   "fr_slug": "mauritanie",
+   "de_iso2": "MR",
+   "vs_naam": "Mauritania"
+  },
+  {
+   "iso2": "MU",
+   "naam": "Mauritius",
+   "nl_slug": "mauritius",
+   "vk_slug": "mauritius",
+   "fr_slug": "maurice",
+   "de_iso2": "MU",
+   "vs_naam": "Mauritius"
+  },
+  {
+   "iso2": "YT",
+   "naam": "Mayotte",
+   "nl_slug": null,
+   "vk_slug": "mayotte",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "MX",
+   "naam": "Mexico",
+   "nl_slug": "mexico",
+   "vk_slug": "mexico",
+   "fr_slug": "mexique",
+   "de_iso2": "MX",
+   "vs_naam": "Mexico Travel Advisory"
+  },
+  {
+   "iso2": "FM",
+   "naam": "Micronesië",
+   "nl_slug": "micronesie",
+   "vk_slug": "federated-states-of-micronesia",
+   "fr_slug": "etats-federes-de-micronesie",
+   "de_iso2": "FM",
+   "vs_naam": "Federated States of Micronesia"
+  },
+  {
+   "iso2": "MD",
+   "naam": "Moldavië",
+   "nl_slug": "moldavie",
+   "vk_slug": "moldova",
+   "fr_slug": "moldavie",
+   "de_iso2": "MD",
+   "vs_naam": "Moldova"
+  },
+  {
+   "iso2": "MC",
+   "naam": "Monaco",
+   "nl_slug": "monaco",
+   "vk_slug": "monaco",
+   "fr_slug": "monaco",
+   "de_iso2": "MC",
+   "vs_naam": null
+  },
+  {
+   "iso2": "MN",
+   "naam": "Mongolië",
+   "nl_slug": "mongolie",
+   "vk_slug": "mongolia",
+   "fr_slug": "mongolie",
+   "de_iso2": "MN",
+   "vs_naam": "Mongolia"
+  },
+  {
+   "iso2": "ME",
+   "naam": "Montenegro",
+   "nl_slug": "montenegro",
+   "vk_slug": "montenegro",
+   "fr_slug": "montenegro",
+   "de_iso2": "ME",
+   "vs_naam": "Montenegro"
+  },
+  {
+   "iso2": "MS",
+   "naam": "Montserrat",
+   "nl_slug": "montserrat",
+   "vk_slug": "montserrat",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Montserrat"
+  },
+  {
+   "iso2": "MZ",
+   "naam": "Mozambique",
+   "nl_slug": "mozambique",
+   "vk_slug": "mozambique",
+   "fr_slug": "mozambique",
+   "de_iso2": "MZ",
+   "vs_naam": "Mozambique"
+  },
+  {
+   "iso2": "MM",
+   "naam": "Myanmar",
+   "nl_slug": "myanmar",
+   "vk_slug": "myanmar",
+   "fr_slug": "birmanie",
+   "de_iso2": "MM",
+   "vs_naam": "Burma"
+  },
+  {
+   "iso2": "NA",
+   "naam": "Namibië",
+   "nl_slug": "namibie",
+   "vk_slug": "namibia",
+   "fr_slug": "namibie",
+   "de_iso2": "NA",
+   "vs_naam": "Namibia"
+  },
+  {
+   "iso2": "NR",
+   "naam": "Nauru",
+   "nl_slug": "nauru",
+   "vk_slug": "nauru",
+   "fr_slug": "nauru",
+   "de_iso2": "NR",
+   "vs_naam": "Nauru"
+  },
+  {
+   "iso2": "NL",
+   "naam": "Nederland",
+   "nl_slug": null,
+   "vk_slug": "netherlands",
+   "fr_slug": "pays-bas",
+   "de_iso2": "NL",
+   "vs_naam": "Netherlands"
+  },
+  {
+   "iso2": "NP",
+   "naam": "Nepal",
+   "nl_slug": "nepal",
+   "vk_slug": "nepal",
+   "fr_slug": "nepal",
+   "de_iso2": "NP",
+   "vs_naam": "Nepal"
+  },
+  {
+   "iso2": "NI",
+   "naam": "Nicaragua",
+   "nl_slug": "nicaragua",
+   "vk_slug": "nicaragua",
+   "fr_slug": "nicaragua",
+   "de_iso2": "NI",
+   "vs_naam": "Nicaragua"
+  },
+  {
+   "iso2": "NC",
+   "naam": "Nieuw-Caledonië",
+   "nl_slug": "nieuw-caledonie",
+   "vk_slug": "new-caledonia",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "New Caledonia"
+  },
+  {
+   "iso2": "NZ",
+   "naam": "Nieuw-Zeeland",
+   "nl_slug": "nieuw-zeeland",
+   "vk_slug": "new-zealand",
+   "fr_slug": "nouvelle-zelande",
+   "de_iso2": "NZ",
+   "vs_naam": "New Zealand"
+  },
+  {
+   "iso2": "NE",
+   "naam": "Niger",
+   "nl_slug": "niger",
+   "vk_slug": "niger",
+   "fr_slug": "niger",
+   "de_iso2": "NE",
+   "vs_naam": "Niger"
+  },
+  {
+   "iso2": "NG",
+   "naam": "Nigeria",
+   "nl_slug": "nigeria",
+   "vk_slug": "nigeria",
+   "fr_slug": "nigeria",
+   "de_iso2": "NG",
+   "vs_naam": "Nigeria"
+  },
+  {
+   "iso2": "NU",
+   "naam": "Niue",
+   "nl_slug": "niue",
+   "vk_slug": "cook-islands-tokelau-and-niue",
+   "fr_slug": "niue",
+   "de_iso2": "NU",
+   "vs_naam": null
+  },
+  {
+   "iso2": "KP",
+   "naam": "Noord-Korea",
+   "nl_slug": "noord-korea",
+   "vk_slug": "north-korea",
+   "fr_slug": "coree-du-nord",
+   "de_iso2": "KP",
+   "vs_naam": "North Korea"
+  },
+  {
+   "iso2": "MK",
+   "naam": "Noord-Macedonië",
+   "nl_slug": "noord-macedonie",
+   "vk_slug": "north-macedonia",
+   "fr_slug": "republique-de-macedoine-du-nord",
+   "de_iso2": "MK",
+   "vs_naam": "North Macedonia"
+  },
+  {
+   "iso2": "NO",
+   "naam": "Noorwegen",
+   "nl_slug": "noorwegen",
+   "vk_slug": "norway",
+   "fr_slug": "norvege",
+   "de_iso2": "NO",
+   "vs_naam": "Norway"
+  },
+  {
+   "iso2": "UG",
+   "naam": "Oeganda",
+   "nl_slug": "uganda",
+   "vk_slug": "uganda",
+   "fr_slug": "ouganda",
+   "de_iso2": "UG",
+   "vs_naam": "Uganda"
+  },
+  {
+   "iso2": "UA",
+   "naam": "Oekraïne",
+   "nl_slug": "oekraine",
+   "vk_slug": "ukraine",
+   "fr_slug": "ukraine",
+   "de_iso2": "UA",
+   "vs_naam": "Ukraine"
+  },
+  {
+   "iso2": "UZ",
+   "naam": "Oezbekistan",
+   "nl_slug": "oezbekistan",
+   "vk_slug": "uzbekistan",
+   "fr_slug": "ouzbekistan",
+   "de_iso2": "UZ",
+   "vs_naam": "Uzbekistan"
+  },
+  {
+   "iso2": "OM",
+   "naam": "Oman",
+   "nl_slug": "oman",
+   "vk_slug": "oman",
+   "fr_slug": "oman",
+   "de_iso2": "OM",
+   "vs_naam": "Oman"
+  },
+  {
+   "iso2": "TL",
+   "naam": "Oost-Timor",
+   "nl_slug": "oost-timor",
+   "vk_slug": "timor-leste",
+   "fr_slug": "timor-oriental",
+   "de_iso2": "TL",
+   "vs_naam": "Timor-Leste"
+  },
+  {
+   "iso2": "AT",
+   "naam": "Oostenrijk",
+   "nl_slug": "oostenrijk",
+   "vk_slug": "austria",
+   "fr_slug": "autriche",
+   "de_iso2": "AT",
+   "vs_naam": "Austria"
+  },
+  {
+   "iso2": "PK",
+   "naam": "Pakistan",
+   "nl_slug": "pakistan",
+   "vk_slug": "pakistan",
+   "fr_slug": "pakistan",
+   "de_iso2": "PK",
+   "vs_naam": "Pakistan"
+  },
+  {
+   "iso2": "PW",
+   "naam": "Palau",
+   "nl_slug": "palau",
+   "vk_slug": "palau",
+   "fr_slug": "republique-des-palaos",
+   "de_iso2": "PW",
+   "vs_naam": "Palau"
+  },
+  {
+   "iso2": "PS",
+   "naam": "Palestijnse gebieden",
+   "nl_slug": "palestijnse-gebieden",
+   "vk_slug": "palestine",
+   "fr_slug": "israelpalestine",
+   "de_iso2": "PS",
+   "vs_naam": "West Bank"
+  },
+  {
+   "iso2": "PA",
+   "naam": "Panama",
+   "nl_slug": "panama",
+   "vk_slug": "panama",
+   "fr_slug": "panama",
+   "de_iso2": "PA",
+   "vs_naam": "Panama"
+  },
+  {
+   "iso2": "PG",
+   "naam": "Papoea-Nieuw-Guinea",
+   "nl_slug": "papoea-nieuw-guinea",
+   "vk_slug": "papua-new-guinea",
+   "fr_slug": "papouasie-nouvelle-guinee",
+   "de_iso2": "PG",
+   "vs_naam": "Papua New Guinea"
+  },
+  {
+   "iso2": "PY",
+   "naam": "Paraguay",
+   "nl_slug": "paraguay",
+   "vk_slug": "paraguay",
+   "fr_slug": "paraguay",
+   "de_iso2": "PY",
+   "vs_naam": "Paraguay"
+  },
+  {
+   "iso2": "PE",
+   "naam": "Peru",
+   "nl_slug": "peru",
+   "vk_slug": "peru",
+   "fr_slug": "perou",
+   "de_iso2": "PE",
+   "vs_naam": "Peru"
+  },
+  {
+   "iso2": "PN",
+   "naam": "Pitcairneilanden",
+   "nl_slug": "pitcairneilanden",
+   "vk_slug": "pitcairn-island",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "PL",
+   "naam": "Polen",
+   "nl_slug": "polen",
+   "vk_slug": "poland",
+   "fr_slug": "pologne",
+   "de_iso2": "PL",
+   "vs_naam": "Poland"
+  },
+  {
+   "iso2": "PT",
+   "naam": "Portugal",
+   "nl_slug": "portugal",
+   "vk_slug": "portugal",
+   "fr_slug": "portugal",
+   "de_iso2": "PT",
+   "vs_naam": "Portugal"
+  },
+  {
+   "iso2": "PR",
+   "naam": "Puerto Rico",
+   "nl_slug": "puerto-rico",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "QA",
+   "naam": "Qatar",
+   "nl_slug": "qatar",
+   "vk_slug": "qatar",
+   "fr_slug": "qatar",
+   "de_iso2": "QA",
+   "vs_naam": "Qatar"
+  },
+  {
+   "iso2": "RO",
+   "naam": "Roemenië",
+   "nl_slug": "roemenie",
+   "vk_slug": "romania",
+   "fr_slug": "roumanie",
+   "de_iso2": "RO",
+   "vs_naam": "Romania"
+  },
+  {
+   "iso2": "RU",
+   "naam": "Rusland",
+   "nl_slug": "rusland",
+   "vk_slug": "russia",
+   "fr_slug": "russie",
+   "de_iso2": "RU",
+   "vs_naam": "Russia"
+  },
+  {
+   "iso2": "RW",
+   "naam": "Rwanda",
+   "nl_slug": "rwanda",
+   "vk_slug": "rwanda",
+   "fr_slug": "rwanda",
+   "de_iso2": "RW",
+   "vs_naam": "Rwanda"
+  },
+  {
+   "iso2": "RE",
+   "naam": "Réunion",
+   "nl_slug": "reunion",
+   "vk_slug": "reunion",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "BL",
+   "naam": "Saint Barthélemy",
+   "nl_slug": null,
+   "vk_slug": "st-martin-and-st-barthelemy",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "KN",
+   "naam": "Saint Kitts en Nevis",
+   "nl_slug": "saint-kitts-en-nevis",
+   "vk_slug": "st-kitts-and-nevis",
+   "fr_slug": "saint-christophe-et-nieves",
+   "de_iso2": "KN",
+   "vs_naam": "Saint Kitts and Nevis"
+  },
+  {
+   "iso2": "LC",
+   "naam": "Saint Lucia",
+   "nl_slug": "saint-lucia",
+   "vk_slug": "st-lucia",
+   "fr_slug": "sainte-lucie",
+   "de_iso2": "LC",
+   "vs_naam": "Saint Lucia"
+  },
+  {
+   "iso2": "PM",
+   "naam": "Saint Pierre en Miquelon",
+   "nl_slug": null,
+   "vk_slug": "st-pierre-and-miquelon",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "VC",
+   "naam": "Saint Vincent en de Grenadines",
+   "nl_slug": "saint-vincent-en-de-grenadines",
+   "vk_slug": "st-vincent-and-the-grenadines",
+   "fr_slug": "saint-vincent-et-les-grenadines",
+   "de_iso2": "VC",
+   "vs_naam": "Saint Vincent and the Grenadines"
+  },
+  {
+   "iso2": "MF",
+   "naam": "Saint-Martin",
+   "nl_slug": null,
+   "vk_slug": "st-martin-and-st-barthelemy",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "SB",
+   "naam": "Salomonseilanden",
+   "nl_slug": "salomonseilanden",
+   "vk_slug": "solomon-islands",
+   "fr_slug": "iles-salomon",
+   "de_iso2": "SB",
+   "vs_naam": "Solomon Islands"
+  },
+  {
+   "iso2": "WS",
+   "naam": "Samoa",
+   "nl_slug": "samoa",
+   "vk_slug": "samoa",
+   "fr_slug": "samoa",
+   "de_iso2": "WS",
+   "vs_naam": "Samoa"
+  },
+  {
+   "iso2": "SM",
+   "naam": "San Marino",
+   "nl_slug": "san-marino",
+   "vk_slug": "san-marino",
+   "fr_slug": "saint-marin",
+   "de_iso2": "SM",
+   "vs_naam": null
+  },
+  {
+   "iso2": "ST",
+   "naam": "Sao Tomé en Principe",
+   "nl_slug": "sao-tome-en-principe",
+   "vk_slug": "sao-tome-and-principe",
+   "fr_slug": "sao-tome-et-principe",
+   "de_iso2": "ST",
+   "vs_naam": "Sao Tome and Principe"
+  },
+  {
+   "iso2": "SA",
+   "naam": "Saoedi-Arabië",
+   "nl_slug": "saoedi-arabie",
+   "vk_slug": "saudi-arabia",
+   "fr_slug": "arabie-saoudite",
+   "de_iso2": "SA",
+   "vs_naam": "Saudi Arabia"
+  },
+  {
+   "iso2": "SN",
+   "naam": "Senegal",
+   "nl_slug": "senegal",
+   "vk_slug": "senegal",
+   "fr_slug": "senegal",
+   "de_iso2": "SN",
+   "vs_naam": "Senegal"
+  },
+  {
+   "iso2": "RS",
+   "naam": "Servië",
+   "nl_slug": "servie",
+   "vk_slug": "serbia",
+   "fr_slug": "serbie",
+   "de_iso2": "RS",
+   "vs_naam": "Serbia"
+  },
+  {
+   "iso2": "SC",
+   "naam": "Seychellen",
+   "nl_slug": "seychellen",
+   "vk_slug": "seychelles",
+   "fr_slug": "seychelles",
+   "de_iso2": "SC",
+   "vs_naam": "Seychelles"
+  },
+  {
+   "iso2": "SL",
+   "naam": "Sierra Leone",
+   "nl_slug": "sierra-leone",
+   "vk_slug": "sierra-leone",
+   "fr_slug": "sierra-leone",
+   "de_iso2": "SL",
+   "vs_naam": "Sierra Leone"
+  },
+  {
+   "iso2": "SG",
+   "naam": "Singapore",
+   "nl_slug": "singapore",
+   "vk_slug": "singapore",
+   "fr_slug": "singapour",
+   "de_iso2": "SG",
+   "vs_naam": "Singapore"
+  },
+  {
+   "iso2": "SX",
+   "naam": "Sint Maarten",
+   "nl_slug": "sint-maarten",
+   "vk_slug": "st-maarten",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Sint Maarten"
+  },
+  {
+   "iso2": "SH",
+   "naam": "Sint-Helena, Ascension en Tristan da Cunha",
+   "nl_slug": null,
+   "vk_slug": "st-helena-ascension-and-tristan-da-cunha",
+   "fr_slug": "sainte-helene",
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "SI",
+   "naam": "Slovenië",
+   "nl_slug": "slovenie",
+   "vk_slug": "slovenia",
+   "fr_slug": "slovenie",
+   "de_iso2": "SI",
+   "vs_naam": "Slovenia"
+  },
+  {
+   "iso2": "SK",
+   "naam": "Slowakije",
+   "nl_slug": "slowakije",
+   "vk_slug": "slovakia",
+   "fr_slug": "slovaquie",
+   "de_iso2": "SK",
+   "vs_naam": "Slovakia"
+  },
+  {
+   "iso2": "SD",
+   "naam": "Soedan",
+   "nl_slug": "sudan",
+   "vk_slug": "sudan",
+   "fr_slug": "soudan",
+   "de_iso2": "SD",
+   "vs_naam": "Sudan"
+  },
+  {
+   "iso2": "SO",
+   "naam": "Somalië",
+   "nl_slug": "somalie",
+   "vk_slug": "somalia",
+   "fr_slug": "somalie",
+   "de_iso2": "SO",
+   "vs_naam": "Somalia"
+  },
+  {
+   "iso2": "ES",
+   "naam": "Spanje",
+   "nl_slug": "spanje",
+   "vk_slug": "spain",
+   "fr_slug": "espagne",
+   "de_iso2": "ES",
+   "vs_naam": "Spain"
+  },
+  {
+   "iso2": "LK",
+   "naam": "Sri Lanka",
+   "nl_slug": "sri-lanka",
+   "vk_slug": "sri-lanka",
+   "fr_slug": "sri-lanka",
+   "de_iso2": "LK",
+   "vs_naam": "Sri Lanka"
+  },
+  {
+   "iso2": "SR",
+   "naam": "Suriname",
+   "nl_slug": "suriname",
+   "vk_slug": "suriname",
+   "fr_slug": "suriname",
+   "de_iso2": "SR",
+   "vs_naam": "Suriname"
+  },
+  {
+   "iso2": "SJ",
+   "naam": "Svalbard en Jan Mayen",
+   "nl_slug": "spitsbergen",
+   "vk_slug": null,
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "SZ",
+   "naam": "Swaziland",
+   "nl_slug": "eswatini",
+   "vk_slug": "eswatini",
+   "fr_slug": "eswatini",
+   "de_iso2": "SZ",
+   "vs_naam": "Eswatini"
+  },
+  {
+   "iso2": "SY",
+   "naam": "Syrië",
+   "nl_slug": "syrie",
+   "vk_slug": "syria",
+   "fr_slug": "syrie",
+   "de_iso2": "SY",
+   "vs_naam": "Syria"
+  },
+  {
+   "iso2": "TJ",
+   "naam": "Tadzjikistan",
+   "nl_slug": "tadzjikistan",
+   "vk_slug": "tajikistan",
+   "fr_slug": "tadjikistan",
+   "de_iso2": "TJ",
+   "vs_naam": "Tajikistan"
+  },
+  {
+   "iso2": "TW",
+   "naam": "Taiwan",
+   "nl_slug": "taiwan",
+   "vk_slug": "taiwan",
+   "fr_slug": "taiwan",
+   "de_iso2": "TW",
+   "vs_naam": "Taiwan"
+  },
+  {
+   "iso2": "TZ",
+   "naam": "Tanzania",
+   "nl_slug": "tanzania",
+   "vk_slug": "tanzania",
+   "fr_slug": "tanzanie",
+   "de_iso2": "TZ",
+   "vs_naam": "Tanzania"
+  },
+  {
+   "iso2": "TH",
+   "naam": "Thailand",
+   "nl_slug": "thailand",
+   "vk_slug": "thailand",
+   "fr_slug": "thailande",
+   "de_iso2": "TH",
+   "vs_naam": "Thailand"
+  },
+  {
+   "iso2": "TG",
+   "naam": "Togo",
+   "nl_slug": "togo",
+   "vk_slug": "togo",
+   "fr_slug": "togo",
+   "de_iso2": "TG",
+   "vs_naam": "Togo"
+  },
+  {
+   "iso2": "TK",
+   "naam": "Tokelau",
+   "nl_slug": "tokelau-eilanden",
+   "vk_slug": "cook-islands-tokelau-and-niue",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "TO",
+   "naam": "Tonga",
+   "nl_slug": "tonga",
+   "vk_slug": "tonga",
+   "fr_slug": "tonga",
+   "de_iso2": "TO",
+   "vs_naam": "Tonga"
+  },
+  {
+   "iso2": "TT",
+   "naam": "Trinidad en Tobago",
+   "nl_slug": "trinidad-en-tobago",
+   "vk_slug": "trinidad-and-tobago",
+   "fr_slug": "trinite-et-tobago",
+   "de_iso2": "TT",
+   "vs_naam": "Trinidad and Tobago"
+  },
+  {
+   "iso2": "TD",
+   "naam": "Tsjaad",
+   "nl_slug": "tsjaad",
+   "vk_slug": "chad",
+   "fr_slug": "tchad",
+   "de_iso2": "TD",
+   "vs_naam": "Chad"
+  },
+  {
+   "iso2": "CZ",
+   "naam": "Tsjechië",
+   "nl_slug": "tsjechie",
+   "vk_slug": "czechia",
+   "fr_slug": "republique-tcheque",
+   "de_iso2": "CZ",
+   "vs_naam": "Czechia"
+  },
+  {
+   "iso2": "TN",
+   "naam": "Tunesië",
+   "nl_slug": "tunesie",
+   "vk_slug": "tunisia",
+   "fr_slug": "tunisie",
+   "de_iso2": "TN",
+   "vs_naam": "Tunisia"
+  },
+  {
+   "iso2": "TR",
+   "naam": "Turkije",
+   "nl_slug": "turkije",
+   "vk_slug": "turkey",
+   "fr_slug": "turquie",
+   "de_iso2": "TR",
+   "vs_naam": "Turkey"
+  },
+  {
+   "iso2": "TM",
+   "naam": "Turkmenistan",
+   "nl_slug": "turkmenistan",
+   "vk_slug": "turkmenistan",
+   "fr_slug": "turkmenistan",
+   "de_iso2": "TM",
+   "vs_naam": "Turkmenistan"
+  },
+  {
+   "iso2": "TC",
+   "naam": "Turks-en Caicoseilanden",
+   "nl_slug": "turks-en-caicoseilanden",
+   "vk_slug": "turks-and-caicos-islands",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": "Turks and Caicos Islands"
+  },
+  {
+   "iso2": "TV",
+   "naam": "Tuvalu",
+   "nl_slug": "tuvalu",
+   "vk_slug": "tuvalu",
+   "fr_slug": "tuvalu",
+   "de_iso2": "TV",
+   "vs_naam": "Tuvalu"
+  },
+  {
+   "iso2": "UY",
+   "naam": "Uruguay",
+   "nl_slug": "uruguay",
+   "vk_slug": "uruguay",
+   "fr_slug": "uruguay",
+   "de_iso2": "UY",
+   "vs_naam": "Uruguay"
+  },
+  {
+   "iso2": "VU",
+   "naam": "Vanuatu",
+   "nl_slug": "vanuatu",
+   "vk_slug": "vanuatu",
+   "fr_slug": "vanuatu",
+   "de_iso2": "VU",
+   "vs_naam": "Vanuatu"
+  },
+  {
+   "iso2": "VA",
+   "naam": "Vaticaanstad",
+   "nl_slug": null,
+   "vk_slug": null,
+   "fr_slug": "vatican-saint-siege",
+   "de_iso2": "VA",
+   "vs_naam": null
+  },
+  {
+   "iso2": "VE",
+   "naam": "Venezuela",
+   "nl_slug": "venezuela",
+   "vk_slug": "venezuela",
+   "fr_slug": "venezuela",
+   "de_iso2": "VE",
+   "vs_naam": "Venezuela"
+  },
+  {
+   "iso2": "GB",
+   "naam": "Verenigd Koninkrijk",
+   "nl_slug": "verenigd-koninkrijk",
+   "vk_slug": null,
+   "fr_slug": "royaume-uni",
+   "de_iso2": "GB",
+   "vs_naam": "United Kingdom"
+  },
+  {
+   "iso2": "AE",
+   "naam": "Verenigde Arabische Emiraten",
+   "nl_slug": "verenigde-arabische-emiraten",
+   "vk_slug": "united-arab-emirates",
+   "fr_slug": "emirats-arabes-unis",
+   "de_iso2": "AE",
+   "vs_naam": "United Arab Emirates"
+  },
+  {
+   "iso2": "US",
+   "naam": "Verenigde Staten",
+   "nl_slug": "verenigde-staten-van-amerika",
+   "vk_slug": "usa",
+   "fr_slug": "etats-unis",
+   "de_iso2": "US",
+   "vs_naam": null
+  },
+  {
+   "iso2": "VN",
+   "naam": "Vietnam",
+   "nl_slug": "vietnam",
+   "vk_slug": "vietnam",
+   "fr_slug": "vietnam",
+   "de_iso2": "VN",
+   "vs_naam": "Vietnam"
+  },
+  {
+   "iso2": "WF",
+   "naam": "Wallis en Futuna",
+   "nl_slug": "wallis-en-futuna",
+   "vk_slug": "wallis-and-futuna",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "EH",
+   "naam": "Westelijke Sahara",
+   "nl_slug": null,
+   "vk_slug": "western-sahara",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "BY",
+   "naam": "Wit-Rusland",
+   "nl_slug": "belarus-wit-rusland",
+   "vk_slug": "belarus",
+   "fr_slug": "bielorussie",
+   "de_iso2": "BY",
+   "vs_naam": "Belarus"
+  },
+  {
+   "iso2": "ZM",
+   "naam": "Zambia",
+   "nl_slug": "zambia",
+   "vk_slug": "zambia",
+   "fr_slug": "zambie",
+   "de_iso2": "ZM",
+   "vs_naam": "Zambia"
+  },
+  {
+   "iso2": "ZW",
+   "naam": "Zimbabwe",
+   "nl_slug": "zimbabwe",
+   "vk_slug": "zimbabwe",
+   "fr_slug": "zimbabwe",
+   "de_iso2": "ZW",
+   "vs_naam": "Zimbabwe"
+  },
+  {
+   "iso2": "ZA",
+   "naam": "Zuid-Afrika",
+   "nl_slug": "zuid-afrika",
+   "vk_slug": "south-africa",
+   "fr_slug": "afrique-du-sud",
+   "de_iso2": "ZA",
+   "vs_naam": "South Africa"
+  },
+  {
+   "iso2": "GS",
+   "naam": "Zuid-Georgia en Zuidelijke Sandwicheilanden",
+   "nl_slug": null,
+   "vk_slug": "south-georgia-and-south-sandwich-islands",
+   "fr_slug": null,
+   "de_iso2": null,
+   "vs_naam": null
+  },
+  {
+   "iso2": "KR",
+   "naam": "Zuid-Korea",
+   "nl_slug": "zuid-korea",
+   "vk_slug": "south-korea",
+   "fr_slug": "coree-du-sud",
+   "de_iso2": "KR",
+   "vs_naam": "South Korea"
+  },
+  {
+   "iso2": "SS",
+   "naam": "Zuid-Soedan",
+   "nl_slug": "zuid-sudan",
+   "vk_slug": "south-sudan",
+   "fr_slug": "soudan-du-sud",
+   "de_iso2": "SS",
+   "vs_naam": "South Sudan"
+  },
+  {
+   "iso2": "SE",
+   "naam": "Zweden",
+   "nl_slug": "zweden",
+   "vk_slug": "sweden",
+   "fr_slug": "suede",
+   "de_iso2": "SE",
+   "vs_naam": "Sweden"
+  },
+  {
+   "iso2": "CH",
+   "naam": "Zwitserland",
+   "nl_slug": "zwitserland",
+   "vk_slug": "switzerland",
+   "fr_slug": "suisse",
+   "de_iso2": "CH",
+   "vs_naam": "Switzerland"
+  }
+ ]
+}
