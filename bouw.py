@@ -43,6 +43,7 @@ def pas_mapping_toe(bronsleutel, ruw, mapping):
         if not info:
             # Een label dat de mappingtabel niet kent. Niet raden: benoemen.
             return {
+                "label": stuk["label"],
                 "kleur": None,
                 "type": "niet in de mappingtabel",
                 "weergave": stuk["label"],
@@ -54,6 +55,7 @@ def pas_mapping_toe(bronsleutel, ruw, mapping):
                 "citaat": stuk.get("citaat", ""),
             }
         return {
+            "label": stuk["label"],
             "kleur": info["kleur"],
             "type": info["type"],
             "weergave": info["weergave"],
@@ -135,13 +137,29 @@ def main(argv=None):
     keuzes.add_argument("--landen", help="Komma-gescheiden ISO2-codes, bv. TH,ML")
     keuzes.add_argument("--alleen-bouwen", action="store_true",
                         help="Niets ophalen; alleen het HTML opnieuw maken")
+    keuzes.add_argument("--hermap", action="store_true",
+                        help="Niets ophalen; mapping.json opnieuw toepassen op de "
+                             "laatst opgehaalde gegevens")
     argumenten = keuzes.parse_args(argv)
 
     register = json.loads(REGISTER.read_text(encoding="utf-8"))["landen"]
     mapping = json.loads(MAPPING.read_text(encoding="utf-8"))
     nu = datetime.now(timezone.utc).astimezone()
 
-    if argumenten.alleen_bouwen:
+    if argumenten.hermap:
+        if not ADVIEZEN.exists():
+            print("Er is nog geen data/adviezen.json om te hermappen.", file=sys.stderr)
+            return 1
+        gegevens = json.loads(ADVIEZEN.read_text(encoding="utf-8"))
+        aantal = hermap(gegevens, mapping)
+        gegevens["bronnen"] = {s: {k: v for k, v in b.items() if k != "labels"}
+                               for s, b in mapping["bronnen"].items()}
+        gegevens["kleuren"] = mapping["kleuren"]
+        ADVIEZEN.write_text(json.dumps(gegevens, ensure_ascii=False, indent=1),
+                            encoding="utf-8")
+        print(f"Mappingtabel opnieuw toegepast op {aantal} niveaus.")
+        print(f"Geschreven: {ADVIEZEN}")
+    elif argumenten.alleen_bouwen:
         if not ADVIEZEN.exists():
             print("Er is nog geen data/adviezen.json om te bouwen.", file=sys.stderr)
             return 1
@@ -185,6 +203,50 @@ def main(argv=None):
 
     bouw_html(gegevens)
     return 0
+
+
+def hermap(gegevens, mapping):
+    """Past mapping.json opnieuw toe op wat er al opgehaald is.
+
+    Het ruwe bronlabel staat bij elk niveau bewaard, dus een wijziging in de
+    mappingtabel is meteen zichtbaar zonder de vijf overheden opnieuw te
+    bevragen. Dat scheelt de redactie een kwartier per aanpassing.
+    """
+    aantal = 0
+    for land in gegevens.get("landen", []):
+        for sleutel, advies in land["adviezen"].items():
+            if sleutel not in mapping["bronnen"]:
+                continue
+            ruw = {
+                "gelukt": advies.get("gelukt"),
+                "bron_url": advies.get("bron_url"),
+                "gewijzigd_op": advies.get("gewijzigd_op"),
+                "bevestigd_op": advies.get("bevestigd_op"),
+                "opmerking": advies.get("opmerking"),
+                "landniveau": None,
+                "gebieden": [],
+            }
+            niveau = advies.get("landniveau")
+            if niveau and niveau.get("label"):
+                ruw["landniveau"] = {"label": niveau["label"],
+                                     "citaat": niveau.get("citaat", "")}
+            for gebied in advies.get("gebieden", []):
+                if not gebied.get("label"):
+                    continue
+                ruw["gebieden"].append({"label": gebied["label"],
+                                        "citaat": gebied.get("citaat", ""),
+                                        "gebied": gebied.get("gebied", "")})
+            if not ruw["landniveau"] and not ruw["gebieden"] and advies.get("gelukt"):
+                # Niets met een label: alleen de toelichtingen bijwerken.
+                advies["kent_niet"] = mapping["bronnen"][sleutel].get("kent_niet", {})
+                continue
+            opnieuw = pas_mapping_toe(sleutel, ruw, mapping)
+            opnieuw["overgenomen_van"] = advies.get("overgenomen_van")
+            if advies.get("niet_van_toepassing"):
+                opnieuw["niet_van_toepassing"] = True
+            land["adviezen"][sleutel] = opnieuw
+            aantal += 1 + len(ruw["gebieden"])
+    return aantal
 
 
 def _voeg_samen_met_bestaand(nieuw):

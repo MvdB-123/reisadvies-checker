@@ -240,6 +240,30 @@ class Mappingtabel(unittest.TestCase):
                     self.assertIn(info["type"], ("letterlijk", "afgeleid"))
                     self.assertTrue(info["onderbouwing"].strip())
 
+    def test_bronlabel_blijft_bewaard(self):
+        """Zonder het ruwe label kan de mappingtabel niet opnieuw worden toegepast."""
+        import bouw
+        uit = bouw.pas_mapping_toe(
+            "de",
+            {"gelukt": True,
+             "landniveau": {"label": "warning", "citaat": "x"},
+             "gebieden": [{"label": "abgeraten", "citaat": "y", "gebied": "z"}]},
+            self.mapping)
+        self.assertEqual(uit["landniveau"]["label"], "warning")
+        self.assertEqual(uit["gebieden"][0]["label"], "abgeraten")
+
+    def test_hermappen_verwerkt_een_gewijzigde_kleur(self):
+        import bouw, copy
+        mapping = copy.deepcopy(self.mapping)
+        gegevens = {"landen": [{"iso2": "XX", "naam": "Test", "adviezen": {"de": {
+            "gelukt": True, "bron_url": "http://x", "gewijzigd_op": "2026-01-01",
+            "landniveau": {"label": "warning", "kleur": "rood", "citaat": "x"},
+            "gebieden": [], "kent_niet": {}}}}]}
+        mapping["bronnen"]["de"]["labels"]["warning"]["kleur"] = "oranje"
+        bouw.hermap(gegevens, mapping)
+        self.assertEqual(
+            gegevens["landen"][0]["adviezen"]["de"]["landniveau"]["kleur"], "oranje")
+
     def test_onbekend_label_wordt_niet_geraden(self):
         import bouw
         uit = bouw.pas_mapping_toe(

@@ -112,7 +112,7 @@
       "naam": "Verenigd Koninkrijk",
       "overheid": "Foreign, Commonwealth & Development Office",
       "taal": "en",
-      "schaal": "Twee niveaus, elk voor het hele land of voor delen ervan: 'advise against all but essential travel' en 'advise against all travel'.",
+      "schaal": "Twee niveaus, elk voor het hele land of voor delen ervan: 'advise against all but essential travel' en 'advise against all travel'. Waar het VK niets afraadt, geeft het geen niveau.",
       "labels": {
         "avoid_all_travel_to_whole_country": {
           "kleur": "rood",
@@ -144,8 +144,7 @@
         }
       },
       "kent_niet": {
-        "groen": "Het VK geeft geen 'veilig'-niveau af. Geen waarschuwing betekent alleen dat er geen waarschuwing is.",
-        "geel": "Het VK kent geen niveau tussen 'geen waarschuwing' en 'alleen noodzakelijke reizen'."
+        "groen en geel": "Het VK geeft geen 'veilig'-niveau af. Op hun kaart staat bij het overige gebied alleen „See our travel advice before travelling“ — dat is de afwezigheid van een negatief advies, geen veiligheidsoordeel. Die kaart is bovendien een afbeelding: de kleur staat niet in de gegevens die het VK uitlevert, en is dus niet na te lopen."
       }
     },
     "vs": {
@@ -221,7 +220,8 @@
         }
       },
       "kent_niet": {
-        "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet."
+        "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
+        "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
       }
     }
   }
