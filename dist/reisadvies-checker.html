@@ -90,8 +90,12 @@
   td.bronlink{white-space:nowrap}
   td.bronlink a,a.vertaal{color:var(--inkt)}
   a.vertaal{font-size:12.5px;white-space:nowrap}
-  tr.notitie td{background:#fff8e1;color:#5c4400;font-size:13px;line-height:1.5}
-  tr.notitie b{color:#5c4400}
+  tr.notitie td{background:#f7f8f9;color:#5b6670;font-size:12.5px;line-height:1.5;
+    border-top:1px solid #ececec}
+  tr.notitie b{color:#404a54;font-weight:600}
+  tr.notitie.opvallend td{background:#fdf3e3;color:#7a4e00;border-top:0;
+    box-shadow:inset 3px 0 0 #e17000}
+  tr.notitie.opvallend b{color:#7a4e00}
 
   .badge{font-size:11px;border:1px solid var(--lijn);border-radius:10px;
          padding:1px 8px;color:var(--grijs);background:#fff;white-space:nowrap}
@@ -383,17 +387,20 @@ function bronRijen(sleutel, land){
 
   const notities = [];
   if(advies.overgenomen_van)
-    notities.push("<b>Deze bron gaf deze ronde niets terug.</b> Hieronder staat de "
-                + "stand van " + tekstUit(datumNL(advies.overgenomen_van)) + ".");
+    notities.push({opvallend: true,
+      tekst: "<b>Deze bron gaf deze ronde niets terug.</b> Hieronder staat de stand "
+           + "van " + tekstUit(datumNL(advies.overgenomen_van)) + "."});
   const mist = Object.entries(advies.kent_niet || {}).filter(function(p){ return p[0][0] !== "_"; });
   if(mist.length)
-    notities.push("<b>Kent deze schaal niet.</b> "
-      + mist.map(function(p){
-          return "<b>" + tekstUit(p[0]) + ":</b> " + tekstUit(p[1]);
-        }).join(" &nbsp; "));
+    notities.push({opvallend: false,
+      tekst: "<b>Kent deze schaal niet.</b> "
+           + mist.map(function(p){
+               return "<b>" + tekstUit(p[0]) + ":</b> " + tekstUit(p[1]);
+             }).join(" &nbsp; ")});
   if(advies.bevestigd_op)
-    notities.push("Door deze overheid nog geldig bevonden op "
-                + tekstUit(datumNL(advies.bevestigd_op)) + ".");
+    notities.push({opvallend: false,
+      tekst: "Door deze overheid nog geldig bevonden op "
+           + tekstUit(datumNL(advies.bevestigd_op)) + "."});
 
   const groepen = advies.gelukt ? groepeer(advies) : [];
   const totaal = (groepen.length || 1) + notities.length;
@@ -405,7 +412,8 @@ function bronRijen(sleutel, land){
       h += rij(bron, advies, groep, i === 0, totaal, land.naam);
     });
   for(const notitie of notities)
-    h += '<tr class="notitie"><td colspan="6">' + notitie + '</td></tr>';
+    h += '<tr class="notitie' + (notitie.opvallend ? " opvallend" : "")
+       + '"><td colspan="6">' + notitie.tekst + '</td></tr>';
   return h;
 }
 
