@@ -32,21 +32,27 @@
   .waarschuwing{background:#fff8e1;border:1px solid #e17000;border-left-width:4px;
                 padding:12px 14px;margin:16px 0;font-size:15px}
 
-  .samenvatting{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
-  .chip{flex:1 1 150px;border:1px solid var(--lijn);border-radius:3px;padding:10px 12px;
-        background:var(--vlak)}
-  .chip .land{font-size:13px;color:var(--grijs)}
-  .chip .kleur{font-weight:700;display:flex;align-items:center;gap:7px;margin-top:3px}
-  .bol{width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.35);
-       flex:none;display:inline-block}
-  .bol.groen{background:var(--groen)} .bol.geel{background:var(--geel)}
-  .bol.oranje{background:var(--oranje)} .bol.rood{background:var(--rood)}
-  .bol.geen{background:repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 6px)}
+  .samenvatting{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+  .chip{flex:1 1 150px;border:1px solid var(--lijn);border-radius:4px;padding:10px 12px;
+        background:#fbfbfb}
+  .chip .land{font-size:12.5px;color:var(--grijs);margin-bottom:6px}
+
+  /* De kleurcode als badge: het woord staat in de kleur, niet ernaast. Dat
+     leest sneller dan een bolletje dat tegen de tekst aan plakt, en blijft
+     leesbaar voor wie kleuren slecht onderscheidt. */
+  .kleurbadge{display:inline-block;font-weight:600;font-size:13px;line-height:1.35;
+    padding:3px 10px;border-radius:12px;border:1px solid;white-space:nowrap}
+  .kleurbadge.groen {background:#e8f4e2;color:#24610a;border-color:#a8cf95}
+  .kleurbadge.geel  {background:#fdf6cf;color:#6b5a00;border-color:#ddc94a}
+  .kleurbadge.oranje{background:#fdeedd;color:#8a4200;border-color:#eba86a}
+  .kleurbadge.rood  {background:#fbe6e4;color:#98150c;border-color:#e39b94}
+  .kleurbadge.geen  {background:#f2f2f2;color:#5c5c5c;border-color:#d0d0d0;
+    font-weight:500}
 
   .landkop{font-size:20px;margin:18px 0 4px}
 
   .tabelomhulsel{overflow-x:auto;border:1px solid var(--lijn);border-radius:3px}
-  table.overzicht{border-collapse:collapse;width:100%;min-width:940px;font-size:14px}
+  table.overzicht{border-collapse:collapse;width:100%;min-width:900px;font-size:14px}
   table.overzicht th,table.overzicht td{
     border-bottom:1px solid var(--lijn);padding:8px 9px;text-align:left;
     vertical-align:top}
@@ -55,21 +61,26 @@
   table.overzicht tbody tr:hover td{background:#fafafa}
 
   th.overheid{background:var(--vlak);font-size:15px;white-space:nowrap;
-    border-right:1px solid var(--lijn);min-width:125px}
+    border-right:1px solid var(--lijn);min-width:118px}
   th.overheid span{display:block;font-weight:400;font-size:12px;color:var(--grijs);
     white-space:normal;margin-top:2px}
-  td.kleur{white-space:nowrap;min-width:112px}
-  td.kleur b{margin-right:5px}
-  td.geldt{min-width:145px;max-width:250px}
-  td.noemt{min-width:135px;max-width:200px}
-  td.noemt .orig{display:block;font-style:italic;color:var(--grijs);font-size:13px;
+  td.kleur{white-space:nowrap;min-width:105px}
+  td.geldt{min-width:210px}
+  td.geldt .heleland{font-weight:600}
+  ul.gebieden{margin:0;padding:0;list-style:none}
+  ul.gebieden li{padding:5px 0;border-top:1px dotted #e0e0e0}
+  ul.gebieden li:first-child{padding-top:0;border-top:0}
+  .gebiednaam{display:block;font-weight:600;margin-bottom:2px}
+  .bronzin{display:block;color:var(--grijs);font-size:13px;
+    border-left:2px solid #dcdcdc;padding-left:8px}
+  td.noemt{min-width:120px;max-width:165px}
+  td.noemt .orig{display:block;font-style:italic;color:var(--grijs);font-size:12.5px;
     margin-top:2px}
-  td.waarom{min-width:250px}
-  td.waarom .reden{color:var(--grijs);font-size:13px}
+  td.waarom{min-width:170px;max-width:230px;color:var(--grijs);font-size:13px}
   td.datum{white-space:nowrap;color:var(--grijs)}
   td.bronlink{white-space:nowrap}
   td.bronlink a,a.vertaal{color:var(--inkt)}
-  a.vertaal{font-size:13px;display:inline-block;margin-top:5px}
+  a.vertaal{font-size:12.5px;white-space:nowrap}
   tr.notitie td{background:#fff8e1;color:#5c4400;font-size:13px;line-height:1.5}
   tr.notitie b{color:#5c4400}
 
@@ -146,48 +157,79 @@ function kort(tekst, max){
   return (spatie > max * 0.5 ? knip.slice(0, spatie) : knip) + " …";
 }
 
-function kleurCel(stuk){
-  const kleur = stuk && stuk.kleur ? stuk.kleur : "geen";
-  const naam = stuk && stuk.kleur
-    ? stuk.kleur.charAt(0).toUpperCase() + stuk.kleur.slice(1)
-    : "Geen kleurcode";
-  const soort = !stuk ? "" : stuk.type === "afgeleid" ? "afgeleid"
-              : stuk.type === "niet in de mappingtabel" ? "onbekend"
-              : stuk.type === "bestaat niet" ? "bestaatniet" : "";
-  return '<span class="bol ' + kleur + '"></span><b>' + naam + '</b>'
-       + (stuk ? '<span class="badge ' + soort + '">' + tekstUit(stuk.type) + '</span>' : '');
-}
-
 function zelfdeTekst(a, b){
   if(!a || !b) return false;
   const schoon = s => s.slice(0, 60).replace(/\s+/g, " ").toLowerCase();
   return schoon(a) === schoon(b);
 }
 
-function rij(bron, advies, stuk, geldtVoor, eerste, aantal){
+function kleurBadge(stuk){
+  const kleur = stuk && stuk.kleur ? stuk.kleur : "geen";
+  const naam = stuk && stuk.kleur
+    ? stuk.kleur.charAt(0).toUpperCase() + stuk.kleur.slice(1)
+    : "Geen kleurcode";
+  const soort = !stuk ? "" : stuk.type === "afgeleid" ? "afgeleid"
+              : stuk.type === "niet in de mappingtabel" ? "onbekend" : "";
+  return '<span class="kleurbadge ' + kleur + '">' + naam + '</span>'
+       + (stuk && soort ? '<span class="badge ' + soort + '">'
+                        + tekstUit(stuk.type) + '</span>' : '');
+}
+
+function gebiedenCel(groep, bron){
+  if(groep.land) return '<span class="heleland">Hele land</span>';
+  let h = '<ul class="gebieden">';
+  for(const item of groep.items){
+    const dubbel = zelfdeTekst(item.citaat, item.gebied);
+    h += '<li>';
+    if(!dubbel) h += '<span class="gebiednaam">' + tekstUit(item.gebied) + '</span>';
+    if(item.citaat){
+      h += '<span class="bronzin">&bdquo;' + tekstUit(item.citaat) + '&ldquo;';
+      if(bron.taal !== "nl")
+        h += ' <a class="vertaal" href="' + vertaalLink(item.citaat, bron.taal)
+           + '" target="_blank" rel="noopener">Vertaal</a>';
+      h += '</span>';
+    }
+    h += '</li>';
+  }
+  return h + '</ul>';
+}
+
+function groepeer(advies){
+  // Eén regel per niveau in plaats van per gebied. Vier rode Franse zones gaven
+  // vier rijen die alleen in het gebied verschilden, met drie identieke kolommen
+  // ernaast; dat maakt vergelijken juist moeilijker.
+  const groepen = [];
+  const index = {};
+  function voegToe(stuk, gebied, land){
+    const sleutel = land ? "LAND"
+      : (stuk ? (stuk.label || stuk.weergave) + "|" + (stuk.kleur || "geen") : "geen");
+    if(!index[sleutel]){
+      index[sleutel] = {stuk: stuk, land: land, items: []};
+      groepen.push(index[sleutel]);
+    }
+    if(!land) index[sleutel].items.push({gebied: gebied, citaat: stuk ? stuk.citaat : ""});
+  }
+  if(advies.landniveau) voegToe(advies.landniveau, null, true);
+  for(const g of advies.gebieden) voegToe(g, g.gebied || "Gebied", false);
+  if(!groepen.length && advies.gelukt) voegToe(null, null, true);
+  return groepen;
+}
+
+function rij(bron, advies, groep, eerste, aantal){
+  const stuk = groep ? groep.stuk : null;
   let h = "<tr>";
   if(eerste)
     h += '<th scope="rowgroup" rowspan="' + aantal + '" class="overheid">'
        + tekstUit(bron.naam) + '<span>' + tekstUit(bron.overheid) + '</span></th>';
-  h += '<td class="kleur">' + kleurCel(stuk) + '</td>';
-  h += '<td class="geldt">' + tekstUit(geldtVoor) + '</td>';
+  h += '<td class="kleur">' + kleurBadge(stuk) + '</td>';
+  h += '<td class="geldt">' + (groep ? gebiedenCel(groep, bron) : "&mdash;") + '</td>';
   if(stuk){
     h += '<td class="noemt">' + tekstUit(stuk.weergave)
        + '<span class="orig">&bdquo;' + tekstUit(stuk.bronlabel) + '&ldquo;</span></td>';
-    h += '<td class="waarom"><span class="reden">' + tekstUit(stuk.onderbouwing) + '</span>';
-    // Staat de zin al in 'Geldt voor', dan is hem herhalen als citaat alleen ruis.
-    // De vertaalknop blijft wel staan: juist bij Duits en Frans is die nodig.
-    const dubbel = zelfdeTekst(stuk.citaat, geldtVoor);
-    if(stuk.citaat && !dubbel)
-      h += '<blockquote>&bdquo;' + tekstUit(stuk.citaat) + '&ldquo;</blockquote>';
-    if(stuk.citaat && bron.taal !== "nl")
-      h += '<a class="vertaal" href="' + vertaalLink(stuk.citaat, bron.taal)
-         + '" target="_blank" rel="noopener">Vertaal'
-         + (dubbel ? ' de tekst hiernaast' : '') + '</a>';
-    h += '</td>';
+    h += '<td class="waarom">' + tekstUit(stuk.onderbouwing) + '</td>';
   } else {
-    h += '<td class="noemt">&mdash;</td><td class="waarom"><span class="reden">'
-       + tekstUit(advies.opmerking || "Deze bron gaf geen antwoord.") + '</span></td>';
+    h += '<td class="noemt">&mdash;</td><td class="waarom">'
+       + tekstUit(advies.opmerking || "Deze bron gaf geen antwoord.") + '</td>';
   }
   h += '<td class="datum">' + (advies.gewijzigd_op ? datumNL(advies.gewijzigd_op) : "&mdash;") + '</td>';
   h += '<td class="bronlink">' + (advies.bron_url
@@ -198,10 +240,10 @@ function rij(bron, advies, stuk, geldtVoor, eerste, aantal){
 
 function bronRijen(sleutel, land){
   const bron = GEGEVENS.bronnen[sleutel], advies = land.adviezen[sleutel];
-  const notities = [];
   if(!advies)
-    return rij(bron, {opmerking: "Niet opgehaald."}, null, "—", true, 1);
+    return rij(bron, {opmerking: "Niet opgehaald."}, null, true, 1);
 
+  const notities = [];
   if(advies.overgenomen_van)
     notities.push("<b>Deze bron gaf deze ronde niets terug.</b> Hieronder staat de "
                 + "stand van " + tekstUit(datumNL(advies.overgenomen_van)) + ".");
@@ -215,18 +257,14 @@ function bronRijen(sleutel, land){
     notities.push("Door deze overheid nog geldig bevonden op "
                 + tekstUit(datumNL(advies.bevestigd_op)) + ".");
 
-  const stukken = [];
-  if(advies.landniveau) stukken.push([advies.landniveau, "Hele land"]);
-  for(const g of advies.gebieden) stukken.push([g, g.gebied || "Gebied"]);
-  if(!stukken.length && advies.gelukt) stukken.push([null, "Hele land"]);
-
+  const groepen = advies.gelukt ? groepeer(advies) : [];
+  const totaal = (groepen.length || 1) + notities.length;
   let h = "";
-  const totaal = (stukken.length || 1) + notities.length;
   if(!advies.gelukt)
-    h += rij(bron, advies, null, "—", true, totaal);
+    h += rij(bron, advies, null, true, totaal);
   else
-    stukken.forEach(function(paar, i){
-      h += rij(bron, advies, paar[0], paar[1], i === 0, totaal);
+    groepen.forEach(function(groep, i){
+      h += rij(bron, advies, groep, i === 0, totaal);
     });
   for(const notitie of notities)
     h += '<tr class="notitie"><td colspan="6">' + notitie + '</td></tr>';
@@ -240,11 +278,12 @@ function toonLand(land){
   for(const s of VOLGORDE){
     const a = land.adviezen[s], bron = GEGEVENS.bronnen[s];
     const n = a && a.landniveau;
+    const etiket = n && n.kleur
+      ? n.kleur.charAt(0).toUpperCase() + n.kleur.slice(1)
+      : (a && a.gebieden && a.gebieden.length ? "alleen gebieden" : "geen niveau");
     uit.push('<div class="chip"><div class="land">' + tekstUit(bron.naam) + '</div>'
-      + '<div class="kleur"><span class="bol ' + (n && n.kleur ? n.kleur : "geen") + '"></span>'
-      + (n && n.kleur ? n.kleur.charAt(0).toUpperCase() + n.kleur.slice(1)
-         : (a && a.gebieden && a.gebieden.length ? "alleen gebieden" : "geen niveau"))
-      + '</div></div>');
+      + '<span class="kleurbadge ' + (n && n.kleur ? n.kleur : "geen") + '">'
+      + etiket + '</span></div>');
   }
   uit.push('</div>');
   uit.push('<div class="knoppen"><button onclick="kopieer()">Kopieer overzicht</button>'
