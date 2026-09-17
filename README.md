@@ -69,6 +69,17 @@ Komt een overheid met een label dat niet in de tabel staat, dan **raadt de tool
 niet**: het overzicht toont "niet in de mappingtabel", en de controle laat de
 ophaalronde mislukken totdat de redactie het label heeft geduid.
 
+### Een wijziging meteen zien
+
+Na het aanpassen van `mapping.json` hoeft u niet te wachten op een ophaalronde.
+In het tabblad **Actions** kunt u de ronde starten, maar sneller is het om de
+tabel opnieuw toe te passen op wat er al ligt:
+
+    python3 bouw.py --hermap
+
+Dat duurt seconden in plaats van een kwartier, omdat het ruwe bronlabel bij elk
+niveau bewaard blijft. Het haalt niets op en verandert dus niets aan de datums.
+
 ## Hoe het in elkaar zit
 
 | bestand | wat het doet |
@@ -78,6 +89,8 @@ ophaalronde mislukken totdat de redactie het label heeft geduid.
 | `landen.py` → `data/landen.json` | koppelt de landaanduiding van elke bron aan elkaar (`thailand`, `thailande`, `TH`) |
 | `bouw.py` | haalt op, past de mapping toe, schrijft `data/adviezen.json` en het HTML |
 | `controle.py` | weigert een ophaalronde die onbruikbaar is |
+| `acceptatie.py` | loopt de acceptatiecriteria na op de werkelijke gegevens |
+| `test_bouwstenen.py` | tests voor de valkuilen die bij het bouwen echt optraden |
 | `sjabloon.html` | het scherm |
 
 Draai `python3 landen.py` opnieuw als er een land bijkomt of als een website zijn
@@ -106,13 +119,22 @@ Dingen die bij het bouwen bleken en die het gedrag van de tool verklaren:
   kwamen er 10 niet in elke ronde voor, waaronder Mali en Noord-Korea. De tool
   haalt de feed daarom drie keer op. Ontbreekt een land dan nog, dan toont het
   overzicht de stand van de vorige ronde, mét de datum daarvan.
-- **Duitsland kent geen tussenniveaus.** Alleen Reisewarnung en
-  Teilreisewarnung. Geen waarschuwing betekent dus niet "groen".
+- **Duitsland gebruikt twee soorten formuleringen die niet hetzelfde niveau
+  uitdrukken.** "Vor Reisen … wird gewarnt" is de formele (Teil-)Reisewarnung;
+  "Von Reisen … wird abgeraten" is lichter. Gemeten over de 46 landen met een
+  waarschuwingsvlag: 22 gebruiken alleen "gewarnt", 23 gebruiken beide naast
+  elkaar. De eerste vorm krijgt rood en het stempel *letterlijk*, de tweede
+  oranje met het stempel *afgeleid*. Geen waarschuwing betekent niet "groen".
 - **Het VK kent geen groen of geel.** Alleen "advise against all travel" en
   "advise against all but essential travel".
 - **Frankrijk geeft geen niveau voor een heel land**, alleen zones op een kaart.
   Behalve als het letterlijk schrijft dat het hele grondgebied in één zone valt;
   dan neemt de tool dat over.
+- **De basiskleur op de kaarten van het VK en Frankrijk nemen we niet over.**
+  Die kaarten zijn afbeeldingen: de kleur staat niet in de gegevens die zij
+  uitleveren. Bovendien zegt de groene legenda van het VK "See our travel advice
+  before travelling" — dat is de afwezigheid van een negatief advies, geen
+  veiligheidsoordeel zoals onze groen.
 - **Een overheid publiceert geen reisadvies over het eigen land.** Bij Duitsland
   als bestemming staat daarom geen Duits advies. Dat is geen storing.
 
