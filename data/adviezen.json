@@ -1,5 +1,5 @@
 {
- "opgehaald_op": "2026-09-17T17:43:10+00:00",
+ "opgehaald_op": "2026-09-17T18:03:27+00:00",
  "bronnen": {
   "nl": {
    "naam": "Nederland",
@@ -1118,9 +1118,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/afghanistan/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "formellement_deconseillee",
+      "kleur": "rood",
+      "type": "letterlijk",
+      "weergave": "Ten stelligste afgeraden",
+      "bronlabel": "Zones formellement déconseillées",
+      "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+      "citaat": "La totalité du territoire est formellement déconseillée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -1201,7 +1209,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.alb.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/albania-travel-advisory.html",
      "gewijzigd_op": "2026-08-26",
      "bevestigd_op": null,
      "opmerking": null,
@@ -1213,7 +1221,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Albania due to crime."
+      "citaat": "Albania - Level 2: Exercise Increased Caution"
      },
      "gebieden": [],
      "kent_niet": {},
@@ -1370,7 +1378,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dza.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/algeria-travel-advisory.html",
      "gewijzigd_op": "2026-08-25",
      "bevestigd_op": null,
      "opmerking": null,
@@ -2294,7 +2302,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.atg.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/antigua-and-barbuda-travel-advisory.html",
      "gewijzigd_op": "2026-05-20",
      "bevestigd_op": null,
      "opmerking": null,
@@ -2306,7 +2314,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Antigua and Barbuda - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Antigua and Barbuda."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -2317,9 +2325,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/antigua-et-barbuda/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -2539,7 +2555,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.arm.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/armenia-travel-advisory.html",
      "gewijzigd_op": "2025-09-05",
      "bevestigd_op": null,
      "opmerking": null,
@@ -2894,7 +2910,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.aze.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/azerbajian-travel-advisory.html",
      "gewijzigd_op": "2026-04-28",
      "bevestigd_op": null,
      "opmerking": null,
@@ -2906,9 +2922,20 @@
       "weergave": "Niveau 3: heroverweeg uw reis",
       "bronlabel": "Level 3: Reconsider Travel",
       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
-      "citaat": "Reconsider travel to Azerbaijan due to terrorism, armed conflict, and risk of landmines."
+      "citaat": "Reconsider Travel to Azerbaijan due to terrorism, armed conflict, and risk of landmines."
      },
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "4",
+       "kleur": "rood",
+       "type": "afgeleid",
+       "weergave": "Niveau 4: reis niet",
+       "bronlabel": "Level 4: Do Not Travel",
+       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
+       "citaat": "Do not travel to: The southern border region due to risk of armed conflict (unless this is your best overland exit from Iran).",
+       "gebied": "The southern border region due to risk of armed conflict (unless this is your best overland exit from Iran)."
+      }
+     ],
      "kent_niet": {},
      "taal": "en"
     },
@@ -3044,10 +3071,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/bahamas/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-06",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "L’ensemble de l’archipel est en vigilance renforcée",
+       "gebied": "L’ensemble de l’archipel est en vigilance renforcée"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -3402,7 +3440,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.brb.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/barbados-travel-advisory.html",
      "gewijzigd_op": "2026-04-10",
      "bevestigd_op": null,
      "opmerking": null,
@@ -3414,7 +3452,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Barbados - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Barbados."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -3508,7 +3546,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bel.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/belgium-travel-advisory.html",
      "gewijzigd_op": "2026-07-23",
      "bevestigd_op": null,
      "opmerking": null,
@@ -3531,10 +3569,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/belgique/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-18",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "Le territoire belge est placé en vigilance normale",
+       "gebied": "Le territoire belge est placé en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -4277,7 +4326,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bih.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bosinia-and-herzegovina-travel-advisory.html",
      "gewijzigd_op": "2026-08-27",
      "bevestigd_op": null,
      "opmerking": null,
@@ -4669,7 +4718,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vgb.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/british-virgin-islands-travel-advisory.html",
      "gewijzigd_op": "2026-05-22",
      "bevestigd_op": null,
      "opmerking": null,
@@ -4681,7 +4730,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "British Virgin Islands - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in the British Virgin Islands."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -5538,9 +5587,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/canada/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Recommandations générales en matière de déplacement à l’inté; Activités sportives à risque; Risques naturels. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire canadien figure en vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -5598,7 +5655,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.bes.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/bonaire-travel-advisory.html",
      "gewijzigd_op": "2026-08-20",
      "bevestigd_op": null,
      "opmerking": null,
@@ -5610,7 +5667,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Bonaire - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Bonaire."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -5858,15 +5915,25 @@
      "opmerking": null,
      "overgenomen_van": null,
      "landniveau": {
-      "label": "formellement_deconseillee",
-      "kleur": "rood",
+      "label": "deconseillee_sauf_imperative",
+      "kleur": "oranje",
       "type": "letterlijk",
-      "weergave": "Ten stelligste afgeraden",
-      "bronlabel": "Zones formellement déconseillées",
-      "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
-      "citaat": "En raison de la présence de groupes armés particulièrement actifs, la situation sur l’ensemble du territoire (hors Bangui et Bimbo) est difficilement contrôlable et le niveau d’insécurité élevé. Les déplacements, en particulier en dehors de la capitale, sont à proscrire."
+      "weergave": "Afgeraden, tenzij dwingende reden",
+      "bronlabel": "Zones déconseillées sauf raison impérative",
+      "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+      "citaat": "L’intégralité du territoire est formellement déconseillée ou déconseillée sauf raison impérative"
      },
      "gebieden": [
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "En raison de la présence de groupes armés particulièrement actifs, la situation sur l’ensemble du territoire (hors Bangui et Bimbo) est difficilement contrôlable et le niveau d’insécurité élevé. Les déplacements, en particulier en dehors de la capitale, sont à proscrire.",
+       "gebied": "En raison de la présence de groupes armés particulièrement actifs, la situation sur l’ensemble du territoire (hors Bangui et Bimbo) est difficilement contrôlable et le niveau d’insécurité élevé. […]"
+      },
       {
        "label": "deconseillee_sauf_imperative",
        "kleur": "oranje",
@@ -6437,10 +6504,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/comores/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "L’ensemble des Comores est placé en vigilance renforcée (en jaune sur la carte).",
+       "gebied": "L’ensemble des Comores est placé en vigilance renforcée (en jaune sur la carte)."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -6932,10 +7010,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/iles-cook/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-09",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "L’ensemble des Îles Cook est en vigilance normale",
+       "gebied": "L’ensemble des Îles Cook est en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -7051,10 +7140,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/costa-rica/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Le Costa Rica figure en vigilance renforcée sur la carte sécuritaire (en jaune)",
+       "gebied": "Le Costa Rica figure en vigilance renforcée sur la carte sécuritaire (en jaune)"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -7340,7 +7440,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.cyp.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/cyprus-travel-advisory.html",
      "gewijzigd_op": "2026-06-01",
      "bevestigd_op": null,
      "opmerking": null,
@@ -7352,7 +7452,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Cyprus - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise Normal Precautions in Cyprus."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -7469,10 +7569,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/danemark/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-08-19",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "Le territoire danois est placé en vigilance normale.",
+       "gebied": "Le territoire danois est placé en vigilance normale."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -7563,7 +7674,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.dji.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/djibouti-travel-advisory.html",
      "gewijzigd_op": "2025-03-06",
      "bevestigd_op": null,
      "opmerking": null,
@@ -7577,7 +7688,18 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Djibouti due to terrorism."
      },
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "3",
+       "kleur": "oranje",
+       "type": "afgeleid",
+       "weergave": "Niveau 3: heroverweeg uw reis",
+       "bronlabel": "Level 3: Reconsider Travel",
+       "onderbouwing": "'Heroverweeg uw reis' ligt dicht bij 'alleen noodzakelijke reizen', maar is niet hetzelfde. Wij stellen dit gelijk aan oranje.",
+       "citaat": "Reconsider travel to: Areas bordering Eritrea due to border tensions Terrorists may attack with little or no warning.",
+       "gebied": "Areas bordering Eritrea due to border tensions Terrorists may attack with little or no warning."
+      }
+     ],
      "kent_niet": {},
      "taal": "en"
     },
@@ -7711,9 +7833,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/dominique/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -7817,9 +7947,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/republique-dominicaine/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire de la République dominicaine est en vigilance renforcée (en jaune sur la carte sécuritaire)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -7900,10 +8038,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/allemagne/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-18",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "Le territoire allemand est placé en vigilance normale",
+       "gebied": "Le territoire allemand est placé en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -8596,9 +8745,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/guinee-equatoriale/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-06",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’intégralité du pays est en vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -9756,6 +9913,16 @@
      "landniveau": null,
      "gebieden": [
       {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "La majeure partie du territoire philippin est placée en vigilance renforcée",
+       "gebied": "La majeure partie du territoire philippin est placée en vigilance renforcée"
+      },
+      {
        "label": "formellement_deconseillee",
        "kleur": "rood",
        "type": "letterlijk",
@@ -9878,9 +10045,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/finlande/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’intégralité du territoire de la Finlande est en vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -10068,10 +10243,31 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/guyana/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-06",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Le Guyana figure en vigilance renforcée (en jaune sur la carte).",
+       "gebied": "Le Guyana figure en vigilance renforcée (en jaune sur la carte)."
+      },
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "Il est en outre formellement déconseillé de se déplacer à pied une fois la nuit tombée, quel que soit le quartier de la capitale",
+       "gebied": "Il est en outre formellement déconseillé de se déplacer à pied une fois la nuit tombée, quel que soit le quartier de la capitale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -10396,9 +10592,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/gambie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire est en vigilance renforcée (en jaune)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -10728,6 +10932,16 @@
      "landniveau": null,
      "gebieden": [
       {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Bien que la majorité du territoire soit en zone de vigilance renforcée (jaune), dans le contexte de l’expansion de la menace terroriste vers le Golfe de Guinée, une vigilance accrue est nécessaire, en particulier dans le nord du Ghana et à la frontière ghanéo-togolaise",
+       "gebied": "Bien que la majorité du territoire soit en zone de vigilance renforcée (jaune), dans le contexte de l’expansion de la menace terroriste vers le Golfe de Guinée, une vigilance accrue est nécessaire […]"
+      },
+      {
        "label": "formellement_deconseillee",
        "kleur": "rood",
        "type": "letterlijk",
@@ -11043,7 +11257,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.grd.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/grenada-travel-advisory.html",
      "gewijzigd_op": "2026-01-05",
      "bevestigd_op": null,
      "opmerking": null,
@@ -11055,7 +11269,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Grenada due to crime."
+      "citaat": "Exercise Increased Caution in Grenada due to risk of crime."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -11066,9 +11280,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/grenade/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-06",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -11172,9 +11394,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/grece/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est placé en zone de vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -11493,9 +11723,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/guatemala/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-06",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Dans la capitale; Visite des sites archéologiques. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est en vigilance renforcée (en jaune)."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -12212,9 +12450,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/hongrie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-09",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est placé en vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -12436,9 +12682,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/islande/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-19",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire islandais est placé en zone de vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -12542,10 +12796,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/irlande/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-09",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "L’Irlande est placée en vigilance normale",
+       "gebied": "L’Irlande est placée en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -13390,9 +13655,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/italie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-05-22",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire italien est placé en zone de vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -14369,9 +14642,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/cap-vert/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’intégralité du territoire capverdien se situe en zone de vigilance renforcée (en jaune sur la carte ci-dessous)."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -15202,7 +15483,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ken.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/kenya-travel-advisory.html",
      "gewijzigd_op": "2026-07-28",
      "bevestigd_op": null,
      "opmerking": null,
@@ -15214,7 +15495,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Kenya due to risk of crime, kidnapping, terrorism, unrest, health, and traffic safety."
+      "citaat": "Do Not Travel to the counties of Garissa, Wajir, Mandera, Lamu, Tana River (except Tsavo National Park), Kilifi (north of highway C103), and coastal areas north of Malindi, due to risk of kidnapping and terrorism."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -15362,9 +15643,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/kirghizstan/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-25",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire du Kirghizstan est placé en vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -15574,10 +15863,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/koweit/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-07-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "En outre, il est formellement déconseillé de se rendre dans une zone de 5 km de large à la frontière avec l’Irak (hormis la localité dite d’Abdali Farms) et dans les îles de Warbah et de Boubiyan, qui font l’objet de missions de sécurisation des forces armées",
+       "gebied": "En outre, il est formellement déconseillé de se rendre dans une zone de 5 km de large à la frontière avec l’Irak (hormis la localité dite d’Abdali Farms) et dans les îles de Warbah et de Boubiyan […]"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -15797,9 +16097,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/croatie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-08-18",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Déminage achevé; Risques naturels; Manifestations et rassemblements. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire croate est placé en vigilance normale (vert)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -15956,10 +16264,31 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/laos/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "La zone frontalière avec la Birmanie est déconseillée sauf raison impérative en raison du risque criminel.",
+       "gebied": "La zone frontalière avec la Birmanie est déconseillée sauf raison impérative en raison du risque criminel."
+      },
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "L’ensemble du reste du pays est en zone de vigilance renforcée.",
+       "gebied": "L’ensemble du reste du pays est en zone de vigilance renforcée."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -16062,9 +16391,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/lesotho/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est en vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -16179,9 +16516,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/lettonie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire de Lettonie est en zone de vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -16951,7 +17296,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ltu.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/lithuania-travel-advisory.html",
      "gewijzigd_op": "2026-04-28",
      "bevestigd_op": null,
      "opmerking": null,
@@ -16963,7 +17308,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Lithuania - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Lithuania."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -16974,9 +17319,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/lituanie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est placé en zone de vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -17080,9 +17433,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/luxembourg/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire luxembourgeois est placé en zone de vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -17293,9 +17654,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/madagascar/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Anjozorobe; Nosy Be; Tananarive. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire est en vigilance renforcée (en jaune)."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -17399,9 +17768,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/malawi/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire est en vigilance renforcée (en jaune) en raison du risque routier qui est d’autant plus important que l’assistance routière d’urgence est très limitée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -17505,9 +17882,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/maldives/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -17633,10 +18018,51 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/malaisie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-10",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "Deux régions présentent un risque spécifique : Zones formellement déconseillées Au nord et à l’est de l’État du Sabah, les îles et tous les espaces maritimes environnants des côtes nord et est de l’État du Sabah sont formellement déconseillés, plusieurs personnes ayant été tuées au large de cette […]",
+       "gebied": "Deux régions présentent un risque spécifique : Zones formellement déconseillées Au nord et à l’est de l’État du Sabah, les îles et tous les espaces maritimes environnants des côtes nord et est de […]"
+      },
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "La navigation dans cette zone est formellement déconseillée.",
+       "gebied": "La navigation dans cette zone est formellement déconseillée."
+      },
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Zones déconseillées sauf raison impérative La zone frontalière entre la Malaisie et la Thaïlande est déconseillée sauf raison impérativeétant donnée la situation sécuritaire dans le sud de la Thaïlande et les divers trafics (y compris d’êtres humains) qu’elle abrite.",
+       "gebied": "Zones déconseillées sauf raison impérative La zone frontalière entre la Malaisie et la Thaïlande est déconseillée sauf raison impérativeétant donnée la situation sécuritaire dans le sud de la […]"
+      },
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Moins concernées par ces trafics et bénéficiant d’une meilleure présence des forces de l’ordre, les villes de Kangar et de Kota Baharu sont placées en zone de vigilance renforcée ; Les côtes nord et est de l’État du Sabah",
+       "gebied": "Moins concernées par ces trafics et bénéficiant d’une meilleure présence des forces de l’ordre, les villes de Kangar et de Kota Baharu sont placées en zone de vigilance renforcée ; Les côtes nord et […]"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -17829,7 +18255,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mlt.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/malta-travel-advisory.html",
      "gewijzigd_op": "2026-07-09",
      "bevestigd_op": null,
      "opmerking": null,
@@ -17852,9 +18278,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/malte/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: En cas de tempête; Délinquance; Risque sismique. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire est en vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -18377,7 +18811,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.mrt.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/mauritania-travel-advisory.html",
      "gewijzigd_op": "2026-08-18",
      "bevestigd_op": null,
      "opmerking": null,
@@ -18597,9 +19031,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/maurice/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est placé en zone de vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -19485,7 +19927,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.fsm.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/federated-states-of-micronesia-travel-advisory.html",
      "gewijzigd_op": "2026-07-07",
      "bevestigd_op": null,
      "opmerking": null,
@@ -19497,7 +19939,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Federated States of Micronesia - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in the Federated States of Micronesia (FSM)."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -19722,9 +20164,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/monaco/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Risques naturels; Délinquance. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’intégralité du pays est en zone de vigilance normale ."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -19841,9 +20291,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/mongolie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’intégralité du territoire de la Mongolie est en vigilance renforcée en raison des distances, de l’infrastructure routière, de la faiblesse des structures médicales"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -19947,10 +20405,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/montenegro/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-25",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "L’ensemble du Monténégro est en zone de vigilance normale",
+       "gebied": "L’ensemble du Monténégro est en zone de vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -20718,9 +21187,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/pays-bas/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire est en vigilance normale (en vert)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -20837,9 +21314,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/nepal/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Avertissement. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est en zone de vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -21845,10 +22330,29 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/coree-du-nord/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
-     "gebieden": [],
+     "landniveau": {
+      "label": "formellement_deconseillee",
+      "kleur": "rood",
+      "type": "letterlijk",
+      "weergave": "Ten stelligste afgeraden",
+      "bronlabel": "Zones formellement déconseillées",
+      "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+      "citaat": "L’intégralité du territoire nord-coréen est formellement déconseillée (rouge sur la carte des Conseils aux voyageurs)."
+     },
+     "gebieden": [
+      {
+       "label": "formellement_deconseillee",
+       "kleur": "rood",
+       "type": "letterlijk",
+       "weergave": "Ten stelligste afgeraden",
+       "bronlabel": "Zones formellement déconseillées",
+       "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+       "citaat": "Les déplacements en Corée du Nord sont formellement déconseillés jusqu’à nouvel ordre",
+       "gebied": "Les déplacements en Corée du Nord sont formellement déconseillés jusqu’à nouvel ordre"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -22057,9 +22561,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/norvege/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Tourisme arctique. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire est en vigilance normale (en vert)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -22602,10 +23114,29 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/oman/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-07-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
-     "gebieden": [],
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’intégralité du pays est en zone de vigilance renforcée, à l'exception des régions de Salalah, de Douqm et de Moussandam, où les déplacements sont déconseillés, sauf raison impérative."
+     },
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Les Français qui se rendent dans le gouvernorat du Dhofar en dehors de la frange côtière doivent s’assurer que les mesures adéquates ont été prises concernant leur sécurité personnelle et maintenir en toutes circonstances un niveau de vigilance renforcée.",
+       "gebied": "Les Français qui se rendent dans le gouvernorat du Dhofar en dehors de la frange côtière doivent s’assurer que les mesures adéquates ont été prises concernant leur sécurité personnelle et maintenir […]"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -22708,9 +23239,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/timor-oriental/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire du Timor oriental est placé en zone de vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -23064,10 +23603,31 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/pakistan/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Sont formellement déconseillées (en rouge sur la carte sécuritaire) : la province du Baloutchistan (la ville de Quetta a été frappée par neuf attaques de militants en 2020) ; les zones tribales (ex-FATA) ; la province du Khyber-Pakhtunkhwa ; la province du Pendjab, à l’exception de la zone comprise […]",
+       "gebied": "Sont formellement déconseillées (en rouge sur la carte sécuritaire) : la province du Baloutchistan (la ville de Quetta a été frappée par neuf attaques de militants en 2020) ; les zones tribales […]"
+      },
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Le reste du territoire est déconseillé sauf raison impérative (en orange sur la carte sécuritaire)",
+       "gebied": "Le reste du territoire est déconseillé sauf raison impérative (en orange sur la carte sécuritaire)"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -23170,9 +23730,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/republique-des-palaos/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire de la République des Palaos est en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -23505,7 +24073,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.pan.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/panama-travel-advisory.html",
      "gewijzigd_op": "2026-08-19",
      "bevestigd_op": null,
      "opmerking": null,
@@ -23519,18 +24087,7 @@
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
       "citaat": "Exercise increased caution in Panama due to crime."
      },
-     "gebieden": [
-      {
-       "label": "4",
-       "kleur": "rood",
-       "type": "afgeleid",
-       "weergave": "Niveau 4: reis niet",
-       "bronlabel": "Level 4: Do Not Travel",
-       "onderbouwing": "'Do Not Travel' komt overeen met rood.",
-       "citaat": "Do not travel to: The Mosquito Gulf due to crime.",
-       "gebied": "The Mosquito Gulf due to crime."
-      }
-     ],
+     "gebieden": [],
      "kent_niet": {},
      "taal": "en"
     },
@@ -23709,10 +24266,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/papouasie-nouvelle-guinee/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Elle est déconseillée sauf raison impérative.",
+       "gebied": "Elle est déconseillée sauf raison impérative."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -24265,10 +24833,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/pologne/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "La Pologne figure en vigilance normale (vert sur la carte sécuritaire)",
+       "gebied": "La Pologne figure en vigilance normale (vert sur la carte sécuritaire)"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -24371,9 +24950,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/portugal/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-11",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale (en vert)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -24680,9 +25267,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/roumanie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-04-20",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -25224,7 +25819,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.kn.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/saint-kitts-and-nevis-travel-advisory.html",
      "gewijzigd_op": "2026-07-07",
      "bevestigd_op": null,
      "opmerking": null,
@@ -25236,7 +25831,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Saint Kitts and Nevis - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in St. Kitts and Nevis."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -25247,9 +25842,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/saint-christophe-et-nieves/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -25330,7 +25933,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.lca.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/saint-lucia-travel-advisory.html",
      "gewijzigd_op": "2026-07-10",
      "bevestigd_op": null,
      "opmerking": null,
@@ -25342,7 +25945,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Saint Lucia due to risk of crime."
+      "citaat": "Exercise Increased Caution in Saint Lucia due to risk of crime."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -25353,9 +25956,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/sainte-lucie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -25522,7 +26133,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.vct.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/saint-vincent-and-the-grenadines.html",
      "gewijzigd_op": "2026-07-07",
      "bevestigd_op": null,
      "opmerking": null,
@@ -25534,7 +26145,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Saint Vincent and the Grenadines - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Saint Vincent and the Grenadines."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -25545,9 +26156,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/saint-vincent-et-les-grenadines/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -25737,9 +26356,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/iles-salomon/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-09",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire des Îles Salomon est placé en vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -25843,10 +26470,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/samoa/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "L’ensemble de Samoa est placé en vigilance normale",
+       "gebied": "L’ensemble de Samoa est placé en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -25929,10 +26567,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/saint-marin/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "L’ensemble de Saint Marin est placé en vigilance normale.",
+       "gebied": "L’ensemble de Saint Marin est placé en vigilance normale."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -26048,10 +26697,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/sao-tome-et-principe/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "L’ensemble de l’archipel est en vigilance renforcée (en jaune).",
+       "gebied": "L’ensemble de l’archipel est en vigilance renforcée (en jaune)."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -26407,6 +27067,16 @@
        "weergave": "Afgeraden, tenzij dwingende reden",
        "bronlabel": "Zones déconseillées sauf raison impérative",
        "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Certaines parties de la Casamance, la frontière avec le Mali et la partie sud de la frontière avec la Mauritanie sont déconseillées sauf raison impérative",
+       "gebied": "Certaines parties de la Casamance, la frontière avec le Mali et la partie sud de la frontière avec la Mauritanie sont déconseillées sauf raison impérative"
+      },
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
        "citaat": "Les zones frontalières avec le Mali et une partie de la Mauritanie (dans le département de Matam) peuvent être déstabilisées par des éléments extérieurs. […]",
        "gebied": "Les zones frontalières avec le Mali et une partie de la Mauritanie (dans le département de Matam) peuvent être déstabilisées par des éléments extérieurs. […]"
       },
@@ -26560,7 +27230,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.srb.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/serbia-travel-advisory.html",
      "gewijzigd_op": "2026-08-27",
      "bevestigd_op": null,
      "opmerking": null,
@@ -26583,9 +27253,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/serbie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -26950,9 +27628,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/singapour/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire de Singapour est placé en vigilance normale (vert)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -27241,9 +27927,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/slovenie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -27347,9 +28041,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/slovaquie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Avertissement concernant les ours. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire est en vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -27727,9 +28429,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/espagne/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -27833,9 +28543,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/sri-lanka/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est placé en zone de vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -27939,9 +28657,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/suriname/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est en zone de vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -28131,9 +28857,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/eswatini/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du pays est en vigilance renforcée"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -28237,9 +28971,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/syrie/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "formellement_deconseillee",
+      "kleur": "rood",
+      "type": "letterlijk",
+      "weergave": "Ten stelligste afgeraden",
+      "bronlabel": "Zones formellement déconseillées",
+      "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+      "citaat": "L’ensemble du pays est formellement déconseillé"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -28460,10 +29202,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/taiwan/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "Le territoire taïwanais est placé en vigilance normale",
+       "gebied": "Le territoire taïwanais est placé en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -28575,7 +29328,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tza.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/tanzania-travel-advisory.html",
      "gewijzigd_op": "2025-10-31",
      "bevestigd_op": null,
      "opmerking": null,
@@ -29340,10 +30093,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/tonga/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "L’ensemble de l’archipel des Tonga est en zone de vigilance renforcée.",
+       "gebied": "L’ensemble de l’archipel des Tonga est en zone de vigilance renforcée."
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -29864,9 +30628,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/republique-tcheque/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale (en vert sur la carte sécuritaire)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -30326,7 +31098,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.tkm.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/turkmenistan-travel-advisory.html",
      "gewijzigd_op": "2026-08-21",
      "bevestigd_op": null,
      "opmerking": null,
@@ -30338,7 +31110,7 @@
       "weergave": "Niveau 1: normale voorzorgsmaatregelen",
       "bronlabel": "Level 1: Exercise Normal Precautions",
       "onderbouwing": "Het laagste Amerikaanse niveau. Wij stellen dit gelijk aan groen; het is een keuze, geen gelijkluidende omschrijving.",
-      "citaat": "Turkmenistan - Level 1: Exercise Normal Precautions"
+      "citaat": "Exercise normal precautions in Turkmenistan."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -30668,7 +31440,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.ury.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/uruguay-travel-advisory.html",
      "gewijzigd_op": "2026-07-28",
      "bevestigd_op": null,
      "opmerking": null,
@@ -30816,10 +31588,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/vanuatu/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_renforcee",
+       "kleur": "geel",
+       "type": "letterlijk",
+       "weergave": "Verhoogde waakzaamheid",
+       "bronlabel": "Zones en vigilance renforcée",
+       "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+       "citaat": "Vanuatu est placé en vigilance renforcée (en jaune sur la carte sécuritaire)",
+       "gebied": "Vanuatu est placé en vigilance renforcée (en jaune sur la carte sécuritaire)"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -31228,10 +32011,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/royaume-uni/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-12",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "vigilance_normale",
+       "kleur": "groen",
+       "type": "letterlijk",
+       "weergave": "Normale waakzaamheid",
+       "bronlabel": "Vigilance normale",
+       "onderbouwing": "Het laagste Franse zoneniveau.",
+       "citaat": "Le territoire britannique est placé en vigilance normale",
+       "gebied": "Le territoire britannique est placé en vigilance normale"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -31362,9 +32156,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/emirats-arabes-unis/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-07-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "formellement_deconseillee",
+      "kleur": "rood",
+      "type": "letterlijk",
+      "weergave": "Ten stelligste afgeraden",
+      "bronlabel": "Zones formellement déconseillées",
+      "onderbouwing": "Het zwaarste Franse zoneniveau: reizen worden formeel afgeraden.",
+      "citaat": "L’intégralité du pays est en zone de vigilance renforcée, à l’exception des îles Grande Tomb et Petite Tomb et Abou Moussa qui font l’objet d’un contentieux territorial et sont formellement déconseillées en raison du risque d’arraisonnements et arrestations (cf. excursions et pêche en mer)"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -31570,9 +32372,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/vietnam/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-24",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’ensemble du territoire est en vigilance renforcée."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -32000,7 +32810,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.zmb.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/zambia-travel-advisory.html",
      "gewijzigd_op": "2023-07-31",
      "bevestigd_op": null,
      "opmerking": null,
@@ -32117,7 +32927,7 @@
     },
     "vs": {
      "gelukt": true,
-     "bron_url": "https://travel.state.gov/content/tsg_aem/us/en/home/international-travel/travel-advisories/destination.zwe.html",
+     "bron_url": "https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories/zimbabwe-travel-advisory.html",
      "gewijzigd_op": "2023-06-27",
      "bevestigd_op": null,
      "opmerking": null,
@@ -32129,7 +32939,7 @@
       "weergave": "Niveau 2: extra voorzichtigheid",
       "bronlabel": "Level 2: Exercise Increased Caution",
       "onderbouwing": "Verhoogde oplettendheid zonder reisbeperking. Wij stellen dit gelijk aan geel.",
-      "citaat": "Exercise increased caution in Zimbabwe due to crime and official harassment of U.S. citizen s."
+      "citaat": "Exercise increased caution in Zimbabwe due to crime and official harassment of U.S. citizens."
      },
      "gebieden": [],
      "kent_niet": {},
@@ -32257,9 +33067,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/afrique-du-sud/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-17",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: À Johannesburg :; À Pretoria :; À Nelspruit :. Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_renforcee",
+      "kleur": "geel",
+      "type": "letterlijk",
+      "weergave": "Verhoogde waakzaamheid",
+      "bronlabel": "Zones en vigilance renforcée",
+      "onderbouwing": "Reizen kan, met extra oplettendheid; dat komt overeen met geel.",
+      "citaat": "L’intégralité du pays est en zone de vigilance renforcée (en jaune sur la carte) mais certains endroits doivent faire l’objet d’une vigilance particulière"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -32470,10 +33288,21 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/coree-du-sud/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-05",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt hier wel gebieden, maar onder eigen kopjes in plaats van de vaste zonekopjes: Violences sexuelles et risques d’intoxication criminelle au . Het niveau is daaruit niet vast te stellen; zie de bronpagina.",
+     "opmerking": "Frankrijk geeft geen niveau voor het hele land, alleen voor zones.",
      "overgenomen_van": null,
      "landniveau": null,
-     "gebieden": [],
+     "gebieden": [
+      {
+       "label": "deconseillee_sauf_imperative",
+       "kleur": "oranje",
+       "type": "letterlijk",
+       "weergave": "Afgeraden, tenzij dwingende reden",
+       "bronlabel": "Zones déconseillées sauf raison impérative",
+       "onderbouwing": "Alleen reizen bij dwingende noodzaak; dat komt overeen met oranje.",
+       "citaat": "Le territoire de la Corée du Sud est placé en vigilance normale (vert) à l’exception de la zone frontalière démilitarisée (DMZ) avec la Corée du Nord qui demeure déconseillée sauf raison impérative (orange).",
+       "gebied": "Le territoire de la Corée du Sud est placé en vigilance normale (vert) à l’exception de la zone frontalière démilitarisée (DMZ) avec la Corée du Nord qui demeure déconseillée sauf raison impérative […]"
+      }
+     ],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
       "groen": "Frankrijk benoemt in de tekst alleen de zones waarvoor iets geldt. Het overige gebied is op de kaart groen, maar die kaart is een afbeelding: dat niveau staat niet in de tekst en is dus niet na te lopen."
@@ -32701,9 +33530,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/suede/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du pays est en vigilance normale."
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
@@ -32807,9 +33644,17 @@
      "bron_url": "https://www.diplomatie.gouv.fr/fr/information-par-pays/suisse/conseils-aux-voyageurs-securite",
      "gewijzigd_op": "2026-03-13",
      "bevestigd_op": null,
-     "opmerking": "Frankrijk noemt voor dit land geen zones onder het kopje 'Zones de vigilance'. Op hun kaart heeft het land wel een kleur, maar die staat niet in de tekst.",
+     "opmerking": null,
      "overgenomen_van": null,
-     "landniveau": null,
+     "landniveau": {
+      "label": "vigilance_normale",
+      "kleur": "groen",
+      "type": "letterlijk",
+      "weergave": "Normale waakzaamheid",
+      "bronlabel": "Vigilance normale",
+      "onderbouwing": "Het laagste Franse zoneniveau.",
+      "citaat": "L’ensemble du territoire suisse est placé en zone de vigilance normale"
+     },
      "gebieden": [],
      "kent_niet": {
       "_landniveau": "Frankrijk deelt landen niet als geheel in; het werkt uitsluitend met zones op een kaart. Een landniveau zou hier een afleiding zijn en die maken wij niet.",
