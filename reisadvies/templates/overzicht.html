@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reisadviezen gelijkgestemde landen – {{ land }}</title>
+<style>
+  :root {
+    --groen: #39870c; --geel: #f9e11e; --oranje: #e17000; --rood: #d52b1e;
+    --tekst: #1a1a1a; --zacht: #5c5c5c; --lijn: #d9d9d9; --vlak: #f5f5f5; --accent: #154273;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "RijksSansTT", "Segoe UI", Arial, sans-serif; color: var(--tekst);
+         margin: 0; padding: 32px; max-width: 1180px; margin-inline: auto; line-height: 1.45; font-size: 15px; }
+  h1 { font-size: 26px; margin: 0 0 4px; color: var(--accent); }
+  h2 { font-size: 18px; margin: 32px 0 12px; color: var(--accent); }
+  .meta { color: var(--zacht); font-size: 13px; margin-bottom: 20px; }
+  .kern { background: var(--vlak); border-left: 4px solid var(--accent); padding: 14px 18px; margin: 16px 0 24px; }
+  .kern p { margin: 4px 0; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 10px; border-bottom: 1px solid var(--lijn); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .03em; color: var(--zacht); font-weight: 600; }
+  tr.nl td { background: #eef3f8; }
+  .kleur { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; white-space: nowrap; }
+  .blok { width: 14px; height: 14px; border-radius: 3px; display: inline-block; border: 1px solid rgba(0,0,0,.25); flex: none; }
+  .k-groen .blok { background: var(--groen); } .k-geel .blok { background: var(--geel); }
+  .k-oranje .blok { background: var(--oranje); } .k-rood .blok { background: var(--rood); }
+  .k-geen .blok { background: repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 5px); }
+  .bronlabel { display: block; font-size: 13px; }
+  .vertaling { display: block; font-size: 13px; color: var(--zacht); }
+  .soort { font-size: 11px; padding: 1px 6px; border-radius: 8px; border: 1px solid var(--lijn); color: var(--zacht); white-space: nowrap; }
+  .soort-afgeleid { border-color: #b98900; color: #7a5a00; background: #fff8e1; }
+  .soort-bestaat-niet { border-style: dashed; }
+  .toelichting { font-size: 12px; color: var(--zacht); margin-top: 4px; }
+  .gebieden { margin: 0; padding: 0; list-style: none; }
+  .gebieden li { margin: 0 0 6px; font-size: 13px; display: flex; gap: 6px; }
+  .gebieden li .blok { margin-top: 3px; }
+  .datum { white-space: nowrap; }
+  .recent { display: inline-block; font-size: 11px; background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 8px; margin-top: 3px; }
+  .let-op { border: 2px solid var(--rood); background: #fdecea; padding: 8px 10px; font-size: 13px; }
+  .let-op strong { color: var(--rood); }
+  .melding { font-size: 12px; color: #7a5a00; margin-top: 6px; }
+  a { color: var(--accent); }
+  details { margin: 0 0 14px; border: 1px solid var(--lijn); border-radius: 4px; padding: 8px 12px; }
+  details summary { cursor: pointer; font-weight: 600; }
+  .brontekst { font-size: 13px; color: var(--zacht); white-space: pre-wrap; margin: 6px 0 0; }
+  .legenda { font-size: 13px; color: var(--zacht); }
+  .legenda dt { font-weight: 600; color: var(--tekst); margin-top: 6px; }
+  .legenda dd { margin: 0 0 0 0; }
+  @media print { body { padding: 0; font-size: 12px; } details { break-inside: avoid; } details:not([open]) { display: none; } }
+</style>
+</head>
+<body>
+{% macro kleurchip(niveau) -%}
+  {% if niveau and niveau.kleur %}
+  <span class="kleur k-{{ niveau.kleur.value }}"><span class="blok" aria-hidden="true"></span>{{ niveau.kleur.value|capitalize }}</span>
+  {% else %}
+  <span class="kleur k-geen"><span class="blok" aria-hidden="true"></span>Geen kleur</span>
+  {% endif %}
+{%- endmacro %}
+{% macro soort(niveau) -%}
+  {% if niveau %}<span class="soort soort-{{ niveau.soort.value|replace(' ', '-') }}" title="Zie legenda">{{ niveau.soort.value }}</span>{% endif %}
+{%- endmacro %}
+
+<h1>Reisadviezen gelijkgestemde landen: {{ land }}</h1>
+<div class="meta">Opgehaald op {{ gegenereerd }} · {{ rijen|length }} overheden · ISO-code {{ iso }}</div>
+
+<div class="kern">
+  {% if som.nl_kleur %}
+  <p><strong>Nederland: {{ som.nl_kleur.value }}</strong> voor (de rest van) het land.</p>
+  {% else %}
+  <p><strong>Het Nederlandse landelijke niveau is niet automatisch herkend.</strong> Zie de rij Nederland.</p>
+  {% endif %}
+  {% if som.strenger %}<p>Landelijk <strong>strenger</strong> dan Nederland: {{ som.strenger|join(', ') }}.</p>{% endif %}
+  {% if som.gelijk %}<p>Landelijk gelijk aan Nederland: {{ som.gelijk|join(', ') }}.</p>{% endif %}
+  {% if som.milder %}<p>Landelijk <strong>milder</strong> dan Nederland: {{ som.milder|join(', ') }}.</p>{% endif %}
+  {% if som.geen_kleur %}<p>Geen vergelijkbaar landelijk niveau (onderscheid bestaat niet of niet herkend): {{ som.geen_kleur|join(', ') }}.</p>{% endif %}
+  {% if som.strengere_gebieden %}<p>Strengere adviezen voor <strong>gebieden</strong> bij: {{ som.strengere_gebieden|join(', ') }}.</p>{% endif %}
+  {% if som.niet_beschikbaar %}<p><strong>Handmatig nalopen:</strong> {{ som.niet_beschikbaar|join(', ') }}.</p>{% endif %}
+</div>
+
+<h2>Overzicht</h2>
+<table>
+  <thead>
+    <tr><th style="width:15%">Overheid</th><th style="width:24%">Landelijk niveau</th><th>Afwijkende gebieden</th><th style="width:13%">Laatst gewijzigd</th></tr>
+  </thead>
+  <tbody>
+  {% for r in rijen %}
+    {% set a = r.a %}
+    <tr class="{{ a.bron }}">
+      <td><strong>{{ r.bron.vlag }} {{ r.bron.naam }}</strong><br><a href="{{ a.url or r.bron.startpagina }}">bron</a></td>
+      {% if a.status == Status.NVT %}
+      <td colspan="2"><span class="vertaling">n.v.t. – {{ a.melding }}</span></td>
+      <td>–</td>
+      {% elif a.status != Status.OK %}
+      <td colspan="2">
+        <div class="let-op"><strong>{% if a.status == Status.NIET_GEVONDEN %}Niet gevonden{% elif a.status == Status.FOUT %}Ophalen mislukt{% else %}Handmatig nalopen{% endif %}.</strong>
+          Dit is géén "geen risico". {{ a.melding }}
+          <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a>.</div>
+      </td>
+      <td>–</td>
+      {% else %}
+      <td>
+        {% if a.landelijk %}
+        {{ kleurchip(a.landelijk) }} {{ soort(a.landelijk) }}
+        <span class="bronlabel">{{ a.landelijk.bronlabel }}</span>
+        <span class="vertaling">{{ a.landelijk.vertaling }}</span>
+        {% if a.landelijk.toelichting and a.landelijk.soort.value != 'letterlijk' %}<div class="toelichting">{{ a.landelijk.toelichting }}</div>{% endif %}
+        {% else %}
+        <span class="kleur k-geen"><span class="blok" aria-hidden="true"></span>Niet herkend</span>
+        <span class="vertaling">Zie brontekst onder 'Details'.</span>
+        {% endif %}
+        {% if a.melding %}<div class="melding">⚠ {{ a.melding }}</div>{% endif %}
+      </td>
+      <td>
+        {% if r.gebieden %}
+        <ul class="gebieden">
+          {% for g in r.gebieden[:8] %}
+          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok" title="{{ g.niveau.kleur.value if g.niveau.kleur else 'geen kleur' }}"></span><span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong>: {{ g.omschrijving|truncate(220) }}</span></li>
+          {% endfor %}
+          {% if r.gebieden|length > 8 %}<li>… en {{ r.gebieden|length - 8 }} meer (zie details)</li>{% endif %}
+        </ul>
+        {% else %}<span class="vertaling">Geen afwijkende gebieden genoemd</span>{% endif %}
+      </td>
+      <td class="datum">
+        {% if a.gewijzigd_op %}{{ a.gewijzigd_op[8:10] }}-{{ a.gewijzigd_op[5:7] }}-{{ a.gewijzigd_op[:4] }}
+          {% if r.recent %}<br><span class="recent">≤ {{ recent_dagen }} dagen</span>{% endif %}
+          <div class="vertaling">{{ a.gewijzigd_label }}</div>
+        {% else %}<span class="vertaling">onbekend</span>{% endif %}
+      </td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2>Details en brontekst per overheid</h2>
+{% for r in rijen if r.a.status == Status.OK %}
+{% set a = r.a %}
+<details>
+  <summary>{{ r.bron.vlag }} {{ r.bron.naam }}: {{ a.landelijk.kleur.value if a.landelijk and a.landelijk.kleur else ('geen kleur' if a.landelijk else 'niet herkend') }}{% if r.gebieden %}, {{ r.gebieden|length }} gebied(en){% endif %}</summary>
+  {% if a.brontekst %}<p class="brontekst"><strong>Brontekst:</strong> {{ a.brontekst|truncate(3000) }}</p>{% endif %}
+  {% if r.gebieden %}
+  <ul class="gebieden" style="margin-top:10px">
+    {% for g in r.gebieden %}
+    <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok"></span>
+      <span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong> {{ soort(g.niveau) }} {{ g.niveau.bronlabel }} <span class="vertaling" style="display:inline">({{ g.niveau.vertaling }})</span><br>
+      {{ g.omschrijving }}
+      {% if g.brontekst and g.brontekst != g.omschrijving %}<span class="brontekst" style="display:block">{{ g.brontekst|truncate(600) }}</span>{% endif %}</span></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <p class="vertaling">Opgehaald: {{ a.opgehaald_op }} · <a href="{{ a.url }}">{{ a.url }}</a></p>
+</details>
+{% endfor %}
+
+<h2>Hoe te lezen</h2>
+<dl class="legenda">
+  <dt>Kleur</dt><dd>De kleurcode van het Nederlandse reisadvies waaraan we het niveau van die overheid koppelen. Het niveau zelf staat er altijd letterlijk bij, met vertaling.</dd>
+  <dt><span class="soort">letterlijk</span></dt><dd>De overheid kent een niveau met dezelfde betekenis als onze kleur.</dd>
+  <dt><span class="soort soort-afgeleid">afgeleid</span></dt><dd>De overheid kent een niveau, maar de criteria wijken af. Onze vertaling; nalezen bij twijfel.</dd>
+  <dt><span class="soort soort-bestaat-niet">bestaat niet</span></dt><dd>De overheid maakt dit onderscheid niet (bijvoorbeeld geen verschil tussen groen en geel). We tonen dan bewust géén kleur.</dd>
+  <dt>Handmatig nalopen</dt><dd>De bron kon niet automatisch worden opgehaald. Een lege of ontbrekende rij betekent nooit "geen risico".</dd>
+  <dt>Laatst gewijzigd</dt><dd>De datum die de overheid zelf noemt; wat die datum precies is, staat eronder. Wijzigingen van de afgelopen {{ recent_dagen }} dagen zijn gemarkeerd.</dd>
+</dl>
+<p class="vertaling">De volledige mappingtabel staat in MAPPING.md in de repository. Gegenereerd door de Reisadvies-checker (prototype).</p>
+</body>
+</html>

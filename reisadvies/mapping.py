@@ -1,0 +1,208 @@
+"""De mappingtabel: van de niveaus van elke overheid naar onze vier kleurcodes.
+
+Dit is de enige plek waar het oordeel "welk bronniveau is welke kleur" wordt vastgelegd.
+De ophalers herkennen alleen wélk bronniveau er staat (aan vaste formuleringen, vlaggen of
+CSS-klassen) en zoeken de kleur hier op. Pas je hier iets aan, draai dan
+`python -m reisadvies mapping` om MAPPING.md opnieuw te genereren.
+
+Soorten:
+- letterlijk:   de overheid kent een niveau met dezelfde betekenis als onze kleur.
+- afgeleid:     de overheid kent een niveau, maar de criteria wijken af; de kleur is onze
+                beste vertaling en moet bij twijfel nagelezen worden.
+- bestaat niet: de overheid maakt dit onderscheid niet (bv. geen groen/geel). We geven dan
+                géén kleur, zodat niemand een lege of groene cel als "geen risico" leest.
+"""
+
+from __future__ import annotations
+
+from dataclasses import replace
+
+from .model import Kleur, Niveau, Soort
+
+G, Y, O, R = Kleur.GROEN, Kleur.GEEL, Kleur.ORANJE, Kleur.ROOD
+L, A, X = Soort.LETTERLIJK, Soort.AFGELEID, Soort.BESTAAT_NIET
+
+
+def _n(label: str, vertaling: str, kleur: Kleur | None, soort: Soort, toelichting: str = "") -> Niveau:
+    return Niveau(label, vertaling, kleur, soort, toelichting)
+
+
+MAPPING: dict[str, dict[str, Niveau]] = {
+    "nl": {
+        "groen": _n("Groen", "Geen bijzondere veiligheidsrisico's", G, L, "Referentie."),
+        "geel": _n("Geel", "Let op, veiligheidsrisico's", Y, L, "Referentie."),
+        "oranje": _n("Oranje", "Alleen noodzakelijke reizen", O, L, "Referentie."),
+        "rood": _n("Rood", "Niet reizen", R, L, "Referentie."),
+    },
+    "uk": {
+        "avoid_all": _n("FCDO advises against all travel", "Ontraadt alle reizen", R, L),
+        "avoid_non_essential": _n(
+            "FCDO advises against all but essential travel",
+            "Ontraadt alle niet-noodzakelijke reizen",
+            O,
+            L,
+        ),
+        "geen": _n(
+            "No FCDO advice against travel",
+            "Geen negatief reisadvies van de FCDO",
+            None,
+            X,
+            "Het VK kent geen onderscheid tussen groen en geel: zonder 'advise against' "
+            "is het advies alleen 'lees de risico's'. Dat kan groen of geel zijn.",
+        ),
+    },
+    "fr": {
+        "vert": _n("Vigilance normale (vert)", "Normale waakzaamheid", G, L),
+        "jaune": _n("Vigilance renforcée (jaune)", "Verhoogde waakzaamheid", Y, L),
+        "orange": _n(
+            "Déconseillé sauf raison impérative (orange)",
+            "Afgeraden tenzij dringende reden",
+            O,
+            L,
+        ),
+        "rouge": _n("Formellement déconseillé (rouge)", "Uitdrukkelijk afgeraden", R, L),
+    },
+    "de": {
+        "reisewarnung": _n("Reisewarnung", "Reiswaarschuwing", R, L),
+        "teilreisewarnung": _n("Teilreisewarnung", "Reiswaarschuwing voor delen van het land", R, L),
+        "abraten": _n(
+            "Von (nicht notwendigen) Reisen wird abgeraten",
+            "Van (niet-noodzakelijke) reizen wordt afgeraden",
+            O,
+            A,
+            "Het Auswärtiges Amt geeft dit als 'situationWarning'; de precieze formulering "
+            "(alle reizen of niet-noodzakelijke reizen) staat in de brontekst.",
+        ),
+        "teil_abraten": _n(
+            "Teilweise Abratung",
+            "Voor delen van het land wordt van reizen afgeraden",
+            O,
+            A,
+            "Zie 'abraten'.",
+        ),
+        "geen": _n(
+            "Reise- und Sicherheitshinweise (keine Warnung)",
+            "Reis- en veiligheidsinformatie, geen waarschuwing",
+            None,
+            X,
+            "Duitsland kent alleen waarschuwen/afraden; daaronder geen onderscheid tussen groen en geel.",
+        ),
+    },
+    "dk": {
+        "opmaerksom": _n("Vær opmærksom", "Wees alert", G, L, "Groene balk."),
+        "ekstra_forsigtig": _n("Vær ekstra forsigtig", "Wees extra voorzichtig", Y, L, "Gele balk."),
+        "ikke_noedvendige": _n(
+            "Vi fraråder alle ikke-nødvendige rejser",
+            "Wij ontraden alle niet-noodzakelijke reizen",
+            O,
+            L,
+            "Oranje balk.",
+        ),
+        "alle": _n("Vi fraråder alle rejser", "Wij ontraden alle reizen", R, L, "Rode balk."),
+    },
+    "at": {
+        "1": _n("Sicherheitsstufe 1 – Guter Sicherheitsstandard", "Goede veiligheid", G, L),
+        "2": _n("Sicherheitsstufe 2 – Sicherheitsrisiko", "Veiligheidsrisico", Y, L),
+        "3": _n(
+            "Sicherheitsstufe 3 – Hohes Sicherheitsrisiko",
+            "Hoog veiligheidsrisico; afgeraden tenzij noodzakelijk",
+            O,
+            L,
+        ),
+        "4": _n("Sicherheitsstufe 4 – Reisewarnung", "Reiswaarschuwing", R, L),
+    },
+    "se": {
+        "alla": _n("UD avråder från alla resor", "Ontraadt alle reizen", R, L),
+        "icke_nodvandiga": _n(
+            "UD avråder från icke nödvändiga resor",
+            "Ontraadt niet-noodzakelijke reizen",
+            O,
+            L,
+        ),
+        "geen": _n(
+            "Ingen avrådan",
+            "Geen negatief reisadvies",
+            None,
+            X,
+            "Zweden kent alleen 'avrådan'; daaronder geen onderscheid tussen groen en geel.",
+        ),
+    },
+    "us": {
+        "1": _n("Level 1: Exercise Normal Precautions", "Normale voorzorg", G, L),
+        "2": _n("Level 2: Exercise Increased Caution", "Verhoogde voorzichtigheid", Y, L),
+        "3": _n(
+            "Level 3: Reconsider Travel",
+            "Heroverweeg de reis",
+            O,
+            A,
+            "'Reconsider travel' is zachter geformuleerd dan 'alleen noodzakelijke reizen', "
+            "maar is het op één na hoogste niveau.",
+        ),
+        "4": _n("Level 4: Do Not Travel", "Niet reizen", R, L),
+    },
+    "ca": {
+        "normal": _n("Take normal security precautions", "Normale voorzorgsmaatregelen", G, L),
+        "high": _n("Exercise a high degree of caution", "Wees zeer voorzichtig", Y, L),
+        "non_essential": _n("Avoid non-essential travel", "Vermijd niet-noodzakelijke reizen", O, L),
+        "all": _n("Avoid all travel", "Vermijd alle reizen", R, L),
+    },
+    "au": {
+        "1": _n("Exercise normal safety precautions", "Normale voorzorg", G, L),
+        "2": _n("Exercise a high degree of caution", "Wees zeer voorzichtig", Y, L),
+        "3": _n(
+            "Reconsider your need to travel",
+            "Heroverweeg of de reis nodig is",
+            O,
+            A,
+            "Zachter geformuleerd dan 'alleen noodzakelijke reizen'.",
+        ),
+        "4": _n("Do not travel", "Niet reizen", R, L),
+    },
+    "ie": {
+        "normal": _n("Normal precautions", "Normale voorzorg", G, L),
+        "high": _n("High degree of caution", "Wees zeer voorzichtig", Y, L),
+        "non_essential": _n("Avoid non-essential travel", "Vermijd niet-noodzakelijke reizen", O, L),
+        "all": _n("Do not travel", "Niet reizen", R, L),
+    },
+}
+
+
+def niveau(bron: str, sleutel: str) -> Niveau:
+    """Geef een kopie van het niveau uit de mappingtabel (kopie, zodat niemand de tabel wijzigt)."""
+    return replace(MAPPING[bron][sleutel])
+
+
+def als_markdown() -> str:
+    from .sources import BRONNEN
+
+    regels = [
+        "# Mappingtabel",
+        "",
+        (
+            "_Gegenereerd uit `reisadvies/mapping.py` met `python -m reisadvies mapping`. "
+            "Niet met de hand bewerken._"
+        ),
+        "",
+        (
+            "Elke overheid heeft haar eigen niveaus. Deze tabel legt vast welke kleur van het "
+            "Nederlandse reisadvies we eraan koppelen, en hoe zeker dat is:"
+        ),
+        "",
+        "- **letterlijk**: de overheid kent een niveau met dezelfde betekenis.",
+        "- **afgeleid**: de overheid kent een niveau, maar de criteria wijken af. Nalezen bij twijfel.",
+        "- **bestaat niet**: de overheid maakt dit onderscheid niet. We tonen dan géén kleur.",
+        "",
+    ]
+    for sleutel, tabel in MAPPING.items():
+        bron = BRONNEN[sleutel]
+        regels += [
+            f"## {bron.naam}",
+            "",
+            "| Bronniveau | Vertaling | Kleur | Soort | Toelichting |",
+            "|---|---|---|---|---|",
+        ]
+        for n in tabel.values():
+            kleur = n.kleur.value if n.kleur else "—"
+            regels.append(f"| {n.bronlabel} | {n.vertaling} | {kleur} | {n.soort.value} | {n.toelichting} |")
+        regels.append("")
+    return "\n".join(regels)
