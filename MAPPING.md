@@ -38,11 +38,12 @@ Elke overheid heeft haar eigen niveaus. Deze tabel legt vast welke kleur van het
 
 | Bronniveau | Vertaling | Kleur | Soort | Toelichting |
 |---|---|---|---|---|
-| Reisewarnung | Reiswaarschuwing | rood | letterlijk |  |
-| Teilreisewarnung | Reiswaarschuwing voor delen van het land | rood | letterlijk |  |
-| Von (nicht notwendigen) Reisen wird abgeraten | Van (niet-noodzakelijke) reizen wordt afgeraden | oranje | afgeleid | Het Auswärtiges Amt geeft dit als 'situationWarning'; de precieze formulering (alle reizen of niet-noodzakelijke reizen) staat in de brontekst. |
-| Teilweise Abratung | Voor delen van het land wordt van reizen afgeraden | oranje | afgeleid | Zie 'abraten'. |
-| Reise- und Sicherheitshinweise (keine Warnung) | Reis- en veiligheidsinformatie, geen waarschuwing | — | bestaat niet | Duitsland kent alleen waarschuwen/afraden; daaronder geen onderscheid tussen groen en geel. |
+| Reisewarnung (Vor Reisen ... wird gewarnt) | Reiswaarschuwing | rood | letterlijk |  |
+| Teilreisewarnung (Vor Reisen in ... wird gewarnt) | Reiswaarschuwing voor een deel van het land | rood | letterlijk |  |
+| Von Reisen ... wird dringend abgeraten | Van reizen wordt dringend afgeraden | oranje | afgeleid | Sterker dan 'abgeraten', zwakker dan een Reisewarnung. Het AA raadt álle reizen af, niet alleen niet-noodzakelijke; daarom oranje met de kanttekening dat het richting rood gaat. |
+| Von Reisen ... wird abgeraten | Van reizen wordt afgeraden | oranje | afgeleid | Het AA raadt reizen af zonder formele waarschuwing. Ligt het dichtst bij oranje. |
+| Von nicht notwendigen Reisen ... wird abgeraten | Van niet-noodzakelijke reizen wordt afgeraden | oranje | letterlijk |  |
+| Reise- und Sicherheitshinweise (keine Warnung, kein Abraten) | Reis- en veiligheidsinformatie, geen waarschuwing of afraden | — | bestaat niet | Duitsland kent alleen waarschuwen en afraden; daaronder geen onderscheid tussen groen en geel. |
 
 ## Denemarken
 

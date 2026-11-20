@@ -7,16 +7,16 @@ Algemeen: we sturen een eerlijke User-Agent (`reisadvies-checker/0.1 (prototype;
 pogingen om blokkades of bot-controles te omzeilen, en halen per land alleen de pagina's op die
 nodig zijn (met 15 minuten cache).
 
-## Nederland (`nl`): referentie
+## Nederland (`nl`): referentie, officiële API
 
-- **Landenlijst**: `https://www.nederlandwereldwijd.nl/reisadvies/sitemap.xml` (226 slugs).
-- **Land**: `/reisadvies/<slug>`.
-- **Niveau**: "In het kort": *"De kleurcode van/voor het reisadvies voor X is rood"* of *"Voor de
-  rest van X geldt kleurcode geel"*. Gebieden: in het accordeon "Regionale risico's" een kop per
-  kleur (`<h4>Rood: niet reizen</h4>`) met de lijst *"Voor de volgende gebieden geldt kleurcode rood:"*.
+- **API (CC0)**: `https://opendata.nederlandwereldwijd.nl/v2/sources/nederlandwereldwijd/infotypes/traveladvice?output=json&rows=200&offset=N`
+  (alle landen, met ISO3-code), per land `dataurl?output=json`: `introduction` (In het kort),
+  `modificationdate` en `content[].contentblocks[]` (dezelfde HTML-blokken als de website).
+- **Terugval**: de webpagina `/reisadvies/<slug>` (slugs uit de sitemap).
+- **Niveau**: *"De kleurcode van/voor het reisadvies voor X is rood"* of *"Voor de rest van X geldt kleurcode
+  geel"*. Gebieden: **alleen** de lijst na *"Voor de volgende gebieden geldt kleurcode X:"* of *"Kleurcode X
+  geldt voor:"* (in een `<p>` met lijst erna, of als lijstitem). Andere lijsten onder een kleurkop zijn tips.
 - **Datum**: *"Laatst gewijzigd op: dd-mm-jjjj"*.
-- **Let op**: er is ook een officiële open-data-API (`opendata.nederlandwereldwijd.nl`), maar die host
-  staat niet in de netwerkregels. Zie OPEN_VRAGEN.md.
 
 ## Verenigd Koninkrijk (`uk`): officiële API
 
@@ -46,16 +46,17 @@ nodig zijn (met 15 minuten cache).
   als landelijk, gelabeld **afgeleid**. Sommige landen (Israël, India, VS, Japan) staan in vrije tekst
   beschreven: dan **niet herkend** met de brontekst.
 
-## Duitsland (`de`): officiële API
+## Duitsland (`de`): officiële API + vaste zinnen
 
-- **Landenlijst + niveau**: `https://www.auswaertiges-amt.de/opendata/travelwarning` (alle landen,
-  met ISO-code) met vlaggen `warning`, `partialWarning`, `situationWarning`, `situationPartWarning`.
-- **Land (details)**: `/opendata/travelwarning/<id>` (HTML-inhoud in JSON).
-- **Link**: `https://www.auswaertiges-amt.de/de/service/laender/<id>` stuurt door naar de landpagina.
-- **Datum**: `lastModified` (epoch).
-- **Let op**: Duitsland kent alleen waarschuwen en afraden. Zonder vlag geven we géén kleur.
-  De gebieden bij een gedeeltelijke waarschuwing staan alleen in lopende tekst; we tonen de zinnen
-  met "wird gewarnt/abgeraten" letterlijk.
+- **Index**: `https://www.auswaertiges-amt.de/opendata/travelwarning` (alle landen, ISO-code, vlaggen).
+- **Land**: `/opendata/travelwarning/<id>`: altijd opgehaald, want afraden staat alleen in de tekst.
+- **Niveau**: vlag `warning` = Reisewarnung (rood). Daarnaast de vaste zinnen *"Vor Reisen in/nach … wird
+  gewarnt"* (rood), *"Von Reisen … wird dringend abgeraten"* / *"… wird abgeraten"* (oranje, afgeleid),
+  *"Von nicht notwendigen Reisen … wird abgeraten"* (oranje). Gaat de zin over het hele land (*"andere
+  Landesteile"*, *"nicht genannten Gebiete"*, de landnaam zelf), dan is het het landelijke niveau.
+- **Link**: `https://www.auswaertiges-amt.de/de/service/laender/<id>`.
+- **Datum**: `lastModified`.
+- **Let op**: de vlag `situationWarning` (afraden) wordt door het AA niet gebruikt. Zie CONTROLE.md.
 
 ## Zweden (`se`): geblokkeerd
 

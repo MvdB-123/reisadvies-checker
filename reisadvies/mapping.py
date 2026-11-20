@@ -63,29 +63,43 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "rouge": _n("Formellement déconseillé (rouge)", "Uitdrukkelijk afgeraden", R, L),
     },
     "de": {
-        "reisewarnung": _n("Reisewarnung", "Reiswaarschuwing", R, L),
-        "teilreisewarnung": _n("Teilreisewarnung", "Reiswaarschuwing voor delen van het land", R, L),
-        "abraten": _n(
-            "Von (nicht notwendigen) Reisen wird abgeraten",
-            "Van (niet-noodzakelijke) reizen wordt afgeraden",
-            O,
-            A,
-            "Het Auswärtiges Amt geeft dit als 'situationWarning'; de precieze formulering "
-            "(alle reizen of niet-noodzakelijke reizen) staat in de brontekst.",
+        # Uitleg AA (ReiseUndSicherheit/10.2.8Reisewarnungen): 'Reisewarnungen enthalten einen dringenden
+        # Appell, Reisen in ein Land oder eine Region zu unterlassen'; 'Sicherheitshinweise ... kann
+        # beinhalten, dass das Auswärtige Amt von Reisen in ein Land abrät.'
+        "reisewarnung": _n("Reisewarnung (Vor Reisen ... wird gewarnt)", "Reiswaarschuwing", R, L),
+        "teilreisewarnung": _n(
+            "Teilreisewarnung (Vor Reisen in ... wird gewarnt)",
+            "Reiswaarschuwing voor een deel van het land",
+            R,
+            L,
         ),
-        "teil_abraten": _n(
-            "Teilweise Abratung",
-            "Voor delen van het land wordt van reizen afgeraden",
+        "dringend_abraten": _n(
+            "Von Reisen ... wird dringend abgeraten",
+            "Van reizen wordt dringend afgeraden",
             O,
             A,
-            "Zie 'abraten'.",
+            "Sterker dan 'abgeraten', zwakker dan een Reisewarnung. Het AA raadt álle reizen af, niet "
+            "alleen niet-noodzakelijke; daarom oranje met de kanttekening dat het richting rood gaat.",
+        ),
+        "abraten": _n(
+            "Von Reisen ... wird abgeraten",
+            "Van reizen wordt afgeraden",
+            O,
+            A,
+            "Het AA raadt reizen af zonder formele waarschuwing. Ligt het dichtst bij oranje.",
+        ),
+        "abraten_niet_noodzakelijk": _n(
+            "Von nicht notwendigen Reisen ... wird abgeraten",
+            "Van niet-noodzakelijke reizen wordt afgeraden",
+            O,
+            L,
         ),
         "geen": _n(
-            "Reise- und Sicherheitshinweise (keine Warnung)",
-            "Reis- en veiligheidsinformatie, geen waarschuwing",
+            "Reise- und Sicherheitshinweise (keine Warnung, kein Abraten)",
+            "Reis- en veiligheidsinformatie, geen waarschuwing of afraden",
             None,
             X,
-            "Duitsland kent alleen waarschuwen/afraden; daaronder geen onderscheid tussen groen en geel.",
+            "Duitsland kent alleen waarschuwen en afraden; daaronder geen onderscheid tussen groen en geel.",
         ),
     },
     "dk": {

@@ -92,7 +92,7 @@ def test_fr_israel_vrije_tekst_wordt_niet_geinterpreteerd():
 
 def test_de_oekraine_reisewarnung():
     a = de.parse("201946", json.loads(lees("de_UA.json")), "UA")
-    assert a.landelijk.kleur == Kleur.ROOD and a.landelijk.bronlabel == "Reisewarnung"
+    assert a.landelijk.kleur == Kleur.ROOD and a.landelijk.bronlabel.startswith("Reisewarnung")
     assert a.url.endswith("/201946")
 
 
@@ -298,3 +298,35 @@ def test_nl_api_zin_als_lijstitem():
     a = _nl_api("VE")
     assert a.landelijk.kleur == Kleur.ORANJE
     assert len(a.gebieden) == 6 and kleuren(a) == ["rood"]
+
+
+# ---------- Duitsland: afraden staat alleen in de tekst ----------
+
+
+def test_de_israel_afraden_zonder_vlag():
+    """Geen vlag in de API, maar 'Von Reisen in andere Landesteile Israels ... wird abgeraten'."""
+    v = json.loads(lees("de_IL.json"))
+    assert not v["warning"] and not v["partialWarning"]
+    a = de.parse("203814", v, "IL")
+    assert a.landelijk.kleur == Kleur.ORANJE and a.landelijk.soort == Soort.AFGELEID
+    assert any(g.niveau.kleur == Kleur.ROOD and "Gaza" in g.omschrijving for g in a.gebieden)
+    assert all(g.niveau.kleur == Kleur.ROOD for g in a.gebieden)  # alleen strenger dan het land
+
+
+def test_de_nigeria_niet_genannte_gebiete_is_landelijk():
+    a = de.parse("205788", json.loads(lees("de_NG.json")), "NG")
+    assert a.landelijk.kleur == Kleur.ORANJE
+    assert kleuren(a) == ["rood"]
+
+
+def test_de_verwijzing_naar_ander_land_telt_niet():
+    v = {
+        "countryName": "Russische Föderation",
+        "warning": True,
+        "content": (
+            "<p>Vor Reisen in die Russische Föderation wird gewarnt.</p>"
+            "<p>Vor Reisen nach Belarus wird gewarnt, siehe Reise- und Sicherheitshinweise Belarus.</p>"
+        ),
+    }
+    a = de.parse("1", v, "RU")
+    assert a.landelijk.kleur == Kleur.ROOD and a.gebieden == []
