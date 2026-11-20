@@ -49,6 +49,9 @@ def main() -> None:
     bewaar("dk_PK.html", http.text(koppel("PK", "da", dk.index())))
     bewaar("uk_TH.json", json.dumps(http.json(koppel("TH", "en", uk.index()))))
     bewaar("nl_ZA.html", http.text(koppel("ZA", "nl", nl.index())))
+    # Nederlandse open-data-API
+    for iso in ["TR", "TH", "VE"]:
+        bewaar(f"nl_api_{iso}.json", json.dumps(http.json(nl.api_index()[iso]["dataurl"] + "?output=json")))
 
 
 if __name__ == "__main__":

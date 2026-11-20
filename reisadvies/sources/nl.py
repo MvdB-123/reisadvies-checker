@@ -7,8 +7,11 @@ Landen-slugs uit de sitemap /reisadvies/sitemap.xml. Per landpagina:
 - accordeon 'Regionale risico's': per kleur een kop (h4 'Rood: niet reizen') en een lijst
   'Voor de volgende gebieden geldt kleurcode rood:'.
 
-Er bestaat ook een open-data-API (opendata.nederlandwereldwijd.nl), maar die host staat
-(nog) niet in de netwerkregels van de omgeving. Zie OPEN_VRAGEN.md.
+Primair halen we de gegevens uit de officiële open-data-API (CC0):
+  /v2/sources/nederlandwereldwijd/infotypes/traveladvice?output=json&rows=200&offset=N  (alle landen,
+  met ISO3-code), en per land 'dataurl' + '?output=json': 'introduction' (In het kort, HTML),
+  'modificationdate' ('Laatst gewijzigd op: ...') en 'content[].contentblocks[]' (dezelfde HTML-blokken
+  als de website, waaronder 'Regionale risico's'). Lukt de API niet, dan lezen we de webpagina.
 """
 
 from __future__ import annotations
@@ -24,6 +27,46 @@ from .base import Bron, datum, niet_gevonden, soep, tekst
 
 BASIS = "https://www.nederlandwereldwijd.nl/reisadvies/"
 KLEUREN = ("groen", "geel", "oranje", "rood")
+# 'Voor de volgende gebieden/vulkanen/grensgebieden ... geldt kleurcode rood:' en 'Kleurcode rood geldt voor:'
+_GEBIEDEN_ZIN = re.compile(
+    r"^(?:voor de volgende [^:]*? geldt (?:de )?kleurcode (groen|geel|oranje|rood)"
+    r"|kleurcode (groen|geel|oranje|rood) geldt voor)\s*:\s*$",
+    re.IGNORECASE,
+)
+
+
+API = "https://opendata.nederlandwereldwijd.nl/v2/sources/nederlandwereldwijd/infotypes/traveladvice"
+_ISO3_UITZONDERINGEN = {"XKX": "XK", "KOS": "XK"}
+
+
+@lru_cache(maxsize=1)
+def api_index() -> dict[str, dict]:
+    """{ISO2: lijstregel uit de API}."""
+    from babel.core import get_global
+
+    alias = get_global("territory_aliases")
+    out: dict[str, dict] = {}
+    offset = 0
+    while True:
+        rijen = http.json(f"{API}?output=json&rows=200&offset={offset}")
+        for r in rijen:
+            iso3 = (r.get("isocode") or "").upper()
+            iso2 = _ISO3_UITZONDERINGEN.get(iso3) or (alias.get(iso3) or [None])[0]
+            if iso2:
+                out.setdefault(iso2, r)
+        if len(rijen) < 200:
+            return out
+        offset += 200
+
+
+def api_html(data: dict) -> str:
+    """Zet de API-velden om naar dezelfde HTML-structuur als de webpagina, voor parse()."""
+    delen = [f"<p>{data.get('modificationdate', '')}</p>", data.get("introduction", "")]
+    for cat in data.get("content", []):
+        delen.append(f"<h2>{cat.get('category', '')}</h2>")
+        for blok in cat.get("contentblocks", []):
+            delen.append(f"<h3>{blok.get('paragraphtitle', '')}</h3>{blok.get('paragraph', '')}")
+    return "\n".join(delen)
 
 
 @lru_cache(maxsize=1)
@@ -53,18 +96,28 @@ def parse(html: str, iso: str, url: str) -> Advies:
         kort_tekst = " ".join(delen)
     adv.brontekst = kort_tekst
 
-    # Gebieden per kleur uit 'Regionale risico's'
-    for h4 in s.find_all("h4"):
-        kop = tekst(h4).lower()
-        kleur = next((k for k in KLEUREN if kop.startswith(k)), None)
-        if not kleur:
+    # Gebieden: alleen de lijst direct na een vaste zin ('Voor de volgende gebieden geldt kleurcode
+    # rood:' / 'Kleurcode rood geldt voor:'). Die zin staat in een <p> met de lijst erna, of als
+    # lijstitem met een sublijst. Andere lijsten (tips, voorbeelden) tellen niet als gebied.
+    for el in s.find_all(["p", "li"]):
+        if el.name == "p":
+            zin, lijst = tekst(el), el.find_next_sibling()
+        elif (lijst := el.find("ul")) is not None:
+            zin = tekst(el)[: len(tekst(el)) - len(tekst(lijst))].strip()
+        else:
+            zin, lijst = tekst(el), None  # de zin als eerste item; de gebieden zijn de items erna
+        m = _GEBIEDEN_ZIN.search(zin)
+        if not m:
             continue
-        for sib in h4.find_next_siblings():
-            if sib.name == "h4":
-                break
-            if sib.name == "ul":
-                for li in sib.find_all("li"):
-                    adv.gebieden.append(Gebied(tekst(li), niveau("nl", kleur)))
+        kleur = (m.group(1) or m.group(2)).lower()
+        if lijst is not None and lijst.name == "ul":
+            items = lijst.find_all("li", recursive=False)
+        elif el.name == "li":
+            items = el.find_next_siblings("li")
+        else:
+            items = []
+        for li in items:
+            adv.gebieden.append(Gebied(tekst(li), niveau("nl", kleur)))
 
     # Landelijk niveau (voor de rest van het land)
     zoektekst = kort_tekst or tekst(s)
@@ -82,12 +135,23 @@ def parse(html: str, iso: str, url: str) -> Advies:
         m = re.search(r"kleurcode (groen|geel|oranje|rood)", zoektekst)
     if m:
         adv.landelijk = niveau("nl", m.group(1))
+        # Gebieden met dezelfde kleur als het land zijn geen afwijking.
+        adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
     else:
         adv.melding = "Landelijk niveau niet automatisch herkend; zie brontekst."
     return adv
 
 
 def ophalen(iso: str) -> Advies:
+    try:
+        rij = api_index().get(iso)
+        if rij:
+            data = http.json(rij["dataurl"] + "?output=json")
+            adv = parse(api_html(data), iso, data.get("canonical") or rij.get("canonical") or BASIS)
+            adv.gewijzigd_label += " (open-data-API)"
+            return adv
+    except http.OphaalFout:
+        pass  # terugvallen op de webpagina
     url = koppel(iso, "nl", index())
     if not url:
         return niet_gevonden("nl", iso, BASIS)

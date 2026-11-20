@@ -269,3 +269,32 @@ def test_nl_kleurcode_voor_het_reisadvies():
 )
 def test_fr_kleur_heel_land(zin, kleur):
     assert fr._kleur_heel_land(zin) == kleur
+
+
+# ---------- Nederland via de open-data-API ----------
+
+
+def _nl_api(iso):
+    data = json.loads(lees(f"nl_api_{iso}.json"))
+    return nl.parse(nl.api_html(data), iso, data["canonical"])
+
+
+def test_nl_api_turkije():
+    a = _nl_api("TR")
+    assert a.landelijk.kleur == Kleur.GEEL
+    assert a.gewijzigd_op == "2026-10-16"
+    assert len(a.gebieden) == 4 and kleuren(a) == ["oranje", "rood"]
+
+
+def test_nl_api_tips_zijn_geen_gebieden():
+    """Onder 'Oranje: alleen noodzakelijke reizen' staan ook tips in lijsten; alleen de lijst na
+    'Voor de volgende gebieden geldt kleurcode oranje:' telt."""
+    a = _nl_api("TH")
+    assert all("Blijf niet langer" not in g.omschrijving for g in a.gebieden)
+    assert len(a.gebieden) == 4 and kleuren(a) == ["oranje"]
+
+
+def test_nl_api_zin_als_lijstitem():
+    a = _nl_api("VE")
+    assert a.landelijk.kleur == Kleur.ORANJE
+    assert len(a.gebieden) == 6 and kleuren(a) == ["rood"]
