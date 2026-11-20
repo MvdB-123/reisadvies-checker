@@ -41,6 +41,8 @@
   .let-op strong { color: var(--rood); }
   .melding { font-size: 12px; color: #7a5a00; margin-top: 6px; }
   a { color: var(--accent); }
+  .terug { margin: 0 0 8px; font-size: 14px; }
+  @media print { .terug { display: none; } }
   details { margin: 0 0 14px; border: 1px solid var(--lijn); border-radius: 4px; padding: 8px 12px; }
   details summary { cursor: pointer; font-weight: 600; }
   .brontekst { font-size: 13px; color: var(--zacht); white-space: pre-wrap; margin: 6px 0 0; }
@@ -62,6 +64,7 @@
   {% if niveau %}<span class="soort soort-{{ niveau.soort.value|replace(' ', '-') }}" title="Zie legenda">{{ niveau.soort.value }}</span>{% endif %}
 {%- endmacro %}
 
+{% if terug %}<p class="terug"><a href="{{ terug }}">← Alle landen</a></p>{% endif %}
 <h1>Reisadviezen gelijkgestemde landen: {{ land }}</h1>
 <div class="meta">Opgehaald op {{ gegenereerd }} · {{ rijen|length }} overheden · ISO-code {{ iso }}</div>
 

@@ -81,7 +81,7 @@ def _env() -> Environment:
     return env
 
 
-def render(iso: str, adviezen: list[Advies], nu: datetime | None = None) -> str:
+def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: str | None = None) -> str:
     nu = nu or datetime.now(UTC)
     vandaag = nu.date()
     rijen = []
@@ -111,5 +111,6 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None) -> str:
             Kleur=Kleur,
             gegenereerd=nu.astimezone(ZoneInfo("Europe/Amsterdam")).strftime("%d-%m-%Y %H:%M"),
             recent_dagen=RECENT_DAGEN,
+            terug=terug,
         )
     )

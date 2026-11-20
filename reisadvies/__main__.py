@@ -36,6 +36,16 @@ def main(argv: list[str] | None = None) -> int:
         (ROOT / "MAPPING.md").write_text(als_markdown() + "\n", encoding="utf-8")
         print("MAPPING.md bijgewerkt.")
         return 0
+    if args.landen[0] == "site":
+        from .site import bouw
+
+        iso_lijst = [zoek(x) for x in args.landen[1:]] or None
+        if iso_lijst and None in iso_lijst:
+            print("Land niet herkend.", file=sys.stderr)
+            return 1
+        uit = Path(args.uit if args.uit != "uitvoer" else "site")
+        print(f"Site gebouwd: {bouw(uit, iso_lijst)}")
+        return 0
     if args.landen == ["bronnen"]:
         for b in BRONNEN.values():
             print(
