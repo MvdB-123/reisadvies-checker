@@ -126,6 +126,12 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "4": _n("Sicherheitsstufe 4 – Reisewarnung", "Reiswaarschuwing", R, L),
     },
     "se": {
+        "lamna": _n(
+            "UD avråder från alla resor och uppmanar svenskar att lämna landet",
+            "Ontraadt alle reizen en roept op het land te verlaten",
+            R,
+            L,
+        ),
         "alla": _n("UD avråder från alla resor", "Ontraadt alle reizen", R, L),
         "icke_nodvandiga": _n(
             "UD avråder från icke nödvändiga resor",

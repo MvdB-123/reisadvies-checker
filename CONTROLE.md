@@ -16,7 +16,8 @@ zijn onze uitkomsten per land daartegen gelegd.
 | Oostenrijk | ja: *Reisewarnungen / Sicherheitsstufen* | ja | 41/41 landen in de waarschuwingslijst kloppen |
 | Verenigde Staten | nee: uitlegpagina's weigeren geautomatiseerde verzoeken (403) | niveaunamen uit de feed | – |
 | Canada | ja: *Risk Levels* op elke landpagina | ja | – |
-| Zweden, Ierland, Australië | niet gecontroleerd (handmatige bronnen) | – | – |
+| Zweden | ja: *Nivåer av avrådan* op elke avrådan-pagina | ja | alle 66 namen op UD's lijst gekoppeld |
+| Ierland, Australië | niet gecontroleerd (handmatige bronnen) | – | – |
 
 ## Gevonden en gerepareerde fouten
 
@@ -58,10 +59,18 @@ zijn; alle 41 landen in die lijst kloppen nu.
   rood = `--high`.
 - **Oostenrijk**: Stufe 1 *Guter Sicherheitsstandard*, 2 *Sicherheitsrisiko*, 3 *"von nicht unbedingt
   notwendigen Reisen … wird abgeraten"*, 4 *Reisewarnung*.
+- **Zweden** (UD, *Nivåer av avrådan*): *icke nödvändiga resor* = *"UD avråder från turist- och
+  besöksresor"* (oranje); *alla resor* = ook werkreizen (rood); *uppmaning att lämna landet* (rood).
 - **Canada**: *"Avoid non-essential travel … think about your need to travel … based on family or business
   requirements"* = oranje; *"Avoid all travel … You should not travel"* = rood.
 - **Verenigd Koninkrijk**: alleen *"advises against all but essential travel"* en *"advises against all
   travel"*. Geen groen/geel: bevestigt "bestaat niet".
+
+### 4. Zweden: rest van het land en vervallen avrådan
+Bij de overstap naar regeringen.se bleken drie valkuilen, die nu getest zijn: *"resor till övriga Israel"*
+en *"Ryska Federationen (Ryssland)"* werden niet als heel land herkend; de alinea *"Föregående avrådan"*
+(de vervallen avrådan) mag niet meetellen; en West-Oekraïne (oranje, milder dan landelijk rood) moet
+juist wél getoond worden.
 
 ## Wat blijft een oordeel (afgeleid)
 

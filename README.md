@@ -5,8 +5,9 @@ Nederlandse advies en vertaalt elk niveau via een controleerbare mappingtabel na
 kleurcodes. Het resultaat is één HTML-pagina per land die de redactie kan nalopen en doorsturen.
 
 Zie [STRATEGY.md](STRATEGY.md) voor het waarom, [BRONNEN.md](BRONNEN.md) voor hoe elke overheid
-wordt uitgelezen, [MAPPING.md](MAPPING.md) voor de vertaling naar kleuren en
-[OPEN_VRAGEN.md](OPEN_VRAGEN.md) voor beslissingen die nog openstaan.
+wordt uitgelezen, [MAPPING.md](MAPPING.md) voor de vertaling naar kleuren, [CONTROLE.md](CONTROLE.md)
+voor de controle daarvan tegen de uitleg van elke overheid en [OPEN_VRAGEN.md](OPEN_VRAGEN.md) voor
+beslissingen die nog openstaan.
 
 ## Voorbeelden
 
@@ -28,6 +29,10 @@ machineleesbaar). Landen mogen in het Nederlands of Engels, of als ISO-code; mee
 kan ook (`python -m reisadvies TR UA Israël`).
 
 Overige opdrachten:
+
+```bash
+python -m reisadvies site         # bookmarkbare site: site/index.html + site/landen/<ISO>.html
+```
 
 ```bash
 python -m reisadvies bronnen      # welke bronnen, automatisch of handmatig
@@ -64,11 +69,11 @@ interpreteert geen lopende tekst (zie STRATEGY.md, "Niet aan werken").
 
 | Overheid | Hoe | Status |
 |---|---|---|
-| Nederland | webpagina (sitemap + landpagina) | automatisch |
+| Nederland | officiële open-data-API (webpagina als terugval) | automatisch |
 | Verenigd Koninkrijk | GOV.UK Content API (JSON) | automatisch |
 | Frankrijk | webpagina | automatisch; soms "niet herkend" (vrije tekst) |
 | Duitsland | Auswärtiges Amt Open Data API (JSON) | automatisch |
-| Zweden | webpagina | **geblokkeerd** (Cloudflare) → handmatig |
+| Zweden | officiële lijst van UD op regeringen.se | automatisch |
 | Denemarken | webpagina | automatisch |
 | Ierland | – | **handmatig** (weigert geautomatiseerde verzoeken) |
 | Oostenrijk | webpagina | automatisch |

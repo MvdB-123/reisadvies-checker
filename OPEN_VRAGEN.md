@@ -5,22 +5,12 @@ nu gebeurt zolang er geen antwoord is. Niets hiervan blokkeert het prototype.
 
 ## Toegang tot bronnen
 
-### 1. Nederlandse open-data-API toestaan?
-De landpagina's van nederlandwereldwijd.nl verwijzen naar een officiële API op
-`opendata.nederlandwereldwijd.nl` (kleurcodes per gebied, kaart). Die host staat niet in de
-netwerkregels van de cloudomgeving `reisadvies-checker`.
-- **Voorstel**: toevoegen. Een officiële bron is stabieler dan het uitlezen van de webpagina.
-- **Nu**: Nederland wordt van de webpagina gelezen; dat werkt voor alle 24 geteste landen.
-- **Nodig**: jouw akkoord. Ik kan de netwerkregel voorstellen; jij keurt die goed in de app.
+### 1. Nederlandse open-data-API toestaan? ✔ Opgelost (20-11)
+Toegestaan en in gebruik; de webpagina is de terugval.
 
-### 2. Zweden: Cloudflare-blokkade
-swedenabroad.se houdt Python-verzoeken tegen met een Cloudflare-controle. curl komt (vandaag) wel door.
-Die controle omzeilen door een ander programma te gebruiken of een browser na te doen, heb ik bewust
-niet gedaan: dat is precies wat de site kennelijk niet wil.
-- **Opties**: (a) Zweden handmatig houden; (b) UD vragen om toegang of een feed (andere landen hebben
-  er een); (c) bewust kiezen om via curl op te halen, als je dat na overleg acceptabel vindt.
-- **Voorstel**: (b), en tot die tijd (a).
-- **Nu**: "Handmatig nalopen" met link. De parser is getest en werkt zodra de toegang er is.
+### 2. Zweden: Cloudflare-blokkade ✔ Opgelost (22-11)
+UD publiceert dezelfde avrådan op regeringen.se, met een volledige lijst van landen. Die host is
+toegevoegd; Zweden is nu automatisch. swedenabroad.se omzeilen we niet.
 
 ### 3. Australië: niet bereikbaar
 `www.smartraveller.gov.au` gaf vanuit deze omgeving steeds een 502 of time-out, ook met een echte
@@ -36,17 +26,10 @@ Weigert geautomatiseerde verzoeken (HTTP 403), geen feed. Mogelijk via contact m
 
 ## Inhoud en mapping
 
-### 5. Mapping nalopen
-Zie [MAPPING.md](MAPPING.md). Keuzes die ik heb gemaakt en die een inhoudelijk oordeel zijn:
-- **VS niveau 3 "Reconsider travel" → oranje, afgeleid.** Zachter geformuleerd dan "alleen noodzakelijke
-  reizen", maar het op één na hoogste niveau. Zelfde keuze voor Australië "Reconsider your need to travel".
-- **VK, Duitsland, Zweden: geen kleur als er geen negatief advies is ("bestaat niet").** Zij kennen geen
-  onderscheid tussen groen en geel. Groen invullen zou "geen risico" suggereren.
-- **Duitsland "situationWarning" → oranje, afgeleid.** De API zegt niet of het om alle of om
-  niet-noodzakelijke reizen gaat.
-- **Frankrijk: bij alleen kleurkoppen geldt de laagste kleur als "rest van het land", afgeleid.** Dat staat
-  alleen op de kaart (een afbeelding). Alternatief: dan helemaal geen landelijk niveau tonen.
-- **Vraag**: kloppen deze keuzes met hoe de redactie ernaar kijkt?
+### 5. Mapping nalopen ✔ Gecontroleerd (20-11), zie CONTROLE.md
+Gecontroleerd tegen de uitleg van elke overheid. Echte fouten gevonden en gerepareerd bij Duitsland
+(afraden werd gemist), Nederland (tips telden als gebieden) en Zweden. Blijft een oordeel: VS niveau 3 en
+Duits "abgeraten" → oranje (afgeleid).
 
 ### 6. Vertaling van gebiedsteksten
 Niveaus worden vertaald via de mappingtabel (vast en controleerbaar). Gebiedsomschrijvingen en
@@ -63,11 +46,11 @@ cloudomgeving bevat elf bronnen (Nederland plus tien).
 
 ## Gebruik
 
-### 8. Hoe gaat de redactie het gebruiken?
-Nu is het een opdrachtregelprogramma dat een HTML-pagina per land maakt. Opties voor de volgende stap:
-- (a) een vaste taak die elk uur een overzicht maakt voor een lijst "landen in de gaten houden",
-  met een signaal als een overheid iets wijzigt;
-- (b) een kleine webapp waar de redactie een land intypt en direct het overzicht krijgt;
-- (c) allebei.
-- **Vraag**: wat past bij hoe het team werkt? Waar moet het draaien (eigen server, intern netwerk,
-  cloud)? Dat bepaalt ook of Zweden en Australië vanaf daar wél bereikbaar zijn.
+### 8. Hoe gaat de redactie het gebruiken? → bookmarkbare site (22-11)
+`python -m reisadvies site` maakt een startpagina met alle landen (zoeken, filteren, Enter opent het land)
+en per land het overzicht. Open punten: **waar komt hij te staan, en hoe vaak verversen?**
+- (a) Claude-artifact (privé link, deelbaar binnen je organisatie): staat nu klaar, maar verversen kost per
+  keer een sessie;
+- (b) GitHub Actions + GitHub Pages: gratis en automatisch elk uur, maar de pagina is dan openbaar
+  (openbare overheidsinformatie, maar wel een keuze);
+- (c) een interne server van het ministerie: het meest passend, maar daar heb ik geen toegang toe.

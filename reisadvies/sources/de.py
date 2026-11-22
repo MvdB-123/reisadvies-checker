@@ -113,8 +113,8 @@ def parse(id_: str, v: dict, iso: str) -> Advies:
                 adv.landelijk = kandidaat
                 adv.brontekst = zin
             continue
-        if adv.landelijk and adv.landelijk.kleur and adv.landelijk.kleur.ernst >= _ernst(sleutel):
-            continue  # niet strenger dan het hele land: geen afwijking
+        if adv.landelijk and adv.landelijk.kleur and adv.landelijk.kleur.ernst == _ernst(sleutel):
+            continue  # zelfde niveau als het hele land: geen afwijking
         gebied = m.group("gebied")
         if _VERWIJZING.search(gebied):
             gebied = (
@@ -123,10 +123,8 @@ def parse(id_: str, v: dict, iso: str) -> Advies:
         adv.gebieden.append(Gebied(gebied, niveau("de", sleutel), brontekst=zin))
 
     if adv.landelijk is not None and adv.landelijk.kleur:
-        # zinnen over het hele land kunnen ná de gebieden staan: alleen strengere gebieden houden
-        adv.gebieden = [
-            g for g in adv.gebieden if g.niveau.kleur and g.niveau.kleur.ernst > adv.landelijk.kleur.ernst
-        ]
+        # zinnen over het hele land kunnen ná de gebieden staan: gebieden met dezelfde kleur weghalen
+        adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
     if adv.landelijk is None:
         adv.landelijk = niveau("de", "geen")
         if adv.gebieden:

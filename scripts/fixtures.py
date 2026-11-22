@@ -18,7 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from reisadvies import http
 from reisadvies.countries import koppel
-from reisadvies.sources import at, ca, de, dk, fr, nl, uk, us
+from reisadvies.sources import at, ca, de, dk, fr, nl, se, uk, us
 
 F = Path(__file__).resolve().parents[1] / "tests" / "fixtures"
 
@@ -52,6 +52,10 @@ def main() -> None:
     for iso in ["IL", "NG"]:  # afraden alleen in de tekst
         id_, _ = de.index()[iso]
         bewaar(f"de_{iso}.json", json.dumps(http.json(f"{de.API}/{id_}")["response"][id_]))
+    # Zweden via regeringen.se
+    bewaar("se_lijst.html", http.text(se.LIJST))
+    for iso in ["PS", "IL", "RU", "AE", "UA"]:
+        bewaar(f"se_rg_{iso}.html", http.text(koppel(iso, "sv", se.ud_index())))
     # Nederlandse open-data-API
     for iso in ["TR", "TH", "VE"]:
         bewaar(f"nl_api_{iso}.json", json.dumps(http.json(nl.api_index()[iso]["dataurl"] + "?output=json")))

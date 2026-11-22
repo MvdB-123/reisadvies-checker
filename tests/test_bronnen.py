@@ -310,7 +310,7 @@ def test_de_israel_afraden_zonder_vlag():
     a = de.parse("203814", v, "IL")
     assert a.landelijk.kleur == Kleur.ORANJE and a.landelijk.soort == Soort.AFGELEID
     assert any(g.niveau.kleur == Kleur.ROOD and "Gaza" in g.omschrijving for g in a.gebieden)
-    assert all(g.niveau.kleur == Kleur.ROOD for g in a.gebieden)  # alleen strenger dan het land
+    assert all(g.niveau.kleur != Kleur.ORANJE for g in a.gebieden)  # zelfde kleur als het land weg
 
 
 def test_de_nigeria_niet_genannte_gebiete_is_landelijk():
@@ -330,3 +330,51 @@ def test_de_verwijzing_naar_ander_land_telt_niet():
     }
     a = de.parse("1", v, "RU")
     assert a.landelijk.kleur == Kleur.ROOD and a.gebieden == []
+
+
+# ---------- Zweden via regeringen.se ----------
+
+
+def _se_rg(iso):
+    return se.parse_regeringen(lees(f"se_rg_{iso}.html"), iso, "u")
+
+
+def test_se_lijst_alle_namen_gekoppeld():
+    """Een naam op UD's lijst die niet gekoppeld wordt, zou 'geen avrådan' opleveren."""
+    from unittest import mock
+
+    from reisadvies.countries import alle_landen, koppel
+
+    with mock.patch.object(se.http, "text", return_value=lees("se_lijst.html")):
+        se.ud_index.cache_clear()
+        ix = se.ud_index()
+    se.ud_index.cache_clear()
+    gekoppeld = {koppel(iso, "sv", ix) for iso in alle_landen()} - {None}
+    assert set(ix.values()) <= gekoppeld
+
+
+def test_se_rusland_naam_met_haakjes_is_heel_land():
+    assert _se_rg("RU").landelijk.kleur == Kleur.ROOD
+
+
+def test_se_israel_ovriga_is_landelijk():
+    a = _se_rg("IL")
+    assert a.landelijk.kleur == Kleur.ORANJE
+    assert kleuren(a) == ["rood"]
+    assert a.gewijzigd_op == "2026-08-20"
+
+
+def test_se_gemengde_zin_eerste_niveau_telt():
+    a = _se_rg("PS")
+    assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
+
+
+def test_se_opgeheven_avradan():
+    a = _se_rg("AE")
+    assert a.landelijk.kleur is None and a.gebieden == []
+
+
+def test_se_oekraine_mildere_gebieden_blijven():
+    a = _se_rg("UA")
+    assert a.landelijk.kleur == Kleur.ROOD
+    assert kleuren(a) == ["oranje"]

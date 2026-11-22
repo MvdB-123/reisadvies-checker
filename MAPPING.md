@@ -67,6 +67,7 @@ Elke overheid heeft haar eigen niveaus. Deze tabel legt vast welke kleur van het
 
 | Bronniveau | Vertaling | Kleur | Soort | Toelichting |
 |---|---|---|---|---|
+| UD avråder från alla resor och uppmanar svenskar att lämna landet | Ontraadt alle reizen en roept op het land te verlaten | rood | letterlijk |  |
 | UD avråder från alla resor | Ontraadt alle reizen | rood | letterlijk |  |
 | UD avråder från icke nödvändiga resor | Ontraadt niet-noodzakelijke reizen | oranje | letterlijk |  |
 | Ingen avrådan | Geen negatief reisadvies | — | bestaat niet | Zweden kent alleen 'avrådan'; daaronder geen onderscheid tussen groen en geel. |

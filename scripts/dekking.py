@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from reisadvies.countries import alle_landen, koppel
-from reisadvies.sources import at, ca, dk, fr, nl, uk, us
+from reisadvies.sources import at, ca, dk, fr, nl, se, uk, us
 
 BRONNEN = {
     "nl": (nl, "nl"),
@@ -23,6 +23,8 @@ BRONNEN = {
     "dk": (dk, "da"),
     "at": (at, "de"),
     "us": (us, "en"),
+    # Zweden: wie niet gekoppeld wordt, krijgt ten onrechte 'geen avrådan'. Moet altijd leeg zijn.
+    "se": (type("SE", (), {"index": staticmethod(se.ud_index)}), "sv"),
     "ca": (ca, "en"),
 }
 

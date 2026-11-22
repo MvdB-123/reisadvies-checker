@@ -58,18 +58,20 @@ nodig zijn (met 15 minuten cache).
 - **Datum**: `lastModified`.
 - **Let op**: de vlag `situationWarning` (afraden) wordt door het AA niet gebruikt. Zie CONTROLE.md.
 
-## Zweden (`se`): geblokkeerd
+## Zweden (`se`): officiële lijst van UD op regeringen.se
 
-- **Landenlijst**: keuzelijst `<option class="dropdown-option-link" …>` op elke reseinformation-pagina.
-  Het doeladres verschilt per land (`…/reseinformation/ambassadens-reseinformation/` of
-  `…/reseinformation-om-turkiet/`). De keuzelijst geeft het juiste adres.
-- **Niveau**: blok `.notice-block__wrapper--dissuasion` ("Avrådan") met vrije zinnen *"avråder från
-  alla resor till …"* (rood) en *"… icke nödvändiga resor till …"* (oranje). Geen blok = geen avrådan.
-  "övriga delar av" / "resor till <land>." = hele land.
-- **Datum**: *"Beslut om avrådan togs den …"*, anders *"Senast uppdaterad …"*.
-- **Let op**: swedenabroad.se laat curl door, maar houdt Python-verzoeken tegen met een Cloudflare-controle
-  (HTTP 403, "Just a moment…"). Die omzeilen we niet. De parser is getest op met de hand opgeslagen
-  pagina's en werkt zodra de toegang geregeld is. Zie OPEN_VRAGEN.md.
+- **Lijst**: `https://www.regeringen.se/ud-avrader/`: *"Här listas länder där det finns en avrådan"*,
+  één link per land (`/ud-avrader/<slug>/`). **Staat een land er niet op, dan is er geen avrådan**: een
+  officieel antwoord. Daarom moet elke naam op de lijst gekoppeld worden; dat controleren een test en
+  `scripts/dekking.py`.
+- **Land**: tekst tussen *"Publicerad <datum>"* en *"Nivåer av avrådan"*, gestopt vóór *"Föregående
+  avrådan"* (de vorige, vervallen avrådan). Zinnen *"avråder från alla resor till …"* (rood), *"… icke
+  nödvändiga resor till …"* (oranje), *"… uppmanar svenskar att lämna landet"* (rood). Het eerstgenoemde
+  niveau in een zin telt; een later niveau is een uitzondering. *"övriga <land>"*, *"övriga delar av"*,
+  *"hela landet"* of de landnaam zelf = landelijk. *"Borttagen avrådan"* = opgeheven.
+- **Datum**: *"Beslut om avrådan togs den …"*, anders *"Publicerad"*.
+- **Waarom niet swedenabroad.se**: daar staat dezelfde tekst, maar de site houdt geautomatiseerde verzoeken
+  tegen met een Cloudflare-controle (`cf-mitigated: challenge`). Die omzeilen we niet.
 
 ## Denemarken (`dk`)
 
