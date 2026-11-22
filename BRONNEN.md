@@ -34,9 +34,11 @@ nodig zijn (met 15 minuten cache).
 - **Landenlijst**: slugs uit `https://www.diplomatie.gouv.fr/fr/conseils-aux-voyageurs`.
 - **Land**: `/fr/information-par-pays/<slug>/conseils-aux-voyageurs-securite`.
 - **Niveau**: onder "Zones de vigilance":
-  1. een zin over het hele land (*"L'ensemble du pays est formellement déconseillé"*, *"Le reste du
-     territoire est placé en vigilance renforcée"*). We nemen de kleur direct ná "le reste du
-     territoire", anders die ervóór;
+  1. een zin over het hele land (*"L'ensemble/La totalité/L'intégralité du territoire est formellement
+     déconseillé(e)"*, *"Le reste du territoire est placé en vigilance renforcée"*, *"Le territoire belge est
+     placé en vigilance normale"*, *"… placé en rouge sur la carte"*, *"Il est déconseillé …, sauf pour des
+     raisons impératives, de se rendre au Koweït"*). We nemen de kleur direct ná "le reste du territoire",
+     anders die ervóór. Staat die zin net onder de volgende kop, dan zoeken we in de eerste twee alinea's;
   2. koppen per kleur (*"Zones formellement déconseillées (rouge sur la carte)"*, ook zonder "(… carte)").
   Vaste formuleringen: *formellement déconseillé* = rood, *déconseillé sauf raison impérative* =
   oranje, *vigilance renforcée* = geel, *vigilance normale* = groen.
@@ -81,8 +83,9 @@ nodig zijn (met 15 minuten cache).
   *"Vær ekstra forsigtig"*, *"Vi fraråder alle ikke-nødvendige rejser til"*, *"Vi fraråder alle rejser
   til"*) en ondertitel (gebied). *"Hele landet"* of *"resten af landet"* in de ondertitel = landelijk.
 - **Datum**: *"Rejsevejledning opdateret: dd.mm.jjjj"*.
-- **Let op**: voor sommige landen (Syrië, Haïti, Mali, Venezuela) geeft Denemarken geen advies
-  (*"Vi har ingen rejsevejledning"*) → "niet gevonden". Soms alleen balken voor gebieden: landelijk
+- **Let op**: Denemarken publiceert maar voor ±75 landen een rejsevejledning (stand 22-11-2026). Voor de
+  rest staat er *"Vi har ingen rejsevejledning for <land>"* (ook voor Afghanistan, Syrië en Mali) →
+  "niet gevonden". Soms alleen balken voor gebieden: landelijk
   dan "niet herkend".
 
 ## Ierland (`ie`): handmatig

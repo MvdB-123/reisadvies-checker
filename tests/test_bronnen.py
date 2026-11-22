@@ -80,11 +80,21 @@ def test_fr_oekraine_kop_zonder_kaartkleur():
     assert a.landelijk.kleur == Kleur.ROOD
 
 
-def test_fr_israel_vrije_tekst_wordt_niet_geinterpreteerd():
+def test_fr_israel_landnaam_in_zin():
+    """'Il demeure déconseillé aux ressortissants français, sauf pour des raisons impératives, de se
+    rendre en Israël.' -> landelijk oranje. De gebieden staan onder vrije koppen en tellen niet."""
     a = fr.parse(lees("fr_IL.html"), "IL", "u")
-    assert a.landelijk is None
-    assert "vrije tekst" in a.melding
+    assert a.landelijk.kleur == Kleur.ORANJE and a.landelijk.soort == Soort.LETTERLIJK
     assert "Golan" in a.brontekst
+
+
+def test_fr_vrije_tekst_wordt_niet_geinterpreteerd():
+    html = (
+        "<h3>Zones de vigilance</h3><p>Les voyages non essentiels vers l’île sont déconseillés.</p>"
+        "<h3>Risques</h3>"
+    )
+    a = fr.parse(html, "CU", "u")
+    assert a.landelijk is None and "vrije tekst" in a.melding
 
 
 # ---------- Duitsland ----------
@@ -378,3 +388,24 @@ def test_se_oekraine_mildere_gebieden_blijven():
     a = _se_rg("UA")
     assert a.landelijk.kleur == Kleur.ROOD
     assert kleuren(a) == ["oranje"]
+
+
+@pytest.mark.parametrize(
+    ("zin", "iso", "kleur"),
+    [
+        ("La totalité du territoire est formellement déconseillée.", "AF", "rouge"),
+        ("Le territoire belge est placé en vigilance normale.", "BE", "vert"),
+        (
+            "L’ensemble du territoire iranien est placé en rouge sur la carte des conseils aux voyageurs.",
+            "IR",
+            "rouge",
+        ),
+        (
+            "Il est déconseillé aux ressortissants français, sauf pour des raisons impératives, de se rendre au Koweït.",
+            "KW",
+            "orange",
+        ),
+    ],
+)
+def test_fr_meer_vaste_formuleringen(zin, iso, kleur):
+    assert fr._kleur_heel_land(zin, iso) == kleur

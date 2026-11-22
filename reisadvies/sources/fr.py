@@ -24,12 +24,20 @@ BASIS = "https://www.diplomatie.gouv.fr"
 WEB = BASIS + "/fr/conseils-aux-voyageurs"
 PAD = BASIS + "/fr/information-par-pays/{slug}/conseils-aux-voyageurs-securite"
 
-_KLEUR = re.compile(r"\(\s*(?:en\s+)?(rouge|orange|jaune|vert)\b[^)]*\)", re.IGNORECASE)
+_KLEUR = re.compile(
+    r"\(\s*(?:en\s+)?(rouge|orange|jaune|vert)\b[^)]*\)"  # '(rouge sur la carte)', '( vert )'
+    r"|\b(?:plac[ée]e?s?|class[ée]e?s?)\s+en\s+(rouge|orange|jaune|vert)\b",  # 'placé en rouge sur la carte'
+    re.IGNORECASE,
+)
 # Vaste formuleringen van de vier Franse niveaus (strengste eerst).
 _FORMULERING = [
     (re.compile(r"formellement d[ée]conseill", re.IGNORECASE), "rouge"),
     (
-        re.compile(r"d[ée]conseill\w*,? sauf (?:pour )?(?:des )?raisons? imp[ée]rative", re.IGNORECASE),
+        # ook 'déconseillé aux ressortissants français, sauf pour des raisons impératives'
+        re.compile(
+            r"d[ée]conseill\w*(?:\s+[^\s,]+){0,4}?,?\s+sauf (?:pour )?(?:des? )?raisons? imp[ée]rative",
+            re.IGNORECASE,
+        ),
         "orange",
     ),
     (re.compile(r"vigilance renforc[ée]e", re.IGNORECASE), "jaune"),
@@ -37,10 +45,13 @@ _FORMULERING = [
 ]
 # Zin die over het hele land gaat: 'L'ensemble du pays est ...', 'L'intégralité du pays ...'
 _HEEL_LAND = re.compile(
-    r"(?:ensemble|int[ée]gralit[ée]) du (?:pays|territoire)|tout le (?:pays|territoire)"
-    r"|reste du (?:pays|territoire)",
+    r"(?:ensemble|int[ée]gralit[ée]|totalit[ée]) du (?:pays|territoire)|tout le (?:pays|territoire)"
+    r"|reste du (?:pays|territoire)"
+    r"|^(?:le|l['’])\s*(?:territoire|pays)\b(?:\s+[a-zéèêëïîôûüç-]+)?\s+(?:est|sont)\b",  # 'Le territoire belge est ...'
     re.IGNORECASE,
 )
+# '... de se rendre au Koweït' / 'en Iran' / 'aux Émirats arabes unis': de landnaam zelf
+_NAAR_LAND = re.compile(r"\bse rendre\s+(?:en|au|aux|à|a)\s+([^,.;]+)", re.IGNORECASE)
 _ERNST = {"vert": 1, "jaune": 2, "orange": 3, "rouge": 4}
 
 
@@ -50,7 +61,7 @@ def _kleur_van(t: str) -> str | None:
     'vigilance normale ( vert ), à l'exception de ... ( jaune )' -> 'vert': wat vooraan staat,
     geldt voor het onderwerp van de zin; de rest is een uitzondering.
     """
-    kandidaten = [(m.start(), m.group(1).lower()) for m in _KLEUR.finditer(t)]
+    kandidaten = [(m.start(), (m.group(1) or m.group(2)).lower()) for m in _KLEUR.finditer(t)]
     for rx, kleur in _FORMULERING:
         m = rx.search(t)
         if m:
@@ -58,7 +69,7 @@ def _kleur_van(t: str) -> str | None:
     return min(kandidaten)[1] if kandidaten else None
 
 
-def _kleur_heel_land(zin: str) -> str | None:
+def _kleur_heel_land(zin: str, iso: str | None = None) -> str | None:
     """Kleur voor het hele land uit één zin, of None.
 
     Eerst de kleur direct ná 'le reste du territoire' / 'l'ensemble du pays' (de zin kan met een
@@ -66,10 +77,16 @@ def _kleur_heel_land(zin: str) -> str | None:
     territoire est placé en vigilance renforcée'). Staat daarna geen kleur, dan de kleur ervóór
     ('il est formellement déconseillé de se rendre dans l'ensemble du territoire').
     """
-    m = _HEEL_LAND.search(zin)
-    if not m:
-        return None
-    return _kleur_van(zin[m.end() :]) or _kleur_van(zin[: m.start()])
+    m = _HEEL_LAND.search(zin.strip())
+    if m:
+        z = zin.strip()
+        return _kleur_van(z[m.end() :]) or _kleur_van(z[: m.start()])
+    if iso:
+        for nm in _NAAR_LAND.finditer(zin):
+            doel = re.split(r"\s+(?:sauf|hormis|à l['’]exception|en dehors|quel)\b", nm.group(1))[0].strip()
+            if koppel(iso, "fr", {doel: True}):
+                return _kleur_van(zin)
+    return None
 
 
 def _zone_elementen(s) -> list:
@@ -114,11 +131,19 @@ def parse(html: str, iso: str, url: str) -> Advies:
     adv.brontekst = " ".join(tekst(e) for e in elementen if tekst(e))
 
     # 1. Een expliciete zin over het hele land ('L'ensemble du pays est formellement déconseillé').
-    for e in elementen:
+    #    Soms staat die net onder de volgende kop ('Risques et recommandations'): kijk dan in de eerste
+    #    twee alinea's ná 'Zones de vigilance'.
+    kandidaten = elementen
+    if not any(e.name == "p" and tekst(e) for e in elementen):
+        kop = s.find(lambda t: t.name in ("h2", "h3") and tekst(t) == "Zones de vigilance")
+        kandidaten = [p for p in (kop.find_all_next("p", limit=2) if kop else []) if tekst(p)]
+        if kandidaten:
+            adv.brontekst = " ".join(tekst(p) for p in kandidaten)
+    for e in kandidaten:
         if e.name not in ("p", "ul"):
             continue
         for zin in re.split(r"(?<=[.!?])\s+", tekst(e)):
-            if kleur := _kleur_heel_land(zin):
+            if kleur := _kleur_heel_land(zin, iso):
                 adv.landelijk = niveau("fr", kleur)
                 break
         if adv.landelijk:
@@ -128,7 +153,12 @@ def parse(html: str, iso: str, url: str) -> Advies:
     secties: list[tuple[str, str]] = []
     huidig: list | None = None
     for e in elementen:
-        if e.name in ("h4", "h5"):
+        # Een kop per kleur: h4/h5, of een alinea die alleen de kop bevat
+        # ('<p><strong>Zones formellement déconseillées (en rouge sur la carte)</strong></p>').
+        is_kop = e.name in ("h4", "h5") or (
+            e.name == "p" and e.find("strong") is not None and tekst(e.find("strong")) == tekst(e)
+        )
+        if is_kop:
             kop = tekst(e)
             kleur = (
                 _kleur_van(kop)
