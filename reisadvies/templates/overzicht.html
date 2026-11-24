@@ -46,6 +46,9 @@
   details { margin: 0 0 14px; border: 1px solid var(--lijn); border-radius: 4px; padding: 8px 12px; }
   details summary { cursor: pointer; font-weight: 600; }
   .brontekst { font-size: 13px; color: var(--zacht); white-space: pre-wrap; margin: 6px 0 0; }
+  .reden { font-size: 12px; margin-top: 6px; padding-left: 8px; border-left: 3px solid var(--lijn); color: var(--tekst); }
+  .reden a { white-space: nowrap; }
+  .oud { font-size: 12px; margin-top: 4px; background: #fff8e1; border: 1px solid #b98900; color: #7a5a00; padding: 2px 6px; display: inline-block; }
   .legenda { font-size: 13px; color: var(--zacht); }
   .legenda dt { font-weight: 600; color: var(--tekst); margin-top: 6px; }
   .legenda dd { margin: 0 0 0 0; }
@@ -79,6 +82,7 @@
   {% if som.milder %}<p>Landelijk <strong>milder</strong> dan Nederland: {{ som.milder|join(', ') }}.</p>{% endif %}
   {% if som.geen_kleur %}<p>Geen vergelijkbaar landelijk niveau (onderscheid bestaat niet of niet herkend): {{ som.geen_kleur|join(', ') }}.</p>{% endif %}
   {% if som.strengere_gebieden %}<p>Strengere adviezen voor <strong>gebieden</strong> bij: {{ som.strengere_gebieden|join(', ') }}.</p>{% endif %}
+  {% if som.onzeker %}<p><strong>Onzeker (geen wijzigingsdatum):</strong> {{ som.onzeker|join(', ') }}.</p>{% endif %}
   {% if som.niet_beschikbaar %}<p><strong>Handmatig nalopen:</strong> {{ som.niet_beschikbaar|join(', ') }}.</p>{% endif %}
 </div>
 
@@ -104,7 +108,11 @@
       <td>–</td>
       {% else %}
       <td>
-        {% if a.landelijk %}
+        {% if a.landelijk and r.geen_datum %}
+        <div class="let-op"><strong>Onzeker – niet vast te stellen hoe actueel dit is.</strong>
+          Geen wijzigingsdatum gevonden, dus geen kleurcode. De bron noemt: <em>{{ a.landelijk.bronlabel }}</em>.
+          <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a>.</div>
+        {% elif a.landelijk %}
         {{ kleurchip(a.landelijk) }} {{ soort(a.landelijk) }}
         <span class="bronlabel">{{ a.landelijk.bronlabel }}</span>
         <span class="vertaling">{{ a.landelijk.vertaling }}</span>
@@ -113,6 +121,7 @@
         <span class="kleur k-geen"><span class="blok" aria-hidden="true"></span>Niet herkend</span>
         <span class="vertaling">Zie brontekst onder 'Details'.</span>
         {% endif %}
+        {% if r.reden %}<div class="reden"><strong>Uit de bron:</strong> “{{ r.reden }}”{% if r.reden_link %} <a href="{{ r.reden_link }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}</div>{% endif %}
         {% if a.melding %}<div class="melding">⚠ {{ a.melding }}</div>{% endif %}
       </td>
       <td>
@@ -128,8 +137,9 @@
       <td class="datum">
         {% if a.gewijzigd_op %}{{ a.gewijzigd_op[8:10] }}-{{ a.gewijzigd_op[5:7] }}-{{ a.gewijzigd_op[:4] }}
           {% if r.recent %}<br><span class="recent">≤ {{ recent_dagen }} dagen</span>{% endif %}
+          {% if r.oud %}<div class="oud">⚠ al {{ r.dagen }} dagen niet gewijzigd</div>{% endif %}
           <div class="vertaling">{{ a.gewijzigd_label }}</div>
-        {% else %}<span class="vertaling">onbekend</span>{% endif %}
+        {% else %}<span class="vertaling">{{ a.gewijzigd_label or 'onbekend' }}</span>{% endif %}
       </td>
       {% endif %}
     </tr>
@@ -142,13 +152,13 @@
 {% set a = r.a %}
 <details>
   <summary>{{ r.bron.vlag }} {{ r.bron.naam }}: {{ a.landelijk.kleur.value if a.landelijk and a.landelijk.kleur else ('geen kleur' if a.landelijk else 'niet herkend') }}{% if r.gebieden %}, {{ r.gebieden|length }} gebied(en){% endif %}</summary>
-  {% if a.brontekst %}<p class="brontekst"><strong>Brontekst:</strong> {{ a.brontekst|truncate(3000) }}</p>{% endif %}
+  {% if a.brontekst %}<p class="brontekst"><strong>Brontekst:</strong> {{ a.brontekst|truncate(3000) }}{% if r.bron.taal != 'nl' %} <a href="{{ deepl(a.brontekst|truncate(3000), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}</p>{% endif %}
   {% if r.gebieden %}
   <ul class="gebieden" style="margin-top:10px">
     {% for g in r.gebieden %}
     <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok"></span>
       <span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong> {{ soort(g.niveau) }} {{ g.niveau.bronlabel }} <span class="vertaling" style="display:inline">({{ g.niveau.vertaling }})</span><br>
-      {{ g.omschrijving }}
+      {{ g.omschrijving }}{% if r.bron.taal != 'nl' %} <a href="{{ deepl(g.omschrijving, r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
       {% if g.brontekst and g.brontekst != g.omschrijving %}<span class="brontekst" style="display:block">{{ g.brontekst|truncate(600) }}</span>{% endif %}</span></li>
     {% endfor %}
   </ul>
@@ -164,6 +174,8 @@
   <dt><span class="soort soort-afgeleid">afgeleid</span></dt><dd>De overheid kent een niveau, maar de criteria wijken af. Onze vertaling; nalezen bij twijfel.</dd>
   <dt><span class="soort soort-bestaat-niet">bestaat niet</span></dt><dd>De overheid maakt dit onderscheid niet (bijvoorbeeld geen verschil tussen groen en geel). We tonen dan bewust géén kleur.</dd>
   <dt>Handmatig nalopen</dt><dd>De bron kon niet automatisch worden opgehaald. Een lege of ontbrekende rij betekent nooit "geen risico".</dd>
+  <dt>Citaat onder het niveau</dt><dd>Het begin van de brontekst, letterlijk en in de brontaal, als aanwijzing voor de reden van het niveau. Niets is samengevat; de DeepL-link opent de tekst ter controle van de vertaling.</dd>
+  <dt>Onzeker</dt><dd>Zonder wijzigingsdatum is niet vast te stellen hoe actueel een advies is; dan tonen we geen kleurcode. Adviezen die al meer dan {{ oud_dagen }} dagen niet zijn gewijzigd krijgen een waarschuwing.</dd>
   <dt>Laatst gewijzigd</dt><dd>De datum die de overheid zelf noemt; wat die datum precies is, staat eronder. Wijzigingen van de afgelopen {{ recent_dagen }} dagen zijn gemarkeerd.</dd>
 </dl>
 <p class="vertaling">De volledige mappingtabel staat in MAPPING.md in de repository. Gegenereerd door de Reisadvies-checker (prototype).</p>

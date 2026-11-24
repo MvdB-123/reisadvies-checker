@@ -92,3 +92,26 @@ def test_render_toont_handmatig_nooit_leeg():
     assert "Turkije" in html
     assert "géén &#34;geen risico&#34;" in html or 'géén "geen risico"' in html
     assert "https://www.ireland.ie/" in html
+
+
+def test_deepl_link_en_citaat():
+    from reisadvies.report import citaat, deepl_link
+
+    assert deepl_link("Hej världen", "sv") == "https://www.deepl.com/translator#sv/nl/Hej%20v%C3%A4rlden"
+    lang = "Eerste zin. " + "woord " * 100
+    assert citaat(lang).endswith("…") and citaat("Kort.") == "Kort."
+
+
+def test_geen_datum_geeft_onzeker_en_oud_geeft_waarschuwing():
+    from datetime import UTC, datetime
+
+    from reisadvies.mapping import niveau
+    from reisadvies.model import Advies, Status
+    from reisadvies.report import render
+
+    nu = datetime(2026, 11, 24, tzinfo=UTC)
+    zonder = Advies("dk", "TR", Status.OK, landelijk=niveau("dk", "geen"))
+    oud = Advies("at", "TR", Status.OK, landelijk=niveau("se", "geen"), gewijzigd_op="2024-01-01")
+    h = render("TR", [zonder, oud], nu)
+    assert "Onzeker – niet vast te stellen" in h
+    assert "niet gewijzigd" in h
