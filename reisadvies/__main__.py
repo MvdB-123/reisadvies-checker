@@ -46,6 +46,25 @@ def main(argv: list[str] | None = None) -> int:
         uit = Path(args.uit if args.uit != "uitvoer" else "site")
         print(f"Site gebouwd: {bouw(uit, iso_lijst)}")
         return 0
+    if args.landen[0] == "vertaal-open":
+        from .report import te_vertalen
+
+        rijen = []
+        for x in args.landen[1:]:
+            iso = zoek(x)
+            if iso:
+                rijen += te_vertalen(iso, verzamel(iso, args.bron))
+        Path(args.uit).mkdir(parents=True, exist_ok=True)
+        doel = Path(args.uit) / "te-vertalen.json"
+        doel.write_text(json.dumps(rijen, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(f"{len(rijen)} citaten zonder vertaling: {doel}")
+        return 0
+    if args.landen[0] == "vertaal-in":
+        from .vertaling import voeg_toe
+
+        n = voeg_toe(json.loads(Path(args.landen[1]).read_text(encoding="utf-8")))
+        print(f"{n} vertalingen vastgelegd in vertalingen.json.")
+        return 0
     if args.landen == ["bronnen"]:
         for b in BRONNEN.values():
             print(

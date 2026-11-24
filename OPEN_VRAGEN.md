@@ -12,7 +12,10 @@ Toegestaan en in gebruik; de webpagina is de terugval.
 UD publiceert dezelfde avrådan op regeringen.se, met een volledige lijst van landen. Die host is
 toegevoegd; Zweden is nu automatisch. swedenabroad.se omzeilen we niet.
 
-### 3. Australië: niet bereikbaar
+### 3. Australië: niet bereikbaar → Worker klaar (24-11), nog te installeren
+Zie worker/README.md. Ierland en Australië lopen daarlangs zodra REISADVIES_RELAY is ingesteld;
+de parsers volgen als de echte pagina's binnenkomen.
+
 `www.smartraveller.gov.au` gaf vanuit deze omgeving steeds een 502 of time-out, ook met een echte
 browser. `smartraveller.gov.au` zonder www stuurt alleen door naar www. De API die de vorige sessie
 noemde, is daardoor niet getest.
@@ -31,7 +34,11 @@ Gecontroleerd tegen de uitleg van elke overheid. Echte fouten gevonden en gerepa
 (afraden werd gemist), Nederland (tips telden als gebieden) en Zweden. Blijft een oordeel: VS niveau 3 en
 Duits "abgeraten" → oranje (afgeleid).
 
-### 6. Vertaling van gebiedsteksten
+### 6. Vertaling van gebiedsteksten ✔ Gekozen (24-11)
+Vertalingen worden in een Claude-sessie gemaakt en vastgelegd in vertalingen.json, per exacte
+brontekst. Ontbreekt er een of is de brontekst gewijzigd: alleen een DeepL-link. Zie reisadvies/vertaling.py.
+
+_Oorspronkelijke vraag:_
 Niveaus worden vertaald via de mappingtabel (vast en controleerbaar). Gebiedsomschrijvingen en
 bronteksten staan in de brontaal (Frans, Duits, Deens, Zweeds, Engels).
 - **Opties**: zo laten; of automatisch vertalen (bv. via de Claude API of DeepL), duidelijk gemarkeerd

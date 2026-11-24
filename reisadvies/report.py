@@ -12,6 +12,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from .countries import naam
 from .model import Advies, Kleur, Status
 from .sources import BRONNEN
+from .vertaling import vertaal
 
 RECENT_DAGEN = 7
 OUD_DAGEN = 365  # ouder dan dit: waarschuwing naast de kleurcode
@@ -126,6 +127,7 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
                 "oud": dagen is not None and dagen > OUD_DAGEN,
                 "reden": reden,
                 "reden_link": deepl_link(reden, b.taal) if reden and b.taal != "nl" else "",
+                "reden_nl": vertaal(reden) if reden and b.taal != "nl" else None,
                 "gebieden": sorted(
                     a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)
                 ),
@@ -145,6 +147,24 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
             recent_dagen=RECENT_DAGEN,
             oud_dagen=OUD_DAGEN,
             deepl=deepl_link,
+            vertaal=vertaal,
             terug=terug,
         )
     )
+
+
+def te_vertalen(iso: str, adviezen: list[Advies]) -> list[dict]:
+    """De citaten die het overzicht toont en die nog geen vastgelegde vertaling hebben."""
+    out, gezien = [], set()
+    for a in adviezen:
+        taal = BRONNEN[a.bron].taal
+        if a.status != Status.OK or taal == "nl":
+            continue
+        teksten = [g.omschrijving for g in a.gebieden]
+        if TOON_REDEN and a.brontekst and len(citaat(a.brontekst)) >= REDEN_MIN:
+            teksten.insert(0, citaat(a.brontekst))
+        for t in teksten:
+            if t and t not in gezien and vertaal(t) is None:
+                gezien.add(t)
+                out.append({"land": iso, "overheid": a.bron, "taal": taal, "bron": t, "nl": ""})
+    return out

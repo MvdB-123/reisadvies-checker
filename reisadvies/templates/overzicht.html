@@ -35,7 +35,8 @@
   .gebieden { margin: 0; padding: 0; list-style: none; }
   .gebieden li { margin: 0 0 6px; font-size: 13px; display: flex; gap: 6px; }
   .gebieden li .blok { margin-top: 3px; }
-  .datum { white-space: nowrap; }
+  .datum { white-space: nowrap; width: 16%; }
+  .datum .vertaling, .datum .oud { white-space: normal; font-size: 12px; }
   .recent { display: inline-block; font-size: 11px; background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 8px; margin-top: 3px; }
   .let-op { border: 2px solid var(--rood); background: #fdecea; padding: 8px 10px; font-size: 13px; }
   .let-op strong { color: var(--rood); }
@@ -49,6 +50,8 @@
   .reden { font-size: 12px; margin-top: 6px; padding-left: 8px; border-left: 3px solid var(--lijn); color: var(--tekst); }
   .reden a { white-space: nowrap; }
   .oud { font-size: 12px; margin-top: 4px; background: #fff8e1; border: 1px solid #b98900; color: #7a5a00; padding: 2px 6px; display: inline-block; }
+  .nl-vertaling { display: block; color: var(--zacht); font-style: italic; margin-top: 2px; }
+  .nl-vertaling::before { content: "NL: "; font-style: normal; font-weight: 600; }
   .legenda { font-size: 13px; color: var(--zacht); }
   .legenda dt { font-weight: 600; color: var(--tekst); margin-top: 6px; }
   .legenda dd { margin: 0 0 0 0; }
@@ -121,14 +124,14 @@
         <span class="kleur k-geen"><span class="blok" aria-hidden="true"></span>Niet herkend</span>
         <span class="vertaling">Zie brontekst onder 'Details'.</span>
         {% endif %}
-        {% if r.reden %}<div class="reden"><strong>Uit de bron:</strong> “{{ r.reden }}”{% if r.reden_link %} <a href="{{ r.reden_link }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}</div>{% endif %}
+        {% if r.reden %}<div class="reden"><strong>Uit de bron:</strong> “{{ r.reden }}”{% if r.reden_nl %}<span class="nl-vertaling">{{ r.reden_nl }}</span>{% endif %}{% if r.reden_link %} <a href="{{ r.reden_link }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if r.reden_nl else 'vertaal met DeepL' }}</a>{% endif %}</div>{% endif %}
         {% if a.melding %}<div class="melding">⚠ {{ a.melding }}</div>{% endif %}
       </td>
       <td>
         {% if r.gebieden %}
         <ul class="gebieden">
           {% for g in r.gebieden[:8] %}
-          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok" title="{{ g.niveau.kleur.value if g.niveau.kleur else 'geen kleur' }}"></span><span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong>: {{ g.omschrijving|truncate(220) }}</span></li>
+          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok" title="{{ g.niveau.kleur.value if g.niveau.kleur else 'geen kleur' }}"></span><span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong>: {{ g.omschrijving|truncate(220) }}{% if r.bron.taal != 'nl' %}{% set nl = vertaal(g.omschrijving) %}{% if nl %}<span class="nl-vertaling">{{ nl|truncate(260) }}</span>{% endif %} <a href="{{ deepl(g.omschrijving, r.bron.taal) }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if nl else 'vertaal met DeepL' }}</a>{% endif %}</span></li>
           {% endfor %}
           {% if r.gebieden|length > 8 %}<li>… en {{ r.gebieden|length - 8 }} meer (zie details)</li>{% endif %}
         </ul>
@@ -175,6 +178,7 @@
   <dt><span class="soort soort-bestaat-niet">bestaat niet</span></dt><dd>De overheid maakt dit onderscheid niet (bijvoorbeeld geen verschil tussen groen en geel). We tonen dan bewust géén kleur.</dd>
   <dt>Handmatig nalopen</dt><dd>De bron kon niet automatisch worden opgehaald. Een lege of ontbrekende rij betekent nooit "geen risico".</dd>
   <dt>Citaat onder het niveau</dt><dd>Het begin van de brontekst, letterlijk en in de brontaal, als aanwijzing voor de reden van het niveau. Niets is samengevat; de DeepL-link opent de tekst ter controle van de vertaling.</dd>
+  <dt>NL-vertaling</dt><dd>Zin voor zin vertaald, niet samengevat, en vastgelegd bij precies deze brontekst. Wijzigt de brontekst, dan vervalt de vertaling en staat er alleen een DeepL-link.</dd>
   <dt>Onzeker</dt><dd>Zonder wijzigingsdatum is niet vast te stellen hoe actueel een advies is; dan tonen we geen kleurcode. Adviezen die al meer dan {{ oud_dagen }} dagen niet zijn gewijzigd krijgen een waarschuwing.</dd>
   <dt>Laatst gewijzigd</dt><dd>De datum die de overheid zelf noemt; wat die datum precies is, staat eronder. Wijzigingen van de afgelopen {{ recent_dagen }} dagen zijn gemarkeerd.</dd>
 </dl>
