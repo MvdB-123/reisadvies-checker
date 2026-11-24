@@ -110,7 +110,7 @@ def test_geen_datum_geeft_onzeker_en_oud_geeft_waarschuwing():
     from reisadvies.report import render
 
     nu = datetime(2026, 11, 24, tzinfo=UTC)
-    zonder = Advies("dk", "TR", Status.OK, landelijk=niveau("dk", "geen"))
+    zonder = Advies("dk", "TR", Status.OK, landelijk=niveau("se", "geen"))
     oud = Advies("at", "TR", Status.OK, landelijk=niveau("se", "geen"), gewijzigd_op="2024-01-01")
     h = render("TR", [zonder, oud], nu)
     assert "Onzeker – niet vast te stellen" in h
