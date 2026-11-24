@@ -95,6 +95,18 @@ def _gebieden(body_html: str) -> list[Gebied]:
     ]
 
 
+def _is_rest(omschrijving: str, land: dict) -> bool:
+    """'all other regions of Ukraine', 'the rest of Chad': het niveau voor de rest van het land.
+    'the rest of the Savanes region' is een deelgebied: de landnaam moet er direct op volgen."""
+    namen = "|".join(re.escape(n) for n in [land.get("name", "")] + land.get("synonyms", []) if n)
+    if not namen:
+        return False
+    patroon = (
+        r"^(?:[^:]*:\s*)?(?:all )?(?:(?:other|remaining) (?:regions|parts|areas) of|(?:the )?rest of) "
+        rf"(?:the )?(?:{namen})(?![\w'’-])"
+    )
+    return bool(re.match(patroon, omschrijving, re.I))
+
 _BOILERPLATE = re.compile(r"travel insurance could be invalidated|^Find out more|^Read all the advice|^No travel can be guaranteed", re.I)
 _STOP_KOPPEN = re.compile(r"^(Support from the UK government|Before you travel|Travel insurance)", re.I)
 
@@ -141,6 +153,14 @@ def parse(data: dict, iso: str) -> Advies:
     adv.brontekst = _kern(deel.get("body", "")) if deel and det.get("alert_status") else ""
     if deel and ("_to_parts" in " ".join(status)):
         adv.gebieden = _gebieden(deel.get("body", ""))
+        # 'all other regions of Ukraine' is het niveau voor de rest van het land, geen deelgebied.
+        rest = next((g for g in adv.gebieden if _is_rest(g.omschrijving, det.get("country", {}))), None)
+        if rest is not None and adv.landelijk.kleur is None:
+            adv.landelijk = rest.niveau
+            adv.landelijk.toelichting = (
+                f"Het VK noemt dit niveau voor '{rest.omschrijving}'. De uitzonderingen staan bij de gebieden."
+            )
+            adv.gebieden = [g for g in adv.gebieden if g is not rest]
         if adv.landelijk.kleur is None and adv.gebieden:
             adv.landelijk.toelichting += (
                 " Let op: het VK ontraadt wél reizen naar delen van het land (zie gebieden)."

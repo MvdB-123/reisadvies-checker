@@ -416,3 +416,15 @@ def test_uk_brontekst_is_het_advies_niet_de_wijzigingsnotitie():
     assert a.brontekst.startswith("FCDO advises against")
     assert "insurance" not in a.brontekst.lower()
     assert "Updated information" not in a.brontekst
+
+
+def test_uk_oekraine_rest_van_het_land_is_landelijk_niveau():
+    a = uk.parse(json.loads(lees("uk_UA.json")), "UA")
+    assert a.landelijk.kleur and a.landelijk.kleur.value == "rood"
+    assert not any("all other regions" in g.omschrijving for g in a.gebieden)
+    assert any(g.niveau.kleur.value == "oranje" for g in a.gebieden)  # westelijke uitzonderingen
+
+
+def test_uk_rest_van_een_regio_is_geen_landelijk_niveau():
+    assert not uk._is_rest("the rest of the Savanes region", {"name": "Togo", "synonyms": []})
+    assert uk._is_rest("the rest of Chad, including the capital", {"name": "Chad", "synonyms": []})
