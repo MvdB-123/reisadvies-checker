@@ -409,3 +409,10 @@ def test_se_oekraine_mildere_gebieden_blijven():
 )
 def test_fr_meer_vaste_formuleringen(zin, iso, kleur):
     assert fr._kleur_heel_land(zin, iso) == kleur
+
+
+def test_uk_brontekst_is_het_advies_niet_de_wijzigingsnotitie():
+    a = uk.parse(json.loads(lees("uk_UA.json")), "UA")
+    assert a.brontekst.startswith("FCDO advises against")
+    assert "insurance" not in a.brontekst.lower()
+    assert "Updated information" not in a.brontekst

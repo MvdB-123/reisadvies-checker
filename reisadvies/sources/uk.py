@@ -95,13 +95,38 @@ def _gebieden(body_html: str) -> list[Gebied]:
     ]
 
 
+_BOILERPLATE = re.compile(r"travel insurance could be invalidated|^Find out more|^Read all the advice|^No travel can be guaranteed", re.I)
+_STOP_KOPPEN = re.compile(r"^(Support from the UK government|Before you travel|Travel insurance)", re.I)
+
+
+def _kern(body_html: str) -> str:
+    """Letterlijke openingsalinea's van 'Warnings and insurance': het advies en de reden, zonder
+    de vaste zinnen over verzekering en doorverwijzingen. Stopt bij de algemene kopjes."""
+    s = soep(body_html)
+    delen: list[str] = []
+    for el in s.find_all(["h2", "p"]):
+        if el.find_parent(["ul", "div"]) is not None:
+            continue
+        t = tekst(el)
+        if el.name == "h2":
+            if _STOP_KOPPEN.search(t) and delen:
+                break
+            continue
+        if t and not _BOILERPLATE.search(t):
+            # De lijst na een ':' staat bij de gebieden; hier markeren we de weglating als citaat.
+            delen.append(t + " […]" if t.endswith(":") else t)
+        if sum(len(d) for d in delen) > 600:
+            break
+    return " ".join(delen)
+
+
 def parse(data: dict, iso: str) -> Advies:
     det = data["details"]
     url = data.get("web_url") or WEB + "/" + data["base_path"].rsplit("/", 1)[-1]
     adv = Advies("uk", iso, Status.OK, url=url)
     adv.gewijzigd_op = (data.get("public_updated_at") or "")[:10] or None
-    adv.gewijzigd_label = "Laatst bijgewerkt (GOV.UK)"
-    adv.brontekst = det.get("change_description", "")
+    wijziging = det.get("change_description", "")
+    adv.gewijzigd_label = "Laatst bijgewerkt (GOV.UK)" + (f": {wijziging}" if wijziging else "")
 
     status = set(det.get("alert_status") or [])
     if "avoid_all_travel_to_whole_country" in status:
@@ -112,6 +137,8 @@ def parse(data: dict, iso: str) -> Advies:
         adv.landelijk = niveau("uk", "geen")
 
     deel = next((p for p in det.get("parts", []) if p.get("slug") == "warnings-and-insurance"), None)
+    # Zonder alert_status is 'Warnings and insurance' alleen algemene tekst (verzekering e.d.).
+    adv.brontekst = _kern(deel.get("body", "")) if deel and det.get("alert_status") else ""
     if deel and ("_to_parts" in " ".join(status)):
         adv.gebieden = _gebieden(deel.get("body", ""))
         if adv.landelijk.kleur is None and adv.gebieden:
