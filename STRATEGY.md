@@ -37,10 +37,13 @@ zelf in kijken.
 ### Ophalen en verversen
 
 Per overheid het actuele reisadvies binnenhalen en vaststellen hoe vers het is — met de
-ophaaldatum en de datum waarop die overheid het advies voor het laatst wijzigde.
+ophaaldatum en de datum waarop die overheid het advies voor het laatst wijzigde. Levert een
+bron geen wijzigingsdatum op, dan toont de tool geen kleurcode voor dat land.
 
 _Waarom het de aanpak dient:_ zonder verse gegevens met een datumstempel is het overzicht
-niet te vertrouwen, en in een crisis is "van wanneer is dit?" de eerste vraag.
+niet te vertrouwen, en in een crisis is "van wanneer is dit?" de eerste vraag. Een bron die
+stilletjes verouderde gegevens teruggeeft is gevaarlijker dan een bron die faalt, want er
+gaat geen alarm af.
 
 ### Vergelijkbaar maken
 

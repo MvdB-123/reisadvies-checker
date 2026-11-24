@@ -86,3 +86,22 @@ en heeft de lastige stukken al opgelost. Waardevol om van over te nemen:
 - Bij Australië bewust `Updated:` lezen en niet `Still current at`: die laatste verspringt
   ook bij een controle zonder inhoudelijke wijziging, en zou een advies verser doen lijken
   dan het is.
+
+## Verseheidscontrole — geldt voor elke bron
+
+Een bron die stilstaat faalt niet zichtbaar. Het oude Ierse adres `dfa.ie` geeft nog altijd
+keurig een pagina terug, met een bevroren stand van jaren geleden. Oostenrijk wijzigde in
+oktober 2025 zijn hele schaal zonder dat daar iets van te merken was aan de pagina's zelf.
+Dezelfde fout, verschillende landen — en in beide gevallen leest de gebruiker iets onjuists
+zonder dat er een foutmelding is.
+
+Daarom gelden deze eisen voor elke bron, niet voor een enkele:
+
+1. **Geen wijzigingsdatum, geen kleurcode.** Levert een pagina geen datum op, dan toont de
+   tool "onzeker — niet vast te stellen hoe actueel dit is", met een link naar de bron.
+2. **Een verdacht oude datum krijgt een waarschuwing** naast de kleurcode, zodat de redactie
+   ziet dat dit advies al een tijd niet is aangeraakt terwijl er wel iets speelt.
+3. **Altijd het huidige adres gebruiken.** Een oud adres dat blijft werken is geen geldige
+   bron. Bij twijfel het adres opnieuw verifiëren, niet de uitkomst vertrouwen.
+4. **De mapping periodiek tegen de bronnen houden**, niet alleen de landenadviezen. Een
+   overheid kan haar hele schaal wijzigen.
