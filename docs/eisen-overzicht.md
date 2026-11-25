@@ -11,9 +11,10 @@ Je zoekt één land op. Voor elke overheid toont het overzicht:
 | Basiskleur | De kleurcode die voor het hele land geldt |
 | Deelgebieden | Afwijkende kleurcodes voor specifieke gebieden, met de naam van het gebied |
 | Letterlijke typering | De eigen bewoording van die overheid, in de eigen taal |
-| Vertaling | Diezelfde typering in het Nederlands |
-| Citaat per deelgebied | Letterlijk fragment uit het advies, in de eigen taal |
-| Vertaling van het citaat | Dat fragment in het Nederlands |
+| Vertaling | Diezelfde typering in het Nederlands (vast, uit de mappingtabel) |
+| Toelichting | Waarom deze kleur bij deze typering hoort, of waarom er geen kleur is (uitklapper) |
+| Citaat per deelgebied | Letterlijk fragment uit het advies, in de eigen taal: welk gebied en waarom |
+| Vertaling van het citaat | Via een DeepL-link bij het citaat, die de hele alinea vertaalt |
 | Laatst gewijzigd | De datum waarop die overheid het advies aanpaste |
 | Opgehaald op | Wanneer de tool het ophaalde |
 
@@ -28,8 +29,13 @@ Een eerdere versie van deze tool ging juist hierop mis: samenvattingen introduce
 die niet opvallen, omdat het resultaat vloeiend en aannemelijk leest. Een citaat kan de
 redactie verifiëren, een samenvatting niet.
 
-Vertalen is geen samenvatten: de vertaling volgt de brontekst zin voor zin en staat naast
-het origineel, nooit in de plaats daarvan.
+Vertalen is geen samenvatten. Een eigen Nederlandse vertaling naast elk citaat kan de tool
+niet betrouwbaar leveren bij elke dagelijkse ronde; daarom staat bij elk citaat een DeepL-link
+die de volledige alinea vertaalt, en blijft het origineel leidend (besluit 25-11-2026).
+
+In de kolom met het landelijke niveau staat geen citaat: de basiskleur wordt in de bron vaak
+niet met een reden onderbouwd. De citaten staan bij de afwijkende gebieden, waar de bron het
+gebied en de reden wel expliciet noemt.
 
 ## Drie uitkomsten, niet twee
 

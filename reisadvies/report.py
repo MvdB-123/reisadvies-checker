@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, date, datetime
 from urllib.parse import quote
@@ -12,19 +13,10 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from .countries import naam
 from .model import Advies, Kleur, Status
 from .sources import BRONNEN
-from .vertaling import vertaal
 
 RECENT_DAGEN = 7
 OUD_DAGEN = 365  # ouder dan dit: waarschuwing naast de kleurcode
-REDEN_MIN = 60  # kortere brontekst (een paginatitel, 'Hele landet') zegt niets over de reden
-REDEN_LENGTE = 300  # lengte van het korte, letterlijke citaat bij het landelijke niveau
-TOON_REDEN = True  # citaat bij het landelijke niveau; op False zetten om het te laten vervallen
-
-
-def _over_gebied(reden: str, a: Advies) -> bool:
-    """Gaat het citaat over een afwijkend gebied? Dan hoort het daar, niet bij het landelijke niveau."""
-    r = " ".join(reden.split())
-    return any(g.brontekst and " ".join(g.brontekst.split())[:60] in r for g in a.gebieden)
+KORT_CITAAT = 320  # tekens: het gebied en de reden, meestal de eerste één of twee zinnen
 
 
 def deepl_link(tekst: str, taal: str) -> str:
@@ -32,14 +24,15 @@ def deepl_link(tekst: str, taal: str) -> str:
     return f"https://www.deepl.com/translator#{quote(taal)}/nl/{quote(tekst, safe='')}"
 
 
-def citaat(tekst: str, lengte: int = REDEN_LENGTE) -> str:
-    """Begin van de brontekst, zonder iets te herschrijven; bij inkorten op een zinseinde en met '…'."""
+def citaat(tekst: str, lengte: int = KORT_CITAAT, zinnen: int = 2) -> str:
+    """De eerste zinnen van de brontekst (meestal: welk gebied en waarom), letterlijk.
+    Ingekort wordt alleen aan het eind, op een zinseinde, en altijd met '…' erachter."""
     t = " ".join(tekst.split())
-    if len(t) <= lengte:
-        return t
-    knip = t[:lengte]
-    punt = max(knip.rfind(". "), knip.rfind("! "), knip.rfind("? "))
-    return (knip[: punt + 1] if punt > lengte // 3 else knip.rsplit(" ", 1)[0]) + " …"
+    delen = re.split(r"(?<=[.!?])\s+", t)
+    kort = " ".join(delen[:zinnen])
+    if len(kort) > lengte:
+        kort = kort[:lengte].rsplit(" ", 1)[0]
+    return kort if kort == t else kort + " …"
 
 
 def verzamel(iso: str, bronnen: list[str] | None = None) -> list[Advies]:
@@ -119,9 +112,6 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
         b = BRONNEN[a.bron]
         dagen = _dagen_geleden(a.gewijzigd_op, vandaag)
         heeft_niveau = a.status == Status.OK and a.landelijk is not None
-        reden = citaat(a.brontekst) if TOON_REDEN and a.status == Status.OK and a.brontekst else ""
-        if a.bron == "nl" or len(reden) < REDEN_MIN or _over_gebied(reden, a):
-            reden = ""  # de Nederlandse brontekst is het referentiepunt en staat in de details
         rijen.append(
             {
                 "a": a,
@@ -131,9 +121,6 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
                 # Geen wijzigingsdatum (en geen andere bevestiging van actualiteit) = onzeker.
                 "geen_datum": heeft_niveau and not a.gewijzigd_op and not a.gewijzigd_label,
                 "oud": dagen is not None and dagen > OUD_DAGEN,
-                "reden": reden,
-                "reden_link": deepl_link(reden, b.taal) if reden and b.taal != "nl" else "",
-                "reden_nl": vertaal(reden) if reden and b.taal != "nl" else None,
                 "gebieden": sorted(
                     a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)
                 ),
@@ -153,27 +140,8 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
             recent_dagen=RECENT_DAGEN,
             oud_dagen=OUD_DAGEN,
             deepl=deepl_link,
-            vertaal=vertaal,
+            citaat=citaat,
             terug=terug,
         )
     )
 
-
-def te_vertalen(iso: str, adviezen: list[Advies]) -> list[dict]:
-    """De citaten die het overzicht toont en die nog geen vastgelegde vertaling hebben."""
-    out, gezien = [], set()
-    for a in adviezen:
-        taal = BRONNEN[a.bron].taal
-        if a.status != Status.OK or taal == "nl":
-            continue
-        teksten = [
-            (g.brontekst if g.brontekst and g.brontekst.strip() != g.omschrijving.strip() else g.omschrijving)
-            for g in a.gebieden
-        ]
-        if TOON_REDEN and a.brontekst and len(citaat(a.brontekst)) >= REDEN_MIN and not _over_gebied(citaat(a.brontekst), a):
-            teksten.insert(0, citaat(a.brontekst))
-        for t in teksten:
-            if t and t not in gezien and vertaal(t) is None:
-                gezien.add(t)
-                out.append({"land": iso, "overheid": a.bron, "taal": taal, "bron": t, "nl": ""})
-    return out
