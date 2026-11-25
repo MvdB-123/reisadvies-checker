@@ -112,7 +112,6 @@ _EXTRA: dict[str, dict[str, list[str]]] = {
     "nl": {
         "BS": ["Bahamas"],
         "BY": ["Belarus Wit-Rusland", "Wit-Rusland"],
-        "BQ": ["Bonaire"],
         "BN": ["Brunei Darussalam"],
         "CG": ["Congo de Republiek"],
         "HK": ["Hongkong"],
@@ -135,7 +134,6 @@ _EXTRA: dict[str, dict[str, list[str]]] = {
         "MP": ["Northern Marianas"],
         "PM": ["Saint-Pierre-et-Miquelon"],
         "VI": ["Virgin Islands (U.S.)", "US Virgin Islands"],
-        "BQ": ["Bonaire"],
         "MF": ["French Saint Martin"],
     },
     "fr": {
@@ -215,7 +213,27 @@ def alle_landen() -> list[str]:
     )
 
 
+# Caribisch Nederland: Nederland geeft per eiland een reisadvies (API-code BQ-BO enz., ISO 3166-2);
+# ISO 3166-1 kent alleen 'BQ' voor de drie samen. Andere overheden noemen ze vaak samen.
+BIJZONDER: dict[str, dict[str, str]] = {
+    "BQ-BO": {"nl": "Bonaire", "en": "Bonaire", "fr": "Bonaire", "de": "Bonaire", "da": "Bonaire", "sv": "Bonaire"},
+    "BQ-SE": {"nl": "Sint Eustatius", "en": "Sint Eustatius", "fr": "Saint-Eustache", "de": "Sint Eustatius",
+              "da": "Sint Eustatius", "sv": "Sint Eustatius"},
+    "BQ-SA": {"nl": "Saba", "en": "Saba", "fr": "Saba", "de": "Saba", "da": "Saba", "sv": "Saba"},
+}
+ALIASSEN.setdefault("en", {}).update(
+    {
+        # VK: één pagina 'Bonaire/St Eustatius/Saba'; VS: 'Bonaire' en 'Saba and Sint Eustatius'.
+        "BQ-BO": ["Bonaire", "Bonaire/St Eustatius/Saba"],
+        "BQ-SE": ["St Eustatius", "Saint Eustatius", "Statia", "Saba and Sint Eustatius", "Bonaire/St Eustatius/Saba"],
+        "BQ-SA": ["Saba and Sint Eustatius", "Bonaire/St Eustatius/Saba"],
+    }
+)
+
+
 def naam(iso: str, taal: str = "nl") -> str:
+    if iso in BIJZONDER:
+        return BIJZONDER[iso].get(taal, BIJZONDER[iso]["en"])
     return _locale(taal).territories.get(iso, iso)
 
 
@@ -254,7 +272,7 @@ def koppel(iso: str, taal: str, kandidaten: dict):
 @cache
 def _zoektabel() -> dict[str, str]:
     tabel: dict[str, str] = {}
-    for iso in alle_landen():
+    for iso in [*alle_landen(), *BIJZONDER]:
         for taal in ("nl", "en"):
             for k in _sleutels(iso, taal):
                 tabel.setdefault(k, iso)
@@ -265,6 +283,8 @@ def zoek(invoer: str) -> str | None:
     """'TR', 'Turkije', 'turkey' -> 'TR'."""
     s = invoer.strip()
     if re.fullmatch(r"[A-Za-z]{2}", s) and s.upper() in alle_landen():
+        return s.upper()
+    if s.upper() in BIJZONDER:
         return s.upper()
     for v in _varianten(s):
         if v in _zoektabel():

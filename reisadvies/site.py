@@ -76,7 +76,8 @@ _NIET_VERGELIJKEN = {"handmatig", "fout", "n.v.t."}  # ophaalproblemen zijn geen
 
 def wijzigingen(vorige: list[dict], nieuwe: list[dict]) -> list[dict]:
     """Wat er per land per overheid veranderd is sinds de vorige ronde: landelijke kleur,
-    strengste gebied en aantal gebieden. Een bron die nu of toen niet op te halen was, telt niet."""
+    strengste gebied en aantal gebieden. Telt alleen als ook de wijzigingsdatum van die overheid
+    veranderde. Een bron die nu of toen niet op te halen was, telt niet."""
     oud = {r["iso"]: r for r in vorige}
     uit = []
     for r in nieuwe:
@@ -87,6 +88,10 @@ def wijzigingen(vorige: list[dict], nieuwe: list[dict]) -> list[dict]:
         for sleutel, b in r["bronnen"].items():
             a = v["bronnen"].get(sleutel)
             if not a or a["stand"] in _NIET_VERGELIJKEN or b["stand"] in _NIET_VERGELIJKEN:
+                continue
+            if a.get("gewijzigd") == b.get("gewijzigd"):
+                # De overheid heeft het advies niet aangepast; een verschil komt dan van de tool zelf
+                # (bijvoorbeeld een verbeterde herkenning) en is geen wijziging van het reisadvies.
                 continue
             naam_bron = BRONNEN[sleutel].naam
             if a["kleur"] != b["kleur"]:

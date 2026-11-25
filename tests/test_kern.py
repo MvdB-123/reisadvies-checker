@@ -121,16 +121,18 @@ def test_geen_datum_geeft_onzeker_en_oud_geeft_waarschuwing():
 def test_wijzigingen_tussen_twee_rondes():
     from reisadvies.site import wijzigingen
 
-    def rij(fr_kleur, fr_gebied, ie_stand="letterlijk"):
+    def rij(fr_kleur, fr_gebied, datum, ie_stand="letterlijk"):
         return {
             "iso": "TR",
             "naam": "Turkije",
             "bronnen": {
-                "fr": {"kleur": fr_kleur, "stand": "letterlijk", "gebieden": 1, "strengste_gebied": fr_gebied},
-                "ie": {"kleur": "geel", "stand": ie_stand, "gebieden": 0, "strengste_gebied": 0},
+                "fr": {"kleur": fr_kleur, "stand": "letterlijk", "gebieden": 1, "strengste_gebied": fr_gebied, "gewijzigd": datum},
+                "ie": {"kleur": "geel", "stand": ie_stand, "gebieden": 0, "strengste_gebied": 0, "gewijzigd": None},
             },
         }
 
-    w = wijzigingen([rij("geel", 3, "handmatig")], [rij("oranje", 4)])
+    w = wijzigingen([rij("geel", 3, "2026-11-01", "handmatig")], [rij("oranje", 4, "2026-11-24")])
     assert w[0]["regels"] == ["Frankrijk: landelijk geel → oranje", "Frankrijk: strengste gebied oranje → rood"]
-    assert wijzigingen([rij("geel", 3)], [rij("geel", 3)]) == []
+    assert wijzigingen([rij("geel", 3, "2026-11-01")], [rij("geel", 3, "2026-11-24")]) == []
+    # Zelfde wijzigingsdatum: de overheid paste niets aan, het verschil komt van de tool zelf.
+    assert wijzigingen([rij("geel", 0, "2026-11-01")], [rij("geel", 4, "2026-11-01")]) == []
