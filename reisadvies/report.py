@@ -104,7 +104,14 @@ def _env() -> Environment:
     return env
 
 
-def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: str | None = None) -> str:
+def render(
+    iso: str,
+    adviezen: list[Advies],
+    nu: datetime | None = None,
+    terug: str | None = None,
+    fonts: str | None = None,
+) -> str:
+    """fonts: pad naar de meegeleverde lettertypen (alleen in de site); los bestand: systeemletters."""
     nu = nu or datetime.now(UTC)
     vandaag = nu.date()
     rijen = []
@@ -142,6 +149,7 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
             deepl=deepl_link,
             citaat=citaat,
             terug=terug,
+            fonts=fonts,
         )
     )
 

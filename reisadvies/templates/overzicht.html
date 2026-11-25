@@ -5,17 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reisadviezen gelijkgestemde landen – {{ land }}</title>
 <style>
+{% include '_lettertype.html' %}
   :root {
-    --groen: #39870c; --geel: #f9e11e; --oranje: #e17000; --rood: #d52b1e;
-    --tekst: #1a1a1a; --zacht: #5c5c5c; --lijn: #d9d9d9; --vlak: #f5f5f5; --accent: #154273;
+    --groen: #39870c; --geel: #ffb612; --oranje: #e17000; --rood: #d52b1e;
+    --tekst: #1a1a1a; --zacht: #5c5c5c; --lijn: #d9d9d9; --vlak: #f5f5f5; --accent: #154273; --link: #007bc7; --link-hover: #00537c; --licht: #f1faff;
   }
   * { box-sizing: border-box; }
-  body { font-family: "RijksSansTT", "Segoe UI", Arial, sans-serif; color: var(--tekst);
-         margin: 0; padding: 32px; max-width: 1180px; margin-inline: auto; line-height: 1.45; font-size: 15px; }
-  h1 { font-size: 26px; margin: 0 0 4px; color: var(--accent); }
+  /* Stijl in de lijn van nederlandwereldwijd.nl: RO Sans/RO Serif waar geïnstalleerd (rijkswerkplekken),
+     anders Public Sans (meegeleverd), dan Segoe UI/systeemletter; lintblauw, hemelblauw voor links, lichtblauwe vlakken. Geen rijkslogo:
+     dit is geen officiële publicatie. */
+  input, select, button { font: inherit; }
+  a { color: var(--link); }
+  a:hover { color: var(--link-hover); }
+  h1, h2 { font-family: "RO Serif", "Public Sans", "Segoe UI", system-ui, sans-serif; font-weight: 700; }
+  .lint { background: var(--accent); color: #fff; margin: -32px -32px 24px; padding: 14px 32px; font-size: 15px; letter-spacing: .02em; }
+  .lint a { color: #fff; }
+  .disclaimer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--lijn); font-size: 13px; color: var(--zacht); }
+
+  body { font-family: "RO Sans", "Public Sans", "Segoe UI", system-ui, sans-serif; color: var(--tekst);
+         margin: 0; padding: 32px; max-width: 1180px; margin-inline: auto; line-height: 1.45; font-size: 16px; }
+  h1 { font-size: 30px; margin: 0 0 4px; color: var(--accent); }
   h2 { font-size: 18px; margin: 32px 0 12px; color: var(--accent); }
   .meta { color: var(--zacht); font-size: 13px; margin-bottom: 20px; }
-  .kern { background: var(--vlak); border-left: 4px solid var(--accent); padding: 14px 18px; margin: 16px 0 24px; }
+  .kern { background: var(--licht); border-left: 4px solid var(--accent); padding: 14px 18px; margin: 16px 0 24px; }
   .kern p { margin: 4px 0; }
   table { width: 100%; border-collapse: collapse; }
   th, td { text-align: left; vertical-align: top; padding: 10px 10px; border-bottom: 1px solid var(--lijn); }
@@ -61,6 +73,7 @@
 </style>
 </head>
 <body>
+<div class="lint">Reisadvies-checker · reisadviezen van gelijkgestemde landen naast elkaar</div>
 {% macro kleurchip(niveau) -%}
   {% if niveau and niveau.kleur %}
   <span class="kleur k-{{ niveau.kleur.value }}"><span class="blok" aria-hidden="true"></span>{{ niveau.kleur.value|capitalize }}</span>
@@ -192,5 +205,8 @@
   <dt>Laatst gewijzigd</dt><dd>De datum die de overheid zelf noemt; wat die datum precies is, staat eronder. Wijzigingen van de afgelopen {{ recent_dagen }} dagen zijn gemarkeerd.</dd>
 </dl>
 <p class="vertaling">De volledige mappingtabel staat in MAPPING.md in de repository. Gegenereerd door de Reisadvies-checker (prototype).</p>
+<p class="disclaimer">Interne vergelijkingstool, geen officiële publicatie van Nederland Wereldwijd of de rijksoverheid.
+  Het actuele Nederlandse reisadvies staat op <a href="https://www.nederlandwereldwijd.nl/reisadvies">nederlandwereldwijd.nl/reisadvies</a>.
+  De adviezen van andere overheden zijn automatisch opgehaald en kunnen afwijken van hun eigen website: controleer via de bronlinks.</p>
 </body>
 </html>
