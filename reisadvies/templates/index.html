@@ -54,6 +54,9 @@
   .nl .s { width: 22px; height: 22px; }
   td.opv { font-size: 12px; }
   .strenger { color: var(--rood); font-weight: 600; }
+  .intro { max-width: 860px; font-size: 16px; margin: 8px 0 18px; }
+  .intro p { margin: 0 0 8px; }
+  .wijzigingen details summary { cursor: pointer; color: var(--link); margin: 6px 0 0; font-size: 14px; }
   .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
   .wijzigingen h2 { font-size: 16px; margin: 0 0 6px; }
   .wijzigingen ul { margin: 0; padding-left: 18px; font-size: 14px; }
@@ -71,18 +74,37 @@
 <div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
   klik een land voor het volledige overzicht met brontekst</div>
 
+<section class="intro">
+  <p>Vergelijk in één oogopslag het reisadvies van Nederland met dat van tien gelijkgestemde landen:
+    het Verenigd Koninkrijk, Frankrijk, Duitsland, Zweden, Denemarken, Ierland, Oostenrijk, de Verenigde Staten,
+    Australië en Canada. Hun niveaus zijn vertaald naar de vier Nederlandse kleurcodes, met de eigen bewoording
+    van elke overheid ernaast.</p>
+  <p>Zoek een land en klik erop voor het volledige overzicht: per overheid het niveau, de afwijkende gebieden
+    met een letterlijk citaat uit de bron, en de datum waarop die overheid het advies voor het laatst aanpaste.
+    Elke ochtend opnieuw opgehaald.</p>
+</section>
+
 <section class="wijzigingen">
   <h2>Gewijzigd sinds de vorige ronde</h2>
   {% if not vergeleken %}
   <p class="zacht">Nog geen vorige ronde om mee te vergelijken.</p>
   {% elif gewijzigd %}
   <ul>
-    {% for w in gewijzigd %}
+    {% for w in gewijzigd[:8] %}
     <li><a href="landen/{{ w.iso }}.html"><strong>{{ w.naam }}</strong></a>: {{ w.regels|join('; ') }}</li>
     {% endfor %}
   </ul>
+  {% if gewijzigd|length > 8 %}
+  <details><summary>Nog {{ gewijzigd|length - 8 }} wijzigingen</summary>
+  <ul>
+    {% for w in gewijzigd[8:] %}
+    <li><a href="landen/{{ w.iso }}.html"><strong>{{ w.naam }}</strong></a>: {{ w.regels|join('; ') }}</li>
+    {% endfor %}
+  </ul>
+  </details>
+  {% endif %}
   {% else %}
-  <p class="zacht">Geen enkele overheid heeft een kleur of gebied gewijzigd.</p>
+  <p class="zacht">Geen enkele overheid heeft sinds de vorige ronde een kleur of gebied aangepast.</p>
   {% endif %}
 </section>
 

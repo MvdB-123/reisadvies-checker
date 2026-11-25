@@ -17,12 +17,13 @@ Primair halen we de gegevens uit de officiële open-data-API (CC0):
 from __future__ import annotations
 
 import re
+from dataclasses import replace
 from functools import lru_cache
 
 from .. import http
 from ..countries import koppel
 from ..mapping import niveau
-from ..model import Advies, Gebied, Status
+from ..model import Advies, Gebied, Soort, Status
 from .base import Bron, datum, niet_gevonden, soep, tekst
 
 BASIS = "https://www.nederlandwereldwijd.nl/reisadvies/"
@@ -42,10 +43,15 @@ _KORT_GEBIED = re.compile(
     r"\s+(?!de rest\b|het hele\b|heel\b)([^.]+)\.",
     re.IGNORECASE,
 )
+# 'Voor de Koerdistan Regio Irak en de zuidelijke provincies geldt grotendeels kleurcode oranje.'
+_KORT_GEBIED_2 = re.compile(
+    r"\bvoor (?!de rest\b|het hele\b|heel\b)([^.]+?) geldt (?:grotendeels |deels )?kleurcode (groen|geel|oranje|rood)\b",
+    re.IGNORECASE,
+)
 
 
 API = "https://opendata.nederlandwereldwijd.nl/v2/sources/nederlandwereldwijd/infotypes/traveladvice"
-_ISO3_UITZONDERINGEN = {"XKX": "XK", "KOS": "XK"}
+_ISO3_UITZONDERINGEN = {"XKX": "XK", "KOS": "XK", "BQ-BO": "BQ-BO", "BQ-SE": "BQ-SE", "BQ-SA": "BQ-SA"}
 
 
 @lru_cache(maxsize=1)
@@ -136,12 +142,15 @@ def parse(html: str, iso: str, url: str) -> Advies:
             if el.find_previous("h2") is not kort:
                 break
             zin = tekst(el)
-            m = _KORT_GEBIED.search(zin)
-            if not m:
+            if m := _KORT_GEBIED.search(zin):
+                kleur, gebied = (m.group(1) or m.group(2)).lower(), m.group(3)
+            elif m := _KORT_GEBIED_2.search(zin):
+                kleur, gebied = m.group(2).lower(), m.group(1)
+            else:
                 continue
-            nv = niveau("nl", (m.group(1) or m.group(2)).lower())
+            nv = niveau("nl", kleur)
             if nv.kleur not in al:
-                adv.gebieden.append(Gebied(m.group(3).strip(), nv, brontekst=zin))
+                adv.gebieden.append(Gebied(gebied.strip(), nv, brontekst=zin))
 
     # Landelijk niveau (voor de rest van het land)
     zoektekst = kort_tekst or tekst(s)
@@ -152,7 +161,7 @@ def parse(html: str, iso: str, url: str) -> Advies:
     )
     if not m:
         m = re.search(
-            r"kleurcode (?:van|voor) het reisadvies (?:voor|van) [^.]*? is (groen|geel|oranje|rood)",
+            r"kleurcode (?:van|voor) het reisadvies (?:voor|van) [^.]*? is (?:voor het grootste deel )?(groen|geel|oranje|rood)",
             zoektekst,
         )
     if not m and not adv.gebieden:
@@ -161,6 +170,17 @@ def parse(html: str, iso: str, url: str) -> Advies:
         adv.landelijk = niveau("nl", m.group(1))
         # Gebieden met dezelfde kleur als het land zijn geen afwijking.
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
+    elif adv.gebieden:
+        # Geen kleur voor 'de rest van het land' (bijvoorbeeld Irak: rood voor grote delen, oranje voor
+        # Koerdistan en het zuiden). Dan de laagste genoemde kleur als landelijk niveau, als afgeleid.
+        laagste = min(adv.gebieden, key=lambda g: g.niveau.kleur.ernst).niveau.kleur
+        adv.landelijk = replace(
+            niveau("nl", laagste.value),
+            soort=Soort.AFGELEID,
+            toelichting="Het Nederlandse advies noemt geen kleur voor de rest van het land; aangenomen is "
+            "de laagste genoemde kleur. Zie de kaart bij de bron.",
+        )
+        adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != laagste]
     else:
         adv.melding = "Landelijk niveau niet automatisch herkend; zie brontekst."
     return adv
