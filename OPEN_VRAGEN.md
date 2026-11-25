@@ -12,9 +12,8 @@ Toegestaan en in gebruik; de webpagina is de terugval.
 UD publiceert dezelfde avrådan op regeringen.se, met een volledige lijst van landen. Die host is
 toegevoegd; Zweden is nu automatisch. swedenabroad.se omzeilen we niet.
 
-### 3. Australië: niet bereikbaar → Worker klaar (24-11), nog te installeren
-Zie worker/README.md. Ierland en Australië lopen daarlangs zodra REISADVIES_RELAY is ingesteld;
-de parsers volgen als de echte pagina's binnenkomen.
+### 3. Australië en 4. Ierland → parsers klaar (25-11), werken alleen vanaf kantoornetwerk
+Een Cloudflare Worker hielp niet (beide weigeren ook Cloudflare). Zie docs/bronnen.md.
 
 `www.smartraveller.gov.au` gaf vanuit deze omgeving steeds een 502 of time-out, ook met een echte
 browser. `smartraveller.gov.au` zonder www stuurt alleen door naar www. De API die de vorige sessie

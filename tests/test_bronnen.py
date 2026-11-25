@@ -14,7 +14,7 @@ from pathlib import Path
 import pytest
 
 from reisadvies.model import Kleur, Soort, Status
-from reisadvies.sources import at, ca, de, dk, fr, nl, se, uk, us
+from reisadvies.sources import at, au, ca, de, dk, fr, ie, nl, se, uk, us
 
 F = Path(__file__).parent / "fixtures"
 
@@ -198,14 +198,6 @@ def test_een_kapotte_bron_breekt_het_overzicht_niet():
 
     a = Bron("xx", "Test", "", "en", "https://x", _ophalen=stuk).haal("TR")
     assert a.status == Status.FOUT and "kapot" in a.melding
-
-
-@pytest.mark.parametrize("bron", ["ie", "au"])
-def test_handmatige_bronnen(bron):
-    from reisadvies.sources import BRONNEN
-
-    a = BRONNEN[bron].haal("TR")
-    assert a.status == Status.HANDMATIG and a.url
 
 
 # ---------- Regressie: brede steekproef 19-11-2026 ----------
@@ -428,3 +420,62 @@ def test_uk_oekraine_rest_van_het_land_is_landelijk_niveau():
 def test_uk_rest_van_een_regio_is_geen_landelijk_niveau():
     assert not uk._is_rest("the rest of the Savanes region", {"name": "Togo", "synonyms": []})
     assert uk._is_rest("the rest of Chad, including the capital", {"name": "Chad", "synonyms": []})
+
+
+# ---------- Ierland (pagina's opgeslagen vanaf een kantoornetwerk, 25-11-2026) ----------
+
+
+def test_ie_turkije_geel_met_rood_en_oranje_gebied():
+    a = ie.parse(lees("ie_TR.html"), "TR", "x")
+    assert a.landelijk.kleur == Kleur.GEEL and a.landelijk.soort == Soort.LETTERLIJK
+    assert a.gewijzigd_op == "2026-09-30"  # 'Updated on', niet 'Still current at'
+    assert kleuren(a) == ["oranje", "rood"]
+    assert any("Hatay" in g.omschrijving for g in a.gebieden)
+
+
+def test_ie_israel_oranje_en_strongly_advised_is_afgeleid():
+    a = ie.parse(lees("ie_IL.html"), "IL", "x")
+    assert a.landelijk.kleur == Kleur.ORANJE
+    assert len(a.gebieden) == 3
+    assert all(g.niveau.kleur == Kleur.ROOD and g.niveau.soort == Soort.AFGELEID for g in a.gebieden)
+
+
+def test_ie_oekraine_rood_hele_land_is_geen_gebied():
+    a = ie.parse(lees("ie_UA.html"), "UA", "x")
+    assert a.landelijk.kleur == Kleur.ROOD
+    assert a.gebieden == []
+    assert a.brontekst.startswith("The Department strongly advises against all travel to Ukraine")
+
+
+# ---------- Australië ----------
+
+
+def test_au_turkije_niveaus_en_updated_datum():
+    a = au.parse(lees("au_TR.html"), "TR", "x")
+    assert a.landelijk.kleur == Kleur.GEEL
+    assert a.gewijzigd_op == "2026-10-30"  # 'Updated', niet 'Still current at' (25-11)
+    assert kleuren(a) == ["oranje", "rood"]
+    assert a.brontekst.startswith("Exercise a high degree of caution in Türkiye overall")
+
+
+def test_au_israel_en_oekraine():
+    il = au.parse(lees("au_IL.html"), "IL", "x")
+    assert il.landelijk.kleur == Kleur.ORANJE and kleuren(il) == ["rood"]
+    ua = au.parse(lees("au_UA.html"), "UA", "x")
+    assert ua.landelijk.kleur == Kleur.ROOD and ua.gebieden == []
+
+
+def test_ie_en_au_geblokkeerd_wordt_handmatig_nalopen(monkeypatch):
+    from reisadvies import http
+
+    def weiger(url):
+        raise http.OphaalFout(f"{url}: HTTP 403", 403)
+
+    monkeypatch.setattr(http, "text", weiger)
+    for mod in (ie, au):
+        mod.index.cache_clear()
+        monkeypatch.setattr(mod, "_geblokkeerd", False)
+        a = mod.ophalen("TR")
+        assert a.status == Status.HANDMATIG and "datacenters" in a.melding
+        assert mod.ophalen("UA").status == Status.HANDMATIG  # tweede land: direct, zonder wachten
+        mod.index.cache_clear()

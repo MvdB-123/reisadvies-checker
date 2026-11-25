@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import os
 import time
-from urllib.parse import quote, urlparse
 
 import requests
 
@@ -17,19 +15,6 @@ _sessie = requests.Session()
 _sessie.headers.update({"User-Agent": USER_AGENT})
 _cache: dict[str, tuple[float, requests.Response]] = {}
 
-# Hosts die verzoeken uit datacenters weigeren; die gaan via de Worker in worker/ als die is ingesteld.
-VIA_RELAY = {"www.ireland.ie", "www.smartraveller.gov.au", "smartraveller.gov.au"}
-
-
-def relay_actief() -> bool:
-    return bool(os.environ.get("REISADVIES_RELAY") and os.environ.get("REISADVIES_RELAY_KEY"))
-
-
-def _route(url: str) -> tuple[str, dict]:
-    if urlparse(url).hostname in VIA_RELAY and relay_actief():
-        basis = os.environ["REISADVIES_RELAY"].rstrip("/")
-        return f"{basis}/?url={quote(url, safe='')}", {"X-Relay-Key": os.environ["REISADVIES_RELAY_KEY"]}
-    return url, {}
 
 
 class OphaalFout(Exception):
@@ -44,8 +29,7 @@ def get(url: str, *, cache: bool = True) -> requests.Response:
         return _cache[url][1]
     for poging in range(POGINGEN):
         try:
-            doel, kop = _route(url)
-            r = _sessie.get(doel, headers=kop, timeout=TIMEOUT)
+            r = _sessie.get(url, timeout=TIMEOUT)
             break
         except requests.RequestException as e:
             if poging == POGINGEN - 1:

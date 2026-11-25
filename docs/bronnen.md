@@ -25,10 +25,10 @@ frontend kan de gegevens ophalen zonder zelf een server nodig te hebben.
 | Denemarken | direct | |
 | Oostenrijk | direct | |
 | Canada | direct | |
-| Ierland | direct | lukt niet vanaf elk IP-adres, zie hieronder |
+| Ierland | direct, alleen vanaf kantoornetwerk | weigert datacenters, ook Cloudflare; zie hieronder |
 | Verenigde Staten | via feed | alle landen in één bestand, zie hieronder |
-| Australië | via leesproxy | blokkeert datacenter-IP's, zie hieronder |
-| Zweden | onbekend | bronadres per land nog uit te zoeken |
+| Australië | direct, alleen vanaf kantoornetwerk | weigert datacenters, ook Cloudflare; zie hieronder |
+| Zweden | direct | UD's lijst van avrådan op regeringen.se |
 
 ## Verenigde Staten — de beste bron
 
@@ -105,3 +105,22 @@ Daarom gelden deze eisen voor elke bron, niet voor een enkele:
    bron. Bij twijfel het adres opnieuw verifiëren, niet de uitkomst vertrouwen.
 4. **De mapping periodiek tegen de bronnen houden**, niet alleen de landenadviezen. Een
    overheid kan haar hele schaal wijzigen.
+
+## Ierland en Australië — getest op 25 november 2026
+
+Beide weigeren verzoeken uit datacenters: vanuit de Claude Code-omgeving (403 en een hangende
+verbinding) en ook via een eigen Cloudflare Worker (Ierland 403, Australië 520). De eerdere
+notitie dat Ierland vanaf een Worker werkt, klopte voor ons niet. Een ander User-Agent proberen
+om de blokkade te passeren doen we bewust niet; een leesproxy als `r.jina.ai` ook niet.
+
+Vanaf een kantoornetwerk werken beide wel. De parsers (`reisadvies/sources/ie.py`, `au.py`) zijn
+geschreven en getest op pagina's die vanaf een werkcomputer met de browser zijn opgeslagen. In de
+cloud tonen ze "handmatig nalopen" met link; na de eerste weigering wacht de tool niet opnieuw.
+
+- Ierland: niveau uit `div.accordion_travel` (CSS-klasse), datum uit "Updated on" (niet
+  "Still current at"). "Strongly advised not to travel" is geen officieel niveau: rood, afgeleid.
+- Australië: niveau uit "Overall", datum uit "Updated" (niet "Still current at"), gebieden uit het
+  blok "Advice levels" met per gebied een letterlijke zin inclusief reden.
+- Nog niet getest: de landenlijsten (`index()`) van beide sites. Daarvoor zijn
+  `https://www.ireland.ie/en/dfa/overseas-travel/advice/` en
+  `https://www.smartraveller.gov.au/destinations` nodig, opgeslagen vanaf het kantoornetwerk.
