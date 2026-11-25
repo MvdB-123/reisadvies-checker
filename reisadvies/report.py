@@ -21,6 +21,12 @@ REDEN_LENGTE = 300  # lengte van het korte, letterlijke citaat bij het landelijk
 TOON_REDEN = True  # citaat bij het landelijke niveau; op False zetten om het te laten vervallen
 
 
+def _over_gebied(reden: str, a: Advies) -> bool:
+    """Gaat het citaat over een afwijkend gebied? Dan hoort het daar, niet bij het landelijke niveau."""
+    r = " ".join(reden.split())
+    return any(g.brontekst and " ".join(g.brontekst.split())[:60] in r for g in a.gebieden)
+
+
 def deepl_link(tekst: str, taal: str) -> str:
     """Link naar DeepL met de tekst al ingevuld, zodat de redactie de vertaling zelf kan nalopen."""
     return f"https://www.deepl.com/translator#{quote(taal)}/nl/{quote(tekst, safe='')}"
@@ -114,7 +120,7 @@ def render(iso: str, adviezen: list[Advies], nu: datetime | None = None, terug: 
         dagen = _dagen_geleden(a.gewijzigd_op, vandaag)
         heeft_niveau = a.status == Status.OK and a.landelijk is not None
         reden = citaat(a.brontekst) if TOON_REDEN and a.status == Status.OK and a.brontekst else ""
-        if a.bron == "nl" or len(reden) < REDEN_MIN:
+        if a.bron == "nl" or len(reden) < REDEN_MIN or _over_gebied(reden, a):
             reden = ""  # de Nederlandse brontekst is het referentiepunt en staat in de details
         rijen.append(
             {
@@ -160,8 +166,11 @@ def te_vertalen(iso: str, adviezen: list[Advies]) -> list[dict]:
         taal = BRONNEN[a.bron].taal
         if a.status != Status.OK or taal == "nl":
             continue
-        teksten = [g.omschrijving for g in a.gebieden]
-        if TOON_REDEN and a.brontekst and len(citaat(a.brontekst)) >= REDEN_MIN:
+        teksten = [
+            (g.brontekst if g.brontekst and g.brontekst.strip() != g.omschrijving.strip() else g.omschrijving)
+            for g in a.gebieden
+        ]
+        if TOON_REDEN and a.brontekst and len(citaat(a.brontekst)) >= REDEN_MIN and not _over_gebied(citaat(a.brontekst), a):
             teksten.insert(0, citaat(a.brontekst))
         for t in teksten:
             if t and t not in gezien and vertaal(t) is None:

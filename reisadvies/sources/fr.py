@@ -13,6 +13,7 @@ from __future__ import annotations
 import re
 from dataclasses import replace
 from functools import lru_cache
+from urllib.parse import urljoin
 
 from .. import http
 from ..countries import koppel, naam, normaliseer
@@ -107,6 +108,58 @@ def _zone_elementen(s) -> list:
     return out
 
 
+# De vier vaste kleuren van de Franse kaarten (gemeten op de kaarten van Cambodja, Turkije en Japan).
+_KAARTKLEUREN = {
+    "rouge": (220, 10, 20),
+    "orange": (245, 150, 60),
+    "jaune": (245, 245, 170),
+    "vert": (190, 210, 110),
+}
+_MAX_AFSTAND = 40  # pixels verder van alle vier de kleuren weg zijn zee, buurlanden, tekst
+_MIN_AANDEEL = 0.02  # minder dan 2% van de kaart in een van de vier kleuren: niet betrouwbaar
+
+
+def kaart_url(html: str) -> str | None:
+    """De kaartafbeelding onder 'Zones de vigilance'."""
+    i = html.find("Zones de vigilance")
+    m = re.search(r'<img[^>]*\bsrc="([^"]+)"', html[i : i + 5000]) if i >= 0 else None
+    return urljoin(BASIS, m.group(1)) if m else None
+
+
+def kaartkleur(afbeelding: bytes) -> tuple[str | None, dict[str, float]]:
+    """De kleur met het grootste oppervlak op de kaart: de kleur voor het grootste deel van het land.
+
+    Telt alleen pixels die dicht bij een van de vier vaste kaartkleuren liggen; zee, buurlanden,
+    plaatsnamen en de titelbalk vallen daarbuiten. De legenda telt mee, maar is klein.
+    """
+    from io import BytesIO
+
+    from PIL import Image
+
+    im = Image.open(BytesIO(afbeelding)).convert("RGB")
+    im.thumbnail((400, 400))
+    telling = dict.fromkeys(_KAARTKLEUREN, 0)
+    ruw = im.tobytes()
+    pixels = list(zip(ruw[0::3], ruw[1::3], ruw[2::3]))
+    for r, g, b in pixels:
+        beste, afstand = None, _MAX_AFSTAND**2
+        for kleur, (kr, kg, kb) in _KAARTKLEUREN.items():
+            d = (r - kr) ** 2 + (g - kg) ** 2 + (b - kb) ** 2
+            if d < afstand:
+                beste, afstand = kleur, d
+        if beste:
+            telling[beste] += 1
+    aandelen = {k: n / len(pixels) for k, n in telling.items()}
+    kleur = max(aandelen, key=aandelen.get)
+    return (kleur if aandelen[kleur] >= _MIN_AANDEEL else None), aandelen
+
+
+_KAART_TOELICHTING = (
+    "Frankrijk noemt de kleur voor de rest van het land alleen op de kaart. Afgelezen van de kaart: "
+    "de kleur met het grootste oppervlak."
+)
+
+
 @lru_cache(maxsize=1)
 def index() -> dict[str, str]:
     html = http.text(WEB)
@@ -114,7 +167,13 @@ def index() -> dict[str, str]:
     return {s: PAD.format(slug=s) for s in slugs}
 
 
-def parse(html: str, iso: str, url: str) -> Advies:
+_OOK_OP_KAART = 0.002  # vanaf 0,2% van de kaart telt een strengere kleur als gebied (de legenda is kleiner)
+
+
+def parse(
+    html: str, iso: str, url: str, kaart: str | None = None, aandelen: dict[str, float] | None = None
+) -> Advies:
+    """kaart/aandelen: uitkomst van kaartkleur() voor de kaartafbeelding, als die er is."""
     s = soep(html)
     adv = Advies("fr", iso, Status.OK, url=url)
     m = re.search(r"Dernière actualisation le\s*([\d/]+)", html)
@@ -172,6 +231,10 @@ def parse(html: str, iso: str, url: str) -> Advies:
             huidig[1].append(tekst(e))
     secties = [(k, " ".join(t)) for k, t in secties]
 
+    if not adv.landelijk and kaart:
+        # Geen zin over het hele land: de kaart is de bron. Gebieden in dezelfde kleur wijken niet af.
+        adv.landelijk = replace(niveau("fr", kaart), toelichting=_KAART_TOELICHTING)
+        secties = [(k, t) for k, t in secties if k != kaart]
     if not adv.landelijk:
         expliciet = next((i for i, (_, t) in enumerate(secties) if _HEEL_LAND.search(t)), None)
         if expliciet is not None:
@@ -189,6 +252,21 @@ def parse(html: str, iso: str, url: str) -> Advies:
 
     for kleur, t in secties:
         adv.gebieden.append(Gebied(t[:300], niveau("fr", kleur), brontekst=t))
+
+    if adv.landelijk and aandelen and adv.landelijk.kleur:
+        # Staat er op de kaart een strengere kleur die de tekst niet als gebied noemt? Dan zeggen we dat.
+        basis = adv.landelijk.kleur.ernst
+        genoemd = {g.niveau.kleur for g in adv.gebieden}
+        missend = [
+            k for k, a in aandelen.items()
+            if a >= _OOK_OP_KAART and _ERNST[k] > basis and niveau("fr", k).kleur not in genoemd
+        ]
+        if missend:
+            namen = " en ".join(niveau("fr", k).kleur.value for k in sorted(missend, key=_ERNST.get, reverse=True))
+            adv.melding = (
+                f"Op de kaart staan ook gebieden in {namen} die niet automatisch uit de tekst zijn "
+                "herkend. Bekijk de kaart via de link."
+            )
 
     if not adv.landelijk:
         if secties:
@@ -213,7 +291,15 @@ def ophalen(iso: str) -> Advies:
         html = http.text(url)
     except http.OphaalFout:
         return niet_gevonden("fr", iso, WEB)
-    return parse(html, iso, url)
+    kaart = None
+    if (k_url := kaart_url(html)) is not None:
+        try:
+            kaart, aandelen = kaartkleur(http.get(k_url).content)
+        except Exception:  # noqa: BLE001 - zonder kaart valt parse terug op de tekst
+            kaart, aandelen = None, None
+    else:
+        aandelen = None
+    return parse(html, iso, url, kaart=kaart, aandelen=aandelen)
 
 
 BRON = Bron("fr", "Frankrijk", "🇫🇷", "fr", WEB, _ophalen=ophalen)

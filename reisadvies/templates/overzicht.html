@@ -26,14 +26,20 @@
   .k-groen .blok { background: var(--groen); } .k-geel .blok { background: var(--geel); }
   .k-oranje .blok { background: var(--oranje); } .k-rood .blok { background: var(--rood); }
   .k-geen .blok { background: repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 5px); }
-  .bronlabel { display: block; font-size: 13px; }
+  .niveau { margin-bottom: 2px; }
+  .bronlabel { font-size: 14px; }
   .vertaling { display: block; font-size: 13px; color: var(--zacht); }
   .soort { font-size: 11px; padding: 1px 6px; border-radius: 8px; border: 1px solid var(--lijn); color: var(--zacht); white-space: nowrap; }
   .soort-afgeleid { border-color: #b98900; color: #7a5a00; background: #fff8e1; }
   .soort-bestaat-niet { border-style: dashed; }
   .toelichting { font-size: 12px; color: var(--zacht); margin-top: 4px; }
   .gebieden { margin: 0; padding: 0; list-style: none; }
-  .gebieden li { margin: 0 0 6px; font-size: 13px; display: flex; gap: 6px; }
+  .gebieden li { margin: 0 0 10px; font-size: 14px; display: flex; gap: 8px; }
+  .gebiednaam { font-weight: 400; }
+  .uitleg-tekst { font-size: 13px; margin-top: 2px; }
+  a.deepl { display: block; width: fit-content; font-size: 12px; margin-top: 2px; }
+  details.uitleg { border: 0; padding: 0; margin: 8px 0 0; font-size: 12px; color: var(--zacht); }
+  details.uitleg summary { font-weight: 400; color: var(--accent); }
   .gebieden li .blok { margin-top: 3px; }
   .datum { white-space: nowrap; width: 16%; }
   .datum .vertaling, .datum .oud { white-space: normal; font-size: 12px; }
@@ -47,10 +53,11 @@
   details { margin: 0 0 14px; border: 1px solid var(--lijn); border-radius: 4px; padding: 8px 12px; }
   details summary { cursor: pointer; font-weight: 600; }
   .brontekst { font-size: 13px; color: var(--zacht); white-space: pre-wrap; margin: 6px 0 0; }
-  .reden { font-size: 12px; margin-top: 6px; padding-left: 8px; border-left: 3px solid var(--lijn); color: var(--tekst); }
+  .reden { font-size: 13px; margin-top: 8px; padding-left: 8px; border-left: 3px solid var(--lijn); color: var(--tekst); }
+  .reden .label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .03em; color: var(--zacht); }
   .reden a { white-space: nowrap; }
   .oud { font-size: 12px; margin-top: 4px; background: #fff8e1; border: 1px solid #b98900; color: #7a5a00; padding: 2px 6px; display: inline-block; }
-  .nl-vertaling { display: block; color: var(--zacht); font-style: italic; margin-top: 2px; }
+  .nl-vertaling { display: block; font-size: 13px; color: var(--zacht); font-style: italic; margin-top: 2px; }
   .nl-vertaling::before { content: "NL: "; font-style: normal; font-weight: 600; }
   .legenda { font-size: 13px; color: var(--zacht); }
   .legenda dt { font-weight: 600; color: var(--tekst); margin-top: 6px; }
@@ -116,22 +123,30 @@
           Geen wijzigingsdatum gevonden, dus geen kleurcode. De bron noemt: <em>{{ a.landelijk.bronlabel }}</em>.
           <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a>.</div>
         {% elif a.landelijk %}
-        {{ kleurchip(a.landelijk) }} {{ soort(a.landelijk) }}
-        <span class="bronlabel">{{ a.landelijk.bronlabel }}</span>
-        <span class="vertaling">{{ a.landelijk.vertaling }}</span>
-        {% if a.landelijk.toelichting and a.landelijk.soort.value != 'letterlijk' %}<div class="toelichting">{{ a.landelijk.toelichting }}</div>{% endif %}
+        <div class="niveau">{{ kleurchip(a.landelijk) }} {{ soort(a.landelijk) }}</div>
+        <div class="bronlabel">{{ a.landelijk.bronlabel }}</div>
+        <div class="vertaling">{{ a.landelijk.vertaling }}</div>
         {% else %}
         <span class="kleur k-geen"><span class="blok" aria-hidden="true"></span>Niet herkend</span>
         <span class="vertaling">Zie brontekst onder 'Details'.</span>
         {% endif %}
-        {% if r.reden %}<div class="reden"><strong>Uit de bron:</strong> “{{ r.reden }}”{% if r.reden_nl %}<span class="nl-vertaling">{{ r.reden_nl }}</span>{% endif %}{% if r.reden_link %} <a href="{{ r.reden_link }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if r.reden_nl else 'vertaal met DeepL' }}</a>{% endif %}</div>{% endif %}
+        {% if r.reden %}<div class="reden"><span class="label">Uit de bron</span>“{{ r.reden }}”{% if r.reden_nl %}<span class="nl-vertaling">{{ r.reden_nl }}</span>{% endif %}{% if r.reden_link %}<a class="deepl" href="{{ r.reden_link }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if r.reden_nl else 'vertaal met DeepL' }}</a>{% endif %}</div>{% endif %}
         {% if a.melding %}<div class="melding">⚠ {{ a.melding }}</div>{% endif %}
+        {% if a.landelijk and a.landelijk.toelichting and a.bron != 'nl' %}<details class="uitleg"><summary>Toelichting bij deze kleur</summary>{{ a.landelijk.toelichting }}</details>{% endif %}
       </td>
       <td>
         {% if r.gebieden %}
         <ul class="gebieden">
           {% for g in r.gebieden[:8] %}
-          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok" title="{{ g.niveau.kleur.value if g.niveau.kleur else 'geen kleur' }}"></span><span><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong>: {{ g.omschrijving|truncate(220) }}{% if r.bron.taal != 'nl' %}{% set nl = vertaal(g.omschrijving) %}{% if nl %}<span class="nl-vertaling">{{ nl|truncate(260) }}</span>{% endif %} <a href="{{ deepl(g.omschrijving, r.bron.taal) }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if nl else 'vertaal met DeepL' }}</a>{% endif %}</span></li>
+          {% set naam = g.omschrijving|trim %}
+          {% set uitleg = g.brontekst|trim if g.brontekst and g.brontekst|trim != naam else '' %}
+          {% set naam_in_uitleg = uitleg and (uitleg[:80] == naam[:80]) %}
+          {% set t = uitleg or naam %}
+          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok" title="{{ g.niveau.kleur.value if g.niveau.kleur else 'geen kleur' }}"></span><div>
+            <div><strong>{{ g.niveau.kleur.value|capitalize if g.niveau.kleur else '–' }}</strong>{% if not naam_in_uitleg %}: <span class="gebiednaam">{{ naam|truncate(160) }}</span>{% endif %}</div>
+            {% if uitleg %}<div class="uitleg-tekst">“{{ uitleg|truncate(500) }}”</div>{% elif naam|length > 160 %}<div class="uitleg-tekst">“{{ naam|truncate(500) }}”</div>{% endif %}
+            {% if r.bron.taal != 'nl' %}{% set nl = vertaal(t) or vertaal(naam) %}{% if nl %}<div class="nl-vertaling">{{ nl|truncate(560) }}</div>{% endif %}<a class="deepl" href="{{ deepl(t|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">{{ 'controleer met DeepL' if nl else 'vertaal met DeepL' }}</a>{% endif %}
+          </div></li>
           {% endfor %}
           {% if r.gebieden|length > 8 %}<li>… en {{ r.gebieden|length - 8 }} meer (zie details)</li>{% endif %}
         </ul>
