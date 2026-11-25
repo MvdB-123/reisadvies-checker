@@ -1,0 +1,59 @@
+name: Reisadviezen ophalen en publiceren
+
+# Elke ochtend één ronde, plus de knop "Run workflow" om direct te verversen.
+# GitHub rekent in UTC: 06:15 UTC is 08:15 in de zomer en 07:15 in de winter. Een ronde duurt
+# ongeveer een kwartier; GitHub start geplande rondes soms enkele minuten later.
+on:
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bouwen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Afhankelijkheden installeren
+        run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Vorige ronde ophalen (voor "Gewijzigd sinds de vorige ronde")
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Vorige data.json downloaden
+        run: curl -fsSL "${{ steps.pages.outputs.base_url }}/data.json" -o vorige.json || echo "Geen vorige ronde."
+
+      - name: Alle landen ophalen en site bouwen
+        run: python -m reisadvies site --uit site --vorige vorige.json
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  publiceren:
+    needs: bouwen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

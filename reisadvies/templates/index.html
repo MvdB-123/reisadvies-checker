@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reisadvies-checker</title>
+<style>
+  :root {
+    --groen: #39870c; --geel: #f9e11e; --oranje: #e17000; --rood: #d52b1e;
+    --tekst: #1a1a1a; --zacht: #5c5c5c; --lijn: #e3e3e3; --vlak: #f5f5f5; --accent: #154273;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "RijksSansTT", "Segoe UI", Arial, sans-serif; color: var(--tekst); margin: 0 auto;
+         padding: 24px 32px; max-width: 1280px; line-height: 1.4; font-size: 14px; }
+  h1 { font-size: 24px; margin: 0 0 2px; color: var(--accent); }
+  .meta { color: var(--zacht); font-size: 13px; margin-bottom: 16px; }
+  .balk { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; position: sticky; top: 0;
+          background: #fff; padding: 10px 0; border-bottom: 1px solid var(--lijn); z-index: 2; }
+  #zoek { font-size: 17px; padding: 8px 12px; width: 300px; border: 2px solid var(--accent); border-radius: 4px; }
+  label { white-space: nowrap; cursor: pointer; }
+  select { font-size: 14px; padding: 4px; }
+  #aantal { color: var(--zacht); margin-left: auto; }
+  table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  th, td { padding: 6px 6px; border-bottom: 1px solid var(--lijn); text-align: left; vertical-align: middle; }
+  th { font-size: 11px; color: var(--zacht); font-weight: 600; position: sticky; top: 58px; background: #fff; z-index: 1; }
+  th.bron, td.bron { text-align: center; width: 44px; }
+  th.bron span { display: block; font-size: 18px; }
+  tr:hover td { background: #eef3f8; }
+  td.land a { font-weight: 600; text-decoration: none; color: var(--accent); }
+  td.land a:hover { text-decoration: underline; }
+  .s { display: inline-block; width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(0,0,0,.25);
+       font-size: 11px; line-height: 16px; text-align: center; color: #fff; font-weight: 700; position: relative; }
+  .s.groen { background: var(--groen); } .s.geel { background: var(--geel); color: #333; }
+  .s.oranje { background: var(--oranje); } .s.rood { background: var(--rood); }
+  .s.geenkleur { background: repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 5px); }
+  .s.onbekend { background: #fff; color: #7a5a00; border: 2px dashed #b98900; }
+  .s.fout { background: #fdecea; color: var(--rood); border: 2px solid var(--rood); }
+  .s.handmatig { background: #f0f0f0; color: #777; border: 1px solid #ccc; font-weight: 600; }
+  .s.leeg { background: none; border: none; color: #bbb; }
+  .s .stip { position: absolute; right: -5px; top: -5px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid #fff; }
+  .stip.rood { background: var(--rood); } .stip.oranje { background: var(--oranje); }
+  .nl .s { width: 22px; height: 22px; }
+  td.opv { font-size: 12px; }
+  .strenger { color: var(--rood); font-weight: 600; }
+  .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
+  .wijzigingen h2 { font-size: 16px; margin: 0 0 6px; }
+  .wijzigingen ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  .wijzigingen .zacht { margin: 0; font-size: 14px; color: var(--zacht, #5c5c5c); }
+  .recent { display: inline-block; font-size: 11px; background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 8px; }
+  .legenda { margin-top: 24px; font-size: 12px; color: var(--zacht); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
+  .legenda .s { vertical-align: middle; margin-right: 4px; }
+  .verborgen { display: none; }
+  @media (max-width: 900px) { th.bron, td.bron { width: 30px; } body { padding: 12px; } #zoek { width: 100%; } }
+</style>
+</head>
+<body>
+<h1>Reisadvies-checker</h1>
+<div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
+  klik een land voor het volledige overzicht met brontekst</div>
+
+<section class="wijzigingen">
+  <h2>Gewijzigd sinds de vorige ronde</h2>
+  {% if not vergeleken %}
+  <p class="zacht">Nog geen vorige ronde om mee te vergelijken.</p>
+  {% elif gewijzigd %}
+  <ul>
+    {% for w in gewijzigd %}
+    <li><a href="landen/{{ w.iso }}.html"><strong>{{ w.naam }}</strong></a>: {{ w.regels|join('; ') }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="zacht">Geen enkele overheid heeft een kleur of gebied gewijzigd.</p>
+  {% endif %}
+</section>
+
+<div class="balk">
+  <input id="zoek" type="search" placeholder="Zoek land (bv. Turkije, Israel, UA)…" autofocus autocomplete="off"
+         aria-label="Zoek land">
+  <label><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
+  <label><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
+  <label>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
+  <span id="aantal"></span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Land</th>
+      <th class="bron nl"><span>{{ bronnen[0].vlag }}</span>NL</th>
+      {% for b in bronnen[1:] %}<th class="bron" title="{{ b.naam }}"><span>{{ b.vlag }}</span>{{ b.sleutel|upper }}</th>{% endfor %}
+      <th>Opvallend</th>
+    </tr>
+  </thead>
+  <tbody id="rijen">
+  {% for r in rijen %}
+    <tr data-zoek="{{ r.zoek }}" data-nl="{{ r.nl or '' }}" data-strenger="{{ 1 if r.strenger else 0 }}" data-recent="{{ 1 if r.recent else 0 }}">
+      <td class="land"><a href="landen/{{ r.iso }}.html">{{ r.naam }}</a></td>
+      {% for b in bronnen %}
+      {% set x = r.bronnen[b.sleutel] %}
+      {% set titel = b.naam ~ ': ' ~ (x.kleur or x.stand) ~ (', ' ~ x.gebieden ~ ' afwijkend gebied(en)' if x.gebieden else '') ~ (', gewijzigd ' ~ x.gewijzigd if x.gewijzigd else '') %}
+      <td class="bron{{ ' nl' if loop.first }}">
+        {% if x.kleur %}<span class="s {{ x.kleur }}" title="{{ titel }}">{% if x.stand == 'afgeleid' %}≈{% endif %}{% if x.strengste_gebied >= 3 and x.strengste_gebied > (['', 'groen', 'geel', 'oranje', 'rood'].index(x.kleur)) %}<i class="stip {{ 'rood' if x.strengste_gebied == 4 else 'oranje' }}"></i>{% endif %}</span>
+        {% elif x.stand == 'geen kleur' %}<span class="s geenkleur" title="{{ titel }} (onderscheid bestaat niet)">{% if x.strengste_gebied >= 3 %}<i class="stip {{ 'rood' if x.strengste_gebied == 4 else 'oranje' }}"></i>{% endif %}</span>
+        {% elif x.stand == 'niet herkend' %}<span class="s onbekend" title="{{ titel }}">?</span>
+        {% elif x.stand == 'fout' %}<span class="s fout" title="{{ b.naam }}: ophalen mislukt, handmatig nalopen">!</span>
+        {% elif x.stand == 'handmatig' %}<span class="s handmatig" title="{{ b.naam }}: niet automatisch op te halen, handmatig nalopen">H</span>
+        {% else %}<span class="s leeg" title="{{ titel }}">–</span>{% endif %}
+      </td>
+      {% endfor %}
+      <td class="opv">
+        {% if r.strenger %}<span class="strenger">Strenger: {{ r.strenger|join(', ') }}</span><br>{% endif %}
+        {% if r.recent %}<span class="recent">gewijzigd</span> {{ r.recent|join(', ') }}{% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="legenda">
+  <span><span class="s groen"></span>groen</span><span><span class="s geel"></span>geel</span>
+  <span><span class="s oranje"></span>oranje</span><span><span class="s rood"></span>rood</span>
+  <span><span class="s geel">≈</span>afgeleid (nalezen)</span>
+  <span><span class="s geenkleur"></span>onderscheid groen/geel bestaat niet</span>
+  <span><span class="s geel"><i class="stip rood"></i></span>strengere gebieden</span>
+  <span><span class="s onbekend">?</span>niet herkend (zie brontekst)</span>
+  <span><span class="s handmatig">H</span>altijd handmatig nalopen (bron niet automatisch op te halen)</span>
+  <span><span class="s fout">!</span>ophalen mislukt: handmatig nalopen</span>
+  <span><span class="s leeg">–</span>geen advies / eigen land</span>
+</div>
+<p class="legenda">Kleur = landelijk niveau van die overheid, vertaald naar de Nederlandse kleurcodes via de mappingtabel.
+  Een lege of ontbrekende kleur betekent nooit "geen risico". Prototype; bronteksten en vertaling per land op de landpagina.</p>
+
+<script>
+(function () {
+  const zoek = document.getElementById('zoek'), fs = document.getElementById('f-strenger'),
+        fr = document.getElementById('f-recent'), fnl = document.getElementById('f-nl'),
+        aantal = document.getElementById('aantal'), rijen = [...document.querySelectorAll('#rijen tr')];
+  const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+  rijen.forEach(r => r.dataset.zoek = norm(r.dataset.zoek));
+  function filter() {
+    const q = norm(zoek.value); let n = 0;
+    for (const r of rijen) {
+      const ok = (!q || r.dataset.zoek.includes(q)) && (!fs.checked || r.dataset.strenger === '1') &&
+                 (!fr.checked || r.dataset.recent === '1') && (!fnl.value || r.dataset.nl === fnl.value);
+      r.classList.toggle('verborgen', !ok); if (ok) n++;
+    }
+    aantal.textContent = n + ' van ' + rijen.length + ' landen';
+  }
+  [zoek, fs, fr, fnl].forEach(e => e.addEventListener('input', filter));
+  zoek.addEventListener('keydown', e => {   // Enter opent het eerste land in de lijst
+    if (e.key === 'Enter') { const r = rijen.find(r => !r.classList.contains('verborgen')); if (r) location.href = r.querySelector('a').href; }
+  });
+  filter();
+})();
+</script>
+</body>
+</html>
