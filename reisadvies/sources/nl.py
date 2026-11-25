@@ -35,6 +35,15 @@ _GEBIEDEN_ZIN = re.compile(
 )
 
 
+# 'In het kort': 'De kleurcode van het reisadvies is rood voor de strook van 5 kilometer ...' en
+# 'Kleurcode oranje geldt voor de strook van 5 tot 20 kilometer ...'. Niet: 'Voor de rest van ...'.
+_KORT_GEBIED = re.compile(
+    r"^(?:de )?kleurcode (?:van (?:het|dit) reisadvies )?(?:is (groen|geel|oranje|rood) voor|(groen|geel|oranje|rood) geldt voor)"
+    r"\s+(?!de rest\b|het hele\b|heel\b)([^.]+)\.",
+    re.IGNORECASE,
+)
+
+
 API = "https://opendata.nederlandwereldwijd.nl/v2/sources/nederlandwereldwijd/infotypes/traveladvice"
 _ISO3_UITZONDERINGEN = {"XKX": "XK", "KOS": "XK"}
 
@@ -118,6 +127,21 @@ def parse(html: str, iso: str, url: str) -> Advies:
             items = []
         for li in items:
             adv.gebieden.append(Gebied(tekst(li), niveau("nl", kleur)))
+
+    # Gebieden die alleen in 'In het kort' staan (bijvoorbeeld Cambodja: een strook langs de grens),
+    # voor kleuren die nog niet uit een lijst onder 'Regionale risico's' kwamen.
+    al = {g.niveau.kleur for g in adv.gebieden}
+    if kort:
+        for el in kort.find_all_next("li"):
+            if el.find_previous("h2") is not kort:
+                break
+            zin = tekst(el)
+            m = _KORT_GEBIED.search(zin)
+            if not m:
+                continue
+            nv = niveau("nl", (m.group(1) or m.group(2)).lower())
+            if nv.kleur not in al:
+                adv.gebieden.append(Gebied(m.group(3).strip(), nv, brontekst=zin))
 
     # Landelijk niveau (voor de rest van het land)
     zoektekst = kort_tekst or tekst(s)

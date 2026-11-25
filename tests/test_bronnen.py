@@ -293,7 +293,9 @@ def test_nl_api_tips_zijn_geen_gebieden():
     'Voor de volgende gebieden geldt kleurcode oranje:' telt."""
     a = _nl_api("TH")
     assert all("Blijf niet langer" not in g.omschrijving for g in a.gebieden)
-    assert len(a.gebieden) == 4 and kleuren(a) == ["oranje"]
+    assert len(a.gebieden) == 5 and kleuren(a) == ["oranje", "rood"]
+    # de rode strook staat alleen in 'In het kort' ('De kleurcode van het reisadvies is rood voor de strook ...')
+    assert any(g.niveau.kleur == Kleur.ROOD and "5 kilometer" in g.omschrijving for g in a.gebieden)
 
 
 def test_nl_api_zin_als_lijstitem():
