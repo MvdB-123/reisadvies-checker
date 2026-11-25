@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reisadvies-checker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23154273' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='9.5'/%3E%3Cellipse cx='12' cy='12' rx='4.2' ry='9.5'/%3E%3Cpath d='M2.5 12h19M4 7h16M4 17h16'/%3E%3C/svg%3E">
 <style>
 {% include '_lettertype.html' %}
   :root {
@@ -20,6 +21,10 @@
   h1, h2 { font-family: "RO Serif", "Public Sans", "Segoe UI", system-ui, sans-serif; font-weight: 700; }
   .lint { background: var(--accent); color: #fff; margin: -24px -32px 20px; padding: 14px 32px; font-size: 15px; letter-spacing: .02em; }
   .lint a { color: #fff; }
+  .lint { display: flex; align-items: center; gap: 10px; }
+  .lint .wereld { flex: none; }
+  .lint a.thuis { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 600; }
+  .lint a.thuis:hover { text-decoration: underline; }
   .disclaimer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--lijn); font-size: 13px; color: var(--zacht); }
 
   body { font-family: "RO Sans", "Public Sans", "Segoe UI", system-ui, sans-serif; color: var(--tekst); margin: 0 auto;
@@ -69,7 +74,7 @@
 </style>
 </head>
 <body>
-<div class="lint">Reisadvies-checker · reisadviezen van gelijkgestemde landen naast elkaar</div>
+<div class="lint"><a class="thuis" href="./" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>Reisadvies-checker</a> · reisadviezen van gelijkgestemde landen naast elkaar</div>
 <h1>Reisadvies-checker</h1>
 <div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
   klik een land voor het volledige overzicht met brontekst</div>
