@@ -1,11 +1,11 @@
 name: Reisadviezen ophalen en publiceren
 
 # Elke ochtend één ronde, plus de knop "Run workflow" om direct te verversen.
-# GitHub rekent in UTC: 06:07 UTC is 07:07 in de winter en 08:07 in de zomer; een ronde
-# duurt ongeveer een kwartier, dus het overzicht staat er rond 7:30 (winter) of 8:30 (zomer).
+# GitHub rekent in UTC: 06:15 UTC is 08:15 in de zomer en 07:15 in de winter. Een ronde duurt
+# ongeveer een kwartier; GitHub start geplande rondes soms enkele minuten later.
 on:
   schedule:
-    - cron: "7 6 * * *"
+    - cron: "15 6 * * *"
   workflow_dispatch:
 
 permissions:
