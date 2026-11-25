@@ -12,7 +12,7 @@ test = ["pytest>=8"]
 packages = ["reisadvies", "reisadvies.sources"]
 
 [tool.setuptools.package-data]
-reisadvies = ["templates/*.html"]
+reisadvies = ["templates/*.html", "static/fonts/*"]
 
 [tool.ruff]
 line-length = 110

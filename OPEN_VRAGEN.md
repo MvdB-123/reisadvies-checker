@@ -34,8 +34,8 @@ Gecontroleerd tegen de uitleg van elke overheid. Echte fouten gevonden en gerepa
 Duits "abgeraten" → oranje (afgeleid).
 
 ### 6. Vertaling van gebiedsteksten ✔ Gekozen (24-11)
-Vertalingen worden in een Claude-sessie gemaakt en vastgelegd in vertalingen.json, per exacte
-brontekst. Ontbreekt er een of is de brontekst gewijzigd: alleen een DeepL-link. Zie reisadvies/vertaling.py.
+Citaten staan in de brontaal, met een DeepL-link die de hele alinea vertaalt. Een eigen
+Nederlandse vertaling is niet betrouwbaar bij elke dagelijkse ronde te leveren (besluit 25-11).
 
 _Oorspronkelijke vraag:_
 Niveaus worden vertaald via de mappingtabel (vast en controleerbaar). Gebiedsomschrijvingen en

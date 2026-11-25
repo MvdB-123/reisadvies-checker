@@ -59,7 +59,8 @@ def tekst(el) -> str:
     """Zichtbare tekst met normale spaties."""
     if el is None:
         return ""
-    return re.sub(r"\s+", " ", el.get_text(" ", strip=True)).strip()
+    t = re.sub(r"\s+", " ", el.get_text(" ", strip=True)).strip()
+    return re.sub(r" (?=[,.](?:\s|$))", "", t)  # 'crime , unrest .' -> 'crime, unrest.' (artefact van get_text)
 
 
 def niet_gevonden(bron: str, iso: str, url: str) -> Advies:

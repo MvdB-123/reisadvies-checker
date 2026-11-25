@@ -10,6 +10,7 @@ Claude-artifact. De startpagina is het bookmarkadres.
 from __future__ import annotations
 
 import json
+import shutil
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -111,11 +112,12 @@ def bouw(
     nu = nu or datetime.now(UTC)
     landen = landen or alle_nl_landen()
     (uit / "landen").mkdir(parents=True, exist_ok=True)
+    shutil.copytree(Path(__file__).parent / "static" / "fonts", uit / "fonts", dirs_exist_ok=True)
     rijen = []
     for i, iso in enumerate(landen, 1):
         adviezen = verzamel(iso)
         (uit / "landen" / f"{iso}.html").write_text(
-            render(iso, adviezen, nu=nu, terug="../index.html"), encoding="utf-8"
+            render(iso, adviezen, nu=nu, terug="../index.html", fonts="../fonts/"), encoding="utf-8"
         )
         rijen.append(samenvat_rij(iso, adviezen, nu))
         log(f"[{i}/{len(landen)}] {iso} {naam(iso)}")
@@ -139,6 +141,7 @@ def bouw(
             gegenereerd=nu.astimezone(ZoneInfo("Europe/Amsterdam")).strftime("%d-%m-%Y %H:%M"),
             recent_dagen=RECENT_DAGEN,
             gewijzigd=gewijzigd,
+            fonts="fonts/",
             vergeleken=bool(vorige_rijen),
         )
     )

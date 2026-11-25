@@ -117,16 +117,6 @@ def test_geen_datum_geeft_onzeker_en_oud_geeft_waarschuwing():
     assert "niet gewijzigd" in h
 
 
-def test_vertaling_vervalt_als_brontekst_wijzigt(tmp_path, monkeypatch):
-    from reisadvies import vertaling
-
-    monkeypatch.setattr(vertaling, "BESTAND", tmp_path / "v.json")
-    vertaling._alles.cache_clear()
-    vertaling.voeg_toe([{"taal": "sv", "bron": "Avrådan gäller.", "nl": "Het afraden geldt."}])
-    assert vertaling.vertaal("Avrådan  gäller.") == "Het afraden geldt."  # witruimte telt niet
-    assert vertaling.vertaal("Avrådan gäller inte.") is None
-    vertaling._alles.cache_clear()
-
 
 def test_wijzigingen_tussen_twee_rondes():
     from reisadvies.site import wijzigingen

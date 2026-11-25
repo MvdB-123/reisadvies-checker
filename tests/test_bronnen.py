@@ -53,7 +53,7 @@ def test_uk_turkije_geen_groen_geel_onderscheid():
     assert a.landelijk.kleur is None and a.landelijk.soort == Soort.BESTAAT_NIET
     assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
     assert "Syria" in a.gebieden[0].omschrijving
-    assert "delen van het land" in a.landelijk.toelichting
+    assert "delen van het land" not in a.landelijk.toelichting  # gebieden staan in de kolom ernaast
 
 
 def test_uk_oekraine_gebieden_met_lijsten():
@@ -479,3 +479,48 @@ def test_ie_en_au_geblokkeerd_wordt_handmatig_nalopen(monkeypatch):
         assert a.status == Status.HANDMATIG and "datacenters" in a.melding
         assert mod.ophalen("UA").status == Status.HANDMATIG  # tweede land: direct, zonder wachten
         mod.index.cache_clear()
+
+
+# ---------- Frankrijk: kleur afgelezen van de kaart ----------
+
+
+def _kaart(vlakken):
+    """Testkaart: grijze achtergrond (buurlanden) met gekleurde vlakken {kleur: aandeel}."""
+    from io import BytesIO
+
+    from PIL import Image
+
+    im = Image.new("RGB", (100, 100), (192, 192, 192))
+    y = 0
+    for kleur, aandeel in vlakken.items():
+        h = round(aandeel * 100)
+        im.paste(fr._KAARTKLEUREN[kleur], (0, y, 100, y + h))
+        y += h
+    buf = BytesIO()
+    im.save(buf, "JPEG", quality=90)
+    return buf.getvalue()
+
+
+def test_fr_kaartkleur_grootste_oppervlak():
+    kleur, aandelen = fr.kaartkleur(_kaart({"jaune": 0.5, "rouge": 0.05}))
+    assert kleur == "jaune" and aandelen["rouge"] > 0.02  # JPEG vervaagt de randen iets
+
+
+def test_fr_kaart_geeft_basiskleur_en_meldt_ongenoemde_strengere_gebieden():
+    from bs4 import BeautifulSoup  # noqa: F401 - parse leest een minimale pagina
+
+    html = "<main><h2>Zones de vigilance</h2><p>Il est recommandé de faire preuve de prudence.</p></main>"
+    a = fr.parse(html, "KH", "x", kaart="jaune", aandelen={"jaune": 0.4, "rouge": 0.03, "orange": 0, "vert": 0})
+    assert a.landelijk.kleur == Kleur.GEEL and a.landelijk.bronlabel.startswith("Vigilance renforcée")
+    assert "rood" in a.melding  # rood staat op de kaart, maar niet als gebied in de tekst
+
+
+def test_us_citaat_zonder_werkwoord_wordt_zichtbaar_aangevuld():
+    import xml.etree.ElementTree as ET
+
+    item = ET.fromstring(
+        "<item><title>Cambodia - Level 2: Exercise Increased Caution</title><pubDate>Mon, 15 Sep 2026 00:00:00 GMT</pubDate>"
+        "<link>https://x</link><description><![CDATA[<p>in <b>Cambodia </b>due to <b>crime</b>, <b>unrest</b>.</p>]]></description></item>"
+    )
+    a = us.parse(item, "KH")
+    assert a.brontekst == "[Exercise increased caution] in Cambodia due to crime, unrest."

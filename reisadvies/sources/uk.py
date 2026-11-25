@@ -55,11 +55,13 @@ def _gebieden(body_html: str) -> list[Gebied]:
     laatste: Gebied | None = None  # gebied waar een direct volgende lijst bij hoort
     vervolg: Gebied | None = None  # zin eindigde op ':' zonder lijst; de h3's eronder zijn deelgebieden
     vervolg_sleutel = ""
+    uitleg_voor: list[Gebied] = []  # gebieden waar een volgende gewone alinea de uitleg van is
     # Alleen elementen op het hoogste niveau; <p> binnen <li> of een notitie-<div> overslaan.
     for el in s.find_all(["h2", "h3", "p", "ul"]):
         if el.name in ("p", "ul") and el.find_parent(["ul", "div"]) is not None:
             continue
         if el.name in ("h2", "h3"):
+            uitleg_voor = []
             t = tekst(el).rstrip(": ")
             if el.name == "h3" and vervolg is not None:
                 # 'All parts:' onder '... all but essential travel to the following regions:'
@@ -80,12 +82,20 @@ def _gebieden(body_html: str) -> list[Gebied]:
         zin = tekst(el)
         m = _ADVIES.search(zin)
         if not m:
+            # Een gewone alinea direct onder een adviesregel is de uitleg bij dat gebied
+            # ('Heavy fighting along parts of the border ... took place in 2025.').
+            if uitleg_voor and el.name == "p" and zin and not _BOILERPLATE.search(zin):
+                for g in uitleg_voor:
+                    if len(g.brontekst) < _UITLEG_MAX:
+                        weg = " […]" if g.brontekst.endswith(":") else ""  # de lijst staat in de gebiedsnaam
+                        g.brontekst = f"{g.brontekst}{weg} {zin}"
             continue
         sleutel = "avoid_non_essential" if "but essential" in m.group(1).lower() else "avoid_all"
         wat = m.group(2).strip().rstrip(".")
         omschrijving = f"{kop}: {wat}" if kop and kop.lower() not in wat.lower() else wat
         laatste = Gebied(omschrijving, niveau("uk", sleutel), brontekst=zin)
         out.append(laatste)
+        uitleg_voor = [laatste]
         vervolg, vervolg_sleutel = (laatste, sleutel) if wat.endswith(":") else (None, "")
     # Een verwijzende zin zonder eigen lijst ('the following regions:') is zelf geen gebied.
     return [
@@ -107,6 +117,7 @@ def _is_rest(omschrijving: str, land: dict) -> bool:
     )
     return bool(re.match(patroon, omschrijving, re.I))
 
+_UITLEG_MAX = 500  # tekens: genoeg voor de reden, zonder het overzicht vol te laten lopen
 _BOILERPLATE = re.compile(r"travel insurance could be invalidated|^Find out more|^Read all the advice|^No travel can be guaranteed", re.I)
 _STOP_KOPPEN = re.compile(r"^(Support from the UK government|Before you travel|Travel insurance)", re.I)
 
@@ -161,10 +172,6 @@ def parse(data: dict, iso: str) -> Advies:
                 f"Het VK noemt dit niveau voor '{rest.omschrijving}'. De uitzonderingen staan bij de gebieden."
             )
             adv.gebieden = [g for g in adv.gebieden if g is not rest]
-        if adv.landelijk.kleur is None and adv.gebieden:
-            adv.landelijk.toelichting += (
-                " Let op: het VK ontraadt wél reizen naar delen van het land (zie gebieden)."
-            )
         if not adv.gebieden:
             adv.melding = "Het VK waarschuwt voor delen van het land, maar de gebieden zijn niet automatisch herkend; zie de bron."
     return adv

@@ -28,6 +28,8 @@ _GEBIED = re.compile(
     re.IGNORECASE,
 )
 _NIVEAU_VAN_ZIN = {"do not travel": "4", "reconsider travel": "3", "exercise increased caution": "2"}
+# De feed laat het werkwoord soms weg ('in Cambodia due to crime'); wij vullen het zichtbaar aan.
+_ZINSBEGIN = {"1": "Exercise normal precautions", "2": "Exercise increased caution", "3": "Reconsider travel", "4": "Do not travel"}
 
 
 def _naam(titel: str) -> str:
@@ -65,6 +67,8 @@ def parse(item: ET.Element, iso: str) -> Advies:
     s = soep(item.findtext("description", ""))
     eerste = s.find("p")
     adv.brontekst = tekst(eerste) if eerste else ""
+    if re.match(r"(?:in|to)\b", adv.brontekst) and landelijk_sleutel in _ZINSBEGIN:
+        adv.brontekst = f"[{_ZINSBEGIN[landelijk_sleutel]}] {adv.brontekst}"  # [ ] = aanvulling van ons
     for el in s.find_all(["p", "li"]):
         if el is eerste:
             continue
