@@ -30,15 +30,20 @@ export default {
     }
 
     const cache = caches.default;
-    const sleutel = new Request(url.toString());
+    // Cachesleutel per User-Agent, zodat een test met een ander label niet het oude antwoord krijgt.
+    const cacheUrl = new URL(url.toString());
+    cacheUrl.searchParams.set("__relay_ua", request.headers.get("X-Doel-User-Agent") || "");
+    const sleutel = new Request(cacheUrl.toString());
     const bewaard = await cache.match(sleutel);
     if (bewaard) return bewaard;
 
+    // De checker mag User-Agent, Accept en Accept-Language meegeven; anders deze standaardwaarden.
+    const kop = (naam, standaard) => request.headers.get("X-Doel-" + naam) || standaard;
     const antwoord = await fetch(url.toString(), {
       headers: {
-        "User-Agent": "reisadvies-checker/0.1 (vergelijking reisadviezen)",
-        "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en",
+        "User-Agent": kop("User-Agent", "reisadvies-checker/0.1 (vergelijking reisadviezen)"),
+        "Accept": kop("Accept", "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8"),
+        "Accept-Language": kop("Accept-Language", "en"),
       },
       redirect: "follow",
     });
