@@ -208,29 +208,48 @@ def parse(
         if adv.landelijk:
             break
 
-    # 2. Koppen per kleur ('Zones formellement déconseillées (rouge sur la carte)').
-    secties: list[tuple[str, str]] = []
-    huidig: list | None = None
+    # 2. Koppen per kleur ('Zones formellement déconseillées (rouge sur la carte)'), soms met per gebied
+    #    een subkop zonder kleur ('Lunda Sul et Lunda Norte'): die hoort bij de kleur van de kop erboven.
+    ruw: list[dict] = []
+    kleur_nu: str | None = None
+    huidig: dict | None = None
     for e in elementen:
-        # Een kop per kleur: h4/h5, of een alinea die alleen de kop bevat
-        # ('<p><strong>Zones formellement déconseillées (en rouge sur la carte)</strong></p>').
+        # Een kop: h4/h5, of een alinea die alleen vetgedrukte tekst bevat.
         is_kop = e.name in ("h4", "h5") or (
             e.name == "p" and e.find("strong") is not None and tekst(e.find("strong")) == tekst(e)
         )
         if is_kop:
             kop = tekst(e)
-            kleur = (
-                _kleur_van(kop)
-                if re.match(r"(?:zones?|r[ée]gions?|parties?)\b", kop, re.IGNORECASE)
-                else None
-            )
-            huidig = [kleur, []] if kleur else None
-            if huidig:
-                secties.append(huidig)
+            kleur = _kleur_van(kop) if re.match(r"(?:zones?|r[ée]gions?|parties?)\b", kop, re.IGNORECASE) else None
+            heel = bool(_HEEL_LAND.search(kop)) and _kleur_van(kop) is not None
+            if heel:
+                kleur = _kleur_van(kop)
+            if kleur:
+                kleur_nu = kleur
+                huidig = {"kleur": kleur, "naam": "", "teksten": [], "kop": kop, "heel": heel}
+                ruw.append(huidig)
+            elif kleur_nu and e.name != "h4":
+                huidig = {"kleur": kleur_nu, "naam": kop.rstrip(" :"), "teksten": [], "kop": kop, "heel": False}
+                ruw.append(huidig)
+            else:
+                kleur_nu, huidig = None, None
         elif huidig is not None and tekst(e):
-            huidig[1].append(tekst(e))
-    secties = [(k, " ".join(t)) for k, t in secties]
+            huidig["teksten"].append(tekst(e))
+    # Een kleurkop zonder eigen tekst, gevolgd door subkoppen in dezelfde kleur, is zelf geen gebied.
+    secties: list[tuple[str, str]] = []
+    namen: dict[int, str] = {}
+    for i, r in enumerate(ruw):
+        t = " ".join(r["teksten"])
+        volgende = ruw[i + 1] if i + 1 < len(ruw) else None
+        if not t and not r["naam"] and volgende and volgende["naam"] and volgende["kleur"] == r["kleur"]:
+            continue
+        if r["heel"]:
+            t = f"{r['kop']} {t}".strip()  # 'Le reste du pays est en vigilance renforcée (en jaune) ...'
+        if r["naam"]:
+            namen[len(secties)] = r["naam"]
+        secties.append((r["kleur"], t or r["kop"]))
 
+    secties_oud = list(secties)  # om namen terug te vinden nadat secties zijn weggefilterd
     if not adv.landelijk and kaart:
         # Geen zin over het hele land: de kaart is de bron. Gebieden in dezelfde kleur wijken niet af.
         adv.landelijk = replace(niveau("fr", kaart), toelichting=_KAART_TOELICHTING)
@@ -251,7 +270,11 @@ def parse(
             )
 
     for kleur, t in secties:
-        adv.gebieden.append(Gebied(t[:300], niveau("fr", kleur), brontekst=t))
+        naam_gebied = next((n for i, n in namen.items() if secties_oud[i] == (kleur, t)), "")
+        adv.gebieden.append(Gebied(naam_gebied or t[:300], niveau("fr", kleur), brontekst=t))
+    if adv.landelijk and adv.landelijk.kleur:
+        # Een gebied in dezelfde kleur als het land ('Le reste du pays ...') wijkt niet af.
+        adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
 
     if adv.landelijk and aandelen and adv.landelijk.kleur:
         # Staat er op de kaart een strengere kleur die de tekst niet als gebied noemt? Dan zeggen we dat.

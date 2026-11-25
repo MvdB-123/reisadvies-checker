@@ -91,8 +91,13 @@ def _gebieden(body_html: str) -> list[Gebied]:
                         g.brontekst = f"{g.brontekst}{weg} {zin}"
             continue
         sleutel = "avoid_non_essential" if "but essential" in m.group(1).lower() else "avoid_all"
-        wat = m.group(2).strip().rstrip(".")
-        omschrijving = f"{kop}: {wat}" if kop and kop.lower() not in wat.lower() else wat
+        wat = m.group(2).strip()
+        # Alleen het gebied: tot het eerste zinseinde en zonder de reden ('due to ...'); die staat in het citaat.
+        wat = re.split(r"(?<=[a-z0-9)])\.\s+|\s+due to\b", wat, maxsplit=1)[0].strip().rstrip(".")
+        # Kop als context, tenzij de zin hetzelfde gebied al noemt ('Cabinda Province, except Cabinda city').
+        kop_woorden = set(re.findall(r"\w+", kop.lower()))
+        dubbel = not kop or kop_woorden <= set(re.findall(r"\w+", wat.lower()))
+        omschrijving = wat if dubbel else f"{kop}: {wat}"
         laatste = Gebied(omschrijving, niveau("uk", sleutel), brontekst=zin)
         out.append(laatste)
         uitleg_voor = [laatste]

@@ -114,9 +114,20 @@ def render(
     """fonts: pad naar de meegeleverde lettertypen (alleen in de site); los bestand: systeemletters."""
     nu = nu or datetime.now(UTC)
     vandaag = nu.date()
+    nl = next((x for x in adviezen if x.bron == "nl"), None)
+    nl_kleur = nl.landelijk.kleur if nl and nl.status == Status.OK and nl.landelijk else None
     rijen = []
     for a in adviezen:
         b = BRONNEN[a.bron]
+        eigen = a.landelijk.kleur if a.status == Status.OK and a.landelijk else None
+        if a.bron == "nl" or not (eigen and nl_kleur):
+            vergelijk = None
+        else:
+            vergelijk = "strenger" if eigen.ernst > nl_kleur.ernst else "milder" if eigen.ernst < nl_kleur.ernst else "gelijk"
+        # De niveaus van de deelgebieden, één keer per kleur/typering, strengste eerst.
+        gebiedniveaus: dict[tuple, object] = {}
+        for g in sorted(a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)):
+            gebiedniveaus.setdefault((g.niveau.kleur, g.niveau.bronlabel), g.niveau)
         dagen = _dagen_geleden(a.gewijzigd_op, vandaag)
         heeft_niveau = a.status == Status.OK and a.landelijk is not None
         rijen.append(
@@ -128,6 +139,8 @@ def render(
                 # Geen wijzigingsdatum (en geen andere bevestiging van actualiteit) = onzeker.
                 "geen_datum": heeft_niveau and not a.gewijzigd_op and not a.gewijzigd_label,
                 "oud": dagen is not None and dagen > OUD_DAGEN,
+                "vergelijk": vergelijk,
+                "gebiedniveaus": list(gebiedniveaus.values()),
                 "gebieden": sorted(
                     a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)
                 ),
