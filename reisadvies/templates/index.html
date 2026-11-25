@@ -42,6 +42,10 @@
   .nl .s { width: 22px; height: 22px; }
   td.opv { font-size: 12px; }
   .strenger { color: var(--rood); font-weight: 600; }
+  .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
+  .wijzigingen h2 { font-size: 16px; margin: 0 0 6px; }
+  .wijzigingen ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  .wijzigingen .zacht { margin: 0; font-size: 14px; color: var(--zacht, #5c5c5c); }
   .recent { display: inline-block; font-size: 11px; background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 8px; }
   .legenda { margin-top: 24px; font-size: 12px; color: var(--zacht); display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; }
   .legenda .s { vertical-align: middle; margin-right: 4px; }
@@ -53,6 +57,21 @@
 <h1>Reisadvies-checker</h1>
 <div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
   klik een land voor het volledige overzicht met brontekst</div>
+
+<section class="wijzigingen">
+  <h2>Gewijzigd sinds de vorige ronde</h2>
+  {% if not vergeleken %}
+  <p class="zacht">Nog geen vorige ronde om mee te vergelijken.</p>
+  {% elif gewijzigd %}
+  <ul>
+    {% for w in gewijzigd %}
+    <li><a href="landen/{{ w.iso }}.html"><strong>{{ w.naam }}</strong></a>: {{ w.regels|join('; ') }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="zacht">Geen enkele overheid heeft een kleur of gebied gewijzigd.</p>
+  {% endif %}
+</section>
 
 <div class="balk">
   <input id="zoek" type="search" placeholder="Zoek land (bv. Turkije, Israel, UA)…" autofocus autocomplete="off"

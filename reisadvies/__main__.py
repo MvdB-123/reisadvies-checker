@@ -29,6 +29,7 @@ def main(argv: list[str] | None = None) -> int:
         "landen", nargs="+", help="landnaam (Nederlands of Engels) of ISO-code; of 'mapping' / 'bronnen'"
     )
     p.add_argument("--uit", default="uitvoer", help="map voor de overzichten (standaard: uitvoer/)")
+    p.add_argument("--vorige", help="data.json van de vorige ronde, om wijzigingen te tonen (alleen bij 'site')")
     p.add_argument("--bron", action="append", choices=list(BRONNEN), help="alleen deze bron(nen)")
     args = p.parse_args(argv)
 
@@ -44,7 +45,7 @@ def main(argv: list[str] | None = None) -> int:
             print("Land niet herkend.", file=sys.stderr)
             return 1
         uit = Path(args.uit if args.uit != "uitvoer" else "site")
-        print(f"Site gebouwd: {bouw(uit, iso_lijst)}")
+        print(f"Site gebouwd: {bouw(uit, iso_lijst, vorige=Path(args.vorige) if args.vorige else None)}")
         return 0
     if args.landen[0] == "vertaal-open":
         from .report import te_vertalen

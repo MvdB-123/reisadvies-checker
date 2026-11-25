@@ -69,7 +69,45 @@ def samenvat_rij(iso: str, adviezen: list[Advies], nu: datetime) -> dict:
     }
 
 
-def bouw(uit: Path, landen: list[str] | None = None, nu: datetime | None = None, log=print) -> Path:
+_ERNST = {0: "geen", 1: "groen", 2: "geel", 3: "oranje", 4: "rood"}
+_NIET_VERGELIJKEN = {"handmatig", "fout", "n.v.t."}  # ophaalproblemen zijn geen wijziging van het advies
+
+
+def wijzigingen(vorige: list[dict], nieuwe: list[dict]) -> list[dict]:
+    """Wat er per land per overheid veranderd is sinds de vorige ronde: landelijke kleur,
+    strengste gebied en aantal gebieden. Een bron die nu of toen niet op te halen was, telt niet."""
+    oud = {r["iso"]: r for r in vorige}
+    uit = []
+    for r in nieuwe:
+        v = oud.get(r["iso"])
+        if not v:
+            continue
+        regels = []
+        for sleutel, b in r["bronnen"].items():
+            a = v["bronnen"].get(sleutel)
+            if not a or a["stand"] in _NIET_VERGELIJKEN or b["stand"] in _NIET_VERGELIJKEN:
+                continue
+            naam_bron = BRONNEN[sleutel].naam
+            if a["kleur"] != b["kleur"]:
+                regels.append(f"{naam_bron}: landelijk {a['kleur'] or 'geen kleur'} → {b['kleur'] or 'geen kleur'}")
+            if a["strengste_gebied"] != b["strengste_gebied"]:
+                regels.append(
+                    f"{naam_bron}: strengste gebied {_ERNST[a['strengste_gebied']]} → {_ERNST[b['strengste_gebied']]}"
+                )
+            elif a["gebieden"] != b["gebieden"]:
+                regels.append(f"{naam_bron}: aantal afwijkende gebieden {a['gebieden']} → {b['gebieden']}")
+        if regels:
+            uit.append({"iso": r["iso"], "naam": r["naam"], "regels": regels})
+    return uit
+
+
+def bouw(
+    uit: Path,
+    landen: list[str] | None = None,
+    nu: datetime | None = None,
+    log=print,
+    vorige: Path | None = None,
+) -> Path:
     nu = nu or datetime.now(UTC)
     landen = landen or alle_nl_landen()
     (uit / "landen").mkdir(parents=True, exist_ok=True)
@@ -83,6 +121,13 @@ def bouw(uit: Path, landen: list[str] | None = None, nu: datetime | None = None,
         log(f"[{i}/{len(landen)}] {iso} {naam(iso)}")
         time.sleep(PAUZE_SECONDEN)
     rijen.sort(key=lambda r: r["naam"])
+    vorige_rijen = []
+    if vorige and vorige.exists():
+        try:
+            vorige_rijen = json.loads(vorige.read_text(encoding="utf-8"))
+        except ValueError:
+            log(f"Vorige ronde ({vorige}) niet leesbaar; geen wijzigingen getoond.")
+    gewijzigd = wijzigingen(vorige_rijen, rijen)
     bronnen = [{"sleutel": b.sleutel, "naam": b.naam, "vlag": b.vlag} for b in BRONNEN.values()]
     html = (
         _env()
@@ -93,6 +138,8 @@ def bouw(uit: Path, landen: list[str] | None = None, nu: datetime | None = None,
             bronnen=bronnen,
             gegenereerd=nu.astimezone(ZoneInfo("Europe/Amsterdam")).strftime("%d-%m-%Y %H:%M"),
             recent_dagen=RECENT_DAGEN,
+            gewijzigd=gewijzigd,
+            vergeleken=bool(vorige_rijen),
         )
     )
     (uit / "index.html").write_text(html, encoding="utf-8")

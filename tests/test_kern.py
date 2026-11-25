@@ -126,3 +126,21 @@ def test_vertaling_vervalt_als_brontekst_wijzigt(tmp_path, monkeypatch):
     assert vertaling.vertaal("Avrådan  gäller.") == "Het afraden geldt."  # witruimte telt niet
     assert vertaling.vertaal("Avrådan gäller inte.") is None
     vertaling._alles.cache_clear()
+
+
+def test_wijzigingen_tussen_twee_rondes():
+    from reisadvies.site import wijzigingen
+
+    def rij(fr_kleur, fr_gebied, ie_stand="letterlijk"):
+        return {
+            "iso": "TR",
+            "naam": "Turkije",
+            "bronnen": {
+                "fr": {"kleur": fr_kleur, "stand": "letterlijk", "gebieden": 1, "strengste_gebied": fr_gebied},
+                "ie": {"kleur": "geel", "stand": ie_stand, "gebieden": 0, "strengste_gebied": 0},
+            },
+        }
+
+    w = wijzigingen([rij("geel", 3, "handmatig")], [rij("oranje", 4)])
+    assert w[0]["regels"] == ["Frankrijk: landelijk geel → oranje", "Frankrijk: strengste gebied oranje → rood"]
+    assert wijzigingen([rij("geel", 3)], [rij("geel", 3)]) == []
