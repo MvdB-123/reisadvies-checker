@@ -63,7 +63,11 @@ def parse(html: str, iso: str, url: str) -> Advies:
     km = re.search(r"Sicherheitsstufe\s*(\d)\s*(\(regional\))?", kop)
 
     kaart = s.select_one("div.card[class*=background-]")
-    for segment in _SEGMENT.split(tekst(kaart)) if kaart else []:
+    kaart_tekst = tekst(kaart) if kaart else ""
+    if not kaart_tekst:
+        # Andere paginaopbouw (Armenië, Kosovo): de niveaus staan in losse kaarten met een gekleurde rand.
+        kaart_tekst = " ".join(tekst(c) for c in s.select("div.card[class*=border-]") if "Sicherheitsstufe" in tekst(c))
+    for segment in _SEGMENT.split(kaart_tekst) if kaart_tekst else []:
         t = segment.strip()
         nm = _STUFE.search(t)
         if not nm:

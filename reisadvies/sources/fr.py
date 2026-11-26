@@ -41,12 +41,13 @@ _FORMULERING = [
         ),
         "orange",
     ),
-    (re.compile(r"vigilance renforc[ée]e", re.IGNORECASE), "jaune"),
-    (re.compile(r"vigilance normale", re.IGNORECASE), "vert"),
+    (re.compile(r"vigilance (?:est )?renforc[ée]e", re.IGNORECASE), "jaune"),
+    (re.compile(r"vigilance (?:est )?normale", re.IGNORECASE), "vert"),
 ]
 # Zin die over het hele land gaat: 'L'ensemble du pays est ...', 'L'intégralité du pays ...'
 _HEEL_LAND = re.compile(
-    r"(?:ensemble|int[ée]gralit[ée]|totalit[ée]) du (?:pays|territoire)|tout le (?:pays|territoire)"
+    r"(?:ensemble|int[ée]gralit[ée]|totalit[ée]) (?:du|de l['’]|de la|des) ?(?:pays|territoire|archipel|[îi]le|[îi]les|r[ée]gion)\w*"
+    r"|tout le (?:pays|territoire)|toute l['’][îi]le"
     r"|reste du (?:pays|territoire)"
     r"|^(?:le|l['’])\s*(?:territoire|pays)\b(?:\s+[a-zéèêëïîôûüç-]+)?\s+(?:est|sont)\b",  # 'Le territoire belge est ...'
     re.IGNORECASE,
@@ -90,15 +91,23 @@ def _kleur_heel_land(zin: str, iso: str | None = None) -> str | None:
     return None
 
 
+# De kop heet 'Zones de vigilance', 'Zone de vigilance' of (typefout op de site) 'Zones de vigilence'.
+_ZONE_KOP = re.compile(r"zones?\s+de\s+vigil\w+", re.IGNORECASE)
+
+
+def _is_zonekop(t) -> bool:
+    return t.name in ("h2", "h3") and bool(_ZONE_KOP.fullmatch(tekst(t)))
+
+
 def _zone_elementen(s) -> list:
     """Alle koppen en alinea's onder 'Zones de vigilance', tot de volgende h2/h3."""
-    kop = s.find(lambda t: t.name in ("h2", "h3") and tekst(t) == "Zones de vigilance")
+    kop = s.find(_is_zonekop)
     if not kop:
         return []
     out: list = []
     lijsten: list = []
     for el in kop.find_all_next(["p", "h3", "h4", "h5", "ul"]):
-        if el.name == "h3" and tekst(el) != "Zones de vigilance":
+        if el.name == "h3" and not _is_zonekop(el):
             break
         if any(el in lijst.descendants for lijst in lijsten):
             continue  # zit al in een verzamelde lijst
@@ -121,7 +130,8 @@ _MIN_AANDEEL = 0.02  # minder dan 2% van de kaart in een van de vier kleuren: ni
 
 def kaart_url(html: str) -> str | None:
     """De kaartafbeelding onder 'Zones de vigilance'."""
-    i = html.find("Zones de vigilance")
+    mk = _ZONE_KOP.search(html)
+    i = mk.start() if mk else -1
     m = re.search(r'<img[^>]*\bsrc="([^"]+)"', html[i : i + 5000]) if i >= 0 else None
     return urljoin(BASIS, m.group(1)) if m else None
 
@@ -194,7 +204,7 @@ def parse(
     #    twee alinea's ná 'Zones de vigilance'.
     kandidaten = elementen
     if not any(e.name == "p" and tekst(e) for e in elementen):
-        kop = s.find(lambda t: t.name in ("h2", "h3") and tekst(t) == "Zones de vigilance")
+        kop = s.find(_is_zonekop)
         kandidaten = [p for p in (kop.find_all_next("p", limit=2) if kop else []) if tekst(p)]
         if kandidaten:
             adv.brontekst = " ".join(tekst(p) for p in kandidaten)
@@ -276,7 +286,8 @@ def parse(
         # Een gebied in dezelfde kleur als het land ('Le reste du pays ...') wijkt niet af.
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
 
-    if adv.landelijk and aandelen and adv.landelijk.kleur:
+    if adv.landelijk and aandelen and adv.landelijk.kleur and adv.landelijk.toelichting == _KAART_TOELICHTING:
+        # Alleen als de basiskleur van de kaart komt: een zin in de tekst over het hele land is leidend.
         # Staat er op de kaart een strengere kleur die de tekst niet als gebied noemt? Dan zeggen we dat.
         basis = adv.landelijk.kleur.ernst
         genoemd = {g.niveau.kleur for g in adv.gebieden}

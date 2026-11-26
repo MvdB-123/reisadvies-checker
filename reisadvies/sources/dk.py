@@ -22,7 +22,10 @@ WEB = "https://um.dk/rejse-og-ophold/rejse-til-udlandet/rejsevejledninger"
 
 
 # 'Hele landet, undtagen ...' of '... og resten af landet, undtagen ...'
-_LANDELIJK = re.compile(r"\bhele landet\b|\bresten af landet\b", re.IGNORECASE)
+_LANDELIJK = re.compile(
+    r"\bhele landet\b|\bresten af landet\b|^hele (?:landets? )?[A-ZÆØÅ][\wæøåÆØÅ-]+(?:\s[A-ZÆØÅ][\wæøåÆØÅ-]+)?\s*(?:[,.]|$)",
+    re.IGNORECASE,
+)  # ook 'Hele Palæstina, undtagen Østjerusalem.' (naam van het land in plaats van 'landet')
 
 
 def _sleutel(titel: str) -> str | None:
@@ -74,7 +77,7 @@ def parse(html: str, iso: str, url: str) -> Advies:
             adv.brontekst = f"{titel} {sub}".strip()
         else:
             adv.gebieden.append(Gebied(sub or titel, niveau("dk", sl), brontekst=uitleg))
-    if adv.landelijk is None and not balken and "Vi har ingen rejsevejledning" in html:
+    if adv.landelijk is None and not balken and re.search(r"vi har ingen rejsevejledning", html, re.IGNORECASE):
         adv.status = Status.NIET_GEVONDEN
         adv.melding = "Denemarken heeft voor dit land geen reisadvies. Op de Deense pagina staat letterlijk: "
         "'Vi har ingen rejsevejledning' (we hebben geen reisadvies). Het land staat er dus gewoon niet bij."

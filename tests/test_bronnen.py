@@ -543,3 +543,68 @@ def test_se_avrada_zonder_herkend_niveau_is_nooit_geen_avradan():
     html = "<main>Publicerad 1 januari 2026 Avrådan gäller tills vidare. Nivåer av avrådan</main>"
     a = se.parse_regeringen(html, "XX", "u")
     assert a.landelijk is None and "niet automatisch herkend" in a.melding
+
+
+# ---------- Herkenning uitgebreid na de controle van alle landen (26-11-2026) ----------
+
+
+def test_fr_kop_en_zinvarianten_voor_het_hele_land():
+    html = (
+        "<main><h2>Zone de vigilance</h2><p>La vigilance est normale sur l’ensemble du territoire de l’Andorre.</p></main>"
+    )
+    assert fr.parse(html, "AD", "x").landelijk.kleur == Kleur.GROEN
+    html = "<main><h2>Zones de vigilence</h2><p>L’ensemble de l’archipel est en vigilance renforcée.</p></main>"
+    assert fr.parse(html, "BS", "x").landelijk.kleur == Kleur.GEEL
+    html = "<main><h2>Zone de vigilance</h2><p>L'ensemble du territoire figure en vigilance normale.</p></main>"
+    assert fr.parse(html, "AL", "x").landelijk.kleur == Kleur.GROEN
+
+
+def test_at_andere_paginaopbouw_rest_van_het_land():
+    html = (
+        '<a>Sicherheitsstufe 2 (regional)</a>'
+        '<div class="card panel border-red">Sicherheitsrisiko &nbsp;( Sicherheitsstufe 2 )&nbsp; in den Grenzgebieten '
+        "zu Aserbaidschan. Es wird auf das Sicherheitsrisiko hingewiesen.</div>"
+        '<div class="card panel border-mediumgray">Guter Sicherheitsstandard &nbsp;( Sicherheitsstufe 1 ) im Rest des Landes</div>'
+    )
+    a = at.parse(html, "AM", "x")
+    assert a.landelijk.kleur == Kleur.GROEN and [g.niveau.kleur for g in a.gebieden] == [Kleur.GEEL]
+
+
+def test_dk_hele_landnaam_en_hoofdletter_vi():
+    html = (
+        '<h1>VI har ingen rejsevejledning for Jamaica</h1>'
+    )
+    a = dk.parse(html, "JM", "x")
+    assert a.status == Status.NIET_GEVONDEN
+
+
+def test_uk_lijst_na_advises_against_met_rest_van_het_land():
+    body = (
+        "<h2>Areas where FCDO advises against travel</h2><p>FCDO advises against:</p>"
+        "<ul><li>all travel to within 10km of the border with Yemen</li>"
+        "<li>all but essential travel to the rest of Saudi Arabia</li></ul>"
+        "<p>all travel to within 10km of the border with Yemen</p>"
+    )
+    data = {
+        "base_path": "/foreign-travel-advice/saudi-arabia",
+        "public_updated_at": "2026-11-01T00:00:00Z",
+        "details": {
+            "alert_status": ["avoid_all_travel_to_parts", "avoid_all_but_essential_travel_to_parts"],
+            "country": {"name": "Saudi Arabia", "synonyms": []},
+            "parts": [{"slug": "warnings-and-insurance", "body": body}],
+        },
+    }
+    a = uk.parse(data, "SA")
+    assert a.landelijk.kleur == Kleur.ORANJE
+    assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
+
+
+def test_de_aufenthalten_en_bzw_afkorting():
+    v = {
+        "countryName": "Japan",
+        "partialWarning": True,
+        "content": "<p>Sicherheit - Teilreisewarnung Vor Aufenthalten in von der Regierung ausgewiesenen "
+        "evakuierten Gebieten bzw. Zonen um Fukushima wird gewarnt.</p>",
+    }
+    a = de.parse("1", v, "JP")
+    assert any(g.niveau.kleur == Kleur.ROOD for g in a.gebieden) and not a.melding
