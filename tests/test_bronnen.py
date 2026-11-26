@@ -620,3 +620,54 @@ def test_fr_uitzondering_in_dezelfde_zin_als_het_hele_land():
     assert a.landelijk.kleur == Kleur.GEEL
     assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
     assert a.gebieden[0].omschrijving.startswith("îles Grande Tomb")
+
+
+def _uk_data(body, status, naam="Sudan"):
+    return {
+        "base_path": f"/foreign-travel-advice/{naam.lower()}",
+        "public_updated_at": "2026-11-01T00:00:00Z",
+        "details": {
+            "alert_status": status,
+            "country": {"name": naam, "synonyms": []},
+            "parts": [{"slug": "warnings-and-insurance", "body": body}],
+        },
+    }
+
+
+def test_uk_hele_land_met_reden_en_uitzondering_in_dezelfde_alinea():
+    body = (
+        "<h2>Areas where FCDO advises against travel</h2><p>FCDO advises against all travel to Sudan because of the "
+        "ongoing military conflict in Khartoum and other parts of the country. This does not include the Hala’ib "
+        "Triangle and the Bir Tawil Trapezoid where FCDO advises against all but essential travel.</p>"
+    )
+    a = uk.parse(_uk_data(body, ["avoid_all_travel_to_parts"]), "SD")
+    assert a.landelijk.kleur == Kleur.ROOD
+    assert [(g.niveau.kleur, g.omschrijving) for g in a.gebieden] == [
+        (Kleur.ORANJE, "the Hala’ib Triangle and the Bir Tawil Trapezoid")
+    ]
+
+
+def test_uk_the_whole_of_en_except_for_zijn_het_hele_land():
+    assert uk._is_land("the whole of the Central African Republic, including Bangui", {"name": "Central African Republic"})
+    assert uk._is_land("Libya except for the cities of: Tripoli, Benghazi", {"name": "Libya"})
+    assert not uk._is_land("Western Tunisia, including the border", {"name": "Tunisia"})
+
+
+def test_uk_kaart_met_kleur_die_de_tekst_niet_noemt_geeft_waarschuwing():
+    from io import BytesIO
+
+    from PIL import Image
+
+    im = Image.new("RGB", (200, 200), (240, 240, 208))
+    im.paste((241, 91, 66), (10, 10, 30, 22))  # legenda: rood
+    im.paste((252, 185, 19), (10, 30, 30, 42))  # legenda: amber
+    im.paste((241, 91, 66), (60, 60, 160, 160))  # kaart: rood vlak
+    im.paste((252, 185, 19), (160, 60, 180, 100))  # kaart: amber vlak, L-vormig zoals een echt gebied
+    im.paste((252, 185, 19), (160, 100, 190, 110))
+    buf = BytesIO()
+    im.save(buf, "PNG")
+    kaart = uk.kaartkleuren(buf.getvalue())
+    assert kaart["rood"] >= 10000 and kaart["amber"] >= 800  # de legenda-vakjes tellen niet mee
+    body = "<h2>Areas where FCDO advises against travel</h2><p>FCDO advises against all travel to Sudan.</p>"
+    a = uk.parse(_uk_data(body, ["avoid_all_travel_to_whole_country"]), "SD", kaart)
+    assert "amber" in a.melding and "rood" not in a.melding
