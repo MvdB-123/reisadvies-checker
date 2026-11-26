@@ -77,9 +77,9 @@ def test_samenvatting():
     s = samenvatting(adviezen)
     assert s["nl_kleur"] == Kleur.GEEL
     assert s["strenger"] == ["Canada"]
-    assert s["milder"] == ["Verenigde Staten"]
+    assert s["milder"] == ["Verenigd Koninkrijk", "Verenigde Staten"]  # VK 'geen afraden' = groen
     assert s["gelijk"] == ["Denemarken"]
-    assert s["geen_kleur"] == ["Verenigd Koninkrijk"]
+    assert s["geen_kleur"] == []
     assert s["niet_beschikbaar"] == ["Ierland"]
     assert s["strengere_gebieden"] == ["Verenigd Koninkrijk"]
 
