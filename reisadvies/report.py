@@ -19,6 +19,20 @@ OUD_DAGEN = 365  # ouder dan dit: waarschuwing naast de kleurcode
 KORT_CITAAT = 320  # tekens: het gebied en de reden, meestal de eerste één of twee zinnen
 
 
+def _gebiedregels(a: Advies) -> list[dict]:
+    """Per afwijkend gebied: de naam en de uitleg uit de bron. Staat de naam letterlijk in de uitleg
+    (de uitleg is dan alleen een herhaling met een werkwoord), dan tonen we de uitleg één keer, direct."""
+    out = []
+    for g in sorted(a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)):
+        naam = " ".join(g.omschrijving.split())
+        uitleg = " ".join((g.brontekst or "").split())
+        volledig = uitleg or naam
+        direct = bool(uitleg) and naam.lower().rstrip(".") in uitleg.lower() and len(uitleg) <= 220
+        out.append({"kleur": g.niveau.kleur.value if g.niveau.kleur else "geen", "naam": naam,
+                    "volledig": volledig, "direct": direct or not uitleg or uitleg == naam})
+    return out
+
+
 def deepl_link(tekst: str, taal: str) -> str:
     """Link naar DeepL met de tekst al ingevuld, zodat de redactie de vertaling zelf kan nalopen."""
     return f"https://www.deepl.com/translator#{quote(taal)}/nl/{quote(tekst, safe='')}"
@@ -140,6 +154,7 @@ def render(
                 "geen_datum": heeft_niveau and not a.gewijzigd_op and not a.gewijzigd_label,
                 "oud": dagen is not None and dagen > OUD_DAGEN,
                 "vergelijk": vergelijk,
+                "gebiedregels": _gebiedregels(a),
                 "gebiedniveaus": list(gebiedniveaus.values()),
                 "gebieden": sorted(
                     a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)
