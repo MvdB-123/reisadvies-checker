@@ -184,8 +184,8 @@ def kaartkleur(afbeelding: bytes) -> tuple[str | None, dict[str, float]]:
 
 
 _KAART_TOELICHTING = (
-    "Frankrijk noemt de kleur voor de rest van het land alleen op de kaart. Afgelezen van de kaart: "
-    "de kleur met het grootste oppervlak."
+    "Frankrijk noemt de kleur voor de rest van het land alleen op de kaart. Afgelezen van de actuele "
+    "kaart: de kleur met het grootste oppervlak."
 )
 
 
@@ -283,7 +283,7 @@ def parse(
     secties_oud = list(secties)  # om namen terug te vinden nadat secties zijn weggefilterd
     if not adv.landelijk and kaart:
         # Geen zin over het hele land: de kaart is de bron. Gebieden in dezelfde kleur wijken niet af.
-        adv.landelijk = replace(niveau("fr", kaart), toelichting=_KAART_TOELICHTING)
+        adv.landelijk = replace(niveau("fr", kaart), soort=Soort.AFGELEID, toelichting=_KAART_TOELICHTING)
         secties = [(k, t) for k, t in secties if k != kaart]
     if not adv.landelijk:
         expliciet = next((i for i, (_, t) in enumerate(secties) if _HEEL_LAND.search(t)), None)

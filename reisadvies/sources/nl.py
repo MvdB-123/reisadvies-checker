@@ -172,16 +172,12 @@ def parse(html: str, iso: str, url: str) -> Advies:
         # Gebieden met dezelfde kleur als het land zijn geen afwijking.
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
     elif adv.gebieden:
-        # Geen kleur voor 'de rest van het land' (bijvoorbeeld Irak: rood voor grote delen, oranje voor
-        # Koerdistan en het zuiden). Dan de laagste genoemde kleur als landelijk niveau, als afgeleid.
-        laagste = min(adv.gebieden, key=lambda g: g.niveau.kleur.ernst).niveau.kleur
-        adv.landelijk = replace(
-            niveau("nl", laagste.value),
-            soort=Soort.AFGELEID,
-            toelichting="Het Nederlandse advies noemt geen kleur voor de rest van het land; aangenomen is "
-            "de laagste genoemde kleur. Zie de kaart bij de bron.",
+        # Het advies noemt wel kleuren voor gebieden, maar geen kleur voor 'de rest van het land' (Irak,
+        # Palestijnse Gebieden). Geen aanname: de gebieden staan er letterlijk, het landelijke niveau niet.
+        adv.melding = (
+            "Het Nederlandse advies noemt geen kleur voor het land als geheel of voor de rest van het land. "
+            "De genoemde gebieden staan hieronder; zie de bron voor de kaart."
         )
-        adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != laagste]
     else:
         adv.melding = "Landelijk niveau niet automatisch herkend; zie brontekst."
     return adv
