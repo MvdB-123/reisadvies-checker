@@ -117,13 +117,14 @@
   {% endif %}
 </section>
 
+<!-- Filters en teller voorlopig verborgen (hidden); de code blijft staan om ze later weer te tonen. -->
 <div class="balk">
   <input id="zoek" type="search" placeholder="Zoek land (bv. Turkije, Israel, UA)…" autofocus autocomplete="off"
          aria-label="Zoek land">
-  <label><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
-  <label><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
-  <label>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
-  <span id="aantal"></span>
+  <label hidden><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
+  <label hidden><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
+  <label hidden>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
+  <span id="aantal" hidden></span>
 </div>
 
 <table>
