@@ -50,7 +50,7 @@ def test_nl_oekraine_heel_land_rood():
 
 def test_uk_turkije_geen_groen_geel_onderscheid():
     a = uk.parse(json.loads(lees("uk_TR.json")), "TR")
-    assert a.landelijk.kleur is None and a.landelijk.soort == Soort.BESTAAT_NIET
+    assert a.landelijk.kleur == Kleur.GROEN and a.landelijk.soort == Soort.AFGELEID  # tabel NWW: geen afraden = groen
     assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
     assert "Syria" in a.gebieden[0].omschrijving
     assert "delen van het land" not in a.landelijk.toelichting  # gebieden staan in de kolom ernaast
@@ -108,7 +108,7 @@ def test_de_oekraine_reisewarnung():
 
 def test_de_turkije_geen_waarschuwing():
     a = de.parse("201962", json.loads(lees("de_TR.json")), "TR")
-    assert a.landelijk.kleur is None and a.landelijk.soort == Soort.BESTAAT_NIET
+    assert a.landelijk.kleur == Kleur.GROEN and a.landelijk.soort == Soort.AFGELEID
     assert a.gewijzigd_op == "2026-11-06"
 
 
@@ -117,7 +117,7 @@ def test_de_turkije_geen_waarschuwing():
 
 def test_se_turkije_alleen_gebieden():
     a = se.parse(lees("se_TR.html"), "TR", "u")
-    assert a.landelijk.kleur is None  # geen avrådan voor heel Turkije
+    assert a.landelijk.kleur == Kleur.GROEN  # geen avrådan voor heel Turkije: groen volgens de tabel van NWW
     assert kleuren(a) == ["oranje", "rood"]
     assert a.gewijzigd_op == "2022-03-28"  # besluit over de avrådan
 
@@ -375,7 +375,7 @@ def test_se_gemengde_zin_eerste_niveau_telt():
 
 def test_se_opgeheven_avradan():
     a = _se_rg("AE")
-    assert a.landelijk.kleur is None and a.gebieden == []
+    assert a.landelijk.kleur == Kleur.GROEN and a.gebieden == []
 
 
 def test_se_oekraine_mildere_gebieden_blijven():

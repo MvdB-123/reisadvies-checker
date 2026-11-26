@@ -185,7 +185,7 @@ def parse(data: dict, iso: str) -> Advies:
         adv.gebieden = _gebieden(deel.get("body", ""))
         # 'all other regions of Ukraine' is het niveau voor de rest van het land, geen deelgebied.
         rest = next((g for g in adv.gebieden if _is_rest(g.omschrijving, det.get("country", {}))), None)
-        if rest is not None and adv.landelijk.kleur is None:
+        if rest is not None and adv.landelijk.bronlabel == niveau("uk", "geen").bronlabel:
             adv.landelijk = rest.niveau
             adv.landelijk.toelichting = (
                 f"Het VK noemt dit niveau voor '{rest.omschrijving}'. De uitzonderingen staan bij de gebieden."

@@ -45,10 +45,10 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "geen": _n(
             "No FCDO advice against travel",
             "Geen negatief reisadvies van de FCDO",
-            None,
-            X,
-            "Het VK kent geen onderscheid tussen groen en geel: zonder 'advise against' "
-            "is het advies alleen 'lees de risico's'. Dat kan groen of geel zijn.",
+            G,
+            A,
+            "Het VK kent geen niveau groen of geel: de FCDO raadt alleen af of niet. In de tabel van NWW "
+            "geldt 'Take normal precautions' (geen afraden) als groen. Geel bestaat bij het VK niet.",
         ),
     },
     "fr": {
@@ -97,9 +97,10 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "geen": _n(
             "Reise- und Sicherheitshinweise (keine Warnung, kein Abraten)",
             "Reis- en veiligheidsinformatie, geen waarschuwing of afraden",
-            None,
-            X,
-            "Duitsland kent alleen waarschuwen en afraden; daaronder geen onderscheid tussen groen en geel.",
+            G,
+            A,
+            "Duitsland kent alleen waarschuwen en afraden. In de tabel van NWW geldt 'Keine besonderen "
+            "Sicherheitshinweise' (geen waarschuwing of afraden) als groen.",
         ),
     },
     "dk": {
@@ -142,9 +143,10 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "geen": _n(
             "Ingen avrådan",
             "Geen negatief reisadvies",
-            None,
-            X,
-            "Zweden kent alleen 'avrådan'; daaronder geen onderscheid tussen groen en geel.",
+            G,
+            A,
+            "Zweden kent alleen 'avrådan'. In de tabel van NWW geldt 'Ingen särskilda avrådanden' (geen "
+            "afraden) als groen.",
         ),
     },
     "us": {
