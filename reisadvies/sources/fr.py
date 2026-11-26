@@ -99,6 +99,25 @@ def _is_zonekop(t) -> bool:
     return t.name in ("h2", "h3") and bool(_ZONE_KOP.fullmatch(tekst(t)))
 
 
+_UITZONDERING = re.compile(
+    r"\bà l['’]exception (?:des|du|de la|de l['’]|de|d['’])\s*(?P<gebied>.+?)"
+    r"(?=\s+qui\b|\s+(?:est|sont)\s|\s+font\b|[;.]|$)(?P<rest>.*)",
+    re.IGNORECASE,
+)
+
+
+def _uitzonderingen(zin: str, basis: str) -> list[tuple[str, str, str]]:
+    """'... en vigilance renforcée, à l'exception des îles X qui ... sont formellement déconseillées'
+    -> [('rouge', 'îles X', zin)]. Alleen als de uitzondering een andere kleur heeft dan het land."""
+    m = _UITZONDERING.search(zin)
+    if not m:
+        return []
+    kleur = _kleur_van(m.group("rest")) or _kleur_van(zin[m.start() :])
+    if not kleur or kleur == basis:
+        return []
+    return [(kleur, m.group("gebied").strip(" ,"), zin)]
+
+
 def _zone_elementen(s) -> list:
     """Alle koppen en alinea's onder 'Zones de vigilance', tot de volgende h2/h3."""
     kop = s.find(_is_zonekop)
@@ -208,12 +227,14 @@ def parse(
         kandidaten = [p for p in (kop.find_all_next("p", limit=2) if kop else []) if tekst(p)]
         if kandidaten:
             adv.brontekst = " ".join(tekst(p) for p in kandidaten)
+    uitzonderingen: list[tuple[str, str, str]] = []  # (kleur, gebied, zin)
     for e in kandidaten:
         if e.name not in ("p", "ul"):
             continue
         for zin in re.split(r"(?<=[.!?])\s+", tekst(e)):
             if kleur := _kleur_heel_land(zin, iso):
                 adv.landelijk = niveau("fr", kleur)
+                uitzonderingen.extend(_uitzonderingen(zin, kleur))
                 break
         if adv.landelijk:
             break
@@ -282,6 +303,9 @@ def parse(
     for kleur, t in secties:
         naam_gebied = next((n for i, n in namen.items() if secties_oud[i] == (kleur, t)), "")
         adv.gebieden.append(Gebied(naam_gebied or t[:300], niveau("fr", kleur), brontekst=t))
+    for kleur, gebied, zin in uitzonderingen:
+        if not any(g.brontekst == zin for g in adv.gebieden):
+            adv.gebieden.append(Gebied(gebied, niveau("fr", kleur), brontekst=zin))
     if adv.landelijk and adv.landelijk.kleur:
         # Een gebied in dezelfde kleur als het land ('Le reste du pays ...') wijkt niet af.
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
