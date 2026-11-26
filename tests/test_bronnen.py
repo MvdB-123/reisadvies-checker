@@ -671,3 +671,27 @@ def test_uk_kaart_met_kleur_die_de_tekst_niet_noemt_geeft_waarschuwing():
     body = "<h2>Areas where FCDO advises against travel</h2><p>FCDO advises against all travel to Sudan.</p>"
     a = uk.parse(_uk_data(body, ["avoid_all_travel_to_whole_country"]), "SD", kaart)
     assert "amber" in a.melding and "rood" not in a.melding
+
+
+def test_de_oproep_het_gebied_te_verlaten_hoort_letterlijk_bij_dat_gebied():
+    v = {
+        "countryName": "Kamerun",
+        "partialWarning": True,
+        "content": "<p>Vor Reisen in die Region Extrême-Nord und in die anglophonen Regionen wird gewarnt.</p>"
+        "<p>Deutschen Staatsangehörigen wird empfohlen, die Region Extrême-Nord zu verlassen.</p>"
+        "<p>Sollten Sie aufgefordert werden, Ihren Aufenthaltsort zu verlassen, tun Sie dies unverzüglich.</p>",
+    }
+    a = de.parse("1", v, "CM")
+    rood = [g for g in a.gebieden if g.niveau.kleur == Kleur.ROOD]
+    assert "Extrême-Nord zu verlassen" in rood[0].brontekst
+    assert "unverzüglich" not in rood[0].brontekst and "unverzüglich" not in a.brontekst
+
+
+def test_de_oproep_land_te_verlaten_hoort_bij_het_landelijke_niveau():
+    v = {
+        "countryName": "Mali",
+        "warning": True,
+        "content": "<p>Deutsche Staatsangehörige werden aufgefordert, Mali auf dem Luftweg zu verlassen.</p>",
+    }
+    a = de.parse("1", v, "ML")
+    assert "zu verlassen" in a.brontekst

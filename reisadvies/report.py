@@ -27,7 +27,7 @@ def _gebiedregels(a: Advies) -> list[dict]:
         naam = " ".join(g.omschrijving.split())
         uitleg = " ".join((g.brontekst or "").split())
         volledig = uitleg or naam
-        direct = bool(uitleg) and naam.lower().rstrip(".") in uitleg.lower() and len(uitleg) <= 450
+        direct = bool(uitleg) and naam.lower().rstrip(".") in uitleg.lower() and len(uitleg) <= 700
         out.append({"kleur": g.niveau.kleur.value if g.niveau.kleur else "geen", "naam": naam,
                     "volledig": volledig, "direct": direct or not uitleg or uitleg == naam})
     return out

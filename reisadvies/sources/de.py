@@ -85,6 +85,36 @@ def _zinnen(content_html: str) -> list[re.Match]:
     return out
 
 
+_VERLATEN = re.compile(
+    r"[^.]*\b(?:wird|werden)\s+(?:dringend\s+)?(?:empfohlen|geraten)\b[^.]*\bverlassen\b[^.]*\.|"
+    r"[^.]*\baufgefordert\b[^.]*\bverlassen\b[^.]*\.",
+)
+_ALGEMEEN = {"Deutschen", "Deutsche", "Staatsangehörigen", "Staatsangehörige", "Region", "Regionen", "Land", "Landes"}
+
+
+def _verlaat_advies(adv: Advies, content_html: str) -> None:
+    """'Deutschen Staatsangehörigen wird empfohlen, die Region X zu verlassen.' hoort bij het gebied X.
+
+    Geen nieuwe kleur (het gebied is al rood door de waarschuwing), maar wel letterlijk bij het gebied,
+    als context. Alleen als de zin een naam noemt die in een gebied voorkomt."""
+    tekst_ = tekst(soep(content_html)).replace("bzw.", "bzw")
+    gezien: set[str] = set()
+    for zm in _VERLATEN.finditer(tekst_):
+        zin = re.sub(r"^.*?(?=Deutsche)", "", zm.group(0).strip())
+        if "Staatsangehörig" not in zin or zin in gezien:
+            continue  # een algemene tip ('Sollten Sie aufgefordert werden ...') hoort er niet bij
+        gezien.add(zin)
+        namen = [t for t in re.findall(r"[A-ZÄÖÜ][\wäöüßêéè-]{3,}", zin) if t not in _ALGEMEEN]
+        for g in adv.gebieden:
+            if any(n in g.omschrijving for n in namen):
+                g.brontekst = f"{g.brontekst} {zin}".strip()
+                break
+        else:
+            # oproep voor het hele land: bij het landelijke niveau (de kale paginatitel zegt niets en vervalt)
+            kaal = adv.brontekst.endswith("Reise- und Sicherheitshinweise")
+            adv.brontekst = zin if kaal else f"{adv.brontekst} {zin}".strip()
+
+
 def _heel_land(gebied: str, v: dict) -> bool:
     naam = normaliseer(v.get("countryName", "")).replace(" ", "")
     g = normaliseer(gebied).replace(" ", "")
@@ -136,6 +166,7 @@ def parse(id_: str, v: dict, iso: str) -> Advies:
     for g in adv.gebieden:
         g.omschrijving = re.sub(r"\bbzw\b(?!\.)", "bzw.", g.omschrijving)
         g.brontekst = re.sub(r"\bbzw\b(?!\.)", "bzw.", g.brontekst)
+    _verlaat_advies(adv, v.get("content", ""))
     if adv.landelijk is not None and adv.landelijk.kleur:
         # zinnen over het hele land kunnen ná de gebieden staan: gebieden met dezelfde kleur weghalen
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
