@@ -136,3 +136,13 @@ def test_wijzigingen_tussen_twee_rondes():
     assert wijzigingen([rij("geel", 3, "2026-11-01")], [rij("geel", 3, "2026-11-24")]) == []
     # Zelfde wijzigingsdatum: de overheid paste niets aan, het verschil komt van de tool zelf.
     assert wijzigingen([rij("geel", 0, "2026-11-01")], [rij("geel", 4, "2026-11-01")]) == []
+
+def test_regios_dekken_alle_nederlandse_adviezen_en_afrika_is_het_geheel():
+    from reisadvies.regios import REGIOS, regios_van
+
+    assert regios_van("KE") == ["afrika-oost", "afrika"]
+    assert regios_van("EG") == ["afrika-noord", "afrika"]
+    assert regios_van("TR") == ["midden-oosten"] and regios_van("TH") == ["zuidoost-azie"]
+    assert regios_van("BQ-BO") == ["caribisch"] and regios_van("QQ") == ["overig"]
+    codes = [c for _, (_, codes) in REGIOS.items() for c in codes.split()]
+    assert len(codes) == len(set(codes))  # een land hoort bij precies één regio

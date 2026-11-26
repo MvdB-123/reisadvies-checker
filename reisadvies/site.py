@@ -18,6 +18,8 @@ from zoneinfo import ZoneInfo
 
 from .countries import naam
 from .model import Advies, Status
+from .regios import opties as regio_opties
+from .regios import regios_van
 from .report import RECENT_DAGEN, _dagen_geleden, _env, render, samenvatting, verzamel
 from .sources import BRONNEN
 from .sources import nl as nl_bron
@@ -61,6 +63,7 @@ def samenvat_rij(iso: str, adviezen: list[Advies], nu: datetime) -> dict:
         "iso": iso,
         "naam": naam(iso, "nl"),
         "zoek": " ".join({naam(iso, "nl"), naam(iso, "en"), iso}).lower(),
+        "regios": regios_van(iso),
         "nl": som["nl_kleur"].value if som["nl_kleur"] else None,
         "bronnen": bronnen,
         "strenger": [b.eigen_land for b in BRONNEN.values() if b.naam in som["strenger"]],
@@ -146,6 +149,7 @@ def bouw(
             gegenereerd=nu.astimezone(ZoneInfo("Europe/Amsterdam")).strftime("%d-%m-%Y %H:%M"),
             recent_dagen=RECENT_DAGEN,
             gewijzigd=gewijzigd,
+            regio_opties=regio_opties(),
             fonts="fonts/",
             vergeleken=bool(vorige_rijen),
         )
