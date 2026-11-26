@@ -75,6 +75,13 @@
   .p-oranje { background: #fdecdf; border-color: var(--oranje); color: #9a4d00; } .p-oranje .stip { background: var(--oranje); }
   .p-rood { background: #fbe6e4; border-color: var(--rood); color: #a61409; } .p-rood .stip { background: var(--rood); }
   .p-geen { background: #f3f3f3; border-color: #bbb; color: var(--zacht); } .p-geen .stip { background: repeating-linear-gradient(45deg,#fff,#fff 2px,#999 2px,#999 3px); }
+  .nrij { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 8px; }
+  .nrij:last-of-type { margin-bottom: 0; }
+  .npil { flex: none; width: 118px; }
+  .npil .sub { display: block; font-size: 11px; color: var(--zacht); margin: 2px 0 0 6px; }
+  .ntekst { font-size: 14px; line-height: 1.35; padding-top: 1px; }
+  .ntekst .nl { display: block; font-size: 13px; color: var(--zacht); }
+  .overzicht td { padding: 12px 10px; }
   .niveaus .sub { font-size: 12px; color: var(--zacht); margin: 2px 0 8px 4px; }
   .classificatie .regel { margin: 0 0 8px; font-size: 14px; }
   .classificatie .wat { color: var(--zacht); font-size: 13px; }
@@ -161,7 +168,7 @@
 <h2>Adviezen per overheid</h2>
 <table class="overzicht">
   <thead>
-    <tr><th style="width:15%">Overheid</th><th style="width:13%">Niveau</th><th style="width:25%">Officiële classificatie</th><th>Deelgebieden</th><th style="width:13%">Laatst gewijzigd</th></tr>
+    <tr><th style="width:14%">Overheid</th><th style="width:38%">Niveau en officiële classificatie</th><th>Deelgebieden</th><th style="width:12%">Laatst gewijzigd</th></tr>
   </thead>
   <tbody>
   {% for r in rijen %}
@@ -174,17 +181,17 @@
         {% elif r.vergelijk == 'gelijk' %}<div class="vergelijk gelijk">= Gelijk</div>{% endif %}
         <a class="bronlink" href="{{ a.url or r.bron.startpagina }}">bron</a></td>
       {% if a.status == Status.NVT %}
-      <td colspan="3"><span class="vertaling">n.v.t. – {{ a.melding }}</span></td>
+      <td colspan="2"><span class="vertaling">n.v.t. – {{ a.melding }}</span></td>
       <td>–</td>
       {% elif a.status != Status.OK %}
-      <td colspan="3">
+      <td colspan="2">
         <div class="let-op{{ ' info' if a.status == Status.NIET_GEVONDEN else '' }}"><strong>{% if a.status == Status.NIET_GEVONDEN %}Geen reisadvies gevonden{% elif a.status == Status.FOUT %}Ophalen mislukt{% else %}Niet automatisch opgehaald{% endif %}.</strong>
           {{ a.melding }} <strong>Dit is niet "geen risico".</strong>
           <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a></div>
       </td>
       <td>–</td>
       {% elif a.landelijk and r.geen_datum %}
-      <td colspan="3">
+      <td colspan="2">
         <div class="let-op"><strong>Onzeker – niet vast te stellen hoe actueel dit is.</strong>
           Geen wijzigingsdatum gevonden, dus geen kleurcode. De bron noemt: <em>{{ a.landelijk.bronlabel }}</em>.
           <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a>.</div>
@@ -192,20 +199,17 @@
       <td>–</td>
       {% else %}
       <td class="niveaus">
-        {{ pil(a.landelijk) }}<div class="sub">Algemeen</div>
-        {% for nv in r.gebiedniveaus %}{{ pil(nv) }}<div class="sub">Deelgebieden</div>{% endfor %}
-      </td>
-      <td class="classificatie">
-        {% if a.landelijk %}
-        <div class="regel">• {{ a.landelijk.bronlabel }}
-          <div class="vertaling">{{ a.landelijk.vertaling }}</div></div>
-        {% else %}
-        <div class="regel">• Niet herkend <div class="vertaling">Zie de brontekst onder 'Details'.</div></div>
-        {% endif %}
-        {% for nv in r.gebiedniveaus %}
-        <div class="regel">• {{ nv.bronlabel }}
-          <div class="vertaling">{{ nv.vertaling }}</div></div>
-        {% endfor %}
+        {% macro niveaurij(nv, label) -%}
+        <div class="nrij">
+          <div class="npil">{{ pil(nv) }}<span class="sub">{{ label }}</span></div>
+          <div class="ntekst"><span class="orig">{{ nv.bronlabel }}</span>
+            <span class="nl">{{ nv.vertaling }}</span></div>
+        </div>
+        {%- endmacro %}
+        {% if a.landelijk %}{{ niveaurij(a.landelijk, 'Algemeen') }}
+        {% else %}<div class="nrij"><div class="npil"><span class="pil p-geen"><span class="stip"></span>Niet herkend</span></div>
+          <div class="ntekst"><span class="nl">Zie de brontekst onder 'Details'.</span></div></div>{% endif %}
+        {% for nv in r.gebiedniveaus %}{{ niveaurij(nv, 'Deelgebieden') }}{% endfor %}
         {% if a.landelijk and a.landelijk.toelichting and a.bron != 'nl' %}<details class="uitleg"><summary>Toelichting</summary>{{ a.landelijk.toelichting }}{% if a.landelijk.soort.value != 'letterlijk' %} ({{ a.landelijk.soort.value }}){% endif %}</details>{% endif %}
       </td>
       <td class="deelgebieden">
