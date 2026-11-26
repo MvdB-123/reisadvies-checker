@@ -195,36 +195,39 @@
       </td>
       <td class="classificatie">
         {% if a.landelijk %}
-        <div class="regel">• {{ a.landelijk.bronlabel }} <span class="wat">— Algemeen</span>
+        <div class="regel">• {{ a.landelijk.bronlabel }}
           <div class="vertaling">{{ a.landelijk.vertaling }}</div></div>
         {% else %}
         <div class="regel">• Niet herkend <div class="vertaling">Zie de brontekst onder 'Details'.</div></div>
         {% endif %}
         {% for nv in r.gebiedniveaus %}
-        <div class="regel">• {{ nv.bronlabel }} <span class="wat">— Deelgebieden</span>
+        <div class="regel">• {{ nv.bronlabel }}
           <div class="vertaling">{{ nv.vertaling }}</div></div>
         {% endfor %}
         {% if a.landelijk and a.landelijk.toelichting and a.bron != 'nl' %}<details class="uitleg"><summary>Toelichting</summary>{{ a.landelijk.toelichting }}{% if a.landelijk.soort.value != 'letterlijk' %} ({{ a.landelijk.soort.value }}){% endif %}</details>{% endif %}
       </td>
       <td class="deelgebieden">
         {% if a.melding %}<div class="melding">⚠ {{ a.melding }}</div>{% endif %}
-        {% if r.gebieden %}
+        {% if r.gebiedregels %}
         <ul class="gebiednamen">
-          {% for g in r.gebieden %}
-          {% set naam = g.omschrijving|trim %}
-          <li class="k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok"></span><span>{{ citaat(naam, 110, 1) if naam|length > 110 else naam }}</span></li>
+          {% for g in r.gebiedregels %}
+          <li class="k-{{ g.kleur }}"><span class="blok"></span><span>
+            {% if g.direct %}{{ citaat(g.volledig, 220, 2) }}{% if r.bron.taal != 'nl' %} <a class="deepl" href="{{ deepl(g.volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
+            {% else %}{{ citaat(g.naam, 110, 1) if g.naam|length > 110 else g.naam }}{% endif %}
+          </span></li>
           {% endfor %}
         </ul>
-        <details class="citaten"><summary>Citaten uit de bron ({{ r.gebieden|length }})</summary>
-          {% for g in r.gebieden %}
-          {% set naam = g.omschrijving|trim %}
-          {% set volledig = g.brontekst|trim if g.brontekst else naam %}
-          <div class="citaat k-{{ g.niveau.kleur.value if g.niveau.kleur else 'geen' }}"><span class="blok"></span><div>
-            “{{ citaat(volledig) }}”
-            {% if r.bron.taal != 'nl' %}<a class="deepl" href="{{ deepl(volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
+        {% set uitleg_regels = r.gebiedregels|rejectattr('direct')|list %}
+        {% if uitleg_regels %}
+        <details class="citaten"><summary>Citaten uit de bron ({{ uitleg_regels|length }})</summary>
+          {% for g in uitleg_regels %}
+          <div class="citaat k-{{ g.kleur }}"><span class="blok"></span><div>
+            “{{ citaat(g.volledig) }}”
+            {% if r.bron.taal != 'nl' %}<a class="deepl" href="{{ deepl(g.volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
           </div></div>
           {% endfor %}
         </details>
+        {% endif %}
         {% else %}<span class="vertaling">Geen</span>{% endif %}
       </td>
       <td class="datum">
