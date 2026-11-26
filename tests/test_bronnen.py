@@ -478,7 +478,7 @@ def test_ie_en_au_geblokkeerd_wordt_handmatig_nalopen(monkeypatch):
         mod.index.cache_clear()
         monkeypatch.setattr(mod, "_geblokkeerd", False)
         a = mod.ophalen("TR")
-        assert a.status == Status.HANDMATIG and "datacenters" in a.melding
+        assert a.status == Status.HANDMATIG and "cloud" in a.melding
         assert mod.ophalen("UA").status == Status.HANDMATIG  # tweede land: direct, zonder wachten
         mod.index.cache_clear()
 
@@ -526,3 +526,20 @@ def test_us_citaat_zonder_werkwoord_wordt_zichtbaar_aangevuld():
     )
     a = us.parse(item, "KH")
     assert a.brontekst == "[Exercise increased caution] in Cambodia due to crime, unrest."
+
+
+def test_se_belarus_avrada_infinitief_is_rood():
+    """'beslutat om att avråda från alla resor' (infinitief) werd gemist en als 'Ingen avrådan' getoond."""
+    html = (
+        "<main><h1>Belarus - avrådan</h1>Publicerad 28 februari 2022 Med anledning av säkerhetsläget i regionen "
+        "har Utrikesdepartementet den 28 februari 2022 beslutat om att avråda från alla resor till Belarus. "
+        "Avrådan gäller tills vidare. Nivåer av avrådan</main>"
+    )
+    a = se.parse_regeringen(html, "BY", "u")
+    assert a.landelijk.kleur == Kleur.ROOD
+
+
+def test_se_avrada_zonder_herkend_niveau_is_nooit_geen_avradan():
+    html = "<main>Publicerad 1 januari 2026 Avrådan gäller tills vidare. Nivåer av avrådan</main>"
+    a = se.parse_regeringen(html, "XX", "u")
+    assert a.landelijk is None and "niet automatisch herkend" in a.melding

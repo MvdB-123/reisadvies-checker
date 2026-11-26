@@ -57,6 +57,8 @@
   .recent { display: inline-block; font-size: 11px; background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 8px; margin-top: 3px; }
   .let-op { border: 2px solid var(--rood); background: #fdecea; padding: 8px 10px; font-size: 13px; }
   .let-op strong { color: var(--rood); }
+  .let-op.info { border-color: #b98900; background: #fff8e1; }
+  .let-op.info strong { color: #7a5a00; }
   .melding { font-size: 12px; color: #7a5a00; margin-top: 6px; }
   a { color: var(--accent); }
   @media print { .kruimel { display: none; } }
@@ -176,9 +178,9 @@
       <td>–</td>
       {% elif a.status != Status.OK %}
       <td colspan="3">
-        <div class="let-op"><strong>{% if a.status == Status.NIET_GEVONDEN %}Niet gevonden{% elif a.status == Status.FOUT %}Ophalen mislukt{% else %}Handmatig nalopen{% endif %}.</strong>
-          Dit is géén "geen risico". {{ a.melding }}
-          <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a>.</div>
+        <div class="let-op{{ ' info' if a.status == Status.NIET_GEVONDEN else '' }}"><strong>{% if a.status == Status.NIET_GEVONDEN %}Geen reisadvies gevonden{% elif a.status == Status.FOUT %}Ophalen mislukt{% else %}Niet automatisch opgehaald{% endif %}.</strong>
+          {{ a.melding }} <strong>Dit is niet "geen risico".</strong>
+          <a href="{{ a.url or r.bron.startpagina }}">Open de bron</a></div>
       </td>
       <td>–</td>
       {% elif a.landelijk and r.geen_datum %}

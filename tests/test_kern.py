@@ -90,7 +90,7 @@ def test_render_toont_handmatig_nooit_leeg():
     adviezen[1].url = "https://www.ireland.ie/"
     html = render("TR", adviezen, nu=datetime(2026, 11, 19, 12, tzinfo=UTC))
     assert "Turkije" in html
-    assert "géén &#34;geen risico&#34;" in html or 'géén "geen risico"' in html
+    assert "Niet automatisch opgehaald" in html and 'niet "geen risico"' in html
     assert "https://www.ireland.ie/" in html
 
 

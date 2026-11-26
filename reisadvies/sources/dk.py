@@ -76,7 +76,8 @@ def parse(html: str, iso: str, url: str) -> Advies:
             adv.gebieden.append(Gebied(sub or titel, niveau("dk", sl), brontekst=uitleg))
     if adv.landelijk is None and not balken and "Vi har ingen rejsevejledning" in html:
         adv.status = Status.NIET_GEVONDEN
-        adv.melding = "Denemarken geeft voor dit land geen rejsevejledning ('Vi har ingen rejsevejledning')."
+        adv.melding = "Denemarken heeft voor dit land geen reisadvies. Op de Deense pagina staat letterlijk: "
+        "'Vi har ingen rejsevejledning' (we hebben geen reisadvies). Het land staat er dus gewoon niet bij."
     elif adv.landelijk is None and adv.gebieden:
         adv.melding = (
             "Denemarken noemt alleen gebieden; er is geen balk voor 'hele landet'. "
