@@ -19,12 +19,15 @@
   a { color: var(--link); }
   a:hover { color: var(--link-hover); }
   h1, h2 { font-family: "RO Serif", "Public Sans", "Segoe UI", system-ui, sans-serif; font-weight: 700; }
-  .lint { background: var(--accent); color: #fff; margin: -24px -32px 20px; padding: 14px 32px; font-size: 15px; letter-spacing: .02em; }
-  .lint a { color: #fff; }
-  .lint { display: flex; align-items: center; gap: 10px; }
-  .lint .wereld { flex: none; }
-  .lint a.thuis { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 600; }
-  .lint a.thuis:hover { text-decoration: underline; }
+  .kop { background: var(--licht); margin: -24px -32px 20px; padding: 24px 32px 20px; border-bottom: 1px solid #cfe6f5; }
+  .kop h1 { margin: 0 0 6px; }
+  .kop .meta { margin-bottom: 0; }
+  .kop a.thuis { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
+  .kop a.thuis:hover { text-decoration: underline; }
+  .kop .wereld { flex: none; color: var(--accent); }
+  .kruimel { font-size: 14px; margin-bottom: 10px; color: var(--zacht); }
+  .kruimel a { color: var(--link); }
+  .kruimel a.thuis { color: var(--accent); font-weight: 600; gap: 6px; }
   .disclaimer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--lijn); font-size: 13px; color: var(--zacht); }
 
   body { font-family: "RO Sans", "Public Sans", "Segoe UI", system-ui, sans-serif; color: var(--tekst); margin: 0 auto;
@@ -59,7 +62,7 @@
   .nl .s { width: 22px; height: 22px; }
   td.opv { font-size: 12px; }
   .strenger { color: var(--rood); font-weight: 600; }
-  .intro { max-width: 860px; font-size: 16px; margin: 8px 0 18px; }
+  .intro { max-width: 860px; font-size: 16px; margin: 14px 0 0; }
   .intro p { margin: 0 0 8px; }
   .wijzigingen details summary { cursor: pointer; color: var(--link); margin: 6px 0 0; font-size: 14px; }
   .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
@@ -74,8 +77,8 @@
 </style>
 </head>
 <body>
-<div class="lint"><a class="thuis" href="./" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>Reisadvies-checker</a> · reisadviezen van gelijkgestemde landen naast elkaar</div>
-<h1>Reisadvies-checker</h1>
+<header class="kop">
+<h1><a class="thuis" href="./" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>Reisadvies-checker</a></h1>
 <div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
   klik een land voor het volledige overzicht met brontekst</div>
 
@@ -88,6 +91,7 @@
     met een letterlijk citaat uit de bron, en de datum waarop die overheid het advies voor het laatst aanpaste.
     Elke ochtend opnieuw opgehaald.</p>
 </section>
+</header>
 
 <section class="wijzigingen">
   <h2>Gewijzigd sinds de vorige ronde</h2>
@@ -113,13 +117,14 @@
   {% endif %}
 </section>
 
+<!-- Filters en teller voorlopig verborgen (hidden); de code blijft staan om ze later weer te tonen. -->
 <div class="balk">
   <input id="zoek" type="search" placeholder="Zoek land (bv. Turkije, Israel, UA)…" autofocus autocomplete="off"
          aria-label="Zoek land">
-  <label><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
-  <label><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
-  <label>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
-  <span id="aantal"></span>
+  <label hidden><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
+  <label hidden><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
+  <label hidden>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
+  <span id="aantal" hidden></span>
 </div>
 
 <table>
