@@ -43,12 +43,13 @@ MAPPING: dict[str, dict[str, Niveau]] = {
             L,
         ),
         "geen": _n(
-            "No FCDO advice against travel",
-            "Geen negatief reisadvies van de FCDO",
-            G,
-            A,
-            "Het VK kent geen niveau groen of geel: de FCDO raadt alleen af of niet. In de tabel van NWW "
-            "geldt 'Take normal precautions' (geen afraden) als groen. Geel bestaat bij het VK niet.",
+            "Geen afraden vermeld",
+            "De pagina noemt geen land of gebied waarvoor de FCDO afraadt",
+            None,
+            X,
+            "De FCDO noemt alleen waar zij afraadt. Er staat geen niveau en geen kleur op de pagina; dat er niet "
+            "wordt afgeraden volgt alleen uit het ontbreken van een waarschuwing. Zie ook de kaart en de tekst "
+            "(bijvoorbeeld 'Regional tensions') via de bronlink.",
         ),
     },
     "fr": {
@@ -97,10 +98,10 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "geen": _n(
             "Reise- und Sicherheitshinweise (keine Warnung, kein Abraten)",
             "Reis- en veiligheidsinformatie, geen waarschuwing of afraden",
-            G,
-            A,
-            "Duitsland kent alleen waarschuwen en afraden. In de tabel van NWW geldt 'Keine besonderen "
-            "Sicherheitshinweise' (geen waarschuwing of afraden) als groen.",
+            None,
+            X,
+            "Duitsland noemt alleen waar het waarschuwt of afraadt. Er staat geen niveau en geen kleur op de "
+            "pagina; dat er niet wordt gewaarschuwd of afgeraden volgt alleen uit het ontbreken daarvan.",
         ),
     },
     "dk": {
@@ -143,10 +144,10 @@ MAPPING: dict[str, dict[str, Niveau]] = {
         "geen": _n(
             "Ingen avrådan",
             "Geen negatief reisadvies",
-            G,
-            A,
-            "Zweden kent alleen 'avrådan'. In de tabel van NWW geldt 'Ingen särskilda avrådanden' (geen "
-            "afraden) als groen.",
+            None,
+            X,
+            "Zweden noemt alleen waar het afraadt. Er staat geen niveau en geen kleur; dat er niet wordt afgeraden "
+            "volgt alleen uit het ontbreken van het land op de lijst met afraden van het UD.",
         ),
     },
     "us": {

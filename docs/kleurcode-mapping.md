@@ -94,12 +94,13 @@ Vorsicht` wel in adviesteksten, maar niet als officieel niveau — vandaar `afge
 | Australië | https://www.smartraveller.gov.au/consular-services/travel-advice-explained |
 | Canada | https://travel.gc.ca/travelling/advisories |
 
-## Geen waarschuwing = groen (besluit 26-11-2026)
+## Geen waarschuwing of afraden = geen kleur (besluit 26-11-2026)
 
-Het Verenigd Koninkrijk, Duitsland en Zweden kennen alleen waarschuwen of afraden. Volgens de matrix van NWW
-("Uitleg like-minded") geldt hun niveau zonder waarschuwing of afraden als groen. De tool toont dat als groen
-met het label `afgeleid` en de toelichting, omdat de bewoording op hun website (bijvoorbeeld "No FCDO advice
-against travel") niet letterlijk in de tabel staat. Geel bestaat bij deze landen niet.
+Het Verenigd Koninkrijk, Duitsland en Zweden noemen alleen waar ze waarschuwen of afraden. Staat er niets, dan
+staat er ook geen niveau en geen kleur op de pagina. De matrix van NWW noemt hier groen, maar die bewoording
+("Take normal precautions", "Keine besonderen Sicherheitshinweise") staat niet (meer) op hun pagina's. De tool
+neemt dat niet aan: er staat "Geen afraden vermeld" zonder kleur, met een toelichting. Nergens in het overzicht
+wordt een kleur gekozen die de bron zelf niet noemt.
 
 ## Nog te controleren
 
