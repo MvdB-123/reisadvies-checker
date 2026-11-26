@@ -19,9 +19,30 @@ OUD_DAGEN = 365  # ouder dan dit: waarschuwing naast de kleurcode
 KORT_CITAAT = 320  # tekens: het gebied en de reden, meestal de eerste één of twee zinnen
 
 
+_STANDAARD_VOORVOEGSEL = re.compile(
+    r"^(?:FCDO advises against|Do not travel to|Avoid (?:all|non-essential) travel to|Reconsider travel to)"
+    r"(?: all but essential| all)?(?: travel)?(?: to)?\s*",
+    re.IGNORECASE,
+)
+
+
+def _kaal(t: str) -> str:
+    return re.sub(r"[^\w]+", " ", t.lower()).strip()
+
+
+def _zegt_meer(naam: str, uitleg: str) -> bool:
+    """Staat er in de uitleg méér dan de gebiedsnaam (een reden, extra zinnen)? Alleen het standaard
+    voorvoegsel ('FCDO advises against all travel to') en de naam zelf zijn geen extra informatie."""
+    if not uitleg or uitleg == naam:
+        return False
+    rest = _kaal(_STANDAARD_VOORVOEGSEL.sub("", uitleg, count=1))
+    n = _kaal(naam)
+    return not (rest == n or rest in n or n in rest and len(rest) - len(n) < 25)
+
+
 def _gebiedregels(a: Advies) -> list[dict]:
-    """Per afwijkend gebied: de naam en de uitleg uit de bron. Staat de naam letterlijk in de uitleg
-    (de uitleg is dan alleen een herhaling met een werkwoord), dan tonen we de uitleg één keer, direct."""
+    """Per afwijkend gebied: de naam, de uitleg uit de bron, en of die uitleg meer zegt dan de naam.
+    Staat de naam letterlijk in een korte uitleg, dan tonen we de uitleg één keer, direct."""
     out = []
     for g in sorted(a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)):
         naam = " ".join(g.omschrijving.split())
@@ -29,7 +50,8 @@ def _gebiedregels(a: Advies) -> list[dict]:
         volledig = uitleg or naam
         direct = bool(uitleg) and naam.lower().rstrip(".") in uitleg.lower() and len(uitleg) <= 700
         out.append({"kleur": g.niveau.kleur.value if g.niveau.kleur else "geen", "naam": naam,
-                    "volledig": volledig, "direct": direct or not uitleg or uitleg == naam})
+                    "volledig": volledig, "direct": direct or not uitleg or uitleg == naam,
+                    "meer": _zegt_meer(naam, uitleg)})
     return out
 
 
@@ -154,7 +176,10 @@ def render(
                 "geen_datum": heeft_niveau and not a.gewijzigd_op and not a.gewijzigd_label,
                 "oud": dagen is not None and dagen > OUD_DAGEN,
                 "vergelijk": vergelijk,
-                "gebiedregels": _gebiedregels(a),
+                "gebiedregels": (gr := _gebiedregels(a)),
+                "gebieden_deepl": deepl_link("\n".join(x["volledig"] for x in gr)[:1800], b.taal)
+                if gr and b.taal != "nl"
+                else "",
                 "gebiedniveaus": list(gebiedniveaus.values()),
                 "gebieden": sorted(
                     a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)
