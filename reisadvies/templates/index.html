@@ -19,15 +19,6 @@
   a { color: var(--link); }
   a:hover { color: var(--link-hover); }
   h1, h2 { font-family: "RO Serif", "Public Sans", "Segoe UI", system-ui, sans-serif; font-weight: 700; }
-  .kop { background: var(--licht); margin: -24px -32px 20px; padding: 24px 32px 20px; border-bottom: 1px solid #cfe6f5; }
-  .kop h1 { margin: 0 0 6px; }
-  .kop .meta { margin-bottom: 0; }
-  .kop a.thuis { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
-  .kop a.thuis:hover { text-decoration: underline; }
-  .kop .wereld { flex: none; color: var(--accent); }
-  .kruimel { font-size: 14px; margin-bottom: 10px; color: var(--zacht); }
-  .kruimel a { color: var(--link); }
-  .kruimel a.thuis { color: var(--accent); font-weight: 600; gap: 6px; }
   .disclaimer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--lijn); font-size: 13px; color: var(--zacht); }
 
   body { font-family: "RO Sans", "Public Sans", "Segoe UI", system-ui, sans-serif; color: var(--tekst); margin: 0 auto;
@@ -62,8 +53,6 @@
   .nl .s { width: 22px; height: 22px; }
   td.opv { font-size: 12px; }
   .strenger { color: var(--rood); font-weight: 600; }
-  .intro { max-width: 860px; font-size: 16px; margin: 14px 0 0; }
-  .intro p { margin: 0 0 8px; }
   .wijzigingen details summary { cursor: pointer; color: var(--link); margin: 6px 0 0; font-size: 14px; }
   .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
   .wijzigingen h2 { font-size: 16px; margin: 0 0 6px; }
@@ -74,15 +63,38 @@
   .legenda .s { vertical-align: middle; margin-right: 4px; }
   .verborgen { display: none; }
   @media (max-width: 900px) { th.bron, td.bron { width: 30px; } body { padding: 12px; } #zoek { width: 100%; } }
+  /* Kop zoals de Reisadvies-Reviewer: dunne lijn, organisatiebalk, blauw vlak met wereldbol en witte titel. */
+  body { margin: 0; padding: 0; max-width: none; }
+  .binnen { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .pagina { max-width: 1280px; margin: 0 auto; padding: 24px 32px 32px; }
+  .rijkslijn { height: 6px; background: var(--accent); }
+  .organisatie { border-bottom: 1px solid var(--lijn); font-size: 13px; font-weight: 600; color: var(--accent); }
+  .organisatie .binnen { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; padding-bottom: 14px; gap: 12px; flex-wrap: wrap; }
+  .badge { font-weight: 400; color: var(--zacht); border: 1px solid #b9b9b9; border-radius: 3px; padding: 3px 10px; font-size: 12px; }
+  .kop { background: #007bc7; color: #fff; margin: 0; padding: 28px 0 26px; border: 0; }
+  .kop .binnen { display: flex; gap: 20px; align-items: flex-start; }
+  .kop .tekst { min-width: 0; }
+  .kop a.thuis { color: #fff; text-decoration: none; flex: none; display: block; }
+  .kop a.thuis:hover { opacity: .85; }
+  .kop .wereld { display: block; color: #fff; }
+  .kop h1 { color: #fff; margin: 0 0 8px; font-size: 38px; line-height: 1.1; }
+  .kop .meta, .kop .intro, .kop .intro p { color: #fff; }
+  .kop .meta { font-size: 14px; margin: 0 0 10px; opacity: .95; }
+  .kop .intro { margin: 0; max-width: 760px; font-size: 17px; }
+  .kop .intro p { margin: 0 0 8px; }
+  .kruimel { font-size: 14px; margin: 0 0 10px; color: #fff; }
+  .kruimel a { color: #fff; text-decoration: underline; }
 </style>
 </head>
 <body>
-<header class="kop">
-<h1><a class="thuis" href="./" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>Reisadvies-checker</a></h1>
-<div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
+<div class="rijkslijn"></div>
+<div class="organisatie"><div class="binnen"><span>Ministerie van Buitenlandse Zaken · NederlandWereldwijd</span><span class="badge">Intern prototype — geen officiële uitgave</span></div></div>
+<header class="kop"><div class="binnen">
+  <a class="thuis" href="./" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="7.2" cy="9" r="1" fill="currentColor"/><circle cx="16.8" cy="15" r="1" fill="currentColor"/></svg></a>
+  <div class="tekst"><h1>Reisadvies-checker</h1>
+  <div class="meta">Reisadviezen van Nederland en tien gelijkgestemde landen · ververst op <strong>{{ gegenereerd }}</strong> ·
   klik een land voor het volledige overzicht met brontekst</div>
-
-<section class="intro">
+  <section class="intro">
   <p>Vergelijk in één oogopslag het reisadvies van Nederland met dat van tien gelijkgestemde landen:
     het Verenigd Koninkrijk, Frankrijk, Duitsland, Zweden, Denemarken, Ierland, Oostenrijk, de Verenigde Staten,
     Australië en Canada. Hun niveaus zijn vertaald naar de vier Nederlandse kleurcodes, met de eigen bewoording
@@ -90,8 +102,9 @@
   <p>Zoek een land en klik erop voor het volledige overzicht: per overheid het niveau, de afwijkende gebieden
     met een letterlijk citaat uit de bron, en de datum waarop die overheid het advies voor het laatst aanpaste.
     Elke ochtend opnieuw opgehaald.</p>
-</section>
-</header>
+</section></div>
+</div></header>
+<main class="pagina">
 
 <section class="wijzigingen">
   <h2>Gewijzigd sinds de vorige ronde</h2>
@@ -201,5 +214,6 @@
 <p class="disclaimer">Interne vergelijkingstool, geen officiële publicatie van Nederland Wereldwijd of de rijksoverheid.
   Het actuele Nederlandse reisadvies staat op <a href="https://www.nederlandwereldwijd.nl/reisadvies">nederlandwereldwijd.nl/reisadvies</a>.
   De adviezen van andere overheden zijn automatisch opgehaald en kunnen afwijken van hun eigen website: controleer via de bronlinks.</p>
+</main>
 </body>
 </html>
