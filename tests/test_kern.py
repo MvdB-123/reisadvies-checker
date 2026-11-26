@@ -148,16 +148,19 @@ def test_regios_dekken_alle_nederlandse_adviezen_en_afrika_is_het_geheel():
     assert len(codes) == len(set(codes))  # een land hoort bij precies één regio
 
 
-def test_gebiedregels_uitleg_alleen_als_de_bron_meer_zegt_dan_de_naam():
+def test_gebiedregels_kort_boven_en_volledig_in_de_uitklapper():
     from reisadvies.model import Gebied
-    from reisadvies.report import _gebiedregels
+    from reisadvies.report import KORT_GEBIED, _gebiedregels
 
-    a = _adv("uk", "avoid_all")
+    a = _adv("de", "reisewarnung")
+    lang = "die Region " + ", ".join(f"Gebied{n}" for n in range(40))
     a.gebieden = [
-        Gebied("within 40km of the border with Chad", niveau("uk", "avoid_all"),
-               brontekst="FCDO advises against all travel to within 40km of the border with Chad."),
-        Gebied("North Region", niveau("uk", "avoid_non_essential"),
-               brontekst="FCDO advises against all but essential travel to the North Region because of kidnapping risks."),
+        Gebied("die Regionen Adamaoua und Nord", niveau("de", "abraten"), brontekst="Von Reisen in die Regionen Adamaoua und Nord wird abgeraten."),
+        Gebied(lang, niveau("de", "teilreisewarnung"), brontekst=f"Vor Reisen in {lang} wird gewarnt."),
+        Gebied("Nord", niveau("de", "abraten"), brontekst=""),
     ]
-    regels = _gebiedregels(a)
-    assert [r["meer"] for r in regels] == [False, True]  # het tweede noemt een reden
+    regels = {r["naam"][:12]: r for r in _gebiedregels(a)}
+    lang_r = regels[lang[:12]]
+    assert lang_r["kort"].endswith("…") and len(lang_r["kort"]) <= KORT_GEBIED + 2
+    assert lang_r["volledig"].startswith("Vor Reisen in die Region") and lang_r["meer"]
+    assert regels["Nord"]["meer"] is False and regels["Nord"]["kort"] == "Nord"  # alleen een naam: niets uit te klappen

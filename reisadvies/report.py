@@ -19,39 +19,23 @@ OUD_DAGEN = 365  # ouder dan dit: waarschuwing naast de kleurcode
 KORT_CITAAT = 320  # tekens: het gebied en de reden, meestal de eerste één of twee zinnen
 
 
-_STANDAARD_VOORVOEGSEL = re.compile(
-    r"^(?:FCDO advises against|Do not travel to|Avoid (?:all|non-essential) travel to|Reconsider travel to)"
-    r"(?: all but essential| all)?(?: travel)?(?: to)?\s*",
-    re.IGNORECASE,
-)
-
-
-def _kaal(t: str) -> str:
-    return re.sub(r"[^\w]+", " ", t.lower()).strip()
-
-
-def _zegt_meer(naam: str, uitleg: str) -> bool:
-    """Staat er in de uitleg méér dan de gebiedsnaam (een reden, extra zinnen)? Alleen het standaard
-    voorvoegsel ('FCDO advises against all travel to') en de naam zelf zijn geen extra informatie."""
-    if not uitleg or uitleg == naam:
-        return False
-    rest = _kaal(_STANDAARD_VOORVOEGSEL.sub("", uitleg, count=1))
-    n = _kaal(naam)
-    return not (rest == n or rest in n or n in rest and len(rest) - len(n) < 25)
+KORT_GEBIED = 130  # tekens: boven staat alleen kort om welk gebied het gaat; de volledige tekst staat in de uitklapper
 
 
 def _gebiedregels(a: Advies) -> list[dict]:
-    """Per afwijkend gebied: de naam, de uitleg uit de bron, en of die uitleg meer zegt dan de naam.
-    Staat de naam letterlijk in een korte uitleg, dan tonen we de uitleg één keer, direct."""
+    """Per afwijkend gebied: de naam (kort, voor boven) en de volledige tekst uit de bron (voor de uitklapper)."""
     out = []
     for g in sorted(a.gebieden, key=lambda g: -(g.niveau.kleur.ernst if g.niveau.kleur else 0)):
         naam = " ".join(g.omschrijving.split())
         uitleg = " ".join((g.brontekst or "").split())
-        volledig = uitleg or naam
-        direct = bool(uitleg) and naam.lower().rstrip(".") in uitleg.lower() and len(uitleg) <= 700
-        out.append({"kleur": g.niveau.kleur.value if g.niveau.kleur else "geen", "naam": naam,
-                    "volledig": volledig, "direct": direct or not uitleg or uitleg == naam,
-                    "meer": _zegt_meer(naam, uitleg)})
+        kort = naam if len(naam) <= KORT_GEBIED else naam[:KORT_GEBIED].rsplit(" ", 1)[0] + " …"
+        out.append({
+            "kleur": g.niveau.kleur.value if g.niveau.kleur else "geen",
+            "naam": naam,
+            "kort": kort,
+            "volledig": uitleg or naam,
+            "meer": bool(uitleg and uitleg != naam) or kort != naam,  # er is méér te lezen dan de korte naam
+        })
     return out
 
 
@@ -177,6 +161,9 @@ def render(
                 "oud": dagen is not None and dagen > OUD_DAGEN,
                 "vergelijk": vergelijk,
                 "gebiedregels": (gr := _gebiedregels(a)),
+                # Uitklapper met de volledige teksten: altijd bij een vreemde taal (voor de DeepL-link), anders
+                # alleen als er meer te lezen is dan de korte namen.
+                "gebieden_uitklap": bool(gr) and (b.taal != "nl" or any(x["meer"] for x in gr)),
                 "gebieden_deepl": deepl_link("\n".join(x["volledig"] for x in gr)[:1800], b.taal)
                 if gr and b.taal != "nl"
                 else "",
