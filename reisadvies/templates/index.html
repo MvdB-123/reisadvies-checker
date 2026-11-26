@@ -29,6 +29,7 @@
           background: #fff; padding: 10px 0; border-bottom: 1px solid var(--lijn); z-index: 2; }
   #zoek { font-size: 17px; padding: 8px 12px; width: 300px; border: 2px solid var(--accent); border-radius: 4px; }
   label { white-space: nowrap; cursor: pointer; }
+  label.regio select { font-size: 15px; padding: 7px 8px; border: 2px solid var(--accent); border-radius: 4px; background: #fff; margin-left: 4px; }
   select { font-size: 14px; padding: 4px; }
   #aantal { color: var(--zacht); margin-left: auto; }
   table { width: 100%; border-collapse: collapse; margin-top: 4px; }
@@ -39,8 +40,8 @@
   tr:hover td { background: #eef3f8; }
   td.land a { font-weight: 600; text-decoration: none; color: var(--accent); }
   td.land a:hover { text-decoration: underline; }
-  .s { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25);
-       font-size: 11px; line-height: 16px; text-align: center; color: #fff; font-weight: 700; position: relative; }
+  .s { display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; flex: none; vertical-align: middle; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25);
+       font-size: 11px; line-height: 1; text-align: center; color: #fff; font-weight: 700; position: relative; }
   .s.groen { background: var(--groen); } .s.geel { background: var(--geel); color: #333; }
   .s.oranje { background: var(--oranje); } .s.rood { background: var(--rood); }
   .s.geenkleur { background: repeating-linear-gradient(45deg,#fff,#fff 3px,#bbb 3px,#bbb 5px); }
@@ -50,7 +51,6 @@
   .s.leeg { background: none; border: none; color: #bbb; }
   .s .stip { position: absolute; right: -5px; top: -5px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid #fff; }
   .stip.rood { background: var(--rood); } .stip.oranje { background: var(--oranje); }
-  .nl .s { width: 22px; height: 22px; line-height: 20px; }
   td.opv { font-size: 12px; }
   .label { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px; color: #fff; margin: 1px 4px 1px 0; }
   .l-recent { background: var(--accent); }
@@ -131,6 +131,9 @@
 <div class="balk">
   <input id="zoek" type="search" placeholder="Zoek land (bv. Turkije, Israel, UA)…" autofocus autocomplete="off"
          aria-label="Zoek land">
+  <label class="regio">Regio <select id="f-regio"><option value="">Alle regio's</option>
+    {% for sleutel, naam, in_ in regio_opties %}<option value="{{ sleutel }}">{{ '  ' if in_ }}{{ naam }}</option>{% endfor %}
+  </select></label>
   <label hidden><input type="checkbox" id="f-strenger"> anderen strenger dan NL</label>
   <label hidden><input type="checkbox" id="f-recent"> gewijzigd ≤ {{ recent_dagen }} dagen</label>
   <label hidden>NL-kleur <select id="f-nl"><option value="">alle</option><option>groen</option><option>geel</option><option>oranje</option><option>rood</option></select></label>
@@ -148,7 +151,7 @@
   </thead>
   <tbody id="rijen">
   {% for r in rijen %}
-    <tr data-zoek="{{ r.zoek }}" data-nl="{{ r.nl or '' }}" data-strenger="{{ 1 if r.strenger else 0 }}" data-recent="{{ 1 if r.recent else 0 }}">
+    <tr data-zoek="{{ r.zoek }}" data-nl="{{ r.nl or '' }}" data-strenger="{{ 1 if r.strenger else 0 }}" data-recent="{{ 1 if r.recent else 0 }}" data-regio="{{ r.regios|join(' ') }}">
       <td class="land"><a href="landen/{{ r.iso }}.html">{{ r.naam }}</a></td>
       {% for b in bronnen %}
       {% set x = r.bronnen[b.sleutel] %}
@@ -188,7 +191,7 @@
 <script>
 (function () {
   const zoek = document.getElementById('zoek'), fs = document.getElementById('f-strenger'),
-        fr = document.getElementById('f-recent'), fnl = document.getElementById('f-nl'),
+        fr = document.getElementById('f-recent'), fnl = document.getElementById('f-nl'), freg = document.getElementById('f-regio'),
         aantal = document.getElementById('aantal'), rijen = [...document.querySelectorAll('#rijen tr')];
   const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
   rijen.forEach(r => r.dataset.zoek = norm(r.dataset.zoek));
@@ -196,12 +199,13 @@
     const q = norm(zoek.value); let n = 0;
     for (const r of rijen) {
       const ok = (!q || r.dataset.zoek.includes(q)) && (!fs.checked || r.dataset.strenger === '1') &&
-                 (!fr.checked || r.dataset.recent === '1') && (!fnl.value || r.dataset.nl === fnl.value);
+                 (!fr.checked || r.dataset.recent === '1') && (!fnl.value || r.dataset.nl === fnl.value) &&
+                 (!freg.value || r.dataset.regio.split(' ').includes(freg.value));
       r.classList.toggle('verborgen', !ok); if (ok) n++;
     }
     aantal.textContent = n + ' van ' + rijen.length + ' landen';
   }
-  [zoek, fs, fr, fnl].forEach(e => e.addEventListener('input', filter));
+  [zoek, fs, fr, fnl, freg].forEach(e => e.addEventListener('input', filter));
   zoek.addEventListener('keydown', e => {   // Enter opent het eerste land in de lijst
     if (e.key === 'Enter') { const r = rijen.find(r => !r.classList.contains('verborgen')); if (r) location.href = r.querySelector('a').href; }
   });
