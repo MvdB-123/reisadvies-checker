@@ -39,7 +39,7 @@
   tr:hover td { background: #eef3f8; }
   td.land a { font-weight: 600; text-decoration: none; color: var(--accent); }
   td.land a:hover { text-decoration: underline; }
-  .s { display: inline-block; width: 18px; height: 18px; border-radius: 3px; border: 1px solid rgba(0,0,0,.25);
+  .s { display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.25);
        font-size: 11px; line-height: 16px; text-align: center; color: #fff; font-weight: 700; position: relative; }
   .s.groen { background: var(--groen); } .s.geel { background: var(--geel); color: #333; }
   .s.oranje { background: var(--oranje); } .s.rood { background: var(--rood); }
@@ -50,9 +50,12 @@
   .s.leeg { background: none; border: none; color: #bbb; }
   .s .stip { position: absolute; right: -5px; top: -5px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid #fff; }
   .stip.rood { background: var(--rood); } .stip.oranje { background: var(--oranje); }
-  .nl .s { width: 22px; height: 22px; }
+  .nl .s { width: 22px; height: 22px; line-height: 20px; }
   td.opv { font-size: 12px; }
-  .strenger { color: var(--rood); font-weight: 600; }
+  .label { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px; color: #fff; margin: 1px 4px 1px 0; }
+  .l-recent { background: var(--accent); }
+  .l-strenger { background: var(--rood); }
+  td.opv div { margin: 2px 0; }
   .wijzigingen details summary { cursor: pointer; color: var(--link); margin: 6px 0 0; font-size: 14px; }
   .wijzigingen { background: #fff8e1; border-left: 4px solid #b98900; padding: 10px 16px; margin: 14px 0 18px; }
   .wijzigingen h2 { font-size: 16px; margin: 0 0 6px; }
@@ -138,8 +141,8 @@
   <thead>
     <tr>
       <th>Land</th>
-      <th class="bron nl"><span>{{ bronnen[0].vlag }}</span>NL</th>
-      {% for b in bronnen[1:] %}<th class="bron" title="{{ b.naam }}"><span>{{ b.vlag }}</span>{{ b.sleutel|upper }}</th>{% endfor %}
+      <th class="bron nl" title="{{ bronnen[0].naam }}">NL</th>
+      {% for b in bronnen[1:] %}<th class="bron" title="{{ b.naam }}">{{ "GB" if b.sleutel == "uk" else b.sleutel|upper }}</th>{% endfor %}
       <th>Opvallend</th>
     </tr>
   </thead>
@@ -160,8 +163,8 @@
       </td>
       {% endfor %}
       <td class="opv">
-        {% if r.strenger %}<span class="strenger">Strenger: {{ r.strenger|join(', ') }}</span><br>{% endif %}
-        {% if r.recent %}<span class="recent">gewijzigd</span> {{ r.recent|join(', ') }}{% endif %}
+        {% if r.strenger %}<div><span class="label l-strenger" title="Landelijk strenger dan Nederland">strenger</span> {{ r.strenger|join(' ') }}</div>{% endif %}
+        {% if r.recent %}<div><span class="label l-recent" title="Advies gewijzigd in de afgelopen {{ recent_dagen }} dagen">gewijzigd ≤ {{ recent_dagen }} dagen</span> {{ r.recent|join(' ') }}</div>{% endif %}
       </td>
     </tr>
   {% endfor %}

@@ -56,14 +56,14 @@ def samenvat_rij(iso: str, adviezen: list[Advies], nu: datetime) -> dict:
         }
         dagen = _dagen_geleden(a.gewijzigd_op, nu.date())
         if dagen is not None and dagen <= RECENT_DAGEN:
-            recent.append(BRONNEN[a.bron].naam)
+            recent.append(BRONNEN[a.bron].eigen_land)
     return {
         "iso": iso,
         "naam": naam(iso, "nl"),
         "zoek": " ".join({naam(iso, "nl"), naam(iso, "en"), iso}).lower(),
         "nl": som["nl_kleur"].value if som["nl_kleur"] else None,
         "bronnen": bronnen,
-        "strenger": som["strenger"],
+        "strenger": [b.eigen_land for b in BRONNEN.values() if b.naam in som["strenger"]],
         "strengere_gebieden": som["strengere_gebieden"],
         "handmatig": som["niet_beschikbaar"],
         "recent": recent,
