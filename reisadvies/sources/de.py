@@ -122,6 +122,20 @@ def parse(id_: str, v: dict, iso: str) -> Advies:
             )
         adv.gebieden.append(Gebied(gebied, niveau("de", sleutel), brontekst=zin))
 
+    # Dezelfde waarschuwing staat vaak ook als aparte zin per gebied ('Gazastreifen' én 'Gazastreifen und
+    # Westjordanland'): een gebied dat letterlijk in een ander gebied met hetzelfde niveau voorkomt, vervalt.
+    def _kern(t: str) -> str:
+        return normaliseer(re.sub(r"^(?:in\s+)?(?:den|die|das|dem|der)\s+", "", t))
+
+    kernen = [(g, _kern(g.omschrijving)) for g in adv.gebieden]
+    adv.gebieden = [
+        g
+        for g, k in kernen
+        if not any(k != k2 and k in k2 and g2.niveau.kleur == g.niveau.kleur for g2, k2 in kernen)
+    ]
+    for g in adv.gebieden:
+        g.omschrijving = re.sub(r"\bbzw\b(?!\.)", "bzw.", g.omschrijving)
+        g.brontekst = re.sub(r"\bbzw\b(?!\.)", "bzw.", g.brontekst)
     if adv.landelijk is not None and adv.landelijk.kleur:
         # zinnen over het hele land kunnen ná de gebieden staan: gebieden met dezelfde kleur weghalen
         adv.gebieden = [g for g in adv.gebieden if g.niveau.kleur != adv.landelijk.kleur]
