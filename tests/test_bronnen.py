@@ -608,3 +608,15 @@ def test_de_aufenthalten_en_bzw_afkorting():
     }
     a = de.parse("1", v, "JP")
     assert any(g.niveau.kleur == Kleur.ROOD for g in a.gebieden) and not a.melding
+
+
+def test_fr_uitzondering_in_dezelfde_zin_als_het_hele_land():
+    html = (
+        "<main><h2>Zones de vigilance</h2><p>L’intégralité du pays est en zone de vigilance renforcée, à l’exception "
+        "des îles Grande Tomb et Petite Tomb et Abou Moussa qui font l’objet d’un contentieux territorial et sont "
+        "formellement déconseillées en raison du risque d’arrestations.</p></main>"
+    )
+    a = fr.parse(html, "AE", "x")
+    assert a.landelijk.kleur == Kleur.GEEL
+    assert [g.niveau.kleur for g in a.gebieden] == [Kleur.ROOD]
+    assert a.gebieden[0].omschrijving.startswith("îles Grande Tomb")
