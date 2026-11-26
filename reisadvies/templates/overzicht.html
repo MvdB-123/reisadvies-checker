@@ -19,15 +19,6 @@
   a { color: var(--link); }
   a:hover { color: var(--link-hover); }
   h1, h2 { font-family: "RO Serif", "Public Sans", "Segoe UI", system-ui, sans-serif; font-weight: 700; }
-  .kop { background: var(--licht); margin: -32px -32px 24px; padding: 24px 32px 20px; border-bottom: 1px solid #cfe6f5; }
-  .kop h1 { margin: 0 0 6px; }
-  .kop .meta { margin-bottom: 0; }
-  .kop a.thuis { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); text-decoration: none; }
-  .kop a.thuis:hover { text-decoration: underline; }
-  .kop .wereld { flex: none; color: var(--accent); }
-  .kruimel { font-size: 14px; margin-bottom: 10px; color: var(--zacht); }
-  .kruimel a { color: var(--link); }
-  .kruimel a.thuis { color: var(--accent); font-weight: 600; gap: 6px; }
   .disclaimer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--lijn); font-size: 13px; color: var(--zacht); }
 
   body { font-family: "RO Sans", "Public Sans", "Segoe UI", system-ui, sans-serif; color: var(--tekst);
@@ -100,6 +91,27 @@
   .legenda dt { font-weight: 600; color: var(--tekst); margin-top: 6px; }
   .legenda dd { margin: 0 0 0 0; }
   @media print { body { padding: 0; font-size: 12px; } details { break-inside: avoid; } details:not([open]) { display: none; } }
+  /* Kop zoals de Reisadvies-Reviewer: dunne lijn, organisatiebalk, blauw vlak met wereldbol en witte titel. */
+  body { margin: 0; padding: 0; max-width: none; }
+  .binnen { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .pagina { max-width: 1180px; margin: 0 auto; padding: 24px 32px 32px; }
+  .rijkslijn { height: 6px; background: var(--accent); }
+  .organisatie { border-bottom: 1px solid var(--lijn); font-size: 13px; font-weight: 600; color: var(--accent); }
+  .organisatie .binnen { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; padding-bottom: 14px; gap: 12px; flex-wrap: wrap; }
+  .badge { font-weight: 400; color: var(--zacht); border: 1px solid #b9b9b9; border-radius: 3px; padding: 3px 10px; font-size: 12px; }
+  .kop { background: #007bc7; color: #fff; margin: 0; padding: 28px 0 26px; border: 0; }
+  .kop .binnen { display: flex; gap: 20px; align-items: flex-start; }
+  .kop .tekst { min-width: 0; }
+  .kop a.thuis { color: #fff; text-decoration: none; flex: none; display: block; }
+  .kop a.thuis:hover { opacity: .85; }
+  .kop .wereld { display: block; color: #fff; }
+  .kop h1 { color: #fff; margin: 0 0 8px; font-size: 38px; line-height: 1.1; }
+  .kop .meta, .kop .intro, .kop .intro p { color: #fff; }
+  .kop .meta { font-size: 14px; margin: 0 0 10px; opacity: .95; }
+  .kop .intro { margin: 0; max-width: 760px; font-size: 17px; }
+  .kop .intro p { margin: 0 0 8px; }
+  .kruimel { font-size: 14px; margin: 0 0 10px; color: #fff; }
+  .kruimel a { color: #fff; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -118,11 +130,16 @@
   {% if niveau %}<span class="soort soort-{{ niveau.soort.value|replace(' ', '-') }}" title="Zie legenda">{{ niveau.soort.value }}</span>{% endif %}
 {%- endmacro %}
 
-<header class="kop">
-  {% if terug %}<nav class="kruimel"><a class="thuis" href="{{ terug }}" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/></svg>Reisadvies-checker</a> › <a href="{{ terug }}">Alle landen</a> › {{ land }}</nav>{% endif %}
+<div class="rijkslijn"></div>
+<div class="organisatie"><div class="binnen"><span>Ministerie van Buitenlandse Zaken · NederlandWereldwijd</span><span class="badge">Intern prototype — geen officiële uitgave</span></div></div>
+<header class="kop"><div class="binnen">
+  {% if terug %}<a class="thuis" href="{{ terug }}" title="Naar de startpagina"><svg class="wereld" viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="7.2" cy="9" r="1" fill="currentColor"/><circle cx="16.8" cy="15" r="1" fill="currentColor"/></svg></a>{% else %}<span class="thuis"><svg class="wereld" viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.5"/><ellipse cx="12" cy="12" rx="4.2" ry="9.5"/><path d="M2.5 12h19M4 7h16M4 17h16"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="7.2" cy="9" r="1" fill="currentColor"/><circle cx="16.8" cy="15" r="1" fill="currentColor"/></svg></span>{% endif %}
+  <div class="tekst">
+  {% if terug %}<nav class="kruimel"><a href="{{ terug }}">Reisadvies-checker</a> › <a href="{{ terug }}">Alle landen</a> › {{ land }}</nav>{% endif %}
   <h1>Reisadviezen gelijkgestemde landen: {{ land }}</h1>
-  <div class="meta">Opgehaald op {{ gegenereerd }} · {{ rijen|length }} overheden · ISO-code {{ iso }}</div>
-</header>
+  <div class="meta">Opgehaald op {{ gegenereerd }} · {{ rijen|length }} overheden · ISO-code {{ iso }}</div></div>
+</div></header>
+<main class="pagina">
 
 <div class="kern">
   {% if som.nl_kleur %}
@@ -258,5 +275,6 @@
 <p class="disclaimer">Interne vergelijkingstool, geen officiële publicatie van Nederland Wereldwijd of de rijksoverheid.
   Het actuele Nederlandse reisadvies staat op <a href="https://www.nederlandwereldwijd.nl/reisadvies">nederlandwereldwijd.nl/reisadvies</a>.
   De adviezen van andere overheden zijn automatisch opgehaald en kunnen afwijken van hun eigen website: controleer via de bronlinks.</p>
+</main>
 </body>
 </html>
