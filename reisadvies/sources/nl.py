@@ -109,7 +109,8 @@ def parse(html: str, iso: str, url: str) -> Advies:
                 break
             delen.append(tekst(sib))
         kort_tekst = " ".join(delen)
-    adv.brontekst = kort_tekst
+    # De oproep voor de Informatieservice hoort niet bij het advies.
+    adv.brontekst = re.split(r"\s*E-mail ontvangen als het reisadvies", kort_tekst)[0].strip()
 
     # Gebieden: alleen de lijst direct na een vaste zin ('Voor de volgende gebieden geldt kleurcode
     # rood:' / 'Kleurcode rood geldt voor:'). Die zin staat in een <p> met de lijst erna, of als
