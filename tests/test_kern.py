@@ -146,3 +146,18 @@ def test_regios_dekken_alle_nederlandse_adviezen_en_afrika_is_het_geheel():
     assert regios_van("BQ-BO") == ["caribisch"] and regios_van("QQ") == ["overig"]
     codes = [c for _, (_, codes) in REGIOS.items() for c in codes.split()]
     assert len(codes) == len(set(codes))  # een land hoort bij precies één regio
+
+
+def test_gebiedregels_uitleg_alleen_als_de_bron_meer_zegt_dan_de_naam():
+    from reisadvies.model import Gebied
+    from reisadvies.report import _gebiedregels
+
+    a = _adv("uk", "avoid_all")
+    a.gebieden = [
+        Gebied("within 40km of the border with Chad", niveau("uk", "avoid_all"),
+               brontekst="FCDO advises against all travel to within 40km of the border with Chad."),
+        Gebied("North Region", niveau("uk", "avoid_non_essential"),
+               brontekst="FCDO advises against all but essential travel to the North Region because of kidnapping risks."),
+    ]
+    regels = _gebiedregels(a)
+    assert [r["meer"] for r in regels] == [False, True]  # het tweede noemt een reden
