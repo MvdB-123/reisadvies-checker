@@ -228,8 +228,8 @@
         <ul class="gebiednamen">
           {% for g in r.gebiedregels %}
           <li class="k-{{ g.kleur }}"><span class="blok"></span><span>
-            {% if g.direct %}{{ citaat(g.volledig, 220, 2) }}{% if r.bron.taal != 'nl' %} <a class="deepl" href="{{ deepl(g.volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
-            {% else %}{{ citaat(g.naam, 110, 1) if g.naam|length > 110 else g.naam }}{% endif %}
+            {% if g.direct %}{{ citaat(g.volledig, 450, 3) }}{% if r.bron.taal != 'nl' %} <a class="deepl" href="{{ deepl(g.volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
+            {% else %}{{ g.naam|truncate(400) }}{% endif %}
           </span></li>
           {% endfor %}
         </ul>
