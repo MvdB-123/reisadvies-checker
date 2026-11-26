@@ -55,6 +55,7 @@ def _gebieden(body_html: str) -> list[Gebied]:
     laatste: Gebied | None = None  # gebied waar een direct volgende lijst bij hoort
     vervolg: Gebied | None = None  # zin eindigde op ':' zonder lijst; de h3's eronder zijn deelgebieden
     vervolg_sleutel = ""
+    na_advises_against = False  # vorige alinea was 'FCDO advises against:' (lijst volgt)
     uitleg_voor: list[Gebied] = []  # gebieden waar een volgende gewone alinea de uitleg van is
     # Alleen elementen op het hoogste niveau; <p> binnen <li> of een notitie-<div> overslaan.
     for el in s.find_all(["h2", "h3", "p", "ul"]):
@@ -71,6 +72,17 @@ def _gebieden(body_html: str) -> list[Gebied]:
             kop = "" if "advises against" in t.lower() else t
             laatste = vervolg = None
             continue
+        if el.name == "ul" and na_advises_against:
+            # 'FCDO advises against:' + lijst met 'all travel to ...' / 'all but essential travel to ...'
+            for li in el.find_all("li", recursive=False):
+                t = tekst(li)
+                m2 = _LIJSTITEM.match(t)
+                if not m2:
+                    continue
+                sl = "avoid_non_essential" if "but essential" in m2.group(1).lower() else "avoid_all"
+                out.append(Gebied(m2.group(2).strip().rstrip("."), niveau("uk", sl), brontekst=f"FCDO advises against {t}"))
+            na_advises_against = False
+            continue
         if el.name == "ul":
             if laatste is not None:
                 items = ", ".join(tekst(li) for li in el.find_all("li"))
@@ -80,6 +92,7 @@ def _gebieden(body_html: str) -> list[Gebied]:
                 laatste = None
             continue
         zin = tekst(el)
+        na_advises_against = bool(re.search(r"advises against:?\s*$", zin, re.IGNORECASE)) and el.name == "p"
         m = _ADVIES.search(zin)
         if not m:
             # Een gewone alinea direct onder een adviesregel is de uitleg bij dat gebied
@@ -122,6 +135,7 @@ def _is_rest(omschrijving: str, land: dict) -> bool:
     )
     return bool(re.match(patroon, omschrijving, re.I))
 
+_LIJSTITEM = re.compile(r"^(all but essential|all) travel\s+(?:to|on|in|within|along|by)\b\s*(.*)", re.IGNORECASE)
 _UITLEG_MAX = 500  # tekens: genoeg voor de reden, zonder het overzicht vol te laten lopen
 _BOILERPLATE = re.compile(r"travel insurance could be invalidated|^Find out more|^Read all the advice|^No travel can be guaranteed", re.I)
 _STOP_KOPPEN = re.compile(r"^(Support from the UK government|Before you travel|Travel insurance)", re.I)

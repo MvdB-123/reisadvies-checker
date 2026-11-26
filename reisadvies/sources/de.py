@@ -41,7 +41,7 @@ def index() -> dict[str, tuple[str, dict]]:
 # 'Vor Reisen in den Süden Libanons ... wird gewarnt.' / 'Von nicht notwendigen Reisen nach X wird derzeit
 # dringend abgeraten.' Het voorvoegsel kan een kop zijn die in de tekst is meegekomen ('Aktuelles').
 _ZIN = re.compile(
-    r"\b(?P<vorm>Vor|Von)\s+(?P<soort>nicht (?:unbedingt )?notwendigen\s+|touristischen\s+)?Reisen\s+"
+    r"\b(?P<vorm>Vor|Von)\s+(?P<soort>nicht (?:unbedingt )?notwendigen\s+|touristischen\s+)?(?:Reisen|Aufenthalten)\s+"
     r"(?P<vz>in|nach|auf|an|zu)\s+(?P<gebied>[^.]+?)\s+wird\s+(?:derzeit\s+|weiterhin\s+|ausdrücklich\s+)*"
     r"(?P<dringend>dringend\s+)?(?P<werk>gewarnt|abgeraten)\b[^.]*\.",
 )
@@ -73,7 +73,7 @@ def _ernst(sleutel: str) -> int:
 
 def _zinnen(content_html: str) -> list[re.Match]:
     gezien, out = set(), []
-    for m in _ZIN.finditer(tekst(soep(content_html))):
+    for m in _ZIN.finditer(tekst(soep(content_html)).replace("bzw.", "bzw")):
         zin = m.group(0)
         if "siehe Reise- und Sicherheitshinweise" in zin:
             continue  # verwijzing naar een ander land
@@ -131,6 +131,16 @@ def parse(id_: str, v: dict, iso: str) -> Advies:
             adv.landelijk.toelichting += (
                 " Let op: wél waarschuwing of afraden voor delen van het land (zie gebieden)."
             )
+    if v.get("partialWarning") and not any(
+        g.niveau.kleur and g.niveau.kleur.ernst == 4 for g in adv.gebieden
+    ):
+        # Vaste zinnen niet herkend: val terug op elke zin 'wird gewarnt', letterlijk als gebied.
+        tekst_ = tekst(soep(v.get("content", ""))).replace("bzw.", "bzw")
+        for zm in re.finditer(r"[^.]*\bwird\s+(?:dringend\s+)?gewarnt[^.]*\.", tekst_):
+            zin = re.sub(r"^.*?(?=Vor\s)", "", zm.group(0).strip())
+            if "siehe" in zin.lower() or any(zin == g.brontekst for g in adv.gebieden):
+                continue
+            adv.gebieden.append(Gebied(zin, niveau("de", "teilreisewarnung"), brontekst=zin))
     if v.get("partialWarning") and not any(
         g.niveau.kleur and g.niveau.kleur.ernst == 4 for g in adv.gebieden
     ):
