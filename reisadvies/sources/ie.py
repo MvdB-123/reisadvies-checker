@@ -136,8 +136,9 @@ def index() -> dict[str, str]:
 
 
 GEBLOKKEERD = (
-    "ireland.ie weigert verzoeken uit datacenters (HTTP 403). Vanaf een kantoornetwerk werkt het wel. "
-    "Handmatig nalopen via de link."
+    "Ierland laat ons programma niet bij de pagina: de website weigert geautomatiseerde verzoeken uit de "
+    "cloud waar deze pagina elke ochtend wordt opgebouwd (dat is een andere computer dan de jouwe). "
+    "Open de bron en lees het advies daar zelf."
 )
 
 

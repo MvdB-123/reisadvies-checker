@@ -77,8 +77,9 @@ def index() -> dict[str, str]:
 
 
 GEBLOKKEERD = (
-    "smartraveller.gov.au weigert verzoeken uit datacenters. Vanaf een kantoornetwerk werkt het wel. "
-    "Handmatig nalopen via de link."
+    "Australië laat ons programma niet bij de pagina: de website weigert geautomatiseerde verzoeken uit de "
+    "cloud waar deze pagina elke ochtend wordt opgebouwd (dat is een andere computer dan de jouwe). "
+    "Open de bron en lees het advies daar zelf."
 )
 
 

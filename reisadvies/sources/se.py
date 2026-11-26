@@ -34,7 +34,7 @@ START = (
 )
 WEB = LIJST
 
-_ZIN = re.compile(r"[^.]*avråder[^.]*\.", re.IGNORECASE)
+_ZIN = re.compile(r"[^.]*avråd(?:er|a)\b[^.]*\.", re.IGNORECASE)  # 'avråder' en 'beslutat om att avråda'
 _BESLUT = re.compile(r"Beslut(?:et)? om avrådan[^.]*\.", re.IGNORECASE)
 
 
@@ -127,7 +127,10 @@ def _uit_tekst(adv: Advies, blok_tekst: str, iso: str) -> Advies:
                 adv.landelijk = niveau("se", sl)
         else:
             adv.gebieden.append(Gebied(zin, niveau("se", sl), brontekst=zin))
-    if adv.landelijk is None:
+    if adv.landelijk is None and not adv.gebieden and re.search(r"avråd", blok_tekst, re.IGNORECASE):
+        # Er staat een avrådan, maar de zin is niet herkend: nooit als 'geen avrådan' tonen.
+        adv.melding = "Zweden noemt een avrådan, maar het niveau is niet automatisch herkend. Lees de brontekst."
+    elif adv.landelijk is None:
         adv.landelijk = niveau("se", "geen")
         adv.landelijk.toelichting += " Er is wel een avrådan voor delen van het land (zie gebieden)."
     elif adv.landelijk.kleur:
