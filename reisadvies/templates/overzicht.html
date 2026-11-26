@@ -227,20 +227,17 @@
         {% if r.gebiedregels %}
         <ul class="gebiednamen">
           {% for g in r.gebiedregels %}
-          <li class="k-{{ g.kleur }}"><span class="blok"></span><span>
-            {% if g.direct %}{{ citaat(g.volledig, 700, 4) }}{% else %}{{ g.naam|truncate(400) }}{% endif %}
-          </span></li>
+          <li class="k-{{ g.kleur }}"><span class="blok"></span><span>{{ g.kort if r.gebieden_uitklap else g.naam }}</span></li>
           {% endfor %}
         </ul>
-        {% set meer_regels = r.gebiedregels|rejectattr('direct')|selectattr('meer')|list %}
-        {% if meer_regels %}
-        <details class="citaten"><summary>Meer uitleg uit de bron ({{ meer_regels|length }})</summary>
-          {% for g in meer_regels %}
-          <div class="citaat k-{{ g.kleur }}"><span class="blok"></span><div>“{{ citaat(g.volledig, 900, 6) }}”</div></div>
+        {% if r.gebieden_uitklap %}
+        <details class="citaten"><summary>Volledige tekst uit de bron ({{ r.gebiedregels|length }})</summary>
+          {% for g in r.gebiedregels %}
+          <div class="citaat k-{{ g.kleur }}"><span class="blok"></span><div>“{{ g.volledig|truncate(1500) }}”</div></div>
           {% endfor %}
           {% if r.gebieden_deepl %}<a class="deepl" href="{{ r.gebieden_deepl }}" target="_blank" rel="noopener">vertaal alles met DeepL</a>{% endif %}
         </details>
-        {% elif r.gebieden_deepl %}<a class="deepl" href="{{ r.gebieden_deepl }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
+        {% endif %}
         {% else %}<span class="vertaling">Geen</span>{% endif %}
       </td>
       <td class="datum">
@@ -276,7 +273,7 @@
     {% for g in r.gebiedregels %}
     <div class="bd-blok k-{{ g.kleur }}"><div class="bd-kop"><span class="blok"></span>{{ g.kleur|capitalize }} · deelgebied</div>
       {% if g.volledig == g.naam %}<p><strong>{{ g.naam }}</strong></p>
-      {% else %}{% if not g.direct %}<div class="bd-naam2">{{ g.naam }}</div>{% endif %}
+      {% else %}{% if g.naam not in g.volledig %}<div class="bd-naam2">{{ g.naam }}</div>{% endif %}
       <p>“{{ g.volledig|truncate(1200) }}”</p>{% endif %}
       {% if r.bron.taal != 'nl' and g.volledig != g.naam %}<a class="deepl" href="{{ deepl(g.volledig|truncate(1500), r.bron.taal) }}" target="_blank" rel="noopener">vertaal met DeepL</a>{% endif %}
     </div>
