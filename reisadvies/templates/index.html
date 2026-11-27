@@ -34,7 +34,7 @@
   #aantal { color: var(--zacht); margin-left: auto; }
   table { width: 100%; border-collapse: collapse; margin-top: 4px; }
   th, td { padding: 6px 6px; border-bottom: 1px solid var(--lijn); text-align: left; vertical-align: middle; }
-  th { font-size: 11px; color: var(--zacht); font-weight: 600; position: sticky; top: 58px; background: #fff; z-index: 1; }
+  th { font-size: 11px; color: var(--zacht); font-weight: 600; background: #fff; }
   th.bron, td.bron { text-align: center; width: 44px; }
   th.bron span { display: block; font-size: 18px; }
   tr:hover td { background: #eef3f8; }
@@ -87,6 +87,10 @@
   .kop .intro p { margin: 0 0 8px; }
   .kruimel { font-size: 14px; margin: 0 0 10px; color: #fff; }
   .kruimel a { color: #fff; text-decoration: underline; }
+  @media (max-width: 600px) { .kop h1 { font-size: 26px; } .kop .binnen { gap: 12px; } .kop .wereld { width: 40px; height: 40px; } .binnen, .pagina { padding-left: 16px; padding-right: 16px; } .kop .intro { font-size: 15px; } }
+  .tabelwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tabelwrap table { min-width: 640px; }
+  @media (max-width: 600px) { .balk { position: static; } }
 </style>
 </head>
 <body>
@@ -140,7 +144,7 @@
   <span id="aantal" hidden></span>
 </div>
 
-<table>
+<div class="tabelwrap"><table>
   <thead>
     <tr>
       <th>Land</th>
@@ -172,7 +176,7 @@
     </tr>
   {% endfor %}
   </tbody>
-</table>
+</table></div>
 
 <div class="legenda">
   <span><span class="s groen"></span>groen</span><span><span class="s geel"></span>geel</span>
