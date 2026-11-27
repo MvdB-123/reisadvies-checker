@@ -26,6 +26,7 @@
   h1 { font-size: 30px; margin: 0 0 4px; color: var(--accent); }
   h2 { font-size: 18px; margin: 32px 0 12px; color: var(--accent); }
   .meta { color: var(--zacht); font-size: 13px; margin-bottom: 20px; }
+  .pagina, .kop .tekst { min-width: 0; }
   .kern { background: var(--licht); border-left: 4px solid var(--accent); padding: 14px 18px; margin: 16px 0 24px; }
   .kern p { margin: 4px 0; }
   table { width: 100%; border-collapse: collapse; }
@@ -65,9 +66,10 @@
   details { margin: 0 0 14px; border: 1px solid var(--lijn); border-radius: 4px; padding: 8px 12px; }
   details summary { cursor: pointer; font-weight: 600; }
   details.bron-detail { padding: 0; margin: 0 0 8px; }
-  details.bron-detail summary { display: flex; align-items: center; gap: 12px; padding: 9px 14px; font-weight: 400; }
-  details.bron-detail .bd-naam { font-weight: 600; min-width: 200px; }
-  .bd-meta { font-size: 13px; color: var(--zacht); }
+  details.bron-detail summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 9px 14px; font-weight: 400; }
+  details.bron-detail .bd-naam { font-weight: 600; flex: 1 1 190px; min-width: 0; }
+  .bd-meta { font-size: 13px; color: var(--zacht); white-space: nowrap; }
+  .bd-inhoud, .bd-blok { overflow-wrap: anywhere; }
   .bd-inhoud { padding: 2px 14px 12px; border-top: 1px solid var(--lijn); }
   .bd-blok { margin: 12px 0 0; font-size: 14px; }
   .bd-blok p { margin: 2px 0; font-size: 14px; color: var(--tekst); }
@@ -91,6 +93,8 @@
   .npil .sub { display: block; font-size: 11px; color: var(--zacht); margin: 2px 0 0 6px; }
   .ntekst { font-size: 14px; line-height: 1.35; padding-top: 1px; }
   .ntekst .nl { display: block; font-size: 13px; color: var(--zacht); }
+  .tabelwrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tabelwrap table { min-width: 880px; }
   .overzicht td { padding: 12px 10px; }
   .niveaus .sub { font-size: 12px; color: var(--zacht); margin: 2px 0 8px 4px; }
   .classificatie .regel { margin: 0 0 8px; font-size: 14px; }
@@ -131,6 +135,7 @@
   .kop .intro p { margin: 0 0 8px; }
   .kruimel { font-size: 14px; margin: 0 0 10px; color: #fff; }
   .kruimel a { color: #fff; text-decoration: underline; }
+  @media (max-width: 600px) { .kop h1 { font-size: 26px; } .kop .binnen { gap: 12px; } .kop .wereld { width: 40px; height: 40px; } .binnen, .pagina { padding-left: 16px; padding-right: 16px; } .kop .intro { font-size: 15px; } }
 </style>
 </head>
 <body>
@@ -176,7 +181,7 @@
 </div>
 
 <h2>Adviezen per overheid</h2>
-<table class="overzicht">
+<div class="tabelwrap"><table class="overzicht">
   <thead>
     <tr><th style="width:14%">Overheid</th><th style="width:38%">Niveau en officiële classificatie</th><th>Deelgebieden</th><th style="width:12%">Laatst gewijzigd</th></tr>
   </thead>
@@ -251,7 +256,7 @@
     </tr>
   {% endfor %}
   </tbody>
-</table>
+</table></div>
 
 <h2>Brontekst per overheid</h2>
 <p class="vertaling" style="margin: -4px 0 10px">Letterlijk uit de bron, in de eigen taal. De DeepL-link vertaalt de hele tekst.</p>
