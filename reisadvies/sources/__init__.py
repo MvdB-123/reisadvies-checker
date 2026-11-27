@@ -1,4 +1,6 @@
-"""Register van alle bronnen, in de volgorde waarin ze in het overzicht staan."""
+"""Register van alle bronnen, in de volgorde waarin ze in het overzicht staan.
+
+Ierland en Australië staan onderaan: die zijn in de cloud niet automatisch op te halen."""
 
 from __future__ import annotations
 
@@ -7,5 +9,5 @@ from .base import Bron
 
 BRONNEN: dict[str, Bron] = {
     b.sleutel: b
-    for b in [nl.BRON, uk.BRON, fr.BRON, de.BRON, se.BRON, dk.BRON, ie.BRON, at.BRON, us.BRON, au.BRON, ca.BRON]
+    for b in [nl.BRON, uk.BRON, fr.BRON, de.BRON, us.BRON, se.BRON, dk.BRON, at.BRON, ca.BRON, ie.BRON, au.BRON]
 }
