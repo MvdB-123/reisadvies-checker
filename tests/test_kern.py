@@ -98,6 +98,9 @@ def test_deepl_link_en_citaat():
     from reisadvies.report import citaat, deepl_link
 
     assert deepl_link("Hej världen", "sv") == "https://www.deepl.com/translator#sv/nl/Hej%20v%C3%A4rlden"
+    # '/' en '|' knippen de tekst af in DeepL tenzij ze een backslash voor zich hebben (M16/H26 werd 'M16')
+    assert deepl_link("the M16/H26 road", "en").endswith("the%20M16%5C%2FH26%20road")
+    assert "%5C%7C" in deepl_link("a | b", "en")
     lang = "Eerste zin. " + "woord " * 100
     assert citaat(lang).endswith("…") and citaat("Kort.") == "Kort."
 
