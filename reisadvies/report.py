@@ -40,8 +40,12 @@ def _gebiedregels(a: Advies) -> list[dict]:
 
 
 def deepl_link(tekst: str, taal: str) -> str:
-    """Link naar DeepL met de tekst al ingevuld, zodat de redactie de vertaling zelf kan nalopen."""
-    return f"https://www.deepl.com/translator#{quote(taal)}/nl/{quote(tekst, safe='')}"
+    """Link naar DeepL met de tekst al ingevuld, zodat de redactie de vertaling zelf kan nalopen.
+
+    DeepL leest '/' en '|' in de link als scheidingsteken en knipt de tekst daar af ('M16/H26' werd 'M16');
+    die tekens moeten met een backslash ervoor ('\\/'), en een backslash zelf als '\\\\'."""
+    veilig = tekst.replace("\\", "\\\\").replace("/", "\\/").replace("|", "\\|")
+    return f"https://www.deepl.com/translator#{quote(taal)}/nl/{quote(veilig, safe='')}"
 
 
 def citaat(tekst: str, lengte: int = KORT_CITAAT, zinnen: int = 2) -> str:
